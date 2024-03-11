@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../../../core/routing/navigation_services.dart';
+import '../../../../../../core/routing/routes.dart';
 import '../../restaurant/restautant_screen.dart';
 import 'custom_restaurant_item_widget.dart';
 class CustomRestaurantsListWidget extends StatelessWidget {
@@ -15,7 +17,9 @@ class CustomRestaurantsListWidget extends StatelessWidget {
           itemBuilder: (context,index){
             return InkWell(
                 onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>const RestaurantScreen()));
+                  // Navigator.push(context, MaterialPageRoute(builder: (context)=>const RestaurantScreen()));
+                  NavigationService.push(RoutesRestaurants.restaurantScreen);
+
                 },
                 child: const CustomRestaurantItemWidget());
           }),

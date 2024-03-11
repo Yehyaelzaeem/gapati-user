@@ -15,45 +15,28 @@ class OrdersScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: AppColors.customWhite,
-       child: Padding(
-         padding: EdgeInsets.symmetric(horizontal: 5.w),
-         child: Column(
-           children: [
-             Container(
-               color: AppColors.whiteColor,
-               width: double.infinity,
-               height: 60.h,
-             ),
-             Container(
-               color: AppColors.whiteColor,
-               width: double.infinity,
-               height: 60.h,
-               child: Padding(
-                 padding: EdgeInsets.symmetric(horizontal: 10.w),
-                 child: Row(
-                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                   children: [
-                     InkWell(
-                         onTap: (){
-                           final LayoutCubit viewModel = BlocProvider.of<LayoutCubit>(context);
-                           viewModel.setCurrentIndex(0);
-                         },
-                         child: const Icon(Icons.arrow_back_ios_new_rounded)),
-                     Text('Orders',style: TextStyles.font20Black700Weight,),
-                     verticalSpace(1)
-                   ],
-                 ),
-               ),
-             ),
-             verticalSpace(20),
-             const CustomOrderItemWidget(),
-             const CustomOrderItemWidget(),
-             const CustomOrderItemWidget(),
-           ],
-         ),
-       ),
+    return Scaffold(
+      appBar:   CustomAppBar(
+        title: 'Orders',
+        onBackPress: (){
+          final LayoutCubit viewModel = BlocProvider.of<LayoutCubit>(context);
+          viewModel.setCurrentIndex(0);
+        },
+      ),
+      body:   Container(
+        color: AppColors.customWhite,
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 5.w),
+          child: Column(
+            children: [
+              verticalSpace(20),
+              const CustomOrderItemWidget(),
+              const CustomOrderItemWidget(),
+              const CustomOrderItemWidget(),
+            ],
+          ),
+        ),
+      )
     );
   }
 }

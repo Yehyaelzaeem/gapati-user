@@ -1,9 +1,12 @@
 import 'package:cogina/core/helpers/spacing.dart';
 import 'package:cogina/presentation/modules/layout/screens/orders/widgets/custom_steps_order_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/global/styles/colors.dart';
 import '../../../../../core/global/styles/styles.dart';
+import '../../../../component/custom_app_bar.dart';
+import '../../layout_cubit.dart';
 import '../cart/widgets/custom_cart_item.dart';
 import '../cart/widgets/custom_text_row_cart.dart';
 import '../cart/widgets/custom_visa_widget.dart';
@@ -14,14 +17,7 @@ class OrderDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading:InkWell(
-            onTap: (){
-              Navigator.of(context).pop();
-            },
-            child: const Icon(Icons.arrow_back_ios_rounded)),
-        backgroundColor:AppColors.whiteColor,
-      ),
+      appBar: const CustomAppBar(),
       body: SingleChildScrollView(
         child: Column(
           children: [

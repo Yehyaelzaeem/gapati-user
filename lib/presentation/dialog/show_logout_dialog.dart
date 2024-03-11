@@ -12,7 +12,9 @@ Future<bool?> showLogoutDialog(BuildContext context) async {
     context,
     btnTextPositive: tr(LocaleKeys.no),
     btnTextNegative: tr(LocaleKeys.yes),
-    question: tr(LocaleKeys.wantToSignOut),
+    question: 'Log Out',
+    desc:'Are you sure you want to Log out?' ,
+    // tr(LocaleKeys.wantToSignOut),
     onNegativeClick: () {
       // _onLogoutPress(context)
     },

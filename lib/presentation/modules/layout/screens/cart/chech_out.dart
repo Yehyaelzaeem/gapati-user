@@ -5,6 +5,7 @@ import 'package:cogina/presentation/modules/layout/screens/cart/widgets/custom_s
 import 'package:flutter/material.dart';
 import '../../../../../core/global/styles/colors.dart';
 import '../../../../../core/global/styles/styles.dart';
+import '../../../../component/custom_app_bar.dart';
 
 class CheckOutScreen extends StatefulWidget {
   const CheckOutScreen({super.key});
@@ -18,14 +19,11 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backGroundGray,
-        appBar: AppBar(
-          title: Text('Check Out',
-          style: TextStyles.font18Black700Weight,
-          ),
-          centerTitle: true,
-          leading: IconButton(onPressed: (){Navigator.of(context).pop();}, icon: const Icon(Icons.arrow_back_ios_rounded)),
-          backgroundColor: AppColors.whiteColor,
+        appBar:
+        const CustomAppBar(
+          title: 'Check Out',
         ),
+
         body:
         Stepper(
           type: StepperType.horizontal,

@@ -5,8 +5,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../core/assets_constant/images.dart';
 import '../../../../../../core/global/styles/colors.dart';
 import '../../../../../../core/global/styles/styles.dart';
+import '../../../../../../core/routing/navigation_services.dart';
+import '../../../../../../core/routing/routes.dart';
 import '../../../../../component/custom_elevated_button.dart';
 import '../../../../../component/custom_rate.dart';
+import '../../restaurant/meal_details_screen.dart';
 import '../../restaurant/restautant_screen.dart';
 
 class CustomProductItemWidget extends StatelessWidget {
@@ -18,7 +21,9 @@ class CustomProductItemWidget extends StatelessWidget {
 
     return InkWell(
       onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>const RestaurantScreen()));
+        // Navigator.push(context, MaterialPageRoute(builder: (context)=>const MealDetailsScreen()));
+        NavigationService.push(RoutesRestaurants.mealDetailsScreen);
+
       },
       child: Container(
         width: MediaQuery.of(context).size.width*0.45,

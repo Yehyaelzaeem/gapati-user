@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -6,6 +5,8 @@ import '../../../../../../core/assets_constant/images.dart';
 import '../../../../../../core/global/styles/colors.dart';
 import '../../../../../../core/global/styles/styles.dart';
 import '../../../../../../core/helpers/spacing.dart';
+import '../../../../../../core/routing/navigation_services.dart';
+import '../../../../../../core/routing/routes.dart';
 import '../order_details_screen.dart';
 
 class CustomOrderItemWidget extends StatelessWidget {
@@ -15,7 +16,7 @@ class CustomOrderItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context)=> OrderDetailsScreen()));
+        NavigationService.push(RoutesRestaurants.orderDetailsScreen);
       },
       child: Padding(
         padding: const EdgeInsets.all(8.0),

@@ -36,7 +36,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         this.titleColor,
         this.backBackgroundColor,
         this.isBackButtonExist = true,
-        this.isCenterTitle = false,
+        this.isCenterTitle = true,
         this.showIcon = false,
         // this.icon,
         this.bottomWidget,
@@ -56,14 +56,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return PreferredSize(
       preferredSize: Size.fromHeight(((height ?? 60) -(bottomSize ??0 )  ).h),
       child: AppBar(
-        backgroundColor: Colors.transparent,//Theme.of(context).backgroundColor,
+        backgroundColor: Colors.white,//Theme.of(context).backgroundColor,
         title: titleWidget??(title != null
-            ? Text(title ?? '', style: const TextStyle().titleStyle(fontSize: 16).boldStyle().customColor(titleColor?? Colors.black))
+            ? Text(title ?? '', style: const TextStyle().titleStyle(fontSize: 21).boldStyle().customColor(titleColor?? Colors.black87))
             : centerLogo ?? const SizedBox.shrink()),
         centerTitle: isCenterTitle,
         leading:leading ?? (
             isBackButtonExist
-                ? GestureDetector(onTap:  onBackPress ?? () => Navigator.pop(context),child: Container(decoration: BoxDecoration(shape:BoxShape.circle ,color: backBackgroundColor),margin:const EdgeInsets.all(kFormPaddingAllSmall),child: Icon(iconBack ?? Icons.arrow_back, color:titleColor?? Colors.black)))
+                ? GestureDetector(onTap:  onBackPress ?? () => Navigator.pop(context),child: Container(decoration: BoxDecoration(shape:BoxShape.circle ,color: backBackgroundColor),margin:const EdgeInsets.all(kFormPaddingAllSmall),child: Icon(iconBack ?? Icons.arrow_back_ios, color:titleColor?? Colors.black87)))
                 // ? IconButton(color: backBackgroundColor,icon: Icon(iconBack ?? Icons.arrow_back, color:titleColor?? Colors.black), onPressed: onBackPress ?? () => Navigator.pop(context),)
                 : const SizedBox()
         ),

@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../core/global/styles/colors.dart';
 import '../../../../../../core/global/styles/styles.dart';
 import '../../../../../../core/helpers/spacing.dart';
+import '../../../../../../core/routing/navigation_services.dart';
+import '../../../../../../core/routing/routes.dart';
 import '../../../../../component/custom_elevated_button.dart';
 import '../order_success_screen.dart';
 import 'custom_cart_item.dart';
@@ -61,8 +63,9 @@ class CustomStepBody4Widget extends StatelessWidget {
                       fontSize: 17,
                       fontColor: AppColors.whiteColor,
                       onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>const OrderSuccessScreen()));
-                        // NavigationService.push(RoutesRestaurants.restaurantsHome);
+                        // Navigator.push(context, MaterialPageRoute(builder: (context)=>const OrderSuccessScreen()));
+                         NavigationService.push(RoutesRestaurants.successOrderScreen);
+
 
                       }, buttonText: 'Order now'),
                 ),

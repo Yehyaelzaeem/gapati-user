@@ -41,16 +41,17 @@ Future<dynamic> showQuestionDialog(
     dialogType: DialogType.noHeader,
     btnOkColor: Theme.of(context).primaryColor,
     btnCancelColor: Theme.of(context).primaryColor,
-    descTextStyle: const TextStyle().descriptionStyle( ),
+    descTextStyle: const TextStyle().descriptionStyle( fontSize: 15),
     titleTextStyle: const TextStyle().regularStyle( ),
     alignment: AlignmentDirectional.centerStart,
     showCloseIcon: true,
     btnCancelOnPress: onNegativeClick,
     btnOkOnPress: onPositiveClick,
     btnOkText: btnTextPositive,
-    dismissOnTouchOutside: false,
+    dismissOnTouchOutside: true,
     dismissOnBackKeyPress: false,
     btnCancelText: btnTextNegative,
+
   );
 
   return dialog.show(); // returning result

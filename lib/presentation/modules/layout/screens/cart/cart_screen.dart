@@ -1,4 +1,3 @@
-
 import 'package:cogina/presentation/modules/layout/screens/cart/widgets/custom_cart_item.dart';
 import 'package:cogina/presentation/modules/layout/screens/cart/widgets/custom_cart_top_widget.dart';
 import 'package:cogina/presentation/modules/layout/screens/cart/widgets/custom_total_widget.dart';
@@ -7,31 +6,33 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/global/styles/colors.dart';
 import '../../../../../core/global/styles/styles.dart';
+import '../../../../../core/routing/navigation_services.dart';
+import '../../../../../core/routing/routes.dart';
+import '../../../../component/custom_app_bar.dart';
 import '../../../../component/custom_elevated_button.dart';
 import '../../layout_cubit.dart';
 import 'chech_out.dart';
 List cartItemsList =[1,2,3,4,5];
 
 class CartScreen extends StatelessWidget {
-   const CartScreen({super.key});
+   final bool isLayOut;
+   const CartScreen({super.key, required this.isLayOut});
 
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: (){
-            final LayoutCubit viewModel = BlocProvider.of<LayoutCubit>(context);
-            viewModel.setCurrentIndex(0);
-          },
-          icon: const Icon(Icons.arrow_back_ios_new_rounded),
-        ),
-        backgroundColor: Colors.white,
-        title: Text('Shopping cart',
-        style: TextStyles.font20Black700Weight,
-        ),
-        centerTitle: true,
+      appBar:
+      CustomAppBar(
+        title: 'Shopping cart',
+        onBackPress: (){
+                if(isLayOut==true){
+                  final LayoutCubit viewModel = BlocProvider.of<LayoutCubit>(context);
+                  viewModel.setCurrentIndex(0);
+                }else{
+                  Navigator.of(context).pop();
+                }
+        },
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -50,7 +51,9 @@ class CartScreen extends StatelessWidget {
                 fontSize: 16,
                 width: MediaQuery.of(context).size.width*0.9,
                 onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>const CheckOutScreen()));
+                  // Navigator.push(context, MaterialPageRoute(builder: (context)=>const CheckOutScreen()));
+                  NavigationService.push(RoutesRestaurants.checkOut);
+
                 }, buttonText: 'Checkout'),
             SizedBox(height: 60.h,),
 

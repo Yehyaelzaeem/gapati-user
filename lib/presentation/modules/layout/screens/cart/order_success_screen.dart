@@ -7,6 +7,8 @@ import 'package:cogina/presentation/modules/layout/screens/home/home_screen.dart
 import 'package:cogina/presentation/modules/map/map_order_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../core/routing/navigation_services.dart';
+import '../../../../../core/routing/routes.dart';
 import '../../layout_screen.dart';
 
 class OrderSuccessScreen extends StatelessWidget {
@@ -39,9 +41,8 @@ class OrderSuccessScreen extends StatelessWidget {
               height: 45,
               width: MediaQuery.of(context).size.width*0.65,
                 onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>const OrderMapScreen()));
-
-                  // NavigationService.push(RoutesRestaurants.orderMapScreen);
+                  // Navigator.push(context, MaterialPageRoute(builder: (context)=>const OrderMapScreen()));
+                  NavigationService.push(RoutesRestaurants.orderMapScreen);
                 },
                 buttonText: 'View Orders'),
             verticalSpace(20),
@@ -50,9 +51,8 @@ class OrderSuccessScreen extends StatelessWidget {
                 height: 45,
                 width: MediaQuery.of(context).size.width*0.65,
                 onTap: (){
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> LayoutScreen(currentPage: 0,)));
-
-                  // NavigationService.pushReplacement(RoutesRestaurants.restaurantsHome);
+                  // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> LayoutScreen(currentPage: 0,)));
+                  NavigationService.pushReplacement(RoutesRestaurants.layout);
                 },
                 backgroundColor: AppColors.primaryColor.withOpacity(0.13),
                 fontColor:AppColors.primaryColor ,

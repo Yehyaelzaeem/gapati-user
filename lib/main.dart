@@ -4,6 +4,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'bloc.dart';
+import 'core/routing/navigation_services.dart';
+import 'core/routing/route_generator.dart';
 import 'injection.dart' as injection;
 import 'data/injection.dart' as data_injection;
 import 'core/global/styles/colors.dart';
@@ -40,7 +42,9 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
             title: 'كُوجِينَا',
             debugShowCheckedModeBanner: false,
-            theme: ThemeData(
+          navigatorKey: NavigationService.navigationKey,
+          onGenerateRoute: RouteRestaurantsGenerator.generateRestaurantsBaseRoute,
+          theme: ThemeData(
               primaryColor: AppColors.primaryColor,
               primaryColorDark: AppColors.primaryColorDark,
                colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor.withOpacity(0.5)),

@@ -27,7 +27,6 @@ class RestaurantScreen extends StatelessWidget {
                     child:
                     Image.asset(RestaurantImages.mc1,fit: BoxFit.cover,)
                 ),
-
               ],
             ),
             Positioned(
