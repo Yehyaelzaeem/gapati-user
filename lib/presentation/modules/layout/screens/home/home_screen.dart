@@ -8,7 +8,6 @@ import '../../../../../core/global/styles/colors.dart';
 import '../../../../../core/global/styles/styles.dart';
 import '../../../../../core/routing/navigation_services.dart';
 import '../../../../../core/routing/routes.dart';
-import '../notification/notification_screen.dart';
 import 'home_cubit.dart';
 // _getData(BuildContext context){
 //   BlocProvider.of<HomeCubit>(context, listen: false).getOffers();
@@ -64,13 +63,32 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),),
                   Positioned(
+                      top: 20.h,
+                      right: 10.w,
+                      child: InkWell(
+                        onTap: (){
+                          NavigationService.push(RoutesRestaurants.searchScreen);
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              color: AppColors.whiteColor,
+                              boxShadow: const [BoxShadow(color: Colors.black12,blurRadius: 5,
+                                  offset: Offset(1, 4)
+                              )]
+                          ),
+                          child:  Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: Icon(Icons.search,size: 27,color: AppColors.customGray.withOpacity(0.5),),
+                          ),
+                        ),
+                      )),
+                  Positioned(
                     top: 20.h,
                     left: 10.w,
                     child: InkWell(
                       onTap: (){
-                        // Navigator.push(context, MaterialPageRoute(builder: (context)=>const NotificationScreen()));
                         NavigationService.push(RoutesRestaurants.notification);
-
                       },
                       child: Container(
                         decoration: BoxDecoration(
@@ -104,7 +122,11 @@ class _HomeScreenState extends State<HomeScreen> {
                           children: [
                             Text('Latest Sales', style: TextStyles.font18Black700Weight,),
                             const Spacer(),
-                            Text('See All', style: TextStyles.font15CustomGray400Weight,),
+                            InkWell(
+                                onTap: (){
+                                  NavigationService.push(RoutesRestaurants.latestSalesScreen);
+                                },
+                                child: Text('See All', style: TextStyles.font15CustomGray400Weight,)),
                           ],
                         ),
                         verticalSpace(10),
@@ -116,14 +138,19 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ),
                         verticalSpace(10),
-                        Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Image.asset(RestaurantImages.banner,
-                            width: double.infinity,
-                            fit: BoxFit.fill,
+                        InkWell(
+                          onTap: (){
+                            NavigationService.push(RoutesRestaurants.offersScreen);
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Image.asset(RestaurantImages.banner,
+                              width: double.infinity,
+                              fit: BoxFit.fill,
+                            ),
                           ),
                         ),
-                        verticalSpace(100),
+                        verticalSpace(30 ),
 
                       ],
                     ),

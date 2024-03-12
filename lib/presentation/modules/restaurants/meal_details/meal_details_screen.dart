@@ -1,17 +1,16 @@
-import 'package:cogina/core/helpers/spacing.dart';
-import 'package:cogina/presentation/modules/layout/screens/restaurant/widgets/custom_sandwich_widget.dart';
+import 'package:cogina/presentation/modules/restaurants/widgets/custom_sandwich_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../../core/assets_constant/images.dart';
-import '../../../../../core/global/styles/colors.dart';
-import '../../../../../core/global/styles/styles.dart';
-import '../../../../../core/routing/navigation_services.dart';
-import '../../../../../core/routing/routes.dart';
-import '../../../../component/custom_elevated_button.dart';
-import '../cart/cart_screen.dart';
+import '../../../../../../core/assets_constant/images.dart';
+import '../../../../../../core/global/styles/colors.dart';
+import '../../../../../../core/global/styles/styles.dart';
+import '../../../../../../core/routing/navigation_services.dart';
+import '../../../../../../core/routing/routes.dart';
+import '../../../component/custom_elevated_button.dart';
 
 class MealDetailsScreen extends StatelessWidget {
-  const MealDetailsScreen({super.key});
+   MealDetailsScreen({super.key});
+  bool isFav=false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,13 +19,68 @@ class MealDetailsScreen extends StatelessWidget {
       SingleChildScrollView(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top:40.0),
-              child: SizedBox(
-                  height: 370.h,
-                  child:
-                  Image.asset(RestaurantImages.pro2,fit: BoxFit.cover,width: double.infinity,)
-              ),
+            Stack(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top:50.0),
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                      height:MediaQuery.of(context).size.height*0.25,
+                      child:
+                      Image.asset(RestaurantImages.pro2,)
+                  ),
+                ),
+                Positioned(
+                    top: 60.h,
+                    left: 20.w,
+                    child: InkWell(
+                      onTap: (){
+                        Navigator.of(context).pop();
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
+                            color: AppColors.whiteColor,
+                            boxShadow: const [BoxShadow(color: Colors.black12,blurRadius: 7,
+                                offset: Offset(1, 5)
+                            )]
+                        ),
+                        child:  Padding(
+                          padding: const EdgeInsets.all(3.0),
+                          child: Icon(Icons.arrow_back_ios_new_rounded,size: 20,color: AppColors.customGray.withOpacity(0.4),),
+                        ),
+                      ),
+                    )),
+                Positioned(
+                    top: 60.h,
+                    right: 20.w,
+                    child:StatefulBuilder(builder: (context,setState){
+                      return Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
+                            color: AppColors.whiteColor.withOpacity(0.7),
+                            boxShadow: const [BoxShadow(color: Colors.black12,blurRadius: 7,
+                                offset: Offset(1, 5)
+                            )]
+                        ),
+                        child:  InkWell(
+                          onTap: (){
+                            setState((){
+                              isFav=!isFav;
+                            });
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child:
+                            isFav==true?
+                            const Icon(Icons.favorite,size: 25,color: AppColors.redColor,):
+                            const Icon(Icons.favorite_border_rounded,size: 25,color: AppColors.customGray,),
+                          ),
+                        ),
+                      );
+                    },)
+                    ),
+              ],
             ),
             Container(
                 decoration:  BoxDecoration(

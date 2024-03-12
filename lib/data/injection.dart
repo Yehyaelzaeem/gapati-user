@@ -8,6 +8,7 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../core/services/network/api_consumer.dart';
+
 import 'app_urls/app_url.dart';
 import 'datasource/local/cache_consumer.dart';
 import 'datasource/remote/dio/dio_client.dart';
@@ -35,6 +36,7 @@ Future<void> init() async {
   final sharedPreferences = await SharedPreferences.getInstance();
   getIt.registerLazySingleton(() => sharedPreferences);
   getIt.registerLazySingleton(() => Dio());
+
   getIt.registerLazySingleton(() => LoggingInterceptor());
   getIt.registerLazySingleton(() => const FlutterSecureStorage());
   getIt.registerLazySingleton(() => CacheConsumer(secureStorage: getIt() ,sharedPreferences: getIt()));

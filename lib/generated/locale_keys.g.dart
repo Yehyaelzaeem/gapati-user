@@ -30,8 +30,8 @@ abstract class  LocaleKeys {
   static const cancel = 'cancel';
   static const confirm = 'confirm';
   static const chooseTheLanguage = 'chooseTheLanguage';
-  static const no = 'no';
-  static const yes = 'yes';
+  static const no = 'No';
+  static const yes = 'Yes';
   static const wantToSignOut = 'wantToSignOut';
   static const wantToDeleteAccount = 'wantToDeleteAccount';
   static const signUp = 'signUp';

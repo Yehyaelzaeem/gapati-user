@@ -1,10 +1,12 @@
 import 'dart:async';
 import 'package:cogina/core/global/styles/colors.dart';
+import 'package:cogina/core/helpers/extensions.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../core/resources/values_manager.dart';
+import '../../../core/routing/routes.dart';
 import '../../../generated/assets.dart';
 import '../../../generated/locale_keys.g.dart';
 import '../../component/custom_button.dart';
@@ -122,7 +124,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               title: tr(LocaleKeys.getStarted),
               color: Theme.of(context).primaryColorDark,
               onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>LayoutScreen(currentPage: 0,)));
+                context.pushNamed(RoutesRestaurants.loginScreen);
+                // Navigator.push(context, MaterialPageRoute(builder: (context)=>LayoutScreen(currentPage: 0,)));
               }
             ),
           ),

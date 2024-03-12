@@ -1,11 +1,11 @@
 import 'package:cogina/core/helpers/spacing.dart';
-import 'package:cogina/presentation/modules/layout/screens/restaurant/widgets/custom_best_meals_widgets.dart';
+import 'package:cogina/presentation/modules/restaurants/widgets/custom_best_meals_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../../core/assets_constant/images.dart';
-import '../../../../../core/global/styles/colors.dart';
-import '../../../../../core/global/styles/styles.dart';
-import '../../../../component/custom_text_field.dart';
+import '../../../../../../core/assets_constant/images.dart';
+import '../../../../../../core/global/styles/colors.dart';
+import '../../../../../../core/global/styles/styles.dart';
+import '../../../component/custom_text_field.dart';
 
 class RestaurantScreen extends StatelessWidget {
   const RestaurantScreen({super.key});

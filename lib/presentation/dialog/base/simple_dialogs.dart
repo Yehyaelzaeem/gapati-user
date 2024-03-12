@@ -1,4 +1,5 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:cogina/core/global/styles/colors.dart';
 import 'package:cogina/core/resources/text_styles.dart';
 import 'package:flutter/material.dart';
 
@@ -30,6 +31,7 @@ Future<dynamic> showQuestionDialog(
   String? btnTextNegative,
   VoidCallback? onPositiveClick,
   VoidCallback? onNegativeClick,
+      DialogType? dialogType,
 }) {
   final dialog = AwesomeDialog(
     context: context,
@@ -38,11 +40,11 @@ Future<dynamic> showQuestionDialog(
     animType: AnimType.bottomSlide,
     title: question,
     desc: desc,
-    dialogType: DialogType.noHeader,
-    btnOkColor: Theme.of(context).primaryColor,
-    btnCancelColor: Theme.of(context).primaryColor,
+    dialogType: dialogType??DialogType.noHeader,
+    btnOkColor: AppColors.redColor.withOpacity(0.7),
+    btnCancelColor:Theme.of(context).primaryColor ,
     descTextStyle: const TextStyle().descriptionStyle( fontSize: 15),
-    titleTextStyle: const TextStyle().regularStyle( ),
+    titleTextStyle: const TextStyle().titleStyle( fontSize: 20),
     alignment: AlignmentDirectional.centerStart,
     showCloseIcon: true,
     btnCancelOnPress: onNegativeClick,

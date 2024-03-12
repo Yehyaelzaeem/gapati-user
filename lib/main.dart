@@ -1,3 +1,4 @@
+import 'package:cogina/presentation/modules/auth/login/login_screen.dart';
 import 'package:cogina/presentation/modules/splash/splash_screen.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -50,7 +51,7 @@ class MyApp extends StatelessWidget {
                colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor.withOpacity(0.5)),
               useMaterial3: true,
             ),
-            home: const SplashScreen(),
+            home:  const SplashScreen(),
           );
       },
     );

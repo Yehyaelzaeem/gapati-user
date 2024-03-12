@@ -1,7 +1,10 @@
 import 'package:cogina/presentation/component/component.dart';
 import 'package:cogina/presentation/modules/layout/screens/favorite/widgets/custom_favorite_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../layout_cubit.dart';
 
 class FavoriteScreen extends StatelessWidget {
   const FavoriteScreen({Key? key}) : super(key: key);
@@ -9,8 +12,12 @@ class FavoriteScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: const CustomAppBar(
+      appBar:  CustomAppBar(
         title: 'Favorite',
+        onBackPress: (){
+          final LayoutCubit viewModel = BlocProvider.of<LayoutCubit>(context);
+          viewModel.setCurrentIndex(0);
+        },
       ),
       body:   GridView.builder(
         physics: const BouncingScrollPhysics(),

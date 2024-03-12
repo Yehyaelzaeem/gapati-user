@@ -19,6 +19,12 @@ class TextStyles{
       fontWeight: FontWeight.w500,
       color: Colors.black
   );
+  static TextStyle font10CustomGray400Weight = const TextStyle(
+      fontFamily: FontConstants.fontFamily,
+      fontSize: 10,
+      fontWeight: FontWeight.w400,
+      color: AppColors.customGray
+  );
   static TextStyle font18Black700Weight = const TextStyle(
       fontSize: 18,
       fontFamily: FontConstants.fontFamily,

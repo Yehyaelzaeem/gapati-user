@@ -23,7 +23,7 @@ class CustomProfileItemWidget extends StatelessWidget {
           horizontalSpace(30),
           Text(text,style: TextStyles.font18Black700Weight,),
           const Spacer(),
-          const Icon(Icons.arrow_forward_ios_outlined,color: AppColors.primaryColor,size: 20,),
+           Icon(Icons.arrow_forward_ios_outlined,color: AppColors.black.withOpacity(0.6),size: 20,),
           horizontalSpace(10),
 
         ],

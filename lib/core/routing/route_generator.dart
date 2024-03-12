@@ -2,17 +2,28 @@ import 'package:cogina/core/routing/platform_page_route.dart';
 import 'package:cogina/core/routing/undefined_route_screen.dart';
 import 'package:cogina/presentation/modules/layout/screens/home/home_screen.dart';
 import 'package:flutter/cupertino.dart';
+import '../../presentation/modules/auth/login/login_screen.dart';
+import '../../presentation/modules/auth/register/register_screen.dart';
+import '../../presentation/modules/auth/register/register_success_screen.dart';
+import '../../presentation/modules/latest_sales/latest_sales_screen.dart';
 import '../../presentation/modules/layout/layout_screen.dart';
 import '../../presentation/modules/layout/screens/cart/cart_screen.dart';
 import '../../presentation/modules/layout/screens/cart/chech_out.dart';
 import '../../presentation/modules/layout/screens/cart/order_success_screen.dart';
-import '../../presentation/modules/layout/screens/notification/notification_screen.dart';
 import '../../presentation/modules/layout/screens/orders/order_details_screen.dart';
-import '../../presentation/modules/layout/screens/profile/address_screen.dart';
-import '../../presentation/modules/layout/screens/profile/edit_profile_screen.dart';
-import '../../presentation/modules/layout/screens/restaurant/meal_details_screen.dart';
-import '../../presentation/modules/layout/screens/restaurant/restautant_screen.dart';
+import '../../presentation/modules/layout/screens/profile/about_us/about_us_screen.dart';
+import '../../presentation/modules/layout/screens/profile/address/address_screen.dart';
+import '../../presentation/modules/layout/screens/profile/edit_profile/change_password_screen.dart';
+import '../../presentation/modules/layout/screens/profile/edit_profile/edit_profile_screen.dart';
+import '../../presentation/modules/layout/screens/profile/privacy_policy/privacy_policy.dart';
+import '../../presentation/modules/layout/screens/profile/terms_conditions/terms_conditions.dart';
 import '../../presentation/modules/map/map_order_screen.dart';
+import '../../presentation/modules/notification/notification_screen.dart';
+import '../../presentation/modules/offers/offers_screen.dart';
+import '../../presentation/modules/restaurants/meal_details/meal_details_screen.dart';
+import '../../presentation/modules/restaurants/restaurant/restaurant_screen.dart';
+import '../../presentation/modules/restaurants/restaurants_screen.dart';
+import '../../presentation/modules/search/search_screen.dart';
 import 'routes.dart';
 
 class RouteRestaurantsGenerator {
@@ -26,13 +37,13 @@ class RouteRestaurantsGenerator {
       case RoutesRestaurants.orderMapScreen:
         return platformPageRoute(const OrderMapScreen());
       case RoutesRestaurants.layout:
-        return platformPageRoute(const LayoutScreen(
-          currentPage: 0,
+        return platformPageRoute( LayoutScreen(
+          currentPage: arguments?['currentPage'],
         ));
       case RoutesRestaurants.successOrderScreen:
         return platformPageRoute(const OrderSuccessScreen());
       case RoutesRestaurants.mealDetailsScreen:
-        return platformPageRoute(const MealDetailsScreen());
+        return platformPageRoute( MealDetailsScreen());
       case RoutesRestaurants.orderDetailsScreen:
         return platformPageRoute(OrderDetailsScreen());
       case RoutesRestaurants.restaurantScreen:
@@ -49,6 +60,28 @@ class RouteRestaurantsGenerator {
         return platformPageRoute(const AddressScreen());
       case RoutesRestaurants.notification:
         return platformPageRoute(const NotificationScreen());
+      case RoutesRestaurants.restaurantsScreen:
+        return platformPageRoute(const RestaurantsScreen());
+     case RoutesRestaurants.latestSalesScreen:
+        return platformPageRoute(const LatestSalesScreen());
+     case RoutesRestaurants.offersScreen:
+        return platformPageRoute(const OffersScreen());
+     case RoutesRestaurants.searchScreen:
+        return platformPageRoute(const SearchScreen());
+        case RoutesRestaurants.changePasswordScreen:
+        return platformPageRoute( ChangePasswordScreen());
+        case RoutesRestaurants.aboutUsScreen:
+        return platformPageRoute( const AboutUsScreen());
+        case RoutesRestaurants.termsConditionScreen:
+        return platformPageRoute( const TermsConditionScreen());
+        case RoutesRestaurants.privacyPolicyScreen:
+        return platformPageRoute( const PrivacyPolicyScreen());
+        case RoutesRestaurants.registerScreen:
+        return platformPageRoute(  RegisterScreen());
+        case RoutesRestaurants.loginScreen:
+        return platformPageRoute(  LoginScreen());
+        case RoutesRestaurants.registerSuccessScreen:
+        return platformPageRoute(  const RegisterSuccessScreen());
       default:
         return platformPageRoute(const UndefinedRouteScreen());
     }

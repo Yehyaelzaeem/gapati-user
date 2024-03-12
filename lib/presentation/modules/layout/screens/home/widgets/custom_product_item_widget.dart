@@ -9,12 +9,10 @@ import '../../../../../../core/routing/navigation_services.dart';
 import '../../../../../../core/routing/routes.dart';
 import '../../../../../component/custom_elevated_button.dart';
 import '../../../../../component/custom_rate.dart';
-import '../../restaurant/meal_details_screen.dart';
-import '../../restaurant/restautant_screen.dart';
 
 class CustomProductItemWidget extends StatelessWidget {
-  const CustomProductItemWidget({super.key});
-
+  const CustomProductItemWidget({super.key, this.inHome});
+  final bool? inHome;
   @override
   Widget build(BuildContext context) {
     double rating = 3;
@@ -28,10 +26,11 @@ class CustomProductItemWidget extends StatelessWidget {
       child: Container(
         width: MediaQuery.of(context).size.width*0.45,
         decoration: BoxDecoration(
+            color: AppColors.whiteColor,
             borderRadius: BorderRadius.circular(10.r),
-            boxShadow: const <BoxShadow>[
+            boxShadow:  <BoxShadow>[
               BoxShadow(
-                  color: AppColors.whiteColor,
+                   color: inHome==false?Colors.black26: AppColors.whiteColor,
                   blurRadius: 1,
                   spreadRadius: 1)
             ]),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../meal_details_screen.dart';
+import '../meal_details/meal_details_screen.dart';
 import 'custom_meal_widget.dart';
 
 class CustomBestMealsWidget extends StatelessWidget {
@@ -12,7 +12,7 @@ class CustomBestMealsWidget extends StatelessWidget {
         itemBuilder: (context,index){
       return InkWell(
           onTap: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context)=>const MealDetailsScreen()));
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> MealDetailsScreen()));
           },
           child: const CustomMealWidget());
     });

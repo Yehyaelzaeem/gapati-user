@@ -1,3 +1,4 @@
+import 'package:cogina/core/routing/routes.dart';
 import 'package:cogina/presentation/component/component.dart';
 import 'package:cogina/presentation/component/custom_elevated_button.dart';
 import 'package:cogina/presentation/component/custom_text_field.dart';
@@ -5,9 +6,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../core/assets_constant/images.dart';
-import '../../../../../core/global/styles/colors.dart';
-import '../../../../../core/helpers/spacing.dart';
+import '../../../../../../core/assets_constant/images.dart';
+import '../../../../../../core/global/styles/colors.dart';
+import '../../../../../../core/helpers/spacing.dart';
+import '../../../../../../core/routing/navigation_services.dart';
 
 class EditProfileScreen extends StatelessWidget {
   const EditProfileScreen({super.key});
@@ -15,6 +17,7 @@ class EditProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.customWhite,
       appBar: const CustomAppBar(
         title: 'Edit Profile',
       ),
@@ -104,6 +107,21 @@ class EditProfileScreen extends StatelessWidget {
                     height: 45.h,
                     width: double.infinity,
                     onTap: (){}, buttonText: 'Save'),
+              ),
+              verticalSpace(20),
+              Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: const [BoxShadow(color: Colors.black12,blurRadius: 1,
+                        offset: Offset(2,4)
+                    )]
+                ),
+                child: CustomElevatedButton(
+                    height: 45.h,
+                    width: double.infinity,
+                    onTap: (){
+                      NavigationService.push(RoutesRestaurants.changePasswordScreen);
+                    }, buttonText: 'Change Password'),
               )
 
 

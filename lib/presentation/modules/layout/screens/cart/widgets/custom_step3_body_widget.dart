@@ -74,7 +74,7 @@ class CustomStepBody3Widget extends StatelessWidget {
                 width: MediaQuery.of(context).size.width*0.77,
                 fontSize: 17,
                 fontColor: AppColors.whiteColor,
-                onTap: (){}, buttonText: 'Play Now'),
+                onTap: (){}, buttonText: 'Pay Now'),
           ),
           verticalSpace(40),
         ],

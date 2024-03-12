@@ -1,10 +1,10 @@
 import 'package:cogina/core/helpers/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../../core/global/styles/styles.dart';
-import '../../../../../core/routing/navigation_services.dart';
-import '../../../../component/custom_app_bar.dart';
-import '../cart/widgets/custom_address_widget.dart';
+import '../../../../../../core/global/styles/styles.dart';
+import '../../../../../../core/routing/navigation_services.dart';
+import '../../../../../component/custom_app_bar.dart';
+import '../../cart/widgets/custom_address_widget.dart';
 
 class AddressScreen extends StatelessWidget {
   const AddressScreen({super.key});

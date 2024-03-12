@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../core/assets_constant/images.dart';
 import '../../../../../../core/global/styles/colors.dart';
 import '../../../../../../core/global/styles/styles.dart';
-import '../../../../../component/custom_rate.dart';
+import '../../../component/custom_rate.dart';
 
 class CustomMealWidget extends StatelessWidget {
   const CustomMealWidget({super.key});

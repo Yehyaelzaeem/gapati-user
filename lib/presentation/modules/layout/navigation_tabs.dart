@@ -2,7 +2,6 @@
 
 import 'package:cogina/presentation/modules/layout/screens/cart/cart_screen.dart';
 import 'package:cogina/presentation/modules/layout/screens/favorite/favorite_screen.dart';
-import 'package:cogina/presentation/modules/layout/screens/more/more_screen.dart';
 import 'package:cogina/presentation/modules/layout/screens/profile/profile_screen.dart';
 import 'package:flutter/cupertino.dart';
 
