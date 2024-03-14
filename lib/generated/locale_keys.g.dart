@@ -46,6 +46,7 @@ abstract class  LocaleKeys {
   static const home = 'home';
   static const wallet = 'wallet';
   static const favorite = 'favorite';
+  static const profits = 'Profits';
   static const orders = 'orders';
   static const profile = 'profile';
   static const more = 'more';

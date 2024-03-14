@@ -1,8 +1,10 @@
 
 
+import 'package:cogina/core/global/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../main.dart';
 import 'values_manager.dart';
 import 'color.dart';
 import '../resources/text_styles.dart';
@@ -49,3 +51,26 @@ final InputDecorationTheme kInputDecorationTheme = InputDecorationTheme(
   errorBorder: OutlineInputBorder(borderSide: const BorderSide(color: errorColor), borderRadius: BorderRadius.circular(kFormRadiusSmall.r),),
   focusedErrorBorder: OutlineInputBorder(borderSide: const BorderSide(color: primaryColor), borderRadius: BorderRadius.circular(kFormRadiusSmall.r),),
 );
+class Decorations{
+
+  static BoxDecoration backGroundDecorationCircleBorderRadius()
+  {
+    return  const BoxDecoration(
+      gradient: LinearGradient(
+        begin:  Alignment(0, 1),
+        end: Alignment(0,-1.0),
+        colors: [AppColors.backBlue1,AppColors.backPink1],
+      ),
+    );
+}
+  static BoxDecoration backGroundDecorationButton()
+  {
+    return  const BoxDecoration(
+      gradient: LinearGradient(
+        begin:  Alignment.centerRight,
+        end: Alignment.centerLeft,
+        colors: [AppColors.backRed1,AppColors.backBlue2,],
+      ),
+    );
+  }
+}

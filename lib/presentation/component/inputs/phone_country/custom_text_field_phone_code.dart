@@ -1,6 +1,7 @@
 
 import 'dart:async';
 
+import 'package:cogina/core/global/styles/colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -234,7 +235,7 @@ class CustomTextFieldPhoneCode extends StatefulWidget {
   /// If unset, defaults to [EdgeInsets.zero].
   final EdgeInsets flagsButtonMargin;
 
-  CustomTextFieldPhoneCode({
+  const CustomTextFieldPhoneCode({
     Key? key,
     this.suffixText,
     this.hint,
@@ -386,14 +387,15 @@ class _CustomTextFieldPhoneCodeState extends State<CustomTextFieldPhoneCode> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomTextField(
+    return
+      CustomTextField(
       background: widget.background,
       prefixIcon: widget.iconData ?? Icons.phone_android_sharp,
       hint: widget.hint,
       onTap: widget.onTap,
       autoValidate: widget.autoValidate,
       enable: widget.enable,
-      noBorder: widget.noBorder,
+      noBorder: false,
       isRequired: widget.isRequired,
       // label: widget.label,
       contentPaddingH: widget.contentPaddingH,
@@ -411,7 +413,7 @@ class _CustomTextFieldPhoneCodeState extends State<CustomTextFieldPhoneCode> {
       icon: widget.icon,
       textInputAction: widget.textInputAction,
 
-      prefixWidget: _buildFlagsButton(),
+      prefixWidget: _buildFlagsButton(context),
 
       defaultValue: (widget.controller == null) ? widget.defaultValue : widget.controller?.text,
 
@@ -473,50 +475,64 @@ class _CustomTextFieldPhoneCodeState extends State<CustomTextFieldPhoneCode> {
       type: widget.keyboardType,
       formatter: widget.formatter?? [FilteringTextInputFormatter.digitsOnly],
 
-    );
+          );
   }
 
-  Container _buildFlagsButton() {
-    return Container(
-      margin: widget.flagsButtonMargin,
-      child: DecoratedBox(
-        decoration: widget.dropdownDecoration,
-        child: InkWell(
-          borderRadius: widget.dropdownDecoration.borderRadius as BorderRadius?,
-          onTap: widget.enabled ? _changeCountry : null,
-          child: Padding(
-            padding: widget.flagsButtonPadding,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                if (widget.enabled &&
-                    widget.showDropdownIcon &&
-                    widget.dropdownIconPosition == IconPosition.leading) ...[
-                  widget.dropdownIcon,
-                  const SizedBox(width: 4),
-                ],
-                if (widget.showCountryFlag) ...[
-                  Image.asset(
-                    'lib/presentation/component/inputs/phone_country/flags/${_selectedCountry.code.toLowerCase()}.png',
-                    width: 32,
+  Padding _buildFlagsButton(BuildContext context) {
+    bool isAR=context.locale.languageCode==const Locale('ar').toString();
+    return Padding(
+      padding: const EdgeInsets.all(1.0),
+      child: Container(
+        decoration: BoxDecoration(
+          color: AppColors.backGroundGray,
+          borderRadius: BorderRadius.only(
+            topRight: isAR?const Radius.circular(30):const Radius.circular(0),
+            bottomRight: isAR?const Radius.circular(30):const Radius.circular(0),
+            topLeft: isAR==false?const Radius.circular(30):const Radius.circular(0),
+            bottomLeft: isAR==false?const Radius.circular(30):const Radius.circular(0),
+          )
+
+        ),
+        margin: widget.flagsButtonMargin,
+        child: DecoratedBox(
+          decoration: widget.dropdownDecoration,
+          child: InkWell(
+            borderRadius: widget.dropdownDecoration.borderRadius as BorderRadius?,
+            onTap: widget.enabled ? _changeCountry : null,
+            child: Padding(
+              padding: widget.flagsButtonPadding,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  if (widget.enabled &&
+                      widget.showDropdownIcon &&
+                      widget.dropdownIconPosition == IconPosition.leading) ...[
+                    widget.dropdownIcon,
+                    const SizedBox(width: 4),
+                  ],
+                  if (widget.showCountryFlag) ...[
+                    Image.asset(
+                      'lib/presentation/component/inputs/phone_country/flags/${_selectedCountry.code.toLowerCase()}.png',
+                      width: 32,
+                    ),
+                    const SizedBox(width: 8),
+                  ],
+                  FittedBox(
+                    child: Text(
+                      '+${_selectedCountry.dialCode}',
+                      style: widget.dropdownTextStyle,
+                    ),
                   ),
+                  if (widget.enabled &&
+                      widget.showDropdownIcon &&
+                      widget.dropdownIconPosition == IconPosition.trailing) ...[
+                    const SizedBox(width: 4),
+                    widget.dropdownIcon,
+                  ],
                   const SizedBox(width: 8),
                 ],
-                FittedBox(
-                  child: Text(
-                    '+${_selectedCountry.dialCode}',
-                    style: widget.dropdownTextStyle,
-                  ),
-                ),
-                if (widget.enabled &&
-                    widget.showDropdownIcon &&
-                    widget.dropdownIconPosition == IconPosition.trailing) ...[
-                  const SizedBox(width: 4),
-                  widget.dropdownIcon,
-                ],
-                const SizedBox(width: 8),
-              ],
+              ),
             ),
           ),
         ),

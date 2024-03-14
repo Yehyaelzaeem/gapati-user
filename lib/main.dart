@@ -1,5 +1,5 @@
-import 'package:cogina/presentation/modules/auth/login/login_screen.dart';
-import 'package:cogina/presentation/modules/splash/splash_screen.dart';
+import 'package:cogina/presentation/modules/intro/splash/splash_screen.dart';
+import 'package:country_code_picker/country_localizations.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -22,14 +22,26 @@ void main() async{
 //e
   runApp(
        GenerateMultiBloc(
-        child:
-        DevicePreview(
-          enabled: false,
-          builder: (context) => const MyApp(),),
+        child:  EasyLocalization(
+          supportedLocales: supportedLocales,
+          path: 'assets/translation',
+          // if device language not supported
+          fallbackLocale: supportedLocales[0],
+          saveLocale: true,
+          useOnlyLangCode: true,
+          startLocale: supportedLocales[0],
+          child: DevicePreview(
+            enabled: false,
+            builder: (context) => const MyApp(),
+          ),
 
-      )
-     );
+        )));
+
 }
+final supportedLocales = <Locale>[
+  const Locale('en'),
+  const Locale('ar'),
+];
 BuildContext? appContext;
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -43,15 +55,20 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
             title: 'كُوجِينَا',
             debugShowCheckedModeBanner: false,
+          localizationsDelegates: [CountryLocalizations.delegate, ...context.localizationDelegates,],
+          supportedLocales: context.supportedLocales,
+          locale: context.locale,
           navigatorKey: NavigationService.navigationKey,
           onGenerateRoute: RouteRestaurantsGenerator.generateRestaurantsBaseRoute,
           theme: ThemeData(
               primaryColor: AppColors.primaryColor,
+              // AppColors.primaryColor,
               primaryColorDark: AppColors.primaryColorDark,
                colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor.withOpacity(0.5)),
               useMaterial3: true,
             ),
             home:  const SplashScreen(),
+
           );
       },
     );

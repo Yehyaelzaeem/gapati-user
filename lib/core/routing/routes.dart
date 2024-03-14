@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 
-import '../../presentation/modules/map/map_order_screen.dart';
 
 class RoutesRestaurants {
   static const String restaurantsHome = "/restaurantsHome";
@@ -13,6 +11,7 @@ class RoutesRestaurants {
   static const String address = "/address";
   static const String notification = "/notification";
   static const String mealDetailsScreen = "/mealDetailsScreen";
+  static const String addMealScreen = "/addMealScreen";
   static const String restaurantScreen = "/restaurantScreen";
   static const String orderDetailsScreen = "/orderDetailsScreen";
   static const String restaurantsScreen = "/restaurantsScreen";
@@ -26,6 +25,13 @@ class RoutesRestaurants {
   static const String privacyPolicyScreen = "/privacyPolicyScreen";
   static const String registerScreen = "/registerScreen";
   static const String loginScreen = "/loginScreen";
+  static const String authScreen = "/authScreen";
+  static const String chooseUserScreen = "/chooseUserScreen";
+  static const String changeProfilePasswordScreen = "/changeProfilePasswordScreen";
+  static const String elementsScreen = "/elementsScreen";
+  static const String providerOrdersScreen = "/providerOrdersScreen";
+  static const String editProviderProfileScreen = "/editProviderProfileScreen";
+  static const String providerLayoutScreen = "/providerLayoutScreen";
   static const String registerSuccessScreen = "/registerSuccessScreen";
 
 

@@ -1,5 +1,6 @@
 
 
+import 'package:cogina/core/global/styles/colors.dart';
 import 'package:cogina/core/resources/text_styles.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -212,9 +213,15 @@ class _CustomTextFieldState extends State<CustomTextField> {
                   // focusedBorder: widget._noBorder ? InputBorder.none :  Theme.of(context).inputDecorationTheme.focusedBorder,
                   // errorBorder: widget._noBorder ? InputBorder.none :Theme.of(context).inputDecorationTheme.errorBorder,
 
-                  border: widget._noBorder ? InputBorder.none : Theme.of(context).inputDecorationTheme.border,
-                  disabledBorder: widget._noBorder ? InputBorder.none : Theme.of(context).inputDecorationTheme.disabledBorder,
-                  focusedBorder: widget._noBorder ? InputBorder.none :  Theme.of(context).inputDecorationTheme.focusedBorder,
+                  border: widget._noBorder ? InputBorder.none : OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(30), borderSide:  const BorderSide(color:Colors.red)
+                   ),
+                  disabledBorder: widget._noBorder ? InputBorder.none :  OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30), borderSide:  BorderSide(color: Colors.grey.shade100)
+                  ),
+                  focusedBorder: widget._noBorder ? InputBorder.none :   OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30), borderSide:  BorderSide(color: Colors.grey.shade300)
+                  ),
                   errorBorder: widget._noBorder ? InputBorder.none :Theme.of(context).inputDecorationTheme.errorBorder,
 
 

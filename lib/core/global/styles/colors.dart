@@ -12,6 +12,10 @@ class AppColors{
   static const Color  buttonOrangeColor=  Color(0xffFEC641);
   static const Color  sandwichBackGround=  Color(0xffECF4F6);
   static const Color  backGroundGray=  Color(0xffF4F5F7);
+  static const Color  backPink1=  Color(0xffFED4D7);
+  static const Color  backBlue1=  Color(0xffCAC9F3);
+  static const Color  backBlue2=  Color(0xff432BCB);
+  static const Color  backRed1=  Color(0xffF8484A);
 
 
 

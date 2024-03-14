@@ -38,6 +38,7 @@ Future<void> init() async {
   getIt.registerLazySingleton(() => Dio());
 
   getIt.registerLazySingleton(() => LoggingInterceptor());
+  // getIt.registerLazySingleton(() => AuthCubit());
   getIt.registerLazySingleton(() => const FlutterSecureStorage());
   getIt.registerLazySingleton(() => CacheConsumer(secureStorage: getIt() ,sharedPreferences: getIt()));
 
