@@ -20,7 +20,7 @@ Future<bool?> showLogoutDialog(BuildContext context) async {
     desc:'Are you sure you want to Log out?' ,
     // tr(LocaleKeys.wantToSignOut),
     onNegativeClick: () {
-      context.pushReplacementNamed(RoutesRestaurants.chooseUserScreen);
+      context.pushReplacementNamed(RoutesRestaurants.loginScreen);
       // _onLogoutPress(context)
     },
     onPositiveClick: () {},
@@ -38,7 +38,7 @@ Future<bool?> showDeleteAccountDialog(BuildContext context) async {
     desc:'Are you sure you want to Delete Account?' ,
     // tr(LocaleKeys.wantToSignOut),
     onNegativeClick: () {
-      context.pushReplacementNamed(RoutesRestaurants.chooseUserScreen);
+      context.pushReplacementNamed(RoutesRestaurants.loginScreen);
       // _onLogoutPress(context)
     },
     onPositiveClick: () {},

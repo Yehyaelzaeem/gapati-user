@@ -1,6 +1,13 @@
 import 'dart:developer';
 
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:cogina/core/global/styles/colors.dart';
+import 'package:cogina/core/global/styles/styles.dart';
+import 'package:cogina/main.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+
+import '../../../../core/routing/navigation_services.dart';
 
 
 class LoggingInterceptor extends InterceptorsWrapper {
@@ -37,7 +44,27 @@ class LoggingInterceptor extends InterceptorsWrapper {
   @override
   Future onError(DioError err, ErrorInterceptorHandler handler) async {
     log("ERROR[${err.response?.statusCode}] \nURL: ${err.requestOptions.baseUrl}${err.requestOptions.path} \nRequest Data[${err.response?.data}]");
-
+    // AwesomeDialog(
+    //     context: NavigationService.navigationKey.currentContext!,
+    //     dialogBackgroundColor: AppColors.whiteColor,
+    //     animType: AnimType.bottomSlide,
+    //     // headerAnimationLoop: false,
+    //     // autoHide: const Duration(seconds: 5),
+    //      onDismissCallback:(t)=> {},
+    //     // dismissOnTouchOutside: false,
+    //     btnOkText: 'Back',
+    //     btnOkOnPress: (){},
+    //     btnOkColor:AppColors.primaryColor,
+    //     dialogType: DialogType.error,
+    //     // dismissOnBackKeyPress: false,
+    //     // useRootNavigator: true,
+    //     body: Padding(
+    //       padding: const EdgeInsets.all(25.0),
+    //       child: Text("${err.response?.data['message']}",
+    //       style: TextStyles.font20Black700Weight,
+    //       ),
+    //     ))
+    //     .show();
     return super.onError(err, handler);
   }
 }

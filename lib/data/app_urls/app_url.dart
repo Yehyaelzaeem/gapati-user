@@ -1,10 +1,11 @@
 class AppURL {
 
   static const String kAPIKey = "";
-  static const String kBaseURL = "https://super-app.dev01.matrix-clouds.com/api/";
+  static const String kBaseURL = "http://kogena.dev03.matrix-clouds.com/api/";
 
   ///Auth
-  static const String kLoginURI = "auth/login";
+  static const String kLoginURI = "auth/otp";
+  static const String kOtpURI = "auth/login";
   static const String kRegisterURI = "auth/register";
   static const String kLogoutURI = "auth/logout";
 
@@ -14,9 +15,17 @@ class AppURL {
   static const String kDeleteAccountURI = "";
   static const String kUpdateFCMTokenURI = "fcm_token";
 
+  ///home
+  static const String kHomeURI = "home";
+  static  String kCategoriesURI (int id)=> "stores/all-categories?store_id=$id";
+  static  String kItemExtraURI (int id)=> "stores/items/single?item_id=$id";
+  static  String kCategoriesItemsURI ({required int categoryId,required int storeId})=> "stores/categories?category_id=$categoryId&store_id=$storeId";
+  ///Cart
+  static const String kGetCartURL = "shopping-cart";
   ///more
   static const String kGetProfileURL = "profile";
-  static const String kUpdateProfileURL = "";
+  static const String kUpdateProfileURL = "profile/update";
+  static const String kUpdateImageProfileURL = "profile/uploadImage";
 
   ///setting
   static const String kGetCitiesURL = "";

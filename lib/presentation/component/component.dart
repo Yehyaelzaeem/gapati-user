@@ -14,7 +14,7 @@ export '../component/custom_divider.dart';
 export '../component/svg_icon.dart';
 
 ///images
-export 'images/custom_image.dart';
+export 'images/custom_image3.dart';
 export 'images/custom_person_image.dart';
 
 ///animation

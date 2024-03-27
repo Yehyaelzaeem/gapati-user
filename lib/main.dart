@@ -1,4 +1,5 @@
 import 'package:cogina/presentation/modules/intro/splash/splash_screen.dart';
+import 'package:cogina/presentation/modules/layout/layout_screen.dart';
 import 'package:country_code_picker/country_localizations.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -9,6 +10,7 @@ import 'core/routing/navigation_services.dart';
 import 'core/routing/route_generator.dart';
 import 'injection.dart' as injection;
 import 'data/injection.dart' as data_injection;
+import 'domain/injection.dart' as domain_injection;
 import 'core/global/styles/colors.dart';
 
 void main() async{
@@ -16,9 +18,10 @@ void main() async{
 
   await Future.delayed(const Duration(milliseconds: 300));
   await EasyLocalization.ensureInitialized();
-
   await data_injection.init();
+  await domain_injection.init();
   await injection.init();
+
 //e
   runApp(
        GenerateMultiBloc(
@@ -67,7 +70,9 @@ class MyApp extends StatelessWidget {
                colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor.withOpacity(0.5)),
               useMaterial3: true,
             ),
-            home:  const SplashScreen(),
+            home:
+              const SplashScreen(),
+            // const LayoutScreen(currentPage: 0),
 
           );
       },

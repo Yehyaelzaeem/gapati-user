@@ -220,7 +220,6 @@ class CustomTextFieldPhoneCode extends StatefulWidget {
   ///
   /// If unset, defaults to [EdgeInsets.zero].
   final EdgeInsetsGeometry flagsButtonPadding;
-
   /// The type of action button to use for the keyboard.
   final TextInputAction? textInputAction;
 

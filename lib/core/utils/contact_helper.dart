@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:cogina/core/utils/alerts.dart';
+import 'package:cogina/domain/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -19,11 +21,11 @@ class ContactHelper{
       await launchUrl(appleUrl);
     } else if (await canLaunchUrl(googleUrl)) {
       await launchUrl(googleUrl);
-      // if (await canLaunchUrl(uri)) {
+      if (await canLaunchUrl(uri)) {
     } else {
       throw 'Could not launch ${uri.toString()}';
     }
-  }
+  }}
 
   static launchURL(String toMailId) async {
     var url = 'mailto:$toMailId';
@@ -35,8 +37,8 @@ class ContactHelper{
   }
 
   static launchCall(String phone ) async {
-    // launch('tel:+91 88888888888');
-    // log('ContactHelper', 'launchCall');
+    launch('tel:+91 88888888888');
+    log('ContactHelper', 'launchCall');
     var url = "tel://$phone";
     if (await canLaunchUrl(Uri.parse(url))) {
       await  launchUrl(Uri.parse(url));
@@ -45,8 +47,8 @@ class ContactHelper{
     }
   }
   static launchSMS(String phone ) async {
-    // log('ContactHelper', 'launchSMS');
-    //launch('sms:+91888888888?body=Hi Welcome to Proto Coders Point');
+    log('ContactHelper', 'launchSMS');
+    launch('sms:+91888888888?body=Hi Welcome to Proto Coders Point');
     var url = 'sms:$phone';
 
     if (await canLaunchUrl(Uri.parse(url))) {
@@ -57,7 +59,7 @@ class ContactHelper{
   }
 
   static openWhatsApp1(BuildContext context ,String whatApp ) async{
-    // log('ContactHelper', 'openWhatsApp');
+     log('ContactHelper', 'openWhatsApp');
     var whatsappURlAndroid = "whatsapp://send?phone=$whatApp&text=hello";
     var whatAppURLIos ="https://wa.me/$whatApp?text=${Uri.parse("hello")}";
     if(Platform.isIOS){
@@ -65,7 +67,7 @@ class ContactHelper{
       if( await canLaunchUrl(Uri.parse(whatAppURLIos))){
         await launchUrl(Uri.parse(whatAppURLIos));
       }else {
-        // Alerts.showSnackBar("whatsapp no installed");
+         Alerts.showSnackBar("whatsapp no installed");
       }
     }else{
       // android , web
@@ -79,7 +81,7 @@ class ContactHelper{
 
   static openWhatsApp(BuildContext context ,String whatApp ) async{
     String whatsAppUrl = "";
-    // log('ContactHelper', 'openWhatsApp');
+    log('ContactHelper', 'openWhatsApp');
     String description = "";
 
     if (Platform.isIOS) {
@@ -93,7 +95,7 @@ class ContactHelper{
     if (await canLaunchUrl(Uri.parse(whatsAppUrl))) {
       await launchUrl(Uri.parse((whatsAppUrl)));
     } else {
-      // Alerts.showSnackBar("Install WhatsApp First Please");
+      Alerts.showSnackBar("Install WhatsApp First Please");
     }
   }
 

@@ -122,7 +122,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               title: tr(LocaleKeys.getStarted),
               color: Theme.of(context).primaryColorDark,
               onTap: (){
-                context.pushNamed(RoutesRestaurants.chooseUserScreen);
+                context.pushNamed(RoutesRestaurants.loginScreen);
               }
             ),
           ),

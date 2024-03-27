@@ -1,11 +1,16 @@
-import 'package:cogina/presentation/modules/provider/auth/auth_cubit.dart';
-import 'package:cogina/presentation/modules/provider/layout/provider_layout_cubit.dart';
-import 'package:cogina/presentation/modules/provider/layout/screens/home/provider_home_cubit.dart';
-import 'package:cogina/presentation/modules/user/layout/layout_cubit.dart';
-import 'package:cogina/presentation/modules/user/layout/screens/home/home_cubit.dart';
+
+import 'package:cogina/presentation/modules/auth/login/login_cubit.dart';
+import 'package:cogina/presentation/modules/auth/register/register_cubit.dart';
+import 'package:cogina/presentation/modules/layout/layout_cubit.dart';
+import 'package:cogina/presentation/modules/layout/screens/cart/cart_cubit.dart';
+import 'package:cogina/presentation/modules/layout/screens/home/home_cubit.dart';
+import 'package:cogina/presentation/modules/layout/screens/more/profile/profile_cubit.dart';
+import 'package:cogina/presentation/modules/restaurant/restaurant_cubit.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'data/injection.dart';
+import 'domain/provider/local_auth_provider_cubit.dart';
 
 class GenerateMultiBloc extends StatelessWidget {
   final Widget child;
@@ -17,14 +22,14 @@ class GenerateMultiBloc extends StatelessWidget {
     ///TODO add bloc
     return MultiBlocProvider(
       providers: [
-
-        BlocProvider(create: (_) => getIt<ProviderLayoutCubit>()),
-        BlocProvider(create: (_) => getIt<ProviderHomeCubit>()),
-        BlocProvider(create: (_) => getIt<AuthCubit>()),
+        BlocProvider(create: (_) => getIt<LocalAuthCubit>()),
         BlocProvider(create: (_) => getIt<LayoutCubit>()),
         BlocProvider(create: (_) => getIt<HomeCubit>()),
-
-        // BlocProvider(create: (_) => getIt<OTPViewModel>()),
+        BlocProvider(create: (_) => getIt<LoginCubit>()),
+        BlocProvider(create: (_) => getIt<RegisterCubit>()),
+        BlocProvider(create: (_) => getIt<ProfileCubit>()),
+        BlocProvider(create: (_) => getIt<RestaurantCubit>()),
+        BlocProvider(create: (_) => getIt<CartCubit>()),
       ],
       child: child,
     );

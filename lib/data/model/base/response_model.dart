@@ -20,6 +20,4 @@ class ResponseModel<T> {
   bool get isSuccess => _isSuccess;
 // dynamic get data => data;
 
-
-
 }

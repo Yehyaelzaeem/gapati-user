@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
+import '../../../data/datasource/local/cache_consumer.dart';
+import '../../../data/datasource/local/storage_keys.dart';
 import '../../utils/constants.dart';
-import '../local/cache_consumer.dart';
-import '../local/storage_keys.dart';
 
 
 const String _baseURL = "";

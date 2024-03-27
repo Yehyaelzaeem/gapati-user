@@ -1,9 +1,9 @@
-import 'dart:developer';
 import 'dart:io';
 
 
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
+import '../../../../domain/logger.dart';
 import '../../../../main.dart';
 import '../../../app_urls/app_url.dart';
 import '../../local/cache_consumer.dart';
@@ -45,7 +45,7 @@ class DioClient {
         'x-api-key': AppURL.kAPIKey,
         'Content-Type': 'application/json; charset=UTF-8',
         'Content-Language':  appContext?.locale.languageCode ?? 'ar',
-        // 'Authorization': 'Bearer $token',
+         // 'Authorization': 'Bearer $token',
       };
     dio!.interceptors.add(loggingInterceptor);
   }
@@ -83,6 +83,7 @@ class DioClient {
   Future<Response> post(
       String uri, {
         FormData? data,
+        FormData? data2,
         Map<String, dynamic>? queryParameters,
         Map<String, dynamic>? parameters,
         Options? options,
@@ -104,7 +105,7 @@ class DioClient {
 
       var response = await dio!.post(
         uri,
-        data: data,
+        data:data2?? data,
         queryParameters: queryParameters,
         options: options,
         cancelToken: cancelToken,
@@ -113,10 +114,10 @@ class DioClient {
       );
       return response;
     } on FormatException catch (_) {
-      log( 'Unable to process the data');
+      log( 'Unable to process the data','');
       throw const FormatException("Unable to process the data");
-    } catch (e) {
-      // log('post::', e.toString());
+    }  on DioError catch (e) {
+       log('post:', e.message);
 
       rethrow;
     }
@@ -190,7 +191,7 @@ Future<FormData?> _buildFileData({
       fileName??"image": await MultipartFile.fromFile(filePath, filename: fName),
     };
     data = FormData.fromMap(body);
-    log( 'files $body');
+    // log( 'files $body');
   }else if (filePathList != null) {
     for(String path in filePathList){
       String fileName = path.split('/').last;
@@ -203,20 +204,20 @@ Future<FormData?> _buildFileData({
     for(FileModel file in filesPath){
 
       if (file.path !=  null) {
-        log( 'file - name: ${file.name} - path: ${file.path}  ');
+        // log( 'file - name: ${file.name} - path: ${file.path}  ');
         String fileName = file.path!.split('/').last;
         body.addAll({ file.name: await MultipartFile.fromFile(file.path!, filename: fileName)});
       } else{
         for (var i = 0; i <= (file.paths?.length??0)-1; i++) {
           String path = file.paths![i];
           // for(String path in file.paths??[]){
-          log( 'files name: ${file.name}[$i] - path: $path  ');
+          // log( 'files name: ${file.name}[$i] - path: $path  ');
           String fileName = path.split('/').last;
           body.addAll({'${file.name}[$i]': await MultipartFile.fromFile(path, filename: fileName)});
         }
       }
     }
-    log( 'files $body');
+    // log( 'files $body');
     data = FormData.fromMap(body);
   }
   return data;
