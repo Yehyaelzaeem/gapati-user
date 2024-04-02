@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:cogina/domain/logger.dart';
 import 'package:cogina/domain/request_body/add_item_body.dart';
 import 'package:cogina/domain/request_body/address_body.dart';
+import 'package:cogina/domain/request_body/check_out_body.dart';
 import 'package:dio/dio.dart';
 import '../../domain/repository/cart_repo.dart';
 import '../../domain/repository/check_out_repo.dart';
@@ -35,6 +36,19 @@ class CheckOutRepositoryImp implements CheckOutRepository{
       Response response = await _dioClient.post(
         AppURL.kAddMainAddressURL,
         queryParameters: addressBody.toJson()
+      );
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+
+  @override
+  Future<ApiResponse> checkOut({required CheckOutBody checkOutBody}) async{
+    try {
+      Response response = await _dioClient.post(
+          AppURL.kCheckOutURL,
+          queryParameters: checkOutBody.toJson()
       );
       return ApiResponse.withSuccess(response);
     } catch (e) {

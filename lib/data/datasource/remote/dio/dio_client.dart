@@ -58,7 +58,7 @@ class DioClient {
     ProgressCallback? onReceiveProgress,
   }) async {
 
-    // queryParameters?.addAll({'token':token});
+     // queryParameters?.addAll({'token':token});
     try {
       var response = await dio!.get(
         uri,
@@ -67,9 +67,6 @@ class DioClient {
         cancelToken: cancelToken,
         onReceiveProgress: onReceiveProgress,
       );
-
-
-
       return response;
     } on SocketException catch (e) {
       throw SocketException(e.toString());

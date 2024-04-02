@@ -18,24 +18,24 @@ class UpdateProfileUseCase implements BaseUseCase<GetProfileModel>{
     return BaseUseCaseCall.onGetData<GetProfileModel>( await repository.updateProfile(profileBody: profileBody), onConvert,tag: 'UpdateProfileUseCase');
   }
   Future<ResponseModel> updateImage({required File image }) async {
-    return BaseUseCaseCall.onGetData<GetProfileModel>( await repository.updateImageProfile(image: image), onConvertImage,tag: 'UpdateImageProfileUseCase');
+    return BaseUseCaseCall.onGetData<dynamic>( await repository.updateImageProfile(image: image), onConvertImage,tag: 'UpdateImageProfileUseCase');
   }
 
   @override
   ResponseModel<GetProfileModel> onConvert(BaseModel baseModel) {
     try{
       GetProfileModel? profileModel = GetProfileModel.fromJson(baseModel.responseData);
-      return ResponseModel(true, baseModel.message,data: profileModel);
+      return ResponseModel(baseModel.status??true, baseModel.message,data: profileModel);
     }catch(e){
-      return ResponseModel(true, baseModel.message,data: baseModel.responseData);
+      return ResponseModel(baseModel.status??false, baseModel.message,data: baseModel.responseData);
     }
   }
 
-  ResponseModel<GetProfileModel> onConvertImage(BaseModel baseModel) {
+  ResponseModel<dynamic> onConvertImage(BaseModel baseModel) {
     try{
-      return ResponseModel(true, baseModel.message,data: baseModel.responseData);
+      return ResponseModel(baseModel.status??true, baseModel.message,data: baseModel.responseData);
     }catch(e){
-      return ResponseModel(true, baseModel.message,data: baseModel.responseData);
+      return ResponseModel(baseModel.status??false, baseModel.message,data: baseModel.responseData);
     }
   }
 }

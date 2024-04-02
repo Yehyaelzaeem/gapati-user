@@ -16,6 +16,7 @@ class CategoriesRestaurantShimmer extends StatelessWidget {
         width: double.infinity,
         height: height?? 110.w,
         child: ListView.builder(
+            padding: EdgeInsets.symmetric(vertical: 10.h),
             itemCount:6 ,
             itemBuilder: (context,index){
               return Padding(

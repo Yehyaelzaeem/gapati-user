@@ -17,9 +17,9 @@ class CategoriesUseCase implements BaseUseCase<CategoriesModel>{
   ResponseModel<CategoriesModel> onConvert(BaseModel baseModel) {
     CategoriesModel? categoriesModel = CategoriesModel.fromJson(baseModel.categories);
     try{
-      return ResponseModel(true, baseModel.message,data: categoriesModel);
+      return ResponseModel(baseModel.status??true, baseModel.message,data: categoriesModel);
     }catch(e){
-      return ResponseModel(true, baseModel.message,data: categoriesModel);
+      return ResponseModel(baseModel.status??false, baseModel.message,data: categoriesModel);
     }
   }
 }

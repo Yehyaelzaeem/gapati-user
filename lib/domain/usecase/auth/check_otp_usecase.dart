@@ -22,11 +22,9 @@ class OTPUseCase implements BaseUseCase<AuthModel>{
   ResponseModel<AuthModel> onConvert(BaseModel baseModel) {
     try{
       AuthModel? otpModel = AuthModel.fromJson(baseModel.responseData);
-      log('5555555', baseModel.responseData.toString());
-  //otpCode otpCode
-      return ResponseModel(true, baseModel.message, data: otpModel);
+      return ResponseModel(baseModel.status??true, baseModel.message, data: otpModel);
     }catch(e){
-      return ResponseModel(true, baseModel.message,data: baseModel.responseData);
+      return ResponseModel(baseModel.status??false, baseModel.message,data: baseModel.responseData);
     }
   }
 }

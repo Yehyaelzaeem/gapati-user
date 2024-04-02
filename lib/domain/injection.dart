@@ -8,8 +8,10 @@ import 'package:cogina/domain/usecase/cart/cart_usecase.dart';
 import 'package:cogina/domain/usecase/cart/delete_item_usecase.dart';
 import 'package:cogina/domain/usecase/cart/sub_qt_usecase.dart';
 import 'package:cogina/domain/usecase/check_out/add_address_usecase.dart';
+import 'package:cogina/domain/usecase/check_out/check_out_usecase.dart';
 import 'package:cogina/domain/usecase/check_out/main_address_usecase.dart';
 import 'package:cogina/domain/usecase/home/home_usecase.dart';
+import 'package:cogina/domain/usecase/home/offers_usecase.dart';
 import 'package:cogina/domain/usecase/local/clear_user_data_usecase.dart';
 import 'package:cogina/domain/usecase/local/get_is_login_usecase.dart';
 import 'package:cogina/domain/usecase/local/get_user_token_usecase.dart';
@@ -28,7 +30,7 @@ Future<void> init() async {
 
   ///local
   // getIt.registerLazySingleton(() => ClearUserDataUseCase(repository: getIt()));
-  // getIt.registerLazySingleton(() => IsUserLoginUseCase(repository: getIt()));
+   getIt.registerLazySingleton(() => IsUserLoginUseCase(repository: getIt()));
   getIt.registerLazySingleton(() => GetUserTokenUseCase(repository: getIt()));
    getIt.registerLazySingleton(() => SaveUserDataUseCase(repository: getIt()));
 
@@ -43,6 +45,7 @@ Future<void> init() async {
 
    ///Home
    getIt.registerLazySingleton(() => HomeUseCase(repository: getIt()));
+   getIt.registerLazySingleton(() => OffersUseCase(repository: getIt()));
 
 
    ///Restaurant
@@ -60,6 +63,9 @@ Future<void> init() async {
    getIt.registerLazySingleton(() => MainAddressUseCase(repository: getIt()));
    getIt.registerLazySingleton(() => AddAddressUseCase(repository: getIt()));
 
+
+   ///CheckOut
+  getIt.registerLazySingleton(() => CheckOutUseCase(repository: getIt()));
 
   ///more
   // getIt.registerLazySingleton(() => GetProfileUseCase(repository: getIt()));

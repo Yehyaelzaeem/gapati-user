@@ -17,7 +17,7 @@ class RegisterUseCase implements BaseUseCase{
 
   @override
   ResponseModel onConvert(BaseModel baseModel) {
-    return ResponseModel(true, baseModel.message,data: baseModel.responseData);
+    return ResponseModel(baseModel.status??true, baseModel.message,data: baseModel.responseData);
   }
 
 

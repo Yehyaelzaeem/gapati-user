@@ -17,10 +17,10 @@ class CartUseCase implements BaseUseCase<CartModel>{
   ResponseModel<CartModel> onConvert(BaseModel baseModel) {
     try{
       CartModel? cartModel = CartModel.fromJson(baseModel.responseData);
-      return ResponseModel(true, baseModel.message,data: cartModel);
+      return ResponseModel(baseModel.status??true, baseModel.message,data: cartModel);
     }catch(e){
       CartModel? cartModel = CartModel.fromJson(baseModel.responseData);
-      return ResponseModel(true, baseModel.message,data: cartModel);
+      return ResponseModel(baseModel.status??false, baseModel.message,data: cartModel);
     }
   }
 }

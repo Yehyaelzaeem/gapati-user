@@ -21,9 +21,9 @@ class CategoryItemsUseCase implements BaseUseCase<CategoryItemModel>{
   ResponseModel<CategoryItemModel> onConvert(BaseModel baseModel) {
     CategoryItemModel? categoriesModel = CategoryItemModel.fromJson(baseModel.responseData);
     try{
-      return ResponseModel(true, baseModel.message,data: categoriesModel);
+      return ResponseModel(baseModel.status??true, baseModel.message,data: categoriesModel);
     }catch(e){
-      return ResponseModel(true, baseModel.message,data: categoriesModel);
+      return ResponseModel(baseModel.status??false, baseModel.message,data: categoriesModel);
     }
   }
 }

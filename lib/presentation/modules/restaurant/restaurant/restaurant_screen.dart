@@ -5,6 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../core/assets_constant/images.dart';
 import '../../../../../../core/global/styles/colors.dart';
 import '../../../../../../core/global/styles/styles.dart';
+import '../../../../core/routing/navigation_services.dart';
+import '../../../../core/routing/routes.dart';
 import '../../../component/custom_text_field.dart';
 import '../restaurant_cubit.dart';
 import '../widgets/custom_best_meals_widgets.dart';
@@ -77,7 +79,13 @@ class RestaurantScreen extends StatelessWidget {
                                     controller: TextEditingController(),),
                                 ),
                                 horizontalSpace(10),
-                                const Icon(Icons.shopping_cart_outlined,color: Colors.white,size: 30,)
+                                InkWell(
+                                    onTap: (){
+                                      NavigationService.push(
+                                          RoutesRestaurants.cartScreen,
+                                          arguments: {'isLayout': false});
+                                    },
+                                    child: const Icon(Icons.shopping_cart_outlined,color: Colors.white,size: 30,))
                               ],
                             ),
                             ),

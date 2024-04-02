@@ -12,36 +12,31 @@ import '../../../../../domain/usecase/cart/add_qt_usecase.dart';
 import '../../../../../domain/usecase/cart/cart_usecase.dart';
 import '../../../../../domain/usecase/cart/delete_item_usecase.dart';
 import '../../../../../domain/usecase/cart/sub_qt_usecase.dart';
-import '../../../../../domain/usecase/check_out/add_address_usecase.dart';
-import '../../../../../domain/usecase/check_out/main_address_usecase.dart';
 part 'cart_state.dart';
 class CartCubit extends Cubit<CartState> {
-  CartCubit({
-    required AddAddressUseCase addAddressUseCase,required MainAddressUseCase mainAddressUseCase,
-    required DeleteItemUseCase deleteItemUseCase,required CartUseCase cartUseCase,
-    required AddQTUseCase addQTUseCase,required SubQTUseCase subQTUseCase,
-    required AddItemUseCase addItemUseCase})
-      :_addAddressUseCase=addAddressUseCase,_mainAddressUseCase =mainAddressUseCase,_deleteItemUseCase= deleteItemUseCase,
-        _addItemUseCase =addItemUseCase,_subQTUseCase=subQTUseCase,_addQTUseCase=addQTUseCase,
-        _cartUseCase= cartUseCase,super(CartInitial());
 
-  final formKey = GlobalKey<FormState>();
   final CartUseCase _cartUseCase;
   final AddQTUseCase _addQTUseCase;
   final SubQTUseCase _subQTUseCase;
   final AddItemUseCase _addItemUseCase;
-  final MainAddressUseCase _mainAddressUseCase;
-  final AddAddressUseCase _addAddressUseCase;
   final DeleteItemUseCase _deleteItemUseCase;
+  CartCubit({
+    required DeleteItemUseCase deleteItemUseCase,required CartUseCase cartUseCase,
+    required AddQTUseCase addQTUseCase,required SubQTUseCase subQTUseCase,
+    required AddItemUseCase addItemUseCase})
+      :_deleteItemUseCase= deleteItemUseCase,
+        _addItemUseCase =addItemUseCase,_subQTUseCase=subQTUseCase,_addQTUseCase=addQTUseCase,
+        _cartUseCase= cartUseCase,super(CartInitial());
+
+
   static CartCubit get(BuildContext context)=>BlocProvider.of(context);
-  TextEditingController addressController =TextEditingController();
-  TextEditingController phoneController =TextEditingController();
-  int typeAddress=0;
+
   List<Items>? items;
   Store? storeDate;
   CartModel? cartModel;
-  MainAddressModel? mainAddressModel;
+
   Future<ResponseModel> getCart() async {
+
     emit(CartLoadingState()) ;
     ResponseModel responseModel = await _cartUseCase.call();
     if (responseModel.isSuccess) {
@@ -49,6 +44,9 @@ class CartCubit extends Cubit<CartState> {
        if(cartModel!.data!=null){
          items=cartModel!.data!.items;
          storeDate=cartModel!.data!.store;
+       }else{
+         items=null;
+         storeDate=null;
        }
       emit(CartSuccessState()) ;
     }else{
@@ -118,35 +116,5 @@ class CartCubit extends Cubit<CartState> {
     return responseModel;
   }
 
-  Future<ResponseModel> getMainAddress() async {
-    emit(GetAddressLoadingState()) ;
-    ResponseModel responseModel = await _mainAddressUseCase.call();
-    if (responseModel.isSuccess) {
-      mainAddressModel =responseModel.data;
-      emit(GetAddressSuccessState()) ;
-    }else{
-      emit(GetAddressErrorState()) ;
-    }
-    return responseModel;
-  }
-  Future<ResponseModel> addMainAddress({required AddressBody addressBody,required BuildContext context}) async {
-    emit(AddAddressLoadingState()) ;
-    ResponseModel responseModel = await _addAddressUseCase.call(addressBody: addressBody);
-    if (responseModel.isSuccess) {
-      getMainAddress();
-      Future.delayed(const Duration(microseconds: 0)).then((value) {
-        showToast(text: responseModel.message.toString(), state: ToastStates.success, context: context);
-      });
-      emit(AddAddressSuccessState()) ;
-    }else{
-      emit(AddAddressErrorState()) ;
-    }
-    return responseModel;
-  }
 
-  void changeTypeOfAddress(int x){
-    typeAddress =x;
-    log('acccccc', typeAddress.toString());
-    emit(ChangeTypeState()) ;
-  }
 }

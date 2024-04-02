@@ -17,6 +17,7 @@ class AppURL {
 
   ///home
   static const String kHomeURI = "home";
+  static const String kOffersURI = "stores/offers";
   static  String kCategoriesURI (int id)=> "stores/all-categories?store_id=$id";
   static  String kItemExtraURI (int id)=> "stores/items/single?item_id=$id";
   static  String kCategoriesItemsURI ({required int categoryId,required int storeId})=> "stores/categories?category_id=$categoryId&store_id=$storeId";
@@ -28,6 +29,8 @@ class AppURL {
   static const String kDeleteItemURL = "shopping-cart/delete";
   static const String kGetMainAddressURL = "other-trip/get-main-address";
   static const String kAddMainAddressURL = "other-trip/main-address";
+  ///checkout
+  static const String kCheckOutURL = "stores/checkout/store";
   ///more
   static const String kGetProfileURL = "profile";
   static const String kUpdateProfileURL = "profile/update";

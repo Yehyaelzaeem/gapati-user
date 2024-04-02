@@ -17,11 +17,3 @@ class AddItemErrorState extends CartState {}
 class AddItemLoadingState extends CartState {}
 class AddItemSuccessState extends CartState {}
 
-class GetAddressSuccessState extends CartState {}
-class GetAddressLoadingState extends CartState {}
-class GetAddressErrorState extends CartState {}
-
-class AddAddressLoadingState extends CartState {}
-class AddAddressErrorState extends CartState {}
-class AddAddressSuccessState extends CartState {}
-class ChangeTypeState extends CartState {}

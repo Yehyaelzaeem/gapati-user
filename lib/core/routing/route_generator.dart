@@ -1,10 +1,12 @@
 import 'package:cogina/core/routing/platform_page_route.dart';
 import 'package:cogina/core/routing/undefined_route_screen.dart';
+import 'package:cogina/presentation/modules/intro/splash/splash_screen.dart';
 import 'package:flutter/cupertino.dart';
 import '../../presentation/modules/auth/login/login_screen.dart';
 import '../../presentation/modules/auth/register/register_screen.dart';
 import '../../presentation/modules/auth/register/register_success_screen.dart';
 import '../../presentation/modules/intro/choose_user/choose_user_screen.dart';
+import '../../presentation/modules/intro/on_boarding/on_boarding_screen.dart';
 import '../../presentation/modules/latest_sales/latest_sales_screen.dart';
 import '../../presentation/modules/layout/layout_screen.dart';
 import '../../presentation/modules/layout/screens/cart/cart_screen.dart';
@@ -48,9 +50,13 @@ class RouteRestaurantsGenerator {
         case RoutesRestaurants.addMealScreen:
         return platformPageRoute(const AddMealScreen());
       case RoutesRestaurants.mealDetailsScreen:
-        return platformPageRoute( MealDetailsScreen(storeId: arguments?['storeId'],));
+        return platformPageRoute( MealDetailsScreen(storeId: arguments?['storeId'],categoriesItemsModelData:  arguments?['categoriesItemsModelData'],));
       case RoutesRestaurants.orderDetailsScreen:
         return platformPageRoute(OrderDetailsScreen());
+      case RoutesRestaurants.splashScreen:
+        return platformPageRoute(const SplashScreen());
+        case RoutesRestaurants.onBoardingScreen:
+        return platformPageRoute(const OnBoardingScreen());
       case RoutesRestaurants.restaurantScreen:
         return platformPageRoute( RestaurantScreen(id: arguments?['id'],));
       case RoutesRestaurants.cartScreen:

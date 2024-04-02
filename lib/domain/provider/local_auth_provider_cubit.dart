@@ -13,7 +13,7 @@ class LocalAuthCubit extends Cubit<LocalAuthState> {
 
   ///Use Cases
   // final LogoutUseCase _logoutUseCase;
-  // final IsUserLoginUseCase _isUserLoginUseCase;
+   final IsUserLoginUseCase _isUserLoginUseCase;
   final GetProfileUseCase _getProfileUseCase;
   // final DeleteAccountUseCase _deleteAccountUseCase;
   // final ClearUserDataUseCase _clearUserDataUseCase;
@@ -22,33 +22,28 @@ class LocalAuthCubit extends Cubit<LocalAuthState> {
   LocalAuthCubit({
     // required LogoutUseCase logoutUseCase,
     // required ClearUserDataUseCase clearUserDataUseCase,
-    // required IsUserLoginUseCase isUserLoginUseCase,
+    required IsUserLoginUseCase isUserLoginUseCase,
     required GetProfileUseCase getProfileUseCase,
     // required DeleteAccountUseCase deleteAccountUseCase,
     // required UpdateFCMTokenUseCase updateFCMTokenUseCase,
   })  :
         // _clearUserDataUseCase = clearUserDataUseCase,
         // _logoutUseCase = logoutUseCase,
-        // _isUserLoginUseCase = isUserLoginUseCase,
+        _isUserLoginUseCase = isUserLoginUseCase,
         // _deleteAccountUseCase = deleteAccountUseCase,
         // _updateFCMTokenUseCase = updateFCMTokenUseCase,
         _getProfileUseCase = getProfileUseCase,
         super(LocalAuthState());
 
   ///call APIs Functions
-  // Future<bool> isLogin() async {
-  //   ResponseModel responseModel = await _isUserLoginUseCase.call();
-  //   if (responseModel.isSuccess) {
-  //     emit(state.copyWith(isLogin: true));
-  //     // _updateFCMToken();
-  //     ResponseModel profileResponseModel = await _getUser();
-  //     if (!profileResponseModel.isSuccess) {
-  //       // logOut();
-  //     }
-  //     return profileResponseModel.isSuccess;
-  //   } else {}
-  //   return responseModel.isSuccess;
-  // }
+  Future<bool> isLogin() async {
+    ResponseModel responseModel = await _isUserLoginUseCase.call();
+    if (responseModel.isSuccess) {
+      emit(state.copyWith(isLogin: true));
+    }
+    log('dsssssssssss', responseModel.isSuccess.toString());
+    return responseModel.isSuccess;
+  }
 
   // Future<bool> logOut() async {
   //   ResponseModel responseModel = await _logoutUseCase.call();
@@ -77,7 +72,7 @@ class LocalAuthCubit extends Cubit<LocalAuthState> {
 
     ResponseModel responseModel = await _getProfileUseCase.call();
     if (responseModel.isSuccess) {
-      kUser = responseModel.data;
+      // kUser = responseModel.data;
       notify(false, null);
     } else {
       notify(false, responseModel.message);

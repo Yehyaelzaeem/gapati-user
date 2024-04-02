@@ -1,7 +1,11 @@
 import 'dart:async';
 import 'package:cogina/core/resources/text_styles.dart';
+import 'package:cogina/core/routing/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/resources/values_manager.dart';
+import '../../../../core/routing/navigation_services.dart';
+import '../../../../domain/provider/local_auth_provider_cubit.dart';
 import '../on_boarding/on_boarding_screen.dart';
 
 
@@ -15,7 +19,7 @@ class SplashScreen extends StatefulWidget{
 
 class _SplashScreenState extends State<SplashScreen>  with SingleTickerProviderStateMixin{
 
-  // late final LocalAuthCubit _viewModel;
+   late final LocalAuthCubit _viewModel;
 
   _playAnimation() async{
 
@@ -32,7 +36,7 @@ class _SplashScreenState extends State<SplashScreen>  with SingleTickerProviderS
 
   @override
   void initState() {
-    // _viewModel = BlocProvider.of<LocalAuthCubit>(context, listen: false);
+    _viewModel = BlocProvider.of<LocalAuthCubit>(context, listen: false);
     // BlocProvider.of<HomeCubit>(context).initGoogleMap();
     super.initState();
     _playAnimation();
@@ -42,14 +46,13 @@ class _SplashScreenState extends State<SplashScreen>  with SingleTickerProviderS
 
     Timer(const Duration(seconds: 2), () async {
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>OnBoardingScreen()));
-      // bool isAuthed = await _viewModel.isLogin();
-      // if (isAuthed) {
-      //   NavigationService.pushNamedAndRemoveUntil( Routes.layoutScreen);
-      // }else{
-      //   NavigationService.pushNamedAndRemoveUntil( Routes.layoutScreen);
-      //
-      //   // NavigationService.pushNamedAndRemoveUntil( Routes.loginScreen);
-      // }
+      bool isAuthed = await _viewModel.isLogin();
+      if (isAuthed) {
+        NavigationService.pushNamedAndRemoveUntil( RoutesRestaurants.layout,arguments: {'currentPage':0});
+      }else{
+        NavigationService.pushNamedAndRemoveUntil(RoutesRestaurants.onBoardingScreen);
+        // NavigationService.pushNamedAndRemoveUntil( Routes.loginScreen);
+      }
 
     });
   }

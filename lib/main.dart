@@ -71,8 +71,8 @@ class MyApp extends StatelessWidget {
               useMaterial3: true,
             ),
             home:
-            //  const SplashScreen(),
-             const LayoutScreen(currentPage: 0),
+              const SplashScreen(),
+            //  const LayoutScreen(currentPage: 0),
 
           );
       },

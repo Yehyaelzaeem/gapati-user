@@ -4,7 +4,7 @@ import '../../../data/model/base/response_model.dart';
 import '../../repository/local_repo.dart';
 
 class IsUserLoginUseCase {
-  // final _tag = 'IsUserLoginUseCase';
+   final _tag = 'IsUserLoginUseCase';
   final LocalRepository repository;
 
   IsUserLoginUseCase({required this.repository});

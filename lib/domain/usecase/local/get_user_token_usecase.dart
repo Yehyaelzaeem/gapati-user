@@ -13,7 +13,6 @@ class GetUserTokenUseCase {
 
   Future<ResponseModel> call() async {
     String token =await repository.getUserToken();
-     log('teeeeelllll', token);
     if (token.isNotEmpty) {
       return ResponseModel(true, 'successful', data: token);
     } else {

@@ -24,7 +24,7 @@ class DeleteAccountUseCase implements BaseUseCase<UserModel>{
 
   @override
   ResponseModel<UserModel> onConvert(BaseModel baseModel) {
-    return ResponseModel(true, baseModel.message);
+    return ResponseModel(baseModel.status!, baseModel.message);
   }
 
 

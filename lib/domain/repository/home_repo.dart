@@ -8,5 +8,6 @@ import '../request_body/register_body.dart';
 
 mixin HomeRepository {
   Future<ApiResponse> getHome() ;
+  Future<ApiResponse> getOffers() ;
 
 }

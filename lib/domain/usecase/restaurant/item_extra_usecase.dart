@@ -22,9 +22,9 @@ class ItemExtraUseCase implements BaseUseCase<ItemExtraModel>{
   ResponseModel<ItemExtraModel> onConvert(BaseModel baseModel) {
     ItemExtraModel? itemExtraModel = ItemExtraModel.fromJson(baseModel.extra);
     try{
-      return ResponseModel(true, baseModel.message,data: itemExtraModel);
+      return ResponseModel(baseModel.status??true, baseModel.message,data: itemExtraModel);
     }catch(e){
-      return ResponseModel(true, baseModel.message,data: itemExtraModel);
+      return ResponseModel(baseModel.status??false, baseModel.message,data: itemExtraModel);
     }
   }
 }

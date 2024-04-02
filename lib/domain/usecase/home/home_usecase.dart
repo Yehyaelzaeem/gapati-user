@@ -21,9 +21,9 @@ class HomeUseCase implements BaseUseCase<HomeModel>{
   ResponseModel<HomeModel> onConvert(BaseModel baseModel) {
     try{
       HomeModel? homeModel = HomeModel.fromJson(baseModel.responseData);
-      return ResponseModel(true, baseModel.message,data: homeModel);
+      return ResponseModel(baseModel.status??true, baseModel.message,data: homeModel);
     }catch(e){
-      return ResponseModel(true, baseModel.message,data: baseModel.responseData);
+      return ResponseModel(baseModel.status??false, baseModel.message,data: baseModel.responseData);
     }
   }
 }

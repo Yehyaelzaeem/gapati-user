@@ -19,10 +19,10 @@ class MainAddressUseCase implements BaseUseCase<MainAddressModel>{
   ResponseModel<MainAddressModel> onConvert(BaseModel baseModel) {
     try{
       MainAddressModel? mainAddressModel = MainAddressModel.fromJson(baseModel.responseData);
-      return ResponseModel(true, baseModel.message,data: mainAddressModel);
+      return ResponseModel(baseModel.status??true, baseModel.message,data: mainAddressModel);
     }catch(e){
       MainAddressModel? mainAddressModel = MainAddressModel.fromJson(baseModel.responseData);
-      return ResponseModel(true, baseModel.message,data: mainAddressModel);
+      return ResponseModel(baseModel.status??false, baseModel.message,data: mainAddressModel);
     }
   }
 }

@@ -11,7 +11,7 @@ class BaseUseCaseCall<R>{
     ResponseModel<R> responseModel;
     if (apiResponse.response != null &&( apiResponse.response!.statusCode == 200 || apiResponse.response!.statusCode == 201) ) {
       BaseModel baseModel = BaseModel.fromJson(apiResponse.response!.data);
-      if (baseModel.status!=null) {
+      if (baseModel.statusCode!=null) {
         _log(tag,'getData successfully');
         if (kDebugMode) {
           _log(tag,'getData kDebugMode');

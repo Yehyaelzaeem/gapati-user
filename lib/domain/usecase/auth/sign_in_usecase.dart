@@ -22,9 +22,9 @@ class SignInUseCase implements BaseUseCase<UserModel>{
   ResponseModel<UserModel> onConvert(BaseModel baseModel) {
     try{
       UserModel? user = UserModel.fromJson(baseModel.responseData);
-      return ResponseModel(true, baseModel.message,data: user);
+      return ResponseModel(baseModel.status??true, baseModel.message,data: user);
     }catch(e){
-      return ResponseModel(true, baseModel.message,data: baseModel.responseData);
+      return ResponseModel(baseModel.status??false, baseModel.message,data: baseModel.responseData);
     }
   }
 }

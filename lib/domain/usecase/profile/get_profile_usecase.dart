@@ -19,9 +19,9 @@ class GetProfileUseCase implements BaseUseCase<GetProfileModel>{
   ResponseModel<GetProfileModel> onConvert(BaseModel baseModel) {
     try{
       GetProfileModel? profileModel = GetProfileModel.fromJson(baseModel.responseData);
-      return ResponseModel(true, baseModel.message,data: profileModel);
+      return ResponseModel(baseModel.status??true, baseModel.message,data: profileModel);
     }catch(e){
-      return ResponseModel(true, baseModel.message,data: baseModel.responseData);
+      return ResponseModel(baseModel.status??false, baseModel.message,data: baseModel.responseData);
     }
   }
 }

@@ -13,7 +13,11 @@ class LatestSalesScreen extends StatelessWidget {
         appBar: const CustomAppBar(
           title: 'Latest Sales',
         ),
-        body: GridView.builder(
+    );
+  }
+}
+/*
+GridView.builder(
           physics: const BouncingScrollPhysics(),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
@@ -29,6 +33,4 @@ class LatestSalesScreen extends StatelessWidget {
           itemCount: 10,
           padding: EdgeInsets.all(16.w),
         )
-    );
-  }
-}
+ */
