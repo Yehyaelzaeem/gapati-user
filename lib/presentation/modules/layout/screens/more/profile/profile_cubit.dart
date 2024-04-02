@@ -66,6 +66,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     if (responseModel.isSuccess) {
       getProfile();
       Navigator.of(NavigationService.navigationKey.currentContext!).pop();
+      imageFile=null;
       emit(UpdateProfileSuccessState()) ;
     }else{
       emit(UpdateProfileErrorState()) ;
