@@ -40,9 +40,11 @@ class _CustomBestMealsWidgetState extends State<CustomBestMealsWidget> {
                         itemBuilder: (context,index){
                           return InkWell(
                               onTap: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context)=> MealDetailsScreen(categoriesItemsModelData: cubit.categoryItemsModelList![index],)));
+                                Navigator.push(context, MaterialPageRoute(builder: (context)=>
+                                    MealDetailsScreen(categoriesItemsModelData: cubit.categoryItemsModelList![index],
+                                      storeId: cubit.categoryItemsModelList![index].storeId.toString(),)));
                               },
-                              child:  CustomMealWidget(categoriesItemsModelData: cubit.categoryItemsModelList![index],));
+                              child:  CustomMealWidget(categoriesItemsModelData: cubit.categoryItemsModelList![index], storeId: cubit.categoryItemsModelList![index].storeId!.toString(),));
                         }),
                   );
 

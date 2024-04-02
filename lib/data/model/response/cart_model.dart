@@ -127,9 +127,9 @@ class Items {
   int? itemCartId;
   int? id;
   String? name;
-  int? price;
-  int? itemPrice;
-  int? extraPrice;
+  dynamic price;
+  dynamic itemPrice;
+  dynamic extraPrice;
   String? image;
   int? qty;
   Extra? extra;

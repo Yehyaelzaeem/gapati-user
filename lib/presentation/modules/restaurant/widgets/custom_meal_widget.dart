@@ -1,17 +1,16 @@
 import 'package:cogina/presentation/component/images/custom_image.dart';
+import 'package:cogina/presentation/modules/layout/screens/cart/cart_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../../../core/assets_constant/images.dart';
 import '../../../../../../core/global/styles/colors.dart';
 import '../../../../../../core/global/styles/styles.dart';
-import '../../../../data/model/response/category_all_items_model.dart';
 import '../../../../data/model/response/category_item_model.dart';
-import '../../../component/custom_rate.dart';
+import '../../../../domain/request_body/add_item_body.dart';
 
 class CustomMealWidget extends StatelessWidget {
-  const CustomMealWidget({super.key,  this.categoriesItemsModelData});
+  const CustomMealWidget({super.key,  this.categoriesItemsModelData, required this.storeId});
   final CategoryItemsData? categoriesItemsModelData;
+  final String storeId;
   @override
   Widget build(BuildContext context) {
     double rating = 3;
@@ -28,7 +27,10 @@ class CustomMealWidget extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            CustomImage(image: categoriesItemsModelData!.image!,radius: 20,),
+            SizedBox(
+                width: 140.w,
+                height: double.infinity,
+                child: CustomImage(image: categoriesItemsModelData!.image!,radius: 20,)),
             SizedBox(width: 5.w,),
             Expanded(
               child: Column(
@@ -45,7 +47,7 @@ class CustomMealWidget extends StatelessWidget {
                              fontSize: 13
                          ),
                          textAlign: TextAlign.center,
-                         maxLines: 2,
+                         maxLines: 3,
                          overflow: TextOverflow.ellipsis,
                        ),
                      ],
@@ -82,7 +84,11 @@ class CustomMealWidget extends StatelessWidget {
                   Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          AddItemBody addItemBody=
+                          AddItemBody(itemId: categoriesItemsModelData!.id.toString(), qt: '1', storeId: storeId);
+                          CartCubit.get(context).addItemCart(addItemBody: addItemBody, context: context);
+                        },
                         style: ElevatedButton.styleFrom(
                           elevation: 0,
                           minimumSize: const Size(20, 30), // Set your desired width and height

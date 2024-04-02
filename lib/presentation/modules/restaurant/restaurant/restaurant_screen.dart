@@ -128,7 +128,6 @@ class RestaurantScreen extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(20)
                                   ),
                                   child: const CategoriesRestaurantShimmer()),
-
                         ),
                       ],
                     ),

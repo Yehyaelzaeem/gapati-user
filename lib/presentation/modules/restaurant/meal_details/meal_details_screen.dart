@@ -5,23 +5,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shimmer/shimmer.dart';
-import '../../../../../../core/assets_constant/images.dart';
 import '../../../../../../core/global/styles/colors.dart';
 import '../../../../../../core/global/styles/styles.dart';
-import '../../../../../../core/routing/navigation_services.dart';
-import '../../../../../../core/routing/routes.dart';
 import '../../../../data/model/response/category_item_model.dart';
+import '../../../../domain/request_body/add_item_body.dart';
 import '../../../component/custom_elevated_button.dart';
+import '../../layout/screens/cart/cart_cubit.dart';
 import '../widgets/custom_chip.dart';
 import '../widgets/custom_sandwich_widget.dart';
 
 class MealDetailsScreen extends StatelessWidget {
-  MealDetailsScreen({super.key, this.categoriesItemsModelData});
-
+  MealDetailsScreen({super.key, this.categoriesItemsModelData, required this.storeId});
   final CategoryItemsData? categoriesItemsModelData;
-
+  final String storeId;
   bool isFav = false;
-
   @override
   Widget build(BuildContext context) {
     RestaurantCubit cubit = RestaurantCubit.get(context);
@@ -339,9 +336,13 @@ class MealDetailsScreen extends StatelessWidget {
                                     borderColor: AppColors.primaryColor,
                                     fontColor: Colors.white,
                                     onTap: () {
-                                      NavigationService.push(
-                                          RoutesRestaurants.cartScreen,
-                                          arguments: {'isLayout': false});
+                                      AddItemBody addItemBody=
+                                      AddItemBody(itemId: categoriesItemsModelData!.id.toString(), qt: '1', storeId: storeId);
+                                      CartCubit.get(context).addItemCart(addItemBody: addItemBody, context: context);
+
+                                      // NavigationService.push(
+                                      //     RoutesRestaurants.cartScreen,
+                                      //     arguments: {'isLayout': false});
                                     },
                                     buttonText: 'Add to Cart'),
                               ),

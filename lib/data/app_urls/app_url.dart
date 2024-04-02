@@ -22,6 +22,12 @@ class AppURL {
   static  String kCategoriesItemsURI ({required int categoryId,required int storeId})=> "stores/categories?category_id=$categoryId&store_id=$storeId";
   ///Cart
   static const String kGetCartURL = "shopping-cart";
+  static const String kAddQtURL = "shopping-cart/add";
+  static const String kSubQtURL = "shopping-cart/sub";
+  static const String kAddItemURL = "shopping-cart/insert";
+  static const String kDeleteItemURL = "shopping-cart/delete";
+  static const String kGetMainAddressURL = "other-trip/get-main-address";
+  static const String kAddMainAddressURL = "other-trip/main-address";
   ///more
   static const String kGetProfileURL = "profile";
   static const String kUpdateProfileURL = "profile/update";

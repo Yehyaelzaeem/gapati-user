@@ -2,7 +2,13 @@
 import 'package:cogina/domain/usecase/auth/check_otp_usecase.dart';
 import 'package:cogina/domain/usecase/auth/register_usecase.dart';
 import 'package:cogina/domain/usecase/auth/sign_in_usecase.dart';
+import 'package:cogina/domain/usecase/cart/add_item_usecase.dart';
+import 'package:cogina/domain/usecase/cart/add_qt_usecase.dart';
 import 'package:cogina/domain/usecase/cart/cart_usecase.dart';
+import 'package:cogina/domain/usecase/cart/delete_item_usecase.dart';
+import 'package:cogina/domain/usecase/cart/sub_qt_usecase.dart';
+import 'package:cogina/domain/usecase/check_out/add_address_usecase.dart';
+import 'package:cogina/domain/usecase/check_out/main_address_usecase.dart';
 import 'package:cogina/domain/usecase/home/home_usecase.dart';
 import 'package:cogina/domain/usecase/local/clear_user_data_usecase.dart';
 import 'package:cogina/domain/usecase/local/get_is_login_usecase.dart';
@@ -47,6 +53,12 @@ Future<void> init() async {
 
    ///Cart
    getIt.registerLazySingleton(() => CartUseCase(repository: getIt()));
+   getIt.registerLazySingleton(() => AddQTUseCase(repository: getIt()));
+   getIt.registerLazySingleton(() => SubQTUseCase(repository: getIt()));
+   getIt.registerLazySingleton(() => AddItemUseCase(repository: getIt()));
+   getIt.registerLazySingleton(() => DeleteItemUseCase(repository: getIt()));
+   getIt.registerLazySingleton(() => MainAddressUseCase(repository: getIt()));
+   getIt.registerLazySingleton(() => AddAddressUseCase(repository: getIt()));
 
 
   ///more

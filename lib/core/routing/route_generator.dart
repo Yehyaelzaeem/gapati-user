@@ -48,7 +48,7 @@ class RouteRestaurantsGenerator {
         case RoutesRestaurants.addMealScreen:
         return platformPageRoute(const AddMealScreen());
       case RoutesRestaurants.mealDetailsScreen:
-        return platformPageRoute( MealDetailsScreen());
+        return platformPageRoute( MealDetailsScreen(storeId: arguments?['storeId'],));
       case RoutesRestaurants.orderDetailsScreen:
         return platformPageRoute(OrderDetailsScreen());
       case RoutesRestaurants.restaurantScreen:
