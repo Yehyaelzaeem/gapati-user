@@ -48,7 +48,7 @@ class LoginCubit extends Cubit<LoginState> {
   OTPBody get otpBody => _otpBody;
 
 
-
+//tr(LocaleKeys.error)
   ///calling APIs Functions
   Future<ResponseModel> login(String phone, String otp,context) async {
     // // String? fcmToken= await getDeviceToken();

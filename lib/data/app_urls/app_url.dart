@@ -36,6 +36,10 @@ class AppURL {
   static const String kUpdateProfileURL = "profile/update";
   static const String kUpdateImageProfileURL = "profile/uploadImage";
 
+  /// order
+  static const String kRestaurantOrdersURL = "stores/checkout";
+  static  String kOrdersURL({required int id}) => "stores/checkout/details?order_id=$id";
+
   ///setting
   static const String kGetCitiesURL = "";
   static const String kGetCategoriesURL = "";

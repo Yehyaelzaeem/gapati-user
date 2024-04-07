@@ -253,7 +253,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 if (widget._validateFunc != null&& widget._isRequired){
                   return widget._validateFunc!(value);
                 }else if ((value == null || value.isEmpty) && widget._isRequired) {
-                  return tr(LocaleKeys.msgFormFieldRequired);
+                  return tr(LocaleKey2.msgFormFieldRequired);
                 }
                 return null;
               },

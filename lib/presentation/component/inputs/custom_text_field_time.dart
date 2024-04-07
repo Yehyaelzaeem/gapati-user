@@ -113,7 +113,7 @@ class _CustomTextFieldTimeState extends State<CustomTextFieldTime> {
         suffixIconData: widget.suffixIconData,
         validateFunc: (value) {
           if ((value == null || value.isEmpty) && widget.isRequired) {
-            return tr(LocaleKeys.msgFormFieldRequired);
+            return tr(LocaleKey2.msgFormFieldRequired);
           }
 
           if (widget.validateFunc != null) return widget.validateFunc!(value);

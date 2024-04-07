@@ -112,7 +112,7 @@ class CustomTextFieldNumber extends StatelessWidget {
       textInputAction: textInputAction,
       validateFunc: validateFunc ?? (value) {
         int? v = int.tryParse(value);
-            if (v == null) {return tr(LocaleKeys.msgFormFieldRequired);}
+            if (v == null) {return tr(LocaleKey2.msgFormFieldRequired);}
             if (validateFunc != null) return validateFunc!(value);
             return null;
           },

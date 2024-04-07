@@ -1,5 +1,8 @@
+import 'package:cogina/core/helpers/spacing.dart';
+import 'package:cogina/core/translations/locale_keys.dart';
 import 'package:cogina/presentation/component/images/custom_image.dart';
 import 'package:cogina/presentation/modules/layout/screens/cart/cart_cubit.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../core/global/styles/colors.dart';
@@ -13,7 +16,6 @@ class CustomMealWidget extends StatelessWidget {
   final String storeId;
   @override
   Widget build(BuildContext context) {
-    double rating = 3;
     return
       Padding(
       padding: const EdgeInsets.all(8.0),
@@ -52,62 +54,36 @@ class CustomMealWidget extends StatelessWidget {
                        ),
                      ],
                    ),
-                  // Center(
-                  //   child: StatefulBuilder(builder: (context,setState){
-                  //     return Row(
-                  //       mainAxisAlignment: MainAxisAlignment.center,
-                  //       children: [
-                  //         RatingWidget(
-                  //           filledStar: Icons.star,
-                  //           halfStar: Icons.star_half,
-                  //           emptyStar: Icons.star_border,
-                  //           rating: rating,
-                  //           onChanged: (rating) {
-                  //             setState(() {
-                  //               rating = rating;
-                  //             });
-                  //           },
-                  //         ),
-                  //         SizedBox(width: 10.w,),
-                  //         Text(
-                  //           '$rating',
-                  //           style: TextStyles.font16Black600Weight.copyWith(
-                  //               fontSize: 13
-                  //           ),
-                  //           maxLines: 1,
-                  //           overflow: TextOverflow.ellipsis,
-                  //         ),
-                  //       ],
-                  //     );
-                  //   },),
-                  // ),
-                  Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          AddItemBody addItemBody=
-                          AddItemBody(itemId: categoriesItemsModelData!.id.toString(), qt: '1', storeId: storeId);
-                          CartCubit.get(context).addItemCart(addItemBody: addItemBody, context: context);
-                        },
-                        style: ElevatedButton.styleFrom(
-                          elevation: 0,
-                          minimumSize: const Size(20, 30), // Set your desired width and height
-                          backgroundColor: AppColors.primaryColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(60),
+                  FittedBox(
+                    child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            AddItemBody addItemBody=
+                            AddItemBody(itemId: categoriesItemsModelData!.id.toString(), qt: '1', storeId: storeId);
+                            CartCubit.get(context).addItemCart(addItemBody: addItemBody, context: context);
+                          },
+                          style: ElevatedButton.styleFrom(
+                            elevation: 0,
+                            minimumSize: const Size(20, 30), // Set your desired width and height
+                            backgroundColor: AppColors.primaryColor,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(60),
+                            ),
                           ),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Icon(Icons.shopping_cart_checkout_sharp, color: Colors.white, size: 12),
-                            Text(
-                              '  Add to Cart',
-                              style: TextStyles.font14White500Weight.copyWith(fontSize: 12),
-                            )
-                          ],
-                        ),
-                      )),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Icon(Icons.shopping_cart_checkout_sharp, color: Colors.white, size: 12),
+                              horizontalSpace(2),
+                              Text(
+                                LocaleKeys.addCart.tr(),
+                                style: TextStyles.font14White500Weight.copyWith(fontSize: 12),
+                              )
+                            ],
+                          ),
+                        )),
+                  ),
                 ],
               ),
             ),
@@ -118,28 +94,31 @@ class CustomMealWidget extends StatelessWidget {
                 SizedBox(height: 10.h,),
                 const Icon(Icons.favorite,color: Colors.red,),
                 SizedBox(height: 5.h,),
-               Column(
-                 children: [
-                   categoriesItemsModelData!.priceDiscount!=null?
-                   Text(
-                     '\$${categoriesItemsModelData!.price!}',
-                     style: TextStyles.font16Black600Weight.copyWith(
-                         decoration: TextDecoration.lineThrough,
-                         fontSize: 14,
-                         fontWeight: FontWeight.w400
+               SizedBox(
+                 width: 50.w,
+                 child: Column(
+                   children: [
+                     categoriesItemsModelData!.priceDiscount!=null?
+                     Text(
+                       '\$${categoriesItemsModelData!.price!}',
+                       style: TextStyles.font16Black600Weight.copyWith(
+                           decoration: TextDecoration.lineThrough,
+                           fontSize: 14,
+                           fontWeight: FontWeight.w400
+                       ),
+                       maxLines: 2,
+                       overflow: TextOverflow.ellipsis,
+                     ):const SizedBox.shrink(),
+                     Text(
+                         '\$${categoriesItemsModelData!.priceAfterDiscount}',
+                       style: TextStyles.font16Black600Weight.copyWith(
+                           color:AppColors.redColor
+                       ),
+                       maxLines: 2,
+                       overflow: TextOverflow.ellipsis,
                      ),
-                     maxLines: 1,
-                     overflow: TextOverflow.ellipsis,
-                   ):const SizedBox.shrink(),
-                   Text(
-                       '\$${categoriesItemsModelData!.priceAfterDiscount}',
-                     style: TextStyles.font16Black600Weight.copyWith(
-                         color:AppColors.redColor
-                     ),
-                     maxLines: 1,
-                     overflow: TextOverflow.ellipsis,
-                   ),
-                 ],
+                   ],
+                 ),
                ),
                 SizedBox(height: 10.h,),
               ],

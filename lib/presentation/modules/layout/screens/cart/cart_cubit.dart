@@ -36,7 +36,8 @@ class CartCubit extends Cubit<CartState> {
   CartModel? cartModel;
 
   Future<ResponseModel> getCart() async {
-
+    items=null;
+    storeDate=null;
     emit(CartLoadingState()) ;
     ResponseModel responseModel = await _cartUseCase.call();
     if (responseModel.isSuccess) {
@@ -62,6 +63,9 @@ class CartCubit extends Cubit<CartState> {
       getCart();
       emit(AddQtSuccessState()) ;
     }else{
+      Future.delayed(const Duration(microseconds: 0)).then((value) {
+        showToast(text: responseModel.message!, state: ToastStates.error, context: context);
+      });
       emit(AddQtErrorState()) ;
     }
     return responseModel;
@@ -73,6 +77,9 @@ class CartCubit extends Cubit<CartState> {
       getCart();
       emit(SubQtSuccessState()) ;
     }else{
+      Future.delayed(const Duration(microseconds: 0)).then((value) {
+        showToast(text: responseModel.message!, state: ToastStates.error, context: context);
+      });
       emit(SubQtErrorState()) ;
     }
     return responseModel;
@@ -89,8 +96,7 @@ class CartCubit extends Cubit<CartState> {
       emit(AddItemSuccessState()) ;
     }else{
       // Future.delayed(const Duration(microseconds: 0)).then((value) {
-      //   showToast(text: '${responseModel.message}',
-      //       state: ToastStates.error, context: context);
+      //   showToast(text: responseModel.message!, state: ToastStates.error, context: context);
       // });
       emit(AddItemErrorState()) ;
     }
@@ -107,10 +113,10 @@ class CartCubit extends Cubit<CartState> {
       });
       emit(AddItemSuccessState()) ;
     }else{
-      // Future.delayed(const Duration(microseconds: 0)).then((value) {
-      //   showToast(text: '${responseModel.message}',
-      //       state: ToastStates.error, context: context);
-      // });
+      Future.delayed(const Duration(microseconds: 0)).then((value) {
+        showToast(text: responseModel.message!, state: ToastStates.error, context: context);
+      });
+
       emit(AddItemErrorState()) ;
     }
     return responseModel;

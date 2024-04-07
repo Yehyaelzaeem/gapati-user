@@ -13,6 +13,7 @@ class CustomElevatedButton extends StatelessWidget {
   final double? width;
   final Color? backgroundColor;
   final Color? borderColor;
+  final Color? loadingColor;
   final bool? isLoading;
 
   const CustomElevatedButton({
@@ -23,7 +24,7 @@ class CustomElevatedButton extends StatelessWidget {
     this.fontColor,
     this.fontSize,
     this.borderColor,
-    this.backgroundColor,this.height, this.width, this.isLoading,
+    this.backgroundColor,this.height, this.width, this.isLoading, this.loadingColor,
   });
 
   @override
@@ -43,7 +44,7 @@ class CustomElevatedButton extends StatelessWidget {
       ),
       child:
       isLoading==true?
-      const Center(child: CircularProgressIndicator(),):
+       Center(child: CircularProgressIndicator(color: loadingColor??AppColors.whiteColor,),):
       Text(
         buttonText,
         style: TextStyle(

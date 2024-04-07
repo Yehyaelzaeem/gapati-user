@@ -72,7 +72,7 @@ class LoginScreen extends StatelessWidget {
                               child: Text(
                                 'Sign up!',
                                 style: TextStyles.font18Black700Weight
-                                    .copyWith(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.redColor.withOpacity(0.5)),
+                                    .copyWith(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.secondPrimaryColor),
                               ),
                             ),
                           ],

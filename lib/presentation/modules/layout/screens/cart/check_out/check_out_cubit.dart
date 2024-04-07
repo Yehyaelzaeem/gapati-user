@@ -20,7 +20,6 @@ class CheckOutCubit extends Cubit<CheckOutState> {
   final CheckOutUseCase _checkOutUseCase;
   CheckOutCubit({required AddAddressUseCase addAddressUseCase,required MainAddressUseCase mainAddressUseCase,required CheckOutUseCase checkOutUseCase }) :_checkOutUseCase=checkOutUseCase,_addAddressUseCase=addAddressUseCase,_mainAddressUseCase =mainAddressUseCase, super(CheckOutInitial());
   static CheckOutCubit get (BuildContext context)=>BlocProvider.of(context);
-  final formKey = GlobalKey<FormState>();
   MainAddressModel? mainAddressModel;
   TextEditingController addressController =TextEditingController();
   TextEditingController phoneController =TextEditingController();
@@ -47,6 +46,8 @@ class CheckOutCubit extends Cubit<CheckOutState> {
       Future.delayed(const Duration(microseconds: 0)).then((value) {
         showToast(text: responseModel.message.toString(), state: ToastStates.success, context: context);
       });
+      phoneController.text='';
+      addressController.text='';
       emit(AddAddressSuccessState()) ;
     }else{
       emit(AddAddressErrorState()) ;

@@ -15,7 +15,7 @@ class UndefinedRouteScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Scaffold(
         body: Center(
-          child:Text(tr(LocaleKeys.noRouteFound),style: const TextStyle().titleStyle(),) ,
+          child:Text(tr(LocaleKey2.noRouteFound),style: const TextStyle().titleStyle(),) ,
         ),
     );
   }

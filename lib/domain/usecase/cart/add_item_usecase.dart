@@ -17,7 +17,11 @@ class AddItemUseCase implements BaseUseCase<dynamic>{
   @override
   ResponseModel<dynamic> onConvert(BaseModel baseModel) {
     try{
-      return ResponseModel(baseModel.status??true, baseModel.message,data: baseModel.responseData);
+      if(baseModel.code =='200' ||baseModel.code =='201'){
+        return ResponseModel(baseModel.status??true, baseModel.message,data: baseModel.responseData);
+      }else{
+        return ResponseModel(baseModel.status??false, baseModel.message,data: baseModel.responseData);
+      }
     }catch(e){
       return ResponseModel(baseModel.status??false, baseModel.message,data: baseModel.responseData);
     }

@@ -74,9 +74,9 @@ class CategoryItemsData {
   String? description;
   int? categoryId;
   String? categoryName;
-  String? price;
-  String? priceDiscount;
-  int? priceAfterDiscount;
+  dynamic price;
+  dynamic priceDiscount;
+  dynamic priceAfterDiscount;
   int? storeId;
   String? image;
 

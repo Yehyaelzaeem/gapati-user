@@ -444,12 +444,12 @@ class _CustomTextFieldPhoneCodeState extends State<CustomTextFieldPhoneCode> {
       },
       validateFunc: (value) {
         if (value == null || (value.toString().isEmpty)) {
-          return tr(LocaleKeys.msgPhoneNumberRequired);
+          return tr(LocaleKey2.msgPhoneNumberRequired);
         } else if (!widget.disableLengthCheck && value != null) {
           return value.length >= _selectedCountry.minLength &&
                   value.length <= _selectedCountry.maxLength
               ? null
-              : tr(LocaleKeys.msgInvalidPhoneNumber);
+              : tr(LocaleKey2.msgInvalidPhoneNumber);
         }
 
         return validatorMessage;

@@ -1,5 +1,4 @@
 import 'package:cogina/presentation/modules/intro/splash/splash_screen.dart';
-import 'package:cogina/presentation/modules/layout/layout_screen.dart';
 import 'package:country_code_picker/country_localizations.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -71,7 +70,7 @@ class MyApp extends StatelessWidget {
               useMaterial3: true,
             ),
             home:
-              const SplashScreen(),
+              const SplashPage(),
             //  const LayoutScreen(currentPage: 0),
 
           );

@@ -108,10 +108,10 @@ class _CustomTextFieldPasswordState extends State<CustomTextFieldPassword> {
       validateFunc: widget.validateFunc ??
           (value) {
             if (value ==null||value.toString().isEmpty) {
-              return tr(LocaleKeys.msgInvalidPassword);
+              return tr(LocaleKey2.msgInvalidPassword);
 
             } else if (value.toString().length < 6) {
-              return tr(LocaleKeys.msgInvalidPasswordShort);
+              return tr(LocaleKey2.msgInvalidPasswordShort);
             }
           },
       suffixText: widget.suffixText,

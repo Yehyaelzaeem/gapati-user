@@ -25,8 +25,8 @@ class ApiChecker {
         _showAlert(errorResponse.message, showError);
         return ResponseModel<T>(false, errorResponse.message);
       } else {
-        _showAlert(tr(LocaleKeys.error), showError);
-        return  ResponseModel<T>(false, tr(LocaleKeys.error));
+        _showAlert(tr(LocaleKey2.error), showError);
+        return  ResponseModel<T>(false, tr(LocaleKey2.error));
       }
 
     }catch(e){
@@ -48,7 +48,7 @@ class ApiChecker {
           return ResponseModel<T>(false, apiResponse.error);
         } else {
           log(_tag, 'apiResponse Can not get error');
-          return ResponseModel<T>(false, tr(LocaleKeys.error));
+          return ResponseModel<T>(false, tr(LocaleKey2.error));
         }
       } else if (message != null) {
         log( _tag,'Error is message');
@@ -56,7 +56,7 @@ class ApiChecker {
         return ResponseModel<T>(false, message);
       } else {
         log(_tag, 'Can not get error');
-        return ResponseModel<T>(false, tr(LocaleKeys.error));
+        return ResponseModel<T>(false, tr(LocaleKey2.error));
       }
     }
   }

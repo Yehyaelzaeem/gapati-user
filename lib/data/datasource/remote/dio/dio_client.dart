@@ -1,8 +1,11 @@
 import 'dart:io';
+import 'dart:ui';
 
 
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+import '../../../../core/routing/navigation_services.dart';
 import '../../../../domain/logger.dart';
 import '../../../../main.dart';
 import '../../../app_urls/app_url.dart';
@@ -44,11 +47,48 @@ class DioClient {
         'Accept': 'application/json; charset=UTF-8',
         'x-api-key': AppURL.kAPIKey,
         'Content-Type': 'application/json; charset=UTF-8',
-        'Content-Language':  appContext?.locale.languageCode ?? 'ar',
-         // 'Authorization': 'Bearer $token',
+        'Content-Language':  NavigationService.navigationKey.currentContext!.locale.languageCode,
+        // 'Authorization': 'Bearer $token',
       };
+
     dio!.interceptors.add(loggingInterceptor);
+    dio!.interceptors.add(
+      PrettyDioLogger(
+        requestBody: true,
+        requestHeader: true,
+        responseHeader: true,
+      ),
+    );
   }
+
+  // void resetDio() async{
+  //   dio!.options.headers.clear(); // Clear all headers
+  //   // await dio?.close();
+  //   // Close HTTP client adapter
+  //   dio = Dio(); // Create a new Dio instance
+  //   _getToken(); // Fetch and set the new token
+  //   dio!
+  //     ..options.baseUrl = baseUrl
+  //     ..options.connectTimeout = 30000
+  //     ..options.receiveTimeout = 30000
+  //     ..httpClientAdapter
+  //     ..options.headers = {
+  //       'Accept': 'application/json; charset=UTF-8',
+  //       'x-api-key': AppURL.kAPIKey,
+  //       'Content-Type': 'application/json; charset=UTF-8',
+  //       'Content-Language':  NavigationService.navigationKey.currentContext!.locale.languageCode,
+  //       // 'Authorization': 'Bearer $token',
+  //     };
+  //   dio!.interceptors.add(loggingInterceptor);
+  //   dio!.interceptors.add(PrettyDioLogger(
+  //     requestBody: true,
+  //     requestHeader: true,
+  //     responseHeader: true,
+  //   ));
+  // }
+  //
+  //
+
 
   Future<Response> get(
     String uri, {
@@ -57,6 +97,7 @@ class DioClient {
     CancelToken? cancelToken,
     ProgressCallback? onReceiveProgress,
   }) async {
+    log('languageCode Get', NavigationService.navigationKey.currentContext!.locale.languageCode.toString());
 
      // queryParameters?.addAll({'token':token});
     try {
@@ -97,6 +138,7 @@ class DioClient {
         ProgressCallback? onReceiveProgress,
       }) async {
     try {
+      log('languageCode Post', NavigationService.navigationKey.currentContext!.locale.languageCode.toString());
 
       data = await _buildFileData(filePath: filePath, filesPath: filesPath, filePathList: filePathList, filePathListName: filePathListName, fileName: fileName);
 

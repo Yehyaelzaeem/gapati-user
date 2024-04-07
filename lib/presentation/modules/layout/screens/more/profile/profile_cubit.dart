@@ -28,6 +28,7 @@ class ProfileCubit extends Cubit<ProfileState> {
   final formKey = GlobalKey<FormState>();
 
   Future<ResponseModel> getProfile() async {
+    profileModel=null;
     emit(GetProfileLoadingState()) ;
     ResponseModel responseModel = await _profileUseCase.call();
     if (responseModel.isSuccess) {
@@ -60,12 +61,9 @@ class ProfileCubit extends Cubit<ProfileState> {
     return responseModel;
   }
   Future<ResponseModel> updateImageProfile() async {
-    log('link  ', imageFile.toString());
     emit(UpdateProfileLoadingState()) ;
     ResponseModel responseModel = await _updateProfileUseCase.updateImage(image: imageFile!);
     if (responseModel.isSuccess) {
-      getProfile();
-      Navigator.of(NavigationService.navigationKey.currentContext!).pop();
       imageFile=null;
       emit(UpdateProfileSuccessState()) ;
     }else{

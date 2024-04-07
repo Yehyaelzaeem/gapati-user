@@ -28,7 +28,6 @@ class TextStyles{
   static TextStyle font18Black700Weight = const TextStyle(
       fontSize: 18,
       fontFamily: FontConstants.fontFamily,
-
       fontWeight: FontWeight.w700,
       color: Colors.black
   );

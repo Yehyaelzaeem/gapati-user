@@ -43,7 +43,7 @@ class RestaurantShimmerWidget extends StatelessWidget {
                           enabled: true,
                           baseColor:  Colors.grey[300]! ,
                           highlightColor:  Colors.grey[100]!,
-                          child: Text('******',style: TextStyles.font20Black700Weight,))
+                          child: Text('------',style: TextStyles.font20Black700Weight,))
 
                      ],
                    ),

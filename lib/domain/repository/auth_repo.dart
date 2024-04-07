@@ -17,7 +17,6 @@ mixin AuthRepository {
 
   Future<ApiResponse> register({required RegisterBody registerBody});
 
-  Future<ApiResponse> logout();
   Future<ApiResponse> deleteAccount();
 
   // Future<ApiResponse> resetPassword({required String? phone, required String? password, required String? confirmPassword,});

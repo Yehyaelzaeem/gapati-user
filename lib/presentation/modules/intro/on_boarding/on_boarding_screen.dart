@@ -31,55 +31,55 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
   @override
   void initState() {
-    pageViewModelData.add(const PageViewData(
-      titleText: LocaleKeys.onlineRides,
-      subText: LocaleKeys.onlineRidesDesc,
-      assetsImage: Assets.imagesIntro1,
-    ));
+    // pageViewModelData.add(const PageViewData(
+    //   titleText: LocaleKeys.onlineRides,
+    //   subText: LocaleKeys.onlineRidesDesc,
+    //   assetsImage: Assets.imagesIntro1,
+    // ));
 
     pageViewModelData.add(const PageViewData(
-      titleText: LocaleKeys.easyTrackOrder,
-      subText: LocaleKeys.easyTrackOrderDesc,
+      titleText: LocaleKey2.easyTrackOrder,
+      subText: LocaleKey2.easyTrackOrderDesc,
       assetsImage: Assets.imagesIntro2,
     ));
 
     pageViewModelData.add(const PageViewData(
-      titleText: LocaleKeys.onlineDelivery,
-      subText: LocaleKeys.onlineDeliveryDesc,
+      titleText: LocaleKey2.onlineDelivery,
+      subText: LocaleKey2.onlineDeliveryDesc,
       assetsImage: Assets.imagesIntro3,
     ));
 
     pageViewModelData.add(const PageViewData(
-      titleText: LocaleKeys.onlineFoodDelivery,
-      subText: LocaleKeys.onlineFoodDeliveryDesc,
+      titleText: LocaleKey2.onlineFoodDelivery,
+      subText: LocaleKey2.onlineFoodDeliveryDesc,
       assetsImage: Assets.imagesIntro4,
     ));
 
-    pageViewModelData.add(const PageViewData(
-      titleText: LocaleKeys.easyOnlinePayment,
-      subText: LocaleKeys.easyOnlinePaymentDesc,
-      assetsImage: Assets.imagesIntro5,
-    ));
-    pageViewModelData.add(const PageViewData(
-      titleText: LocaleKeys.requestYourServiceOnline,
-      subText: LocaleKeys.requestYourServiceOnlineDesc,
-      assetsImage: Assets.imagesIntro6,
-    ));
+    // pageViewModelData.add(const PageViewData(
+    //   titleText: LocaleKeys.easyOnlinePayment,
+    //   subText: LocaleKeys.easyOnlinePaymentDesc,
+    //   assetsImage: Assets.imagesIntro5,
+    // ));
+    // pageViewModelData.add(const PageViewData(
+    //   titleText: LocaleKeys.requestYourServiceOnline,
+    //   subText: LocaleKeys.requestYourServiceOnlineDesc,
+    //   assetsImage: Assets.imagesIntro6,
+    // ));
 
     sliderTimer = Timer.periodic(const Duration(seconds: 4), (timer) {
-      if (currentShowIndex == 0) {
-        pageController.animateTo(MediaQuery.of(context).size.width, duration: const Duration(seconds: 1), curve: Curves.fastOutSlowIn);
-      } else if (currentShowIndex == 1) {
+     if (currentShowIndex == 0) {
         pageController.animateTo(MediaQuery.of(context).size.width * 2, duration: const Duration(seconds: 1), curve: Curves.fastOutSlowIn);
-      } else if (currentShowIndex == 2) {
+      } else if (currentShowIndex == 1) {
         pageController.animateTo(MediaQuery.of(context).size.width * 3, duration: const Duration(seconds: 1), curve: Curves.fastOutSlowIn);
-      } else if (currentShowIndex == 3) {
-        pageController.animateTo(MediaQuery.of(context).size.width * 4, duration: const Duration(seconds: 1), curve: Curves.fastOutSlowIn);
-      } else if (currentShowIndex == 4) {
-        pageController.animateTo(MediaQuery.of(context).size.width * 5, duration: const Duration(seconds: 1), curve: Curves.fastOutSlowIn);
-      } else if (currentShowIndex == 5) {
+      } else if (currentShowIndex == 2) {
         pageController.animateTo(0, duration: const Duration(seconds: 1), curve: Curves.fastOutSlowIn);
       }
+     // else if (currentShowIndex == 4) {
+     //    pageController.animateTo(MediaQuery.of(context).size.width * 5, duration: const Duration(seconds: 1), curve: Curves.fastOutSlowIn);
+     //  }
+      // else if (currentShowIndex == 5) {
+      //   pageController.animateTo(0, duration: const Duration(seconds: 1), curve: Curves.fastOutSlowIn);
+      // }
     });
     super.initState();
   }
@@ -109,9 +109,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 PagePopup(imageData: pageViewModelData[0]),
                 PagePopup(imageData: pageViewModelData[1]),
                 PagePopup(imageData: pageViewModelData[2]),
-                PagePopup(imageData: pageViewModelData[3]),
-                PagePopup(imageData: pageViewModelData[4]),
-                PagePopup(imageData: pageViewModelData[5]),
+
               ],
             ),
           ),
@@ -119,10 +117,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           Padding(
             padding: EdgeInsets.symmetric(vertical: kScreenPaddingNormal.h,horizontal: kScreenPaddingLarge.w),
             child: CustomButton(
-              title: tr(LocaleKeys.getStarted),
-              color: Theme.of(context).primaryColorDark,
+              title: tr(LocaleKey2.getStarted),
+              color: Theme.of(context).primaryColor,
               onTap: (){
-                context.pushNamed(RoutesRestaurants.loginScreen);
+                context.pushNamed(RoutesRestaurants.logAsScreen);
               }
             ),
           ),
@@ -130,7 +128,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             padding: EdgeInsets.all(kScreenPaddingNormal.r),
             child: SmoothPageIndicator(
               controller: pageController, // PageController
-              count: 6,
+              count: 3,
               effect: WormEffect(
                 activeDotColor: Theme.of(context).primaryColor,
                 dotColor: AppColors.hoverColor,

@@ -4,18 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../core/global/styles/styles.dart';
 import '../../../../../core/routing/navigation_services.dart';
+import '../../../../data/model/response/home_model.dart';
 import '../../../component/custom_rate.dart';
 import '../../layout/screens/home/widgets/custom_logo_restuarant.dart';
 
 class CustomRestaurantWidget extends StatelessWidget {
-  const CustomRestaurantWidget({super.key});
+  const CustomRestaurantWidget({super.key, required this.restaurantData});
+  final DataHome restaurantData;
   @override
   Widget build(BuildContext context) {
-    double rating = 3;
     return
       InkWell(
         onTap: (){
-          NavigationService.push(RoutesRestaurants.restaurantScreen);
+          NavigationService.push(RoutesRestaurants.restaurantScreen,arguments: {'id':restaurantData.id});
         },
         child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -33,7 +34,7 @@ class CustomRestaurantWidget extends StatelessWidget {
                   color: const Color(0xffDFDADA),
                   borderRadius: BorderRadius.circular(20),
                 ),
-                child:  CustomLogoRestaurant(height: 130.h,width: 130.h,),
+                child:  CustomLogoRestaurant(image: restaurantData.image,height: 130.h,width: 130.h,),
               ),
               horizontalSpace(10),
               Expanded(
@@ -44,7 +45,7 @@ class CustomRestaurantWidget extends StatelessWidget {
                     verticalSpace(10),
                     Row(
                       children: [
-                        Text('McDonald\'s',
+                        Text(restaurantData.name!,
                           style: TextStyles.font16Black600Weight,
                         ),
                         const Spacer(),
@@ -72,16 +73,14 @@ class CustomRestaurantWidget extends StatelessWidget {
                             filledStar: Icons.star,
                             halfStar: Icons.star_half,
                             emptyStar: Icons.star_border,
-                            rating: rating,
+                            rating: restaurantData.rate!.toDouble(),
                             onChanged: (rating) {
-                              setState(() {
-                                rating = rating;
-                              });
+
                             },
                           ),
                           SizedBox(width: 10.w,),
                           Text(
-                            '$rating',
+                            restaurantData.rate!.toDouble().toString(),
                             style: TextStyles.font16Black600Weight.copyWith(
                                 fontSize: 13
                             ),

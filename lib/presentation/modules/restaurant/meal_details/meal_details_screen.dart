@@ -1,6 +1,8 @@
 import 'package:cogina/core/helpers/spacing.dart';
+import 'package:cogina/core/translations/locale_keys.dart';
 import 'package:cogina/presentation/component/images/custom_image.dart';
 import 'package:cogina/presentation/modules/restaurant/restaurant_cubit.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -30,17 +32,15 @@ class MealDetailsScreen extends StatelessWidget {
           children: [
             Stack(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 50.0),
-                  child: SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height * 0.25,
-                      child:
-                          CustomImage(image: categoriesItemsModelData!.image!)),
-                ),
+                SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height * 0.3,
+                    child:
+                        CustomImage(image: categoriesItemsModelData!.image!)),
                 Positioned(
                     top: 60.h,
-                    left: 20.w,
+                    left:context.locale.languageCode==Locale('en').toString()? 20.w:null,
+                    right:context.locale.languageCode==Locale('en').toString()? null:20.w,
                     child: InkWell(
                       onTap: () {
                         Navigator.of(context).pop();
@@ -67,13 +67,14 @@ class MealDetailsScreen extends StatelessWidget {
                     )),
                 Positioned(
                     top: 60.h,
-                    right: 20.w,
+                    left:context.locale.languageCode==Locale('en').toString()? null:20.w,
+                    right:context.locale.languageCode==Locale('en').toString()? 20.w:null,
                     child: StatefulBuilder(
                       builder: (context, setState) {
                         return Container(
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(50),
-                              color: AppColors.whiteColor.withOpacity(0.7),
+                              color: AppColors.whiteColor.withOpacity(0.9),
                               boxShadow: const [
                                 BoxShadow(
                                     color: Colors.black12,
@@ -91,12 +92,12 @@ class MealDetailsScreen extends StatelessWidget {
                               child: isFav == true
                                   ? const Icon(
                                       Icons.favorite,
-                                      size: 25,
+                                      size: 18,
                                       color: AppColors.redColor,
                                     )
                                   : const Icon(
                                       Icons.favorite_border_rounded,
-                                      size: 25,
+                                      size: 18,
                                       color: AppColors.customGray,
                                     ),
                             ),
@@ -198,7 +199,7 @@ class MealDetailsScreen extends StatelessWidget {
                           children: [
                             verticalSpace(10),
                             Text(
-                              'Description',
+                              LocaleKeys.description.tr(),
                               style: TextStyles.font18Black700Weight.copyWith(
                                   fontWeight: FontWeight.bold,
                                   color: AppColors.black),
@@ -229,7 +230,7 @@ class MealDetailsScreen extends StatelessWidget {
                                                   crossAxisAlignment: CrossAxisAlignment.start,
                                                   children: [
                                                     Text(
-                                                      'Extra components',
+                                                      LocaleKeys.extraComponents.tr(),
                                                       style: TextStyles.font18Black700Weight
                                                           .copyWith(
                                                           fontWeight: FontWeight.bold,
@@ -282,7 +283,7 @@ class MealDetailsScreen extends StatelessWidget {
                               },
                             ),
                             verticalSpace(10),
-                            Text('choose the first sandwich',
+                            Text(LocaleKeys.chooseSandwich.tr(),
                               style: TextStyles.font18Black700Weight.copyWith(
                                   fontWeight: FontWeight.bold,
                                   color: AppColors.black
@@ -344,7 +345,7 @@ class MealDetailsScreen extends StatelessWidget {
                                       //     RoutesRestaurants.cartScreen,
                                       //     arguments: {'isLayout': false});
                                     },
-                                    buttonText: 'Add to Cart'),
+                                    buttonText: LocaleKeys.addCart.tr()),
                               ),
                             ),
 

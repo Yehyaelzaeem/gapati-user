@@ -100,50 +100,6 @@ class RegisterScreen extends StatelessWidget {
 
                               controller: cubit.phoneController),
                           verticalSpace(20),
-
-                          // CustomTextField(
-                          //     contentHorizontalPadding: 20,
-                          //     fillColor: AppColors.backGroundGray,
-                          //     isPassword: isVisible,
-                          //     borderRadius: 40,
-                          //     suffixIcon: IconButton(
-                          //       icon: Icon(
-                          //           color: Colors.grey.shade500,
-                          //           isVisible
-                          //               ? Icons.visibility_off
-                          //               : Icons.visibility),
-                          //       onPressed: () {
-                          //         setState(() {
-                          //           isVisible = !isVisible;
-                          //         });
-                          //       },
-                          //     ),
-                          //     borderColor: AppColors.whiteColor.withOpacity(0.1),
-                          //     hintText: 'Password',
-                          //     controller: pass),
-                          // verticalSpace(20),
-                          // CustomTextField(
-                          //     contentHorizontalPadding: 20,
-                          //     fillColor: AppColors.backGroundGray,
-                          //     isPassword: isVisible2,
-                          //     borderRadius: 40,
-                          //     suffixIcon: IconButton(
-                          //       icon: Icon(
-                          //           color: Colors.grey.shade500,
-                          //           isVisible2
-                          //               ? Icons.visibility_off
-                          //               : Icons.visibility),
-                          //       onPressed: () {
-                          //         setState(() {
-                          //           isVisible2 = !isVisible2;
-                          //         });
-                          //       },
-                          //     ),
-                          //
-                          //     borderColor: AppColors.whiteColor.withOpacity(0.1),
-                          //     hintText: 'Confirm Password',
-                          //     controller: pass2),
-                          // verticalSpace(10),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.end,
@@ -233,7 +189,7 @@ class RegisterScreen extends StatelessWidget {
                                 child: Text(
                                   'Sign in!',
                                   style: TextStyles.font18Black700Weight
-                                      .copyWith(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.redColor.withOpacity(0.5)),
+                                      .copyWith(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.secondPrimaryColor),
                                 ),
                               ),
                             ],

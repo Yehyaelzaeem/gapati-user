@@ -1,4 +1,7 @@
 import 'package:cogina/core/helpers/spacing.dart';
+import 'package:cogina/core/translations/locale_keys.dart';
+import 'package:cogina/presentation/modules/layout/screens/cart/cart_cubit.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,6 +14,7 @@ import '../../../component/custom_text_field.dart';
 import '../restaurant_cubit.dart';
 import '../widgets/custom_best_meals_widgets.dart';
 import '../widgets/shimmer_categories_restaurant.dart';
+import 'package:badges/badges.dart' as badges;
 
 class RestaurantScreen extends StatelessWidget {
   const RestaurantScreen({super.key, required this.id});
@@ -18,6 +22,8 @@ class RestaurantScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     RestaurantCubit cubit =RestaurantCubit.get(context);
+    CartCubit cartCubit =CartCubit.get(context);
+
     cubit.getCategories(id: id);
     return  DefaultTabController(
       length: 3,
@@ -42,7 +48,8 @@ class RestaurantScreen extends StatelessWidget {
                         ),
                         Positioned(
                             top: 60.h,
-                            left: 10.w,
+                            left: context.locale.languageCode==Locale('en').toString()?10.w:null,
+                            right: context.locale.languageCode==Locale('en').toString()?null:10.w,
                             child: InkWell(
                               onTap: (){
                                 Navigator.of(context).pop();
@@ -63,29 +70,60 @@ class RestaurantScreen extends StatelessWidget {
                             )),
                         Positioned(
                             top: 120.h,
-                            left: 50.w,
+                            left: 0,
+                            right: 0,
                             child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
+                                horizontalSpace(1),
                                 SizedBox(
                                   width: MediaQuery.of(context).size.width*0.7,
+                                  height: 45.h,
                                   child: CustomTextField(
                                     hintStyle: const TextStyle(fontWeight: FontWeight.bold),
                                     fillColor: AppColors.whiteColor.withOpacity(0.6),
                                     borderColor: AppColors.whiteColor.withOpacity(0.0),
                                     borderRadius: 30,
                                     prefixIcon: const Icon(Icons.search),
-                                    hintText: 'Search',
+                                    hintText: LocaleKeys.search.tr(),
                                     hintColor: AppColors.black,
                                     controller: TextEditingController(),),
                                 ),
-                                horizontalSpace(10),
-                                InkWell(
-                                    onTap: (){
-                                      NavigationService.push(
-                                          RoutesRestaurants.cartScreen,
-                                          arguments: {'isLayout': false});
-                                    },
-                                    child: const Icon(Icons.shopping_cart_outlined,color: Colors.white,size: 30,))
+                                BlocConsumer<CartCubit, CartState>(
+                                          listener: (context, state) {},
+                                          builder: (context, state) {
+                                            return InkWell(
+                                                      onTap: (){
+                                                        NavigationService.push(
+                                                            RoutesRestaurants.cartScreen,
+                                                            arguments: {'isLayout': false});
+                                                      },
+                                                      child:
+                                                      badges.Badge(
+                                                         position: badges.BadgePosition.topEnd(top: -15,end:
+                                                         context.locale.languageCode==Locale('en').toString()? -25:30),
+                                                        showBadge: cartCubit.items!=null?true:false,
+                                                        ignorePointer: false,
+                                                        onTap: () {},
+                                                        badgeContent:
+                                                        Text('${cartCubit.items!=null?cartCubit.items!.length:'0'}',
+                                                        style: TextStyles.font14White500Weight,
+                                                        ),
+                                                        badgeAnimation: badges.BadgeAnimation.rotation(
+                                                          animationDuration: Duration(seconds: 1),
+                                                          colorChangeAnimationDuration: Duration(seconds: 1),
+                                                          loopAnimation: false,
+                                                          curve: Curves.fastOutSlowIn,
+                                                          colorChangeAnimationCurve: Curves.easeInCubic,
+                                                        ),
+                                                        child: Icon(Icons.shopping_cart_outlined,color: Colors.white,size: 30,)
+                                                      ),);
+                                          },
+                                        ),
+                                horizontalSpace(1),
+
+                                  // const Icon(Icons.shopping_cart_outlined,color: Colors.white,size: 30,))
                               ],
                             ),
                             ),
@@ -129,7 +167,7 @@ class RestaurantScreen extends StatelessWidget {
                                       color: AppColors.customWhite,
                                       borderRadius: BorderRadius.circular(20)
                                   ),
-                                  child:  Center(child: Text("No found data",style: TextStyles.font18Black700Weight,),)):
+                                  child:  Center(child: Text(LocaleKeys.notFoundData.tr(),style: TextStyles.font18Black700Weight,),)):
                               Container(
                                   decoration:  BoxDecoration(
                                       color: AppColors.customWhite,

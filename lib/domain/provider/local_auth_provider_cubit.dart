@@ -1,8 +1,14 @@
+import 'package:cogina/core/helpers/extensions.dart';
+import 'package:cogina/data/injection.dart';
 import 'package:cogina/domain/logger.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../core/routing/routes.dart';
 import '../../core/utils/globals.dart';
+import '../../data/app_urls/app_url.dart';
+import '../../data/datasource/remote/dio/dio_client.dart';
 import '../../data/model/base/response_model.dart';
-import '../usecase/auth/delete_account_usecase.dart';
 import '../usecase/local/clear_user_data_usecase.dart';
 import '../usecase/local/get_is_login_usecase.dart';
 import '../usecase/profile/get_profile_usecase.dart';
@@ -12,23 +18,20 @@ class LocalAuthCubit extends Cubit<LocalAuthState> {
   final _tag = 'LocalAuthProvider';
 
   ///Use Cases
-  // final LogoutUseCase _logoutUseCase;
    final IsUserLoginUseCase _isUserLoginUseCase;
   final GetProfileUseCase _getProfileUseCase;
   // final DeleteAccountUseCase _deleteAccountUseCase;
-  // final ClearUserDataUseCase _clearUserDataUseCase;
+   final ClearUserDataUseCase _clearUserDataUseCase;
   // final UpdateFCMTokenUseCase _updateFCMTokenUseCase;
 
   LocalAuthCubit({
-    // required LogoutUseCase logoutUseCase,
-    // required ClearUserDataUseCase clearUserDataUseCase,
+     required ClearUserDataUseCase clearUserDataUseCase,
     required IsUserLoginUseCase isUserLoginUseCase,
     required GetProfileUseCase getProfileUseCase,
     // required DeleteAccountUseCase deleteAccountUseCase,
     // required UpdateFCMTokenUseCase updateFCMTokenUseCase,
   })  :
-        // _clearUserDataUseCase = clearUserDataUseCase,
-        // _logoutUseCase = logoutUseCase,
+         _clearUserDataUseCase = clearUserDataUseCase,
         _isUserLoginUseCase = isUserLoginUseCase,
         // _deleteAccountUseCase = deleteAccountUseCase,
         // _updateFCMTokenUseCase = updateFCMTokenUseCase,
@@ -41,29 +44,19 @@ class LocalAuthCubit extends Cubit<LocalAuthState> {
     if (responseModel.isSuccess) {
       emit(state.copyWith(isLogin: true));
     }
-    log('dsssssssssss', responseModel.isSuccess.toString());
     return responseModel.isSuccess;
   }
 
-  // Future<bool> logOut() async {
-  //   ResponseModel responseModel = await _logoutUseCase.call();
-  //   if(responseModel.isSuccess){
-  //     return await _clearUserData();
-  //   }else{
-  //     return false;
-  //   }
+  Future<bool> logOut(BuildContext context) async {
+    ResponseModel responseModel = await _clearUserDataUseCase.call();
+    if (responseModel.isSuccess) {
+      kUser = null;
+       context.pushNamedAndRemoveUntil(RoutesRestaurants.splashScreen, predicate: (route) => route.isFirst);
+      emit(state.copyWith(isLogin: false));
 
-  // }
-  // Future<bool> _clearUserData() async {
-  //
-  //   ResponseModel responseModel = await _clearUserDataUseCase.call();
-  //   if (responseModel.isSuccess) {
-  //     // FirebaseMessaging.instance.deleteToken();
-  //     kUser = null;
-  //     emit(state.copyWith(isLogin: false));
-  //   }
-  //   return responseModel.isSuccess;
-  // }
+    }
+    return responseModel.isSuccess;
+   }
 
 
   Future<ResponseModel> _getUser() async {

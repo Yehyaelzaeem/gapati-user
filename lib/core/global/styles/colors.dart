@@ -20,8 +20,8 @@ class AppColors{
 
 
 
-  static const Color  primaryColor= Color(0xff71C0A3);
-  static const Color  primaryColorLight= Color(0xffFE8270);
+  static const Color  primaryColor= Color(0xff23a4dd);
+  static const Color  secondPrimaryColor= Color(0xffe1b995);
   static const primaryColorDark =Color(0xffFEC641);
   static const cardColor = Color(0xFFFFFFFF);
   static const hoverColor = Color(0xFFE4E6E8);

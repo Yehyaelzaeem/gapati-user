@@ -1,8 +1,26 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
-abstract class  LocaleKeys {
+abstract class  LocaleKey2 {
   static const en = 'en';
   static const ar = 'ar';
+  static const changeLanguage = 'change_language';
+  static const save = 'save';
+  static const profile = 'profile';
+  static const aboutUs = 'about_us';
+  static const notification = 'notification';
+  static const myOrders = 'my_orders';
+  static const addresses = 'addresses';
+  static const privacyPolicy = 'privacy_policy';
+  static const termsAndConditions = 't&c';
+  static const language = 'language';
+  static const deleteAccount = 'delete_account';
+  static const logout = 'logout';
+
+
+
+
+
+
   static const error = 'error';
   static const appLanguage = 'appLanguage';
   static const noRouteFound = 'noRouteFound';
@@ -26,7 +44,6 @@ abstract class  LocaleKeys {
   static const password = 'password';
   static const selectHint = 'selectHint';
   static const cities = 'cities';
-  static const logout = 'logout';
   static const cancel = 'cancel';
   static const confirm = 'confirm';
   static const chooseTheLanguage = 'chooseTheLanguage';
@@ -48,17 +65,12 @@ abstract class  LocaleKeys {
   static const favorite = 'favorite';
   static const profits = 'Profits';
   static const orders = 'orders';
-  static const profile = 'profile';
   static const more = 'more';
   static const cart = 'cart';
   static const notifications = 'notifications';
   static const myProfile = 'myProfile';
-  static const aboutUs = 'aboutUs';
   static const contactUs = 'contactUs';
   static const faq = 'faq';
-  static const language = 'language';
-  static const privacyPolicy = 'privacyPolicy';
-  static const termsAndConditions = 'termsAndConditions';
   static const rateApp = 'rateApp';
   static const logOut = 'logOut';
   static const submit = 'submit';
@@ -70,7 +82,6 @@ abstract class  LocaleKeys {
   static const setting = 'setting';
   static const send = 'send';
   static const newPassword = 'newPassword';
-  static const deleteAccount = 'deleteAccount';
   static const subject = 'subject';
   static const message = 'message';
   static const theRequestHasBeenSentSuccessfully = 'theRequestHasBeenSentSuccessfully';

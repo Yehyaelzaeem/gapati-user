@@ -36,15 +36,7 @@ class AuthRepositoryImp implements AuthRepository{
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
     }
   }
-  @override
-  Future<ApiResponse> logout()  async {
-    try {
-      Response response = await _dioClient.get(AppURL.kLogoutURI);
-      return ApiResponse.withSuccess(response);
-    } catch (e) {
-      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
-    }
-  }
+
   @override
   Future<ApiResponse> forgetPassword({String? phone})  async {
     try {

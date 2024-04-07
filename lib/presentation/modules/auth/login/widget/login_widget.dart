@@ -64,39 +64,6 @@ class LoginWidget extends StatelessWidget {
                     cubit.otpCode(cubit.phoneController.text,context);
                   },
               ),
-              // CustomTextField(
-              //     fillColor: AppColors.backGroundGray,
-              //     isPassword: isVisible2,
-              //     borderRadius: 40,
-              //     suffixIcon: IconButton(
-              //       icon: Icon(
-              //           color: Colors.grey.shade500,
-              //           isVisible2
-              //               ? Icons.visibility_off
-              //               : Icons.visibility),
-              //       onPressed: () {
-              //         setState(() {
-              //           isVisible2 = !isVisible2;
-              //         });
-              //       },
-              //     ),
-              //     prefixIcon: const Icon(
-              //       Icons.lock,
-              //       color: AppColors.primaryColor,
-              //     ),
-              //     borderColor: AppColors.whiteColor.withOpacity(0.1),
-              //     hintText: 'Password',
-              //     controller: pass),
-              // CustomTextFieldPhoneCode(
-              //   label: 'الموبايل',
-              //   initialCountryCode:'+20',
-              //   controller: LoginCubit.get(context).phoneController,
-              //   autofocus: true,
-              //   textInputAction: TextInputAction.next,
-              //   onCountryChanged: (v){
-              //
-              //   },
-              // ),
               verticalSpace(20),
               Row(
                 children: [
@@ -118,7 +85,7 @@ class LoginWidget extends StatelessWidget {
                   Text(
                     'Forget Password?',
                     style: TextStyles.font18Black700Weight
-                        .copyWith(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.redColor.withOpacity(0.5)),
+                        .copyWith(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.secondPrimaryColor),
                   ),
                 ],
               ),

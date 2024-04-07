@@ -22,18 +22,18 @@ class CategoriesRestaurantShimmer extends StatelessWidget {
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Shimmer.fromColors(
-                  enabled: true,
-                  baseColor:  Colors.grey[300]! ,
-                  highlightColor:  Colors.grey[100]!,
-                  child:
-                  Container(
+                    enabled: true,
+                    baseColor:  Colors.grey[300]! ,
+                    highlightColor:  Colors.grey[100]!,
+                    child:
+                    Container(
                       decoration:  BoxDecoration(
                           color: AppColors.customWhite,
                           borderRadius: BorderRadius.circular(20)
                       ),
                       height: 130.h,
-                    width: double.infinity,
-                  )
+                      width: double.infinity,
+                    )
                 ),
               );
             }),

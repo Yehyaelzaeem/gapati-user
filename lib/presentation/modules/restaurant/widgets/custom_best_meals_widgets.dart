@@ -1,4 +1,6 @@
+import 'package:cogina/core/translations/locale_keys.dart';
 import 'package:cogina/presentation/modules/restaurant/widgets/shimmer_categories_restaurant.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -57,7 +59,7 @@ class _CustomBestMealsWidgetState extends State<CustomBestMealsWidget> {
                             color: AppColors.customWhite,
                             borderRadius: BorderRadius.circular(20)
                         ),
-                        child:  Center(child: Text("No found data items",style: TextStyles.font18Black700Weight,),));
+                        child:  Center(child: Text(LocaleKeys.notFoundData.tr(),style: TextStyles.font18Black700Weight,),));
               }
                 }else{
                   return  Container(

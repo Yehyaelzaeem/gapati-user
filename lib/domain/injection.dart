@@ -16,6 +16,7 @@ import 'package:cogina/domain/usecase/local/clear_user_data_usecase.dart';
 import 'package:cogina/domain/usecase/local/get_is_login_usecase.dart';
 import 'package:cogina/domain/usecase/local/get_user_token_usecase.dart';
 import 'package:cogina/domain/usecase/local/save_data_usecase.dart';
+import 'package:cogina/domain/usecase/orders/orders_usecase.dart';
 import 'package:cogina/domain/usecase/profile/get_profile_usecase.dart';
 import 'package:cogina/domain/usecase/profile/update_profile_usecase.dart';
 import 'package:cogina/domain/usecase/restaurant/categories_usecase.dart';
@@ -29,14 +30,14 @@ Future<void> init() async {
 
 
   ///local
-  // getIt.registerLazySingleton(() => ClearUserDataUseCase(repository: getIt()));
+   getIt.registerLazySingleton(() => ClearUserDataUseCase(repository: getIt()));
    getIt.registerLazySingleton(() => IsUserLoginUseCase(repository: getIt()));
-  getIt.registerLazySingleton(() => GetUserTokenUseCase(repository: getIt()));
+   getIt.registerLazySingleton(() => GetUserTokenUseCase(repository: getIt()));
    getIt.registerLazySingleton(() => SaveUserDataUseCase(repository: getIt()));
 
   ///Auth
-  getIt.registerLazySingleton(() => SignInUseCase(repository: getIt()));
-  getIt.registerLazySingleton(() => OTPUseCase(repository: getIt()));
+   getIt.registerLazySingleton(() => SignInUseCase(repository: getIt()));
+   getIt.registerLazySingleton(() => OTPUseCase(repository: getIt()));
    getIt.registerLazySingleton(() => RegisterUseCase(repository: getIt()));
 
    ///Profile
@@ -67,6 +68,8 @@ Future<void> init() async {
    ///CheckOut
   getIt.registerLazySingleton(() => CheckOutUseCase(repository: getIt()));
 
+  ///orders
+     getIt.registerLazySingleton(() => OrdersUseCase(repository: getIt()));
   ///more
   // getIt.registerLazySingleton(() => GetProfileUseCase(repository: getIt()));
   // getIt.registerLazySingleton(() => UpdateProfileUseCase(repository: getIt()));

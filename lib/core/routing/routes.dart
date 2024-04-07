@@ -21,6 +21,7 @@ class RoutesRestaurants {
   static const String offersScreen = "/offersScreen";
   static const String searchScreen = "/searchScreen";
   static const String cartScreen = "/cartScreen";
+  static const String logAsScreen = "/logAsScreen";
   static const String changePasswordScreen = "/changePasswordScreen";
   static const String aboutUsScreen = "/aboutUsScreen";
   static const String termsConditionScreen = "/termsConditionScreen";

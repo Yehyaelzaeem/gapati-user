@@ -2,6 +2,7 @@ import 'package:cogina/core/routing/platform_page_route.dart';
 import 'package:cogina/core/routing/undefined_route_screen.dart';
 import 'package:cogina/presentation/modules/intro/splash/splash_screen.dart';
 import 'package:flutter/cupertino.dart';
+import '../../presentation/modules/auth/log_as/log_as_screen.dart';
 import '../../presentation/modules/auth/login/login_screen.dart';
 import '../../presentation/modules/auth/register/register_screen.dart';
 import '../../presentation/modules/auth/register/register_success_screen.dart';
@@ -52,9 +53,9 @@ class RouteRestaurantsGenerator {
       case RoutesRestaurants.mealDetailsScreen:
         return platformPageRoute( MealDetailsScreen(storeId: arguments?['storeId'],categoriesItemsModelData:  arguments?['categoriesItemsModelData'],));
       case RoutesRestaurants.orderDetailsScreen:
-        return platformPageRoute(OrderDetailsScreen());
+        return platformPageRoute(OrderDetailsScreen(orderId: arguments?['orderId'], total: arguments?['total'],));
       case RoutesRestaurants.splashScreen:
-        return platformPageRoute(const SplashScreen());
+        return platformPageRoute(const SplashPage());
         case RoutesRestaurants.onBoardingScreen:
         return platformPageRoute(const OnBoardingScreen());
       case RoutesRestaurants.restaurantScreen:
@@ -65,6 +66,8 @@ class RouteRestaurantsGenerator {
         ));
       case RoutesRestaurants.checkOut:
         return platformPageRoute(const CheckOutScreen());
+        case RoutesRestaurants.logAsScreen:
+        return platformPageRoute(const LogAsScreen());
       case RoutesRestaurants.editProfileScreen:
         return platformPageRoute(const EditProfileScreen());
       case RoutesRestaurants.address:
