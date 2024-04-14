@@ -1,3 +1,5 @@
+import 'package:cogina/core/global/styles/colors.dart';
+import 'package:cogina/core/global/styles/styles.dart';
 import 'package:cogina/core/resources/text_styles.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -40,11 +42,17 @@ class PagePopup extends StatelessWidget {
                     style: const TextStyle().titleStyle(fontSize: 28).customColor(const Color(0xffFE8270)),
                   ),
                   Expanded(
-                    child: Center(
-                      child: Text(
-                        tr(imageData.subText),
-                        textAlign: TextAlign.center,
-                        style: const TextStyle().regularStyle().customColor(const Color(0xff1C2340)),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width*0.8,
+                      child: Center(
+                        child: Text(
+                          tr(imageData.subText),
+                          textAlign: TextAlign.justify,
+                          style: TextStyles.font18Black700Weight.copyWith(
+                            fontWeight: FontWeight.w500,
+                            color: AppColors.customGray
+                          ),
+                        ),
                       ),
                     ),
                   ),

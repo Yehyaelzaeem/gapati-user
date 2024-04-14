@@ -2,8 +2,10 @@ import 'package:cogina/core/assets_constant/images.dart';
 import 'package:cogina/core/global/styles/colors.dart';
 import 'package:cogina/core/helpers/spacing.dart';
 import 'package:cogina/presentation/modules/map/widgets/custom_colum_stepper_body.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/global/styles/styles.dart';
+import '../../../core/translations/locale_keys.dart';
 import '../../component/custom_elevated_button.dart';
 import '../layout/layout_screen.dart';
 
@@ -50,7 +52,7 @@ class _OrderMapScreenState extends State<OrderMapScreen> {
                       fontWeight: FontWeight.w700,
                       fontSize: 15
                   ), ),
-                Text('\$250.0',
+                Text('250.0 ${LocaleKeys.lyd.tr()}',
                   style:TextStyles.font15CustomGray400Weight.copyWith(
                       fontWeight: FontWeight.w600,
                       color: AppColors.redColor.withOpacity(0.5),

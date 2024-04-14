@@ -1,6 +1,8 @@
 import 'package:cogina/core/helpers/extensions.dart';
+import 'package:cogina/core/translations/locale_keys.dart';
 import 'package:cogina/presentation/component/component.dart';
 import 'package:cogina/presentation/modules/auth/register/register_cubit.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -21,8 +23,8 @@ class RegisterScreen extends StatelessWidget {
      RegisterCubit cubit =RegisterCubit.get(context);
     return Scaffold(
       backgroundColor: AppColors.backGroundGray,
-      appBar: const CustomAppBar(
-        title: 'Sign up',
+      appBar:  CustomAppBar(
+        title: LocaleKeys.signUp.tr(),
         isBackButtonExist: false,
       ),
       body: Form(
@@ -62,12 +64,12 @@ class RegisterScreen extends StatelessWidget {
                               borderRadius: 40,
                               validationFunc: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return 'The first name is empty';
+                                  return LocaleKeys.firstNameEmpty.tr();
                                 }
                                 return null;
                               },
                               borderColor: AppColors.whiteColor.withOpacity(0.1),
-                              hintText: 'First Name',
+                              hintText: LocaleKeys.firstName.tr(),
                               controller: cubit.firstNameController),
                           verticalSpace(20),
                           CustomTextField(
@@ -76,18 +78,18 @@ class RegisterScreen extends StatelessWidget {
                               borderRadius: 40,
                               validationFunc: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return 'The last name is empty';
+                                  return LocaleKeys.lastNameEmpty.tr();
                                 }
                                 return null;
                               },
                               borderColor: AppColors.whiteColor.withOpacity(0.1),
-                              hintText: 'Last Name',
+                              hintText: LocaleKeys.lastName.tr(),
                               controller: cubit.lastNameController),
                           verticalSpace(20),
                           CustomTextField(
                               validationFunc: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return 'The mobile phone is empty';
+                                  return LocaleKeys.mobilePhoneEmpty.tr();
                                 }
                                 return null;
                               },
@@ -96,7 +98,7 @@ class RegisterScreen extends StatelessWidget {
                               fillColor: AppColors.backGroundGray,
                               borderRadius: 40,
                               borderColor: AppColors.whiteColor.withOpacity(0.1),
-                              hintText: 'Mobile Phone',
+                              hintText: LocaleKeys.mobilePhone.tr(),
 
                               controller: cubit.phoneController),
                           verticalSpace(20),
@@ -118,14 +120,14 @@ class RegisterScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'By creating an account you agree our',
+                                    LocaleKeys.creatingAccountAgree.tr(),
                                     style: TextStyles.font18Black700Weight
                                         .copyWith(fontWeight: FontWeight.w500,fontSize: 14),
                                   ),
                                   InkWell(
                                     onTap:(){
                                       customShowDialog(
-                                          title: 'Terms and Conditions',
+                                          title: LocaleKeys.termsAndConditions.tr(),
                                           body:
                                           '''
         As of my last update in January 2022, McDonald's is a globally recognized fast-food restaurant chain known for its hamburgers, cheeseburgers, French fries, and other fast-food items. Here are some general points about McDonald's:
@@ -149,7 +151,7 @@ class RegisterScreen extends StatelessWidget {
                                           context: context);
                                     },
                                     child: Text(
-                                      'Terms and Privacy Policy',
+                                      LocaleKeys.termsAndConditions.tr(),
                                       style: TextStyles.font18Black700Weight
                                           .copyWith(fontWeight: FontWeight.w500,fontSize: 14,color: Colors.blue),
                                     ),
@@ -165,7 +167,7 @@ class RegisterScreen extends StatelessWidget {
                                 cubit.register(context);
                               }
                             },
-                            buttonText: 'Sign up',
+                            buttonText: LocaleKeys.signUp.tr(),
                             width: MediaQuery.of(context).size.width,
                             height: 40,
                             fontSize: 17,
@@ -176,7 +178,7 @@ class RegisterScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                'Already have an account?',
+                                LocaleKeys.alreadyHaveAccount.tr(),
                                 style: TextStyles.font18Black700Weight
                                     .copyWith(fontWeight: FontWeight.w500,fontSize: 15),
                               ),
@@ -187,7 +189,7 @@ class RegisterScreen extends StatelessWidget {
                                   // NavigationService.push(RoutesRestaurants.loginScreen);
                                 },
                                 child: Text(
-                                  'Sign in!',
+                                  '${LocaleKeys.signIn.tr()}!',
                                   style: TextStyles.font18Black700Weight
                                       .copyWith(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.secondPrimaryColor),
                                 ),

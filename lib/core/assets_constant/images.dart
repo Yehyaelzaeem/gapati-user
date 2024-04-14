@@ -15,5 +15,6 @@ class RestaurantImages{
   static const String pro2 = '${baseImage}pro2.png';
   static const String successImage = '${baseImage}success.png';
   static const String map = '${baseImage}map.PNG';
+  static const String signUp = '${baseImage}sign.svg';
 
 }

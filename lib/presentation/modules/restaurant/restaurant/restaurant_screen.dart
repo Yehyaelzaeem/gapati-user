@@ -23,7 +23,7 @@ class RestaurantScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     RestaurantCubit cubit =RestaurantCubit.get(context);
     CartCubit cartCubit =CartCubit.get(context);
-
+    cartCubit.getCart(context);
     cubit.getCategories(id: id);
     return  DefaultTabController(
       length: 3,

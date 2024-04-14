@@ -79,6 +79,7 @@ class CategoryItemsData {
   dynamic priceAfterDiscount;
   int? storeId;
   String? image;
+  bool? inCart;
 
   CategoryItemsData(
       {this.id,
@@ -90,7 +91,9 @@ class CategoryItemsData {
         this.priceDiscount,
         this.priceAfterDiscount,
         this.storeId,
-        this.image});
+        this.image,
+        this.inCart,
+      });
 
   CategoryItemsData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -103,6 +106,7 @@ class CategoryItemsData {
     priceAfterDiscount = json['price_after_discount'];
     storeId = json['store_id'];
     image = json['image'];
+    inCart = json['incart'];
   }
 
   Map<String, dynamic> toJson() {
@@ -117,6 +121,7 @@ class CategoryItemsData {
     data['price_after_discount'] = priceAfterDiscount;
     data['store_id'] = storeId;
     data['image'] = image;
+    data['incart'] = inCart;
     return data;
   }
 }

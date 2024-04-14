@@ -49,8 +49,11 @@ class RestaurantCubit extends Cubit<RestaurantState> {
     }
     return responseModel;
   }
-  Future<ResponseModel> getCategoryItems({required int categoryId,required int storeId}) async {
-    categoryItemsModelList=null;
+  Future<ResponseModel> getCategoryItems({required int categoryId,required int storeId,bool? notNull}) async {
+
+    notNull!=true?
+    categoryItemsModelList=null:
+    null;
     emit(GetCategoriesLoadingState()) ;
     ResponseModel responseModel = await _categoryItemsUseCase.call(categoryId: categoryId, storeId: storeId);
     if (responseModel.isSuccess) {

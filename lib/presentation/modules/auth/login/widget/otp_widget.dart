@@ -1,4 +1,6 @@
 import 'package:cogina/core/global/styles/colors.dart';
+import 'package:cogina/core/translations/locale_keys.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_verification_code/flutter_verification_code.dart';
@@ -40,13 +42,13 @@ class _OtpWidgetState extends State<OtpWidget> {
                 width: MediaQuery.of(context).size.width,
                 height: 60.h,
                 child: Center(
-                  child: Text('Confirm the number',
+                  child: Text(LocaleKeys.confirmNumber.tr(),
                   style: TextStyles.font20Black700Weight,
                   ),
                 ),
               ),
               verticalSpace(20),
-              Text('Enter the OTP code sent to you',
+              Text(LocaleKeys.enterCode.tr(),
                 style: TextStyles.font18Black700Weight.copyWith(
                   color: Colors.grey
                 ),
@@ -80,7 +82,7 @@ class _OtpWidgetState extends State<OtpWidget> {
                   onTap: (){
                     cubit.login(cubit.phoneController.text, _code,context);
                   },
-                  buttonText:'Done',
+                  buttonText:LocaleKeys.done.tr(),
                   width: MediaQuery.of(context).size.width,
                   height: 40,
                   fontSize: 17,

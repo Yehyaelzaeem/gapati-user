@@ -9,51 +9,21 @@ import '../../../../../../data/model/base/response_model.dart';
 import '../../../../../../data/model/response/main_address_model.dart';
 import '../../../../../../domain/request_body/address_body.dart';
 import '../../../../../../domain/request_body/check_out_body.dart';
+import '../../../../../../domain/usecase/address/add_address_usecase.dart';
+import '../../../../../../domain/usecase/address/main_address_usecase.dart';
 import '../../../../../../domain/usecase/check_out/add_address_usecase.dart';
 import '../../../../../../domain/usecase/check_out/check_out_usecase.dart';
 import '../../../../../../domain/usecase/check_out/main_address_usecase.dart';
 part 'check_out_state.dart';
 
 class CheckOutCubit extends Cubit<CheckOutState> {
-  final MainAddressUseCase _mainAddressUseCase;
-  final AddAddressUseCase _addAddressUseCase;
-  final CheckOutUseCase _checkOutUseCase;
-  CheckOutCubit({required AddAddressUseCase addAddressUseCase,required MainAddressUseCase mainAddressUseCase,required CheckOutUseCase checkOutUseCase }) :_checkOutUseCase=checkOutUseCase,_addAddressUseCase=addAddressUseCase,_mainAddressUseCase =mainAddressUseCase, super(CheckOutInitial());
-  static CheckOutCubit get (BuildContext context)=>BlocProvider.of(context);
-  MainAddressModel? mainAddressModel;
-  TextEditingController addressController =TextEditingController();
-  TextEditingController phoneController =TextEditingController();
-  int typeAddress=0;
-  int currentStep = 0;
 
-  /// Address
-  Future<ResponseModel> getMainAddress() async {
-    emit(GetAddressLoadingState()) ;
-    ResponseModel responseModel = await _mainAddressUseCase.call();
-    if (responseModel.isSuccess) {
-      mainAddressModel =responseModel.data;
-      emit(GetAddressSuccessState()) ;
-    }else{
-      emit(GetAddressErrorState()) ;
-    }
-    return responseModel;
-  }
-  Future<ResponseModel> addMainAddress({required AddressBody addressBody,required BuildContext context}) async {
-    emit(AddAddressLoadingState()) ;
-    ResponseModel responseModel = await _addAddressUseCase.call(addressBody: addressBody);
-    if (responseModel.isSuccess) {
-      getMainAddress();
-      Future.delayed(const Duration(microseconds: 0)).then((value) {
-        showToast(text: responseModel.message.toString(), state: ToastStates.success, context: context);
-      });
-      phoneController.text='';
-      addressController.text='';
-      emit(AddAddressSuccessState()) ;
-    }else{
-      emit(AddAddressErrorState()) ;
-    }
-    return responseModel;
-  }
+  final CheckOutUseCase _checkOutUseCase;
+  CheckOutCubit({required CheckOutUseCase checkOutUseCase }) :_checkOutUseCase=checkOutUseCase,super(CheckOutInitial());
+  static CheckOutCubit get (BuildContext context)=>BlocProvider.of(context);
+
+
+  int currentStep = 0;
 
   ///Check Out
   Future<ResponseModel> checkOut({required CheckOutBody checkOutBody,required BuildContext context}) async {
@@ -61,7 +31,7 @@ class CheckOutCubit extends Cubit<CheckOutState> {
     ResponseModel responseModel = await _checkOutUseCase.call(checkOutBody: checkOutBody);
     if (responseModel.isSuccess) {
       Future.delayed(const Duration(microseconds: 0)).then((value) {
-        CartCubit.get(context).getCart();
+        CartCubit.get(context).getCart(context);
         showToast(text: responseModel.message.toString(), state: ToastStates.success, context: context);
         NavigationService.push(RoutesRestaurants.successOrderScreen);
       });
@@ -76,10 +46,7 @@ class CheckOutCubit extends Cubit<CheckOutState> {
   }
 
   /// Change State
-  void changeTypeOfAddress(int x){
-    typeAddress =x;
-    emit(ChangeTypeState()) ;
-  }
+
   void changeSteps(int x){
     currentStep =x;
     emit(ChangeTypeState()) ;

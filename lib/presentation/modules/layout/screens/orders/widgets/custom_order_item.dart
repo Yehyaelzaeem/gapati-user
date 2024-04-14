@@ -18,7 +18,10 @@ class CustomOrderItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        NavigationService.push(RoutesRestaurants.orderDetailsScreen,arguments: {'orderId':orderModelData.id!,'total':orderModelData.price});
+        NavigationService.push(RoutesRestaurants.orderDetailsScreen,arguments: {
+          'orderId':orderModelData.id!,'total':orderModelData.price,
+          'phone':orderModelData.phone!=null?orderModelData.phone!:'','address':orderModelData.toAddress,
+        });
       },
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -63,7 +66,7 @@ class CustomOrderItemWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text('\$ ${orderModelData.price}',style: TextStyles.font18Black700Weight.copyWith(
+                      Text(' ${orderModelData.price} ${LocaleKeys.lyd.tr()}',style: TextStyles.font18Black700Weight.copyWith(
                           color: AppColors.secondPrimaryColor),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,),

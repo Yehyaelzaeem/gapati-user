@@ -1,5 +1,6 @@
 
 
+import 'package:cogina/data/repository/address_repository_imp.dart';
 import 'package:cogina/data/repository/auth_repository_imp.dart';
 import 'package:cogina/data/repository/cart_repository_imp.dart';
 import 'package:cogina/data/repository/check_out_repository_imp.dart';
@@ -13,6 +14,7 @@ import 'package:get_it/get_it.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../core/services/network/api_consumer.dart';
+import '../domain/repository/address_repo.dart';
 import '../domain/repository/auth_repo.dart';
 import '../domain/repository/cart_repo.dart';
 import '../domain/repository/check_out_repo.dart';
@@ -42,6 +44,7 @@ Future<void> init() async {
    getIt.registerLazySingleton<CartRepository>(() => CartRepositoryImp(dioClient: getIt()));
    getIt.registerLazySingleton<CheckOutRepository>(() => CheckOutRepositoryImp(dioClient: getIt()));
    getIt.registerLazySingleton<OrdersRepository>(() => OrdersRepositoryImp(dioClient: getIt()));
+   getIt.registerLazySingleton<AddressRepository>(() => AddressRepositoryImp(dioClient: getIt()));
   // getIt.registerLazySingleton<ProfileRepository>(() => ProfileRepositoryImp(dioClient: getIt()));
   // getIt.registerLazySingleton<SettingRepository>(() => SettingRepositoryImp(dioClient: getIt()));
   // getIt.registerLazySingleton<NotificationRepository>(() => NotificationRepositoryImp(dioClient: getIt()));

@@ -1,5 +1,6 @@
 import 'package:cogina/core/helpers/spacing.dart';
 import 'package:cogina/core/translations/locale_keys.dart';
+import 'package:cogina/domain/logger.dart';
 import 'package:cogina/presentation/component/images/custom_image.dart';
 import 'package:cogina/presentation/modules/restaurant/restaurant_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -9,8 +10,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shimmer/shimmer.dart';
 import '../../../../../../core/global/styles/colors.dart';
 import '../../../../../../core/global/styles/styles.dart';
+import '../../../../core/function/function.dart';
 import '../../../../data/model/response/category_item_model.dart';
 import '../../../../domain/request_body/add_item_body.dart';
+import '../../../component/custom_check_button.dart';
 import '../../../component/custom_elevated_button.dart';
 import '../../layout/screens/cart/cart_cubit.dart';
 import '../widgets/custom_chip.dart';
@@ -155,7 +158,7 @@ class MealDetailsScreen extends StatelessWidget {
                                   categoriesItemsModelData!.priceDiscount !=
                                           null
                                       ? Text(
-                                          '\$${categoriesItemsModelData!.price}',
+                                          '${double.parse(categoriesItemsModelData!.price.toString()).toStringAsFixed(1)} ${LocaleKeys.lyd.tr()}',
                                           style: TextStyles.font16Black600Weight
                                               .copyWith(
                                                   fontSize: 14,
@@ -167,7 +170,7 @@ class MealDetailsScreen extends StatelessWidget {
                                       : const SizedBox.shrink(),
                                   horizontalSpace(10),
                                   Text(
-                                    '\$${categoriesItemsModelData!.priceAfterDiscount}',
+                                    '${double.parse(categoriesItemsModelData!.priceAfterDiscount.toString()).toStringAsFixed(1)} ${LocaleKeys.lyd.tr()}',
                                     style: TextStyles.font16Black600Weight
                                         .copyWith(
                                             color: AppColors.redColor
@@ -326,6 +329,8 @@ class MealDetailsScreen extends StatelessWidget {
                             //     ),
                             //   ],
                             // ),
+                            categoriesItemsModelData!.inCart==true?
+                            CustomCheckButton():
                             Center(
                               child: Padding(
                                 padding:
@@ -337,9 +342,11 @@ class MealDetailsScreen extends StatelessWidget {
                                     borderColor: AppColors.primaryColor,
                                     fontColor: Colors.white,
                                     onTap: () {
-                                      AddItemBody addItemBody=
-                                      AddItemBody(itemId: categoriesItemsModelData!.id.toString(), qt: '1', storeId: storeId);
-                                      CartCubit.get(context).addItemCart(addItemBody: addItemBody, context: context);
+                                      logInFirst(function: (){
+                                        AddItemBody addItemBody=
+                                        AddItemBody(itemId: categoriesItemsModelData!.id.toString(), qt: '1', storeId: storeId);
+                                        CartCubit.get(context).addItemCart(addItemBody: addItemBody, context: context);
+                                      }, context: context);
 
                                       // NavigationService.push(
                                       //     RoutesRestaurants.cartScreen,
@@ -347,7 +354,7 @@ class MealDetailsScreen extends StatelessWidget {
                                     },
                                     buttonText: LocaleKeys.addCart.tr()),
                               ),
-                            ),
+                            )
 
                           ],
                         ),

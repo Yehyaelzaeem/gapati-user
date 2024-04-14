@@ -3,11 +3,11 @@ import 'package:cogina/core/global/styles/colors.dart';
 import 'package:cogina/core/helpers/extensions.dart';
 import 'package:cogina/core/helpers/spacing.dart';
 import 'package:cogina/core/routing/routes.dart';
+import 'package:cogina/core/translations/locale_keys.dart';
 import 'package:cogina/presentation/component/custom_elevated_button.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../core/assets_constant/images.dart';
 import '../../../../core/global/styles/styles.dart';
 
@@ -28,20 +28,19 @@ class LogAsScreen extends StatelessWidget {
             child: DefaultTextStyle(
               style: const TextStyle(
                 fontSize: 30.0,
-                fontFamily: 'Bobbers',
               ),
               child: AnimatedTextKit(
                 animatedTexts: [
-                  TyperAnimatedText('مَرْحَبًا بِكُمْ فِي كوجينا، حَيْثُ نَقُدِّمُ لَكُمْ تَجْرِبَةَ طَعَامٍ إِسْتِثْنَائِيَّةً عَبَرَ أَطْيَافِ مُتَعَدِّدَةٍ مِنَ المَأْكُولَاتِ الشَّهِيَّةِ وَالمُخْتَلِفَةِ',
+                  TyperAnimatedText(LocaleKeys.welcomeMes.tr(),
                       textStyle: TextStyles.font20Black700Weight.copyWith(
                       height: 1,
-                      color: Colors.blue.shade800,
+                      color:AppColors.customBlack,
                       fontSize: 17.sp,
                   ),textAlign: TextAlign.center),
-                  TyperAnimatedText('مَرْحَبًا بِكُمْ فِي كوجينا، حَيْثُ نَقُدِّمُ لَكُمْ تَجْرِبَةَ طَعَامٍ إِسْتِثْنَائِيَّةً عَبَرَ أَطْيَافِ مُتَعَدِّدَةٍ مِنَ المَأْكُولَاتِ الشَّهِيَّةِ وَالمُخْتَلِفَةِ',
+                  TyperAnimatedText(LocaleKeys.welcomeMes.tr(),
                                       textStyle: TextStyles.font20Black700Weight.copyWith(
                                       height: 1,
-                                      color: Colors.blue.shade800,
+                                      color:AppColors.customBlack,
                                       fontSize: 17.sp,
                                   ),textAlign: TextAlign.center),
 
@@ -60,7 +59,7 @@ class LogAsScreen extends StatelessWidget {
               onTap:(){
               context.pushNamed(RoutesRestaurants.loginScreen);
               },
-              buttonText: 'Sign In',
+              buttonText: LocaleKeys.signIn.tr(),
               fontSize: 18,
           ),
           verticalSpace(15),
@@ -73,7 +72,7 @@ class LogAsScreen extends StatelessWidget {
               context.pushNamed(RoutesRestaurants.registerScreen);
 
             },
-            buttonText: 'Sign Up',
+            buttonText: LocaleKeys.signUp.tr(),
             fontSize: 18,
           ),
 
@@ -82,7 +81,7 @@ class LogAsScreen extends StatelessWidget {
             onTap: (){
               context.pushNamed(RoutesRestaurants.layout,arguments: {'currentPage':0});
             },
-            child: Text('Log in as guest',
+            child: Text(LocaleKeys.logGuest.tr(),
             style: TextStyles.font16Black500Weight.copyWith(
               decoration: TextDecoration.underline,
               fontWeight: FontWeight.w500,

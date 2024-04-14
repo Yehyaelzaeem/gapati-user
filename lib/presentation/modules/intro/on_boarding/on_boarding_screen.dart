@@ -1,14 +1,16 @@
 import 'dart:async';
 import 'package:cogina/core/global/styles/colors.dart';
 import 'package:cogina/core/helpers/extensions.dart';
+import 'package:cogina/core/translations/locale_keys.dart';
+import 'package:cogina/domain/logger.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import '../../../../core/global/styles/styles.dart';
 import '../../../../core/resources/values_manager.dart';
 import '../../../../core/routing/routes.dart';
 import '../../../../generated/assets.dart';
-import '../../../../generated/locale_keys.g.dart';
 import '../../../component/custom_button.dart';
 import '../../../component/spaces.dart';
 import 'widgets/page_pop_view.dart';
@@ -21,66 +23,15 @@ class OnBoardingScreen extends StatefulWidget {
   _OnBoardingScreenState createState() => _OnBoardingScreenState();
 
 }
-
 class _OnBoardingScreenState extends State<OnBoardingScreen> {
   var pageController = PageController(initialPage: 0);
   List<PageViewData> pageViewModelData = [];
-
   late Timer sliderTimer;
   var currentShowIndex = 0;
 
   @override
   void initState() {
-    // pageViewModelData.add(const PageViewData(
-    //   titleText: LocaleKeys.onlineRides,
-    //   subText: LocaleKeys.onlineRidesDesc,
-    //   assetsImage: Assets.imagesIntro1,
-    // ));
-
-    pageViewModelData.add(const PageViewData(
-      titleText: LocaleKey2.easyTrackOrder,
-      subText: LocaleKey2.easyTrackOrderDesc,
-      assetsImage: Assets.imagesIntro2,
-    ));
-
-    pageViewModelData.add(const PageViewData(
-      titleText: LocaleKey2.onlineDelivery,
-      subText: LocaleKey2.onlineDeliveryDesc,
-      assetsImage: Assets.imagesIntro3,
-    ));
-
-    pageViewModelData.add(const PageViewData(
-      titleText: LocaleKey2.onlineFoodDelivery,
-      subText: LocaleKey2.onlineFoodDeliveryDesc,
-      assetsImage: Assets.imagesIntro4,
-    ));
-
-    // pageViewModelData.add(const PageViewData(
-    //   titleText: LocaleKeys.easyOnlinePayment,
-    //   subText: LocaleKeys.easyOnlinePaymentDesc,
-    //   assetsImage: Assets.imagesIntro5,
-    // ));
-    // pageViewModelData.add(const PageViewData(
-    //   titleText: LocaleKeys.requestYourServiceOnline,
-    //   subText: LocaleKeys.requestYourServiceOnlineDesc,
-    //   assetsImage: Assets.imagesIntro6,
-    // ));
-
-    sliderTimer = Timer.periodic(const Duration(seconds: 4), (timer) {
-     if (currentShowIndex == 0) {
-        pageController.animateTo(MediaQuery.of(context).size.width * 2, duration: const Duration(seconds: 1), curve: Curves.fastOutSlowIn);
-      } else if (currentShowIndex == 1) {
-        pageController.animateTo(MediaQuery.of(context).size.width * 3, duration: const Duration(seconds: 1), curve: Curves.fastOutSlowIn);
-      } else if (currentShowIndex == 2) {
-        pageController.animateTo(0, duration: const Duration(seconds: 1), curve: Curves.fastOutSlowIn);
-      }
-     // else if (currentShowIndex == 4) {
-     //    pageController.animateTo(MediaQuery.of(context).size.width * 5, duration: const Duration(seconds: 1), curve: Curves.fastOutSlowIn);
-     //  }
-      // else if (currentShowIndex == 5) {
-      //   pageController.animateTo(0, duration: const Duration(seconds: 1), curve: Curves.fastOutSlowIn);
-      // }
-    });
+    addData();
     super.initState();
   }
 
@@ -88,6 +39,36 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   void dispose() {
     sliderTimer.cancel();
     super.dispose();
+  }
+  addData(){
+    pageViewModelData.add( PageViewData(
+      titleText: LocaleKeys.easyTrackOrder.tr(),
+      subText: LocaleKeys.easyTrackOrderDesc.tr(),
+      assetsImage: Assets.imagesIntro2,
+    ));
+
+    pageViewModelData.add( PageViewData(
+      titleText: LocaleKeys.onlineDelivery.tr(),
+      subText: LocaleKeys.onlineDeliveryDesc.tr(),
+      assetsImage: Assets.imagesIntro3,
+    ));
+
+    pageViewModelData.add( PageViewData(
+      titleText: LocaleKeys.onlineFoodDelivery.tr(),
+      subText: LocaleKeys.onlineFoodDeliveryDesc.tr(),
+      assetsImage: Assets.imagesIntro4,
+    ));
+
+    sliderTimer = Timer.periodic(const Duration(seconds: 4), (timer) {
+      if (currentShowIndex == 0) {
+        pageController.animateTo(MediaQuery.of(context).size.width * 1, duration: const Duration(seconds: 1), curve: Curves.fastOutSlowIn);
+      } else if (currentShowIndex == 1) {
+
+        pageController.animateTo(MediaQuery.of(context).size.width * 2, duration: const Duration(seconds: 1), curve: Curves.fastOutSlowIn);
+      } else if (currentShowIndex == 2) {
+        pageController.animateTo(0, duration: const Duration(seconds: 1), curve: Curves.fastOutSlowIn);
+      }
+    });
   }
 
   @override
@@ -98,18 +79,48 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         children: <Widget>[
           SizedBox(height: MediaQuery.of(context).padding.top,),
           Expanded(
-            child: PageView(
-              controller: pageController,
-              pageSnapping: true,
-              onPageChanged: (index) {
-                currentShowIndex = index;
-              },
-              scrollDirection: Axis.horizontal,
-              children: <Widget>[
-                PagePopup(imageData: pageViewModelData[0]),
-                PagePopup(imageData: pageViewModelData[1]),
-                PagePopup(imageData: pageViewModelData[2]),
+            child: Stack(
+              children: [
+                PageView(
+                  controller: pageController,
+                  pageSnapping: true,
+                  onPageChanged: (index) {
+                    currentShowIndex = index;
+                  },
+                  scrollDirection: Axis.horizontal,
+                  children: <Widget>[
+                    PagePopup(imageData: pageViewModelData[0]),
+                    PagePopup(imageData: pageViewModelData[1]),
+                    PagePopup(imageData: pageViewModelData[2]),
 
+                  ],
+                ),
+                Positioned(
+                  top: 30.h,
+                  left: 16.w,
+                  child:
+                  InkWell(
+                    onTap: () {
+                      if (context.locale == const Locale('en')) {
+                        context.setLocale(const Locale('ar')).then((value) {
+                          context.pushNamedAndRemoveUntil(RoutesRestaurants.splashScreen, predicate: (route) => route.isFirst);
+                        });
+                      }
+                      else {
+                        context.setLocale(const Locale('en')).then((value){
+                          context.pushNamedAndRemoveUntil(RoutesRestaurants.splashScreen, predicate: (route) => route.isFirst);
+
+                        });
+                      }
+                    },
+                    child: SizedBox(
+                      child: Text(LocaleKeys.onLanguage.tr(),
+                        style: TextStyles.font18Black700Weight.copyWith(
+                          color: Colors.deepPurpleAccent
+                        ),
+                      ),
+                    ),
+                  ),),
               ],
             ),
           ),
@@ -117,7 +128,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           Padding(
             padding: EdgeInsets.symmetric(vertical: kScreenPaddingNormal.h,horizontal: kScreenPaddingLarge.w),
             child: CustomButton(
-              title: tr(LocaleKey2.getStarted),
+              title: LocaleKeys.getStarted.tr(),
               color: Theme.of(context).primaryColor,
               onTap: (){
                 context.pushNamed(RoutesRestaurants.logAsScreen);

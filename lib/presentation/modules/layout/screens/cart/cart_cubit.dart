@@ -1,5 +1,6 @@
 import 'package:cogina/core/helpers/toast_states/enums.dart';
 import 'package:cogina/domain/logger.dart';
+import 'package:cogina/presentation/modules/layout/screens/home/home_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../data/model/base/response_model.dart';
@@ -35,32 +36,37 @@ class CartCubit extends Cubit<CartState> {
   Store? storeDate;
   CartModel? cartModel;
 
-  Future<ResponseModel> getCart() async {
-    items=null;
-    storeDate=null;
-    emit(CartLoadingState()) ;
-    ResponseModel responseModel = await _cartUseCase.call();
-    if (responseModel.isSuccess) {
-       cartModel =responseModel.data;
-       if(cartModel!.data!=null){
-         items=cartModel!.data!.items;
-         storeDate=cartModel!.data!.store;
-       }else{
-         items=null;
-         storeDate=null;
-       }
-      emit(CartSuccessState()) ;
+  Future<ResponseModel?> getCart(context) async {
+    if(HomeCubit.get(context).token!=null&&HomeCubit.get(context).token!.isNotEmpty){
+      emit(CartLoadingState()) ;
+      ResponseModel responseModel = await _cartUseCase.call();
+      if (responseModel.isSuccess) {
+        cartModel =responseModel.data;
+        if(cartModel!.data!=null){
+          items=cartModel!.data!.items;
+          storeDate=cartModel!.data!.store;
+        }else{
+          items=null;
+          storeDate=null;
+        }
+        emit(CartSuccessState()) ;
+      }else{
+        emit(CartErrorState()) ;
+      }
+      return responseModel;
     }else{
-      emit(CartErrorState()) ;
+      items=null;
+      storeDate=null;
+      emit(CartLoadingState()) ;
     }
-    return responseModel;
+    return null;
   }
 
   Future<ResponseModel> addQtCart({required String itemId,required BuildContext context}) async {
     emit(AddQtLoadingState()) ;
     ResponseModel responseModel = await _addQTUseCase.call(itemId: itemId);
     if (responseModel.isSuccess) {
-      getCart();
+      getCart(context);
       emit(AddQtSuccessState()) ;
     }else{
       Future.delayed(const Duration(microseconds: 0)).then((value) {
@@ -74,7 +80,7 @@ class CartCubit extends Cubit<CartState> {
     emit(SubQtLoadingState()) ;
     ResponseModel responseModel = await _subQTUseCase.call(itemId: itemId);
     if (responseModel.isSuccess) {
-      getCart();
+      getCart(context);
       emit(SubQtSuccessState()) ;
     }else{
       Future.delayed(const Duration(microseconds: 0)).then((value) {
@@ -88,7 +94,7 @@ class CartCubit extends Cubit<CartState> {
     emit(AddItemLoadingState()) ;
     ResponseModel responseModel = await _addItemUseCase.call(addItemBody: addItemBody);
     if (responseModel.isSuccess) {
-      getCart();
+      getCart(context);
       Future.delayed(const Duration(microseconds: 0)).then((value) {
         showToast(text: '${responseModel.message}',
             state: ToastStates.success, context: context);
@@ -106,7 +112,7 @@ class CartCubit extends Cubit<CartState> {
     emit(AddItemLoadingState()) ;
     ResponseModel responseModel = await _deleteItemUseCase.call(itemId: itemId);
     if (responseModel.isSuccess) {
-      getCart();
+      getCart(context);
       Future.delayed(const Duration(microseconds: 0)).then((value) {
         showToast(text: '${responseModel.message}',
             state: ToastStates.success, context: context);

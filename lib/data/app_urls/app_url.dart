@@ -28,6 +28,7 @@ class AppURL {
   static const String kAddItemURL = "shopping-cart/insert";
   static const String kDeleteItemURL = "shopping-cart/delete";
   static const String kGetMainAddressURL = "other-trip/get-main-address";
+  static const String kGetAllAddressURL = "other-trip/all-address";
   static const String kAddMainAddressURL = "other-trip/main-address";
   ///checkout
   static const String kCheckOutURL = "stores/checkout/store";

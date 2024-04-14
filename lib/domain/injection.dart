@@ -1,4 +1,7 @@
 
+import 'package:cogina/domain/usecase/address/add_address_usecase.dart';
+import 'package:cogina/domain/usecase/address/address_usecase.dart';
+import 'package:cogina/domain/usecase/address/main_address_usecase.dart';
 import 'package:cogina/domain/usecase/auth/check_otp_usecase.dart';
 import 'package:cogina/domain/usecase/auth/register_usecase.dart';
 import 'package:cogina/domain/usecase/auth/sign_in_usecase.dart';
@@ -63,6 +66,7 @@ Future<void> init() async {
    getIt.registerLazySingleton(() => DeleteItemUseCase(repository: getIt()));
    getIt.registerLazySingleton(() => MainAddressUseCase(repository: getIt()));
    getIt.registerLazySingleton(() => AddAddressUseCase(repository: getIt()));
+   getIt.registerLazySingleton(() => AddressUseCase(repository: getIt()));
 
 
    ///CheckOut

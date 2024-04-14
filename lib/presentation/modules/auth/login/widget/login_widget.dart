@@ -1,4 +1,6 @@
+import 'package:cogina/core/translations/locale_keys.dart';
 import 'package:cogina/presentation/modules/auth/login/login_cubit.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -40,7 +42,7 @@ class LoginWidget extends StatelessWidget {
             children: [
               verticalSpace(20),
               Text(
-                ' Enter Your phone',
+                LocaleKeys.enterPhone.tr(),
                 style: TextStyles.font18Black700Weight
                     .copyWith(fontWeight: FontWeight.w500,
                     color: AppColors.customGray,
@@ -57,7 +59,7 @@ class LoginWidget extends StatelessWidget {
                   fillColor: AppColors.backGroundGray,
                   borderRadius: 30,
                   borderColor: AppColors.whiteColor.withOpacity(0.1),
-                  hintText: 'Phone',
+                  hintText: LocaleKeys.phone.tr(),
                   controller: cubit.phoneController,
                   textInputAction: TextInputAction.done,
                   onFieldSubmitted: (vsl){
@@ -77,13 +79,13 @@ class LoginWidget extends StatelessWidget {
                     },
                   ),
                   Text(
-                    'Remember me',
+                    LocaleKeys.rememberMe.tr(),
                     style: TextStyles.font18Black700Weight
                         .copyWith(fontWeight: FontWeight.w500,fontSize: 15),
                   ),
                   const Spacer(),
                   Text(
-                    'Forget Password?',
+                    LocaleKeys.forgetPassword.tr(),
                     style: TextStyles.font18Black700Weight
                         .copyWith(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.secondPrimaryColor),
                   ),
@@ -95,7 +97,7 @@ class LoginWidget extends StatelessWidget {
                   cubit.otpCode(cubit.phoneController.text,context);
 
                 },
-                buttonText: 'Sign in',
+                buttonText: LocaleKeys.signIn.tr(),
                 width: MediaQuery.of(context).size.width,
                 height: 40,
                 fontSize: 17,

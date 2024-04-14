@@ -10,7 +10,8 @@ class RoutesRestaurants {
   static const String successOrderScreen = "/successOrderScreen";
   static const String checkOut = "/checkOut";
   static const String editProfileScreen = "/editProfileScreen";
-  static const String address = "/address";
+  static const String addAddressScreen = "/addAddressScreen";
+  static const String addresses = "/address";
   static const String notification = "/notification";
   static const String mealDetailsScreen = "/mealDetailsScreen";
   static const String addMealScreen = "/addMealScreen";

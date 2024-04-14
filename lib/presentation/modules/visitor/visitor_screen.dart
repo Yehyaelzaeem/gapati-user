@@ -4,9 +4,9 @@ import 'package:cogina/presentation/component/custom_elevated_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import '../../../core/helpers/spacing.dart';
 import '../../../core/routing/routes.dart';
+import '../../../core/translations/locale_keys.dart';
 
 class CustomVisitorScreen extends StatelessWidget {
   const CustomVisitorScreen({super.key});
@@ -20,11 +20,11 @@ class CustomVisitorScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(RestaurantImages.logo,
+            Image.asset(RestaurantImages.logo2,
             height: MediaQuery.of(context).size.height*0.2,
             ),
             verticalSpace(5),
-            Text('Log_in_first'.tr(),
+            Text(LocaleKeys.logFirst.tr(),
               style: TextStyle(
                 fontSize: 20.sp,
                 fontWeight: FontWeight.bold,
@@ -39,7 +39,7 @@ class CustomVisitorScreen extends StatelessWidget {
               onTap: (){
                 context.pushNamedAndRemoveUntil(RoutesRestaurants.logAsScreen, predicate: (route) => route.isFirst);
 
-            }, buttonText:'sign_up'.tr(), ),
+            }, buttonText:LocaleKeys.signUp.tr(), ),
           ],
         ),
       ),

@@ -16,7 +16,8 @@ import '../../presentation/modules/layout/screens/cart/order_success/order_succe
 import '../../presentation/modules/layout/screens/home/home_screen.dart';
 import '../../presentation/modules/layout/screens/home/meal/add_meal_screen.dart';
 import '../../presentation/modules/layout/screens/more/about_us/about_us_screen.dart';
-import '../../presentation/modules/layout/screens/more/address/address_screen.dart';
+import '../../presentation/modules/layout/screens/more/address/screens/add_address_screen.dart';
+import '../../presentation/modules/layout/screens/more/address/screens/addresses_screen.dart';
 import '../../presentation/modules/layout/screens/more/privacy_policy/privacy_policy.dart';
 import '../../presentation/modules/layout/screens/more/profile/change_password/change_password_screen.dart';
 import '../../presentation/modules/layout/screens/more/profile/edit_profile/edit_profile_screen.dart';
@@ -53,7 +54,10 @@ class RouteRestaurantsGenerator {
       case RoutesRestaurants.mealDetailsScreen:
         return platformPageRoute( MealDetailsScreen(storeId: arguments?['storeId'],categoriesItemsModelData:  arguments?['categoriesItemsModelData'],));
       case RoutesRestaurants.orderDetailsScreen:
-        return platformPageRoute(OrderDetailsScreen(orderId: arguments?['orderId'], total: arguments?['total'],));
+        return platformPageRoute(OrderDetailsScreen(
+          orderId: arguments?['orderId'],
+          total: arguments?['total'], phone: arguments?['phone'], address:arguments?['address'],
+        ));
       case RoutesRestaurants.splashScreen:
         return platformPageRoute(const SplashPage());
         case RoutesRestaurants.onBoardingScreen:
@@ -70,8 +74,10 @@ class RouteRestaurantsGenerator {
         return platformPageRoute(const LogAsScreen());
       case RoutesRestaurants.editProfileScreen:
         return platformPageRoute(const EditProfileScreen());
-      case RoutesRestaurants.address:
-        return platformPageRoute(const AddressScreen());
+        case RoutesRestaurants.addAddressScreen:
+        return platformPageRoute(const AddAddressScreen());
+      case RoutesRestaurants.addresses:
+        return platformPageRoute(const AddressesScreen());
       case RoutesRestaurants.notification:
         return platformPageRoute(const NotificationScreen());
       case RoutesRestaurants.restaurantsScreen:
