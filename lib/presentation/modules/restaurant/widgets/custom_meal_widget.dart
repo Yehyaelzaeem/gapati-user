@@ -77,6 +77,7 @@ class _CustomMealWidgetState extends State<CustomMealWidget> {
                                 setState(() {
                                   RestaurantCubit cubit =RestaurantCubit.get(context);
                                   cubit.getCategoryItems(categoryId:widget.categoriesItemsModelData!.categoryId!, storeId:widget.categoriesItemsModelData!.storeId!,notNull: true);
+
                                 });
                               });
                             },

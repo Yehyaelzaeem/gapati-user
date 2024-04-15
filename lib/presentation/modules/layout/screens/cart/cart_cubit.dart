@@ -32,6 +32,7 @@ class CartCubit extends Cubit<CartState> {
 
   static CartCubit get(BuildContext context)=>BlocProvider.of(context);
 
+  List<String> extraIdList=[];
   List<Items>? items;
   Store? storeDate;
   CartModel? cartModel;
@@ -127,6 +128,8 @@ class CartCubit extends Cubit<CartState> {
     }
     return responseModel;
   }
+
+
 
 
 }
