@@ -1,9 +1,12 @@
 import 'package:cogina/presentation/component/component.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../../core/translations/locale_keys.dart';
 import '../../../../../component/custom_app_contant_data.dart';
-
+import '../more_cubit.dart';
 
 
 class PrivacyPolicyScreen extends StatelessWidget {
@@ -11,19 +14,27 @@ class PrivacyPolicyScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      appBar: const CustomAppBar(
-        title: 'Privacy Policy',
-      ),
-      body: Padding(
-        padding:EdgeInsets.symmetric(horizontal: 16.w,vertical: 16.h),
-        child: const CustomAppContData(image: '', title: 'McDonald\'s', des:
-        '''As of my last knowledge update in January 2022, I don't have specific details on McDonald's terms and conditions. For the most accurate and up-to-date information, I recommend checking McDonald's official website or contacting their customer service directly.
-
-You can usually find terms and conditions, as well as other legal information, in the footer of the official website. Look for links such as "Terms and Conditions," "Legal," or "Privacy Policy."
-
-If you have a specific question or concern, reaching out to McDonald's customer support or visiting their official website would be the best way to obtain the most current and accurate information. Keep in mind that terms and conditions may be subject to change, so it's important to refer to the latest documents provided by McDonald's.''',),
-      )
+    return
+      Scaffold(
+        appBar:  CustomAppBar(
+          title: LocaleKeys.privacyPolicy.tr(),
+        ),
+        body: BlocBuilder<MoreCubit, MoreState>(
+          builder: (context, state) {
+            if(state is GetDataSuccessState)
+            {
+              return Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+                child:  CustomAppContData(
+                  image: '',
+                  des: state.data
+                  ));
+            }
+            else{
+              return Center(child: CircularProgressIndicator(),);
+            }
+          },
+        )
     );
   }
 }

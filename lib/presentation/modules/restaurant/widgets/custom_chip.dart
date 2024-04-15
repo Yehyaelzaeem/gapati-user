@@ -28,12 +28,16 @@ class OutlinedChip extends StatelessWidget {
       ),
       avatar: CircleAvatar(
         backgroundColor: avatarBackgroundColor??Colors.blue,
-        child: FittedBox(
-          fit: BoxFit.contain,
-          child: Text(
-            label.substring(0, 1).toUpperCase(),
-            style: TextStyles.font18Black700Weight.copyWith(
-              color: Colors.white
+        child: Padding(
+          padding: const EdgeInsets.all(3.0),
+          child: FittedBox(
+            fit: BoxFit.contain,
+            child: Text(
+              // label.substring(0, 1).toUpperCase(),
+              double.parse(price.toString()).toStringAsFixed(1),
+              style: TextStyles.font18Black700Weight.copyWith(
+                color: Colors.white
+              ),
             ),
           ),
         ),

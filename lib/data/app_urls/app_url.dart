@@ -36,6 +36,9 @@ class AppURL {
   static const String kGetProfileURL = "profile";
   static const String kUpdateProfileURL = "profile/update";
   static const String kUpdateImageProfileURL = "profile/uploadImage";
+  static const String kGetPrivacyURL = "privacy-policy";
+  static const String kGetTermsURL = "terms";
+  static const String kGetAboutUsURL = "how-we-are";
 
   /// order
   static const String kRestaurantOrdersURL = "stores/checkout";

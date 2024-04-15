@@ -21,6 +21,7 @@ import '../../../../component/custom_is_user.dart';
 import '../../../../component/images/custom_image.dart';
 import '../../../../dialog/show_logout_dialog.dart';
 import '../../layout_cubit.dart';
+import 'more_cubit.dart';
 
 
 class MoreScreen extends StatelessWidget {
@@ -30,7 +31,7 @@ class MoreScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     ProfileCubit cubit = ProfileCubit.get(context);
     bool isUser= HomeCubit.get(context).token!=null&&HomeCubit.get(context).token!.isNotEmpty;
-
+    MoreCubit moreCubit =MoreCubit.get(context);
     return Scaffold(
       appBar: CustomAppBar(
         title: LocaleKeys.more.tr(),
@@ -173,6 +174,7 @@ class MoreScreen extends StatelessWidget {
                         iconData: Icons.info_outline,
                         text: LocaleKeys.aboutUs.tr(),
                         onTap: () {
+                          moreCubit.getAboutUs();
                           NavigationService.push(RoutesRestaurants.aboutUsScreen);
                         },
                       ),
@@ -184,6 +186,7 @@ class MoreScreen extends StatelessWidget {
                         iconData: Icons.privacy_tip_outlined,
                         text: LocaleKeys.privacyPolicy.tr(),
                         onTap: () {
+                          moreCubit.getPrivacy();
                           NavigationService.push(
                               RoutesRestaurants.privacyPolicyScreen);
                         },
@@ -194,6 +197,7 @@ class MoreScreen extends StatelessWidget {
                         iconData: IonIcons.hammer,
                         text: LocaleKeys.termsAndConditions.tr(),
                         onTap: () {
+                          moreCubit.getTerms();
                           NavigationService.push(
                               RoutesRestaurants.termsConditionScreen);
                         },

@@ -30,7 +30,7 @@ class OrderDetailsModelData {
   String? paymentMethod;
   int? qty;
   Items? items;
-
+  Extra? extra;
   OrderDetailsModelData(
       {this.id,
         this.tax,
@@ -39,6 +39,7 @@ class OrderDetailsModelData {
         this.date,
         this.paymentMethod,
         this.qty,
+        this.extra,
         this.items});
 
   OrderDetailsModelData.fromJson(Map<String, dynamic> json) {
@@ -49,6 +50,7 @@ class OrderDetailsModelData {
     date = json['date'];
     paymentMethod = json['payment_method'];
     qty = json['qty'];
+    extra = json['extra'] != null ? new Extra.fromJson(json['extra']) : null;
     items = json['items'] != null ? new Items.fromJson(json['items']) : null;
   }
 
@@ -61,6 +63,9 @@ class OrderDetailsModelData {
     data['date'] = this.date;
     data['payment_method'] = this.paymentMethod;
     data['qty'] = this.qty;
+    if (this.extra != null) {
+      data['extra'] = this.extra!.toJson();
+    }
     if (this.items != null) {
       data['items'] = this.items!.toJson();
     }
@@ -117,6 +122,53 @@ class Items {
     data['price_after_discount'] = this.priceAfterDiscount;
     data['store_id'] = this.storeId;
     data['image'] = this.image;
+    return data;
+  }
+}
+
+
+
+class Extra {
+  List<ExtraData>? data;
+
+  Extra({this.data});
+
+  Extra.fromJson(Map<String, dynamic> json) {
+    if (json['data'] != null) {
+      data = <ExtraData>[];
+      json['data'].forEach((v) {
+        data!.add(new ExtraData.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.data != null) {
+      data['data'] = this.data!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class ExtraData {
+  int? id;
+  String? name;
+  String? price;
+
+  ExtraData({this.id, this.name, this.price});
+
+  ExtraData.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    price = json['price'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
+    data['price'] = this.price;
     return data;
   }
 }

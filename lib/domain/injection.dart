@@ -19,6 +19,9 @@ import 'package:cogina/domain/usecase/local/clear_user_data_usecase.dart';
 import 'package:cogina/domain/usecase/local/get_is_login_usecase.dart';
 import 'package:cogina/domain/usecase/local/get_user_token_usecase.dart';
 import 'package:cogina/domain/usecase/local/save_data_usecase.dart';
+import 'package:cogina/domain/usecase/more/about_us_usecase.dart';
+import 'package:cogina/domain/usecase/more/privacy_usecase.dart';
+import 'package:cogina/domain/usecase/more/terms_usecase.dart';
 import 'package:cogina/domain/usecase/orders/orders_usecase.dart';
 import 'package:cogina/domain/usecase/profile/get_profile_usecase.dart';
 import 'package:cogina/domain/usecase/profile/update_profile_usecase.dart';
@@ -75,8 +78,9 @@ Future<void> init() async {
   ///orders
      getIt.registerLazySingleton(() => OrdersUseCase(repository: getIt()));
   ///more
-  // getIt.registerLazySingleton(() => GetProfileUseCase(repository: getIt()));
-  // getIt.registerLazySingleton(() => UpdateProfileUseCase(repository: getIt()));
+   getIt.registerLazySingleton(() => TermsUseCase(repository: getIt()));
+   getIt.registerLazySingleton(() => PrivacyUseCase(repository: getIt()));
+   getIt.registerLazySingleton(() => AboutUsUseCase(repository: getIt()));
 
 
   ///notifications

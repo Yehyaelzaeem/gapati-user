@@ -10,9 +10,8 @@ import '../../core/global/styles/styles.dart';
 import '../../core/helpers/spacing.dart';
 
 class CustomAppContData extends StatelessWidget {
-  const CustomAppContData({super.key, required this.image, required this.title, required this.des});
+  const CustomAppContData({super.key, required this.image, required this.des});
  final String image;
- final String title;
  final String des;
   @override
   Widget build(BuildContext context) {

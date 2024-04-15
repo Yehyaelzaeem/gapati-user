@@ -45,12 +45,15 @@ class CustomStepBody3Widget extends StatelessWidget {
                             verticalSpace(10),
                             if(cubit.items!=null)
                               if(cubit.items!.isNotEmpty)
-                                ...cubit.items!.map((e) =>  CustomCartItem(item: e,hasShadow: true,height:100))
+                                ...cubit.items!.map((e) =>  CustomCartItem(item: e,hasShadow: true,height:130.h,imageWidth: 110.w,
+                                chipRadius: 10,
+                                  chipHeight: 30.h,
+                                ))
                               else
                                 const SizedBox.shrink()
                             else
                               const SizedBox.shrink(),
-                             CustomCartTopWidget(title: LocaleKeys.delivered.tr(), number: '+ 0.0${LocaleKeys.lyd.tr()}', iconData: Icons.delivery_dining_outlined, iconBackGround: AppColors.buttonOrangeColor,size: 25,),
+                             CustomCartTopWidget(title: LocaleKeys.delivered.tr(), number: '0.0 ${LocaleKeys.lyd.tr()}', iconData: Icons.delivery_dining_outlined, iconBackGround: AppColors.buttonOrangeColor,size: 25,),
                             addressCubit.mainAddressModel!=null?
                             Padding(
                               padding:EdgeInsets.symmetric(horizontal: 25.w),
@@ -65,13 +68,13 @@ class CustomStepBody3Widget extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(50),
                                       color: AppColors.backGroundGray
                                   ),
-                                  child:  CustomTextRowCartWidget(horizontal:20,vertical:13,title: LocaleKeys.standard.tr(), text: '${cubit.cartModel!=null?cubit.cartModel!.data!=null?cubit.cartModel!.data!.total:'0.0':'0.0'}${LocaleKeys.lyd.tr()}')),
+                                  child:  CustomTextRowCartWidget(horizontal:20,vertical:13,title: LocaleKeys.standard.tr(), text: '${cubit.cartModel!=null?cubit.cartModel!.data!=null?cubit.cartModel!.data!.total:'0.0':'0.0'} ${LocaleKeys.lyd.tr()}')),
                             ),
                             verticalSpace(30),
                              CustomTextRowCartWidget(title: LocaleKeys.subtotal.tr(), text: '0.0 ${LocaleKeys.lyd.tr()}'),
                              CustomTextRowCartWidget(title: LocaleKeys.discount.tr(), text: '0.0 ${LocaleKeys.lyd.tr()}'),
                              CustomTextRowCartWidget(title: LocaleKeys.shipping.tr(), text: '0.0 ${LocaleKeys.lyd.tr()}'),
-                             CustomTextRowCartWidget(title: LocaleKeys.total.tr(), text: '${cubit.cartModel!=null?cubit.cartModel!.data!=null?cubit.cartModel!.data!.total:'0.0':'0.0'}${LocaleKeys.lyd.tr()}'),
+                             CustomTextRowCartWidget(title: LocaleKeys.total.tr(), text: '${cubit.cartModel!=null?cubit.cartModel!.data!=null?cubit.cartModel!.data!.total:'0.0':'0.0'} ${LocaleKeys.lyd.tr()}'),
                             verticalSpace(10),
                             Center(
                               child: CustomElevatedButton(

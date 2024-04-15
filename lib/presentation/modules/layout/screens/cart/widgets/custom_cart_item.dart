@@ -13,9 +13,12 @@ import '../cart_cubit.dart';
 
 
 class CustomCartItem extends StatelessWidget {
-    const CustomCartItem({super.key, this.hasShadow, this.height, this.hasDeleteIcon, this.item});
+    const CustomCartItem({super.key, this.hasShadow, this.height, this.hasDeleteIcon, this.item, this.imageWidth, this.chipRadius, this.chipHeight});
   final bool? hasShadow;
   final double? height;
+  final double? imageWidth;
+  final double? chipRadius;
+  final double? chipHeight;
   final bool? hasDeleteIcon;
    final Items? item;
   @override
@@ -46,7 +49,7 @@ class CustomCartItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SizedBox(
-                width:  140.w,
+                width: imageWidth?? 140.w,
                 height: double.infinity,
                 child: CustomImage(image: item!.image!,radius: 20,)),
             Expanded(
@@ -72,13 +75,13 @@ class CustomCartItem extends StatelessWidget {
                   Padding(
                     padding:  EdgeInsets.only(right: 8.w),
                     child: Container(
-                      height: 60.h,
+                      height: chipHeight!=null?chipHeight!+20:60.h,
                       child: ListView(
                         scrollDirection: Axis.horizontal,
                         children: [
                           MultiSelectChip(
-                            height:45.h,
-                               radius: 12,
+                            height:chipHeight??45.h,
+                               radius:chipRadius?? 12,
                                initialSelection:listExtraData.map((e) => e).toList(),
                                onSelectionChanged: (value){
                                  // cartCubit.extraIdList=value.map((e) => e!.id!.toString()).toList();
@@ -90,61 +93,64 @@ class CustomCartItem extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SizedBox(width: 10.w,),
-                      Text('${item!.price}${LocaleKeys.lyd.tr()}',
-                        style: TextStyles.font16Black600Weight.copyWith(
-                            color: AppColors.redColor.withOpacity(0.8)
+                  FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        horizontalSpace(10),
+                        Text('${item!.price} ${LocaleKeys.lyd.tr()}',
+                          style: TextStyles.font16Black600Weight.copyWith(
+                              color: AppColors.redColor.withOpacity(0.8)
+                          ),
                         ),
-                      ),
-                      const Spacer(),
-                      Row(
-                        children: [
-                          InkWell(
-                            child: const CircleAvatar(
-                              backgroundColor: AppColors.backGroundPink2,
-                              radius: 13,
-                              child: Icon(Icons.remove,color: AppColors.backGroundPink3,weight: 5,size: 20,),
+                        horizontalSpace(10),
+                        Row(
+                          children: [
+                            InkWell(
+                              child: const CircleAvatar(
+                                backgroundColor: AppColors.backGroundPink2,
+                                radius: 13,
+                                child: Icon(Icons.remove,color: AppColors.backGroundPink3,weight: 5,size: 20,),
+                              ),
+                              onTap: (){
+                                cubit.subQtCart(itemId: item!.id.toString(), context: context);
+                              },
                             ),
-                            onTap: (){
-                              cubit.subQtCart(itemId: item!.id.toString(), context: context);
-                            },
-                          ),
-                          SizedBox(width: 10.w,),
-                          CircleAvatar(
-                            backgroundColor: AppColors.sandwichBackGround,
-                            radius: 13,
-                            child: Text('${item!.qty!}',
-                            style: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 13
-                            ),
-                            ),
-                          ),
-                          SizedBox(width: 10.w,),
-                          InkWell(
-                            child: const CircleAvatar(
+                            SizedBox(width: 10.w,),
+                            CircleAvatar(
                               backgroundColor: AppColors.sandwichBackGround,
                               radius: 13,
-                              child: Icon(Icons.add,color: AppColors.primaryColor,weight: 5,size: 20,),
+                              child: Text('${item!.qty!}',
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 13
+                              ),
+                              ),
                             ),
-                            onTap: (){
-                              cubit.addQtCart(itemId: item!.id.toString(), context: context);
+                            SizedBox(width: 10.w,),
+                            InkWell(
+                              child: const CircleAvatar(
+                                backgroundColor: AppColors.sandwichBackGround,
+                                radius: 13,
+                                child: Icon(Icons.add,color: AppColors.primaryColor,weight: 5,size: 20,),
+                              ),
+                              onTap: (){
+                                cubit.addQtCart(itemId: item!.id.toString(), context: context);
 
+                              },
+                            ),
+                          ],
+                        ),
+                        horizontalSpace(10),
+                        hasDeleteIcon!=false? InkWell(
+                            onTap: (){
+                              cubit.deleteItemCart(itemId:  item!.id.toString(), context: context);
                             },
-                          ),
-                        ],
-                      ),
-                      hasDeleteIcon!=false?  const Spacer():const SizedBox.shrink(),
-                      hasDeleteIcon!=false? InkWell(
-                          onTap: (){
-                            cubit.deleteItemCart(itemId:  item!.id.toString(), context: context);
-                          },
-                          child: const Icon(Icons.delete_outline,size: 20,)):const SizedBox.shrink(),
-                       SizedBox(width: 10.w,),
-                    ],
+                            child: const Icon(Icons.delete_outline,size: 20,)):const SizedBox.shrink(),
+                        horizontalSpace(10),
+                      ],
+                    ),
                   ),
                   verticalSpace(1)
                 ],
