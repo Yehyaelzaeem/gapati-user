@@ -1,5 +1,6 @@
 import 'package:cogina/core/global/styles/styles.dart';
 import 'package:cogina/core/helpers/spacing.dart';
+import 'package:cogina/presentation/component/images/custom_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,16 +8,17 @@ import 'package:cogina/core/global/styles/colors.dart';
 
 import '../../../../../../../core/assets_constant/images.dart';
 import '../../../../../../core/translations/locale_keys.dart';
+import '../../../../../../data/model/response/favorite_model.dart';
+import '../favorite_cubit.dart';
 
 
 
 class CustomFavoriteItem extends StatelessWidget {
-   CustomFavoriteItem({super.key, this.isOffer});
-  bool isFav =true;
-  final bool? isOffer;
+   CustomFavoriteItem({super.key,  required this.favoriteModelData});
+   final FavoriteModelData favoriteModelData;
   @override
   Widget build(BuildContext context) {
-    isOffer==true?isFav=false:null;
+    FavoriteCubit favoriteCubit =FavoriteCubit.get(context);
     return  Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -32,132 +34,117 @@ class CustomFavoriteItem extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
-          verticalSpace(10),
-          Expanded(
-            child: Center(
-              child: Stack(
-                children: <Widget>[
-                  ClipRRect(
-                      borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          topRight: Radius.circular(10)
-                      ),
-                      child:
-                      Image.asset(
-                          isOffer==true?
-                          RestaurantImages.pro2:RestaurantImages.bur1)
+          Stack(
+            children: <Widget>[
+              Container(
+                height: 130.h,
+                width: double.infinity,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(10.r),
+                    topRight: Radius.circular(10.r),
                   ),
-                  Positioned(
-                    top: 8.h,
-                    right: 1.w,
+                  child: CustomImage(image: favoriteModelData.image!),
+                ),
+              ),
+              Positioned(
+              top: 8.h,
+              left:context.locale.languageCode==Locale('en').toString()? null:5.w,
+              right:context.locale.languageCode==Locale('en').toString()? 5.w:null,
+              child: StatefulBuilder(
+                builder: (context, setState) {
+                  return Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: AppColors.whiteColor.withOpacity(0.9),
+                        boxShadow: const [
+                          BoxShadow(
+                              color: Colors.black12,
+                              blurRadius: 7,
+                              offset: Offset(1, 5))
+                        ]),
                     child:
-                    StatefulBuilder(builder: (BuildContext context,void Function(void Function()) setState){
-                      return
-                        isFav==true?
-                        InkWell(
-                          onTap: (){
-                            setState(() {
-                              isFav=false;
-                            });
-                          },
-                          child: CircleAvatar(
-                              minRadius: 15.sp,
-                              backgroundColor: Colors.pink.shade50,
-                              child:
-                              Icon(
-                                Icons.favorite,
-                                color: Colors.red,
-                                size: 20.sp,
-                              )
-                          ),
-                        ):
-                        InkWell(
-                          onTap: (){
-                            setState(() {
-                              isFav=true;
-                            });
-                          },
-                          child: CircleAvatar(
-                            minRadius: 12.sp,
-                            backgroundColor:  AppColors.whiteColor,
-                            child:
-                            Icon(
-                              Icons.favorite_border_rounded,
-                              color: Colors.grey,
-                              size: 15.sp,
-                            ),
-                          ),
-                        ) ;
-
-
-                    }),
-                  ),
-                  isOffer==true?
-                  Positioned(
-                    bottom: 0.h,
-                    left: 0.w,
-                    child:Container(
-                      width: 40.w,
-                      decoration: const BoxDecoration(
-                        color: AppColors.redColor,
-                        borderRadius: BorderRadius.only(topRight: Radius.circular(8))
-                      ),child: Center(child: Text('30%',style: TextStyles.font16Black600Weight.copyWith(
-                      color: AppColors.whiteColor
+                    Padding(
+                      padding: const EdgeInsets.all(6.0),
+                      child: InkWell(onTap: (){
+                        setState(() {
+                          if(favoriteModelData.inFav==false){
+                            favoriteCubit.addFavorite(itemId: favoriteModelData.id!, context: context,);
+                            favoriteModelData.inFav=true;
+                          }else{
+                            favoriteCubit.removeFavorite(itemId: favoriteModelData.id!, context: context);
+                            favoriteModelData.inFav=false;
+                          }
+                        });
+                      }, child:favoriteModelData.inFav==true? Icon(Icons.favorite,color: Colors.red,):Icon(Icons.favorite_border_rounded,color: Colors.grey,)),
                     ),
-                    )),
-                    )
-                  ):const SizedBox.shrink(),
+
+                  );
+                },
+              )),
+            ],
+          ),
+          Flexible(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    favoriteModelData.name!,
+                    style: TextStyles.font16Black600Weight.copyWith(
+                      height: 1,
+                      fontSize: 14.sp
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  Text(
+                      favoriteModelData.description!,
+                    style: TextStyles.font16Black600Weight.copyWith(
+                        fontSize: 12.sp,
+                        height: 1,
+                        color: Colors.grey.shade300
+                    ),
+                    textAlign: TextAlign.start,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        '${favoriteModelData.priceAfterDiscount} ${LocaleKeys.lyd.tr()}',
+                        style: TextStyles.font16Black600Weight.copyWith(
+                            height: 1,
+                            fontSize: 12.sp,
+                            color:AppColors.textPink
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      horizontalSpace(10),
+                      Text(
+                        '${favoriteModelData.price} ${LocaleKeys.lyd.tr()}',
+                        style: TextStyles.font16Black600Weight.copyWith(
+                            decoration: TextDecoration.lineThrough,
+                            decorationThickness: 2,
+                            height: 1,
+                            fontSize: 12.sp,
+                            decorationColor: Colors.grey.shade400,
+                            color: Colors.grey.shade400
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                  ),
+                  verticalSpace(5),
+
                 ],
               ),
             ),
           ),
-          SizedBox(
-            height: 60.h,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                verticalSpace(1),
-                verticalSpace(1),
-                Center(
-                  child:
-                  Text(
-                    isOffer==true?
-                    'Triple Cheeseburger':'Double McPlant',
-                    style: TextStyle(
-                      fontSize: 15.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                Center(
-                  child:
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      isOffer==true? Text(
-                        '60.0 ${LocaleKeys.lyd.tr()}',
-                        style: TextStyle(
-                          fontSize: 11.sp,
-                          decoration: TextDecoration.lineThrough,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ):SizedBox.shrink(),
-                      horizontalSpace(5),
-                      Text(
-                        '29.0 ${LocaleKeys.lyd.tr()}',
-                        style: TextStyle(
-                          fontSize: 11.sp,
-                          color: AppColors.redColor.withOpacity(0.5),
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                verticalSpace(10)
-              ],
-            ),
-          )
         ],
       ),
     );

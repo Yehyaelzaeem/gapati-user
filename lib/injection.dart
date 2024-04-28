@@ -3,6 +3,7 @@ import 'package:cogina/presentation/modules/auth/register/register_cubit.dart';
 import 'package:cogina/presentation/modules/layout/layout_cubit.dart';
 import 'package:cogina/presentation/modules/layout/screens/cart/cart_cubit.dart';
 import 'package:cogina/presentation/modules/layout/screens/cart/check_out/check_out_cubit.dart';
+import 'package:cogina/presentation/modules/layout/screens/favorite/favorite_cubit.dart';
 import 'package:cogina/presentation/modules/layout/screens/home/home_cubit.dart';
 import 'package:cogina/presentation/modules/layout/screens/more/address/address_cubit.dart';
 import 'package:cogina/presentation/modules/layout/screens/more/more_cubit.dart';
@@ -21,11 +22,11 @@ Future<void> init() async {
   getIt.registerLazySingleton(() => RegisterCubit(registerUseCase: getIt(),));
   getIt.registerLazySingleton(() => LocalAuthCubit( getProfileUseCase:  getIt(), isUserLoginUseCase: getIt(), clearUserDataUseCase: getIt()));
   getIt.registerLazySingleton(() => CartCubit(cartUseCase: getIt(), addQTUseCase: getIt(), subQTUseCase: getIt(),
-    addItemUseCase: getIt(), deleteItemUseCase: getIt(),));
+    addItemUseCase: getIt(), deleteItemUseCase: getIt(), updateItemUseCase: getIt(),));
   getIt.registerLazySingleton(() => RestaurantCubit(categoriesUseCase: getIt(), categoryItemsUseCase: getIt(), itemExtraUseCase: getIt()));
   getIt.registerLazySingleton(() => CheckOutCubit( checkOutUseCase:  getIt(),));
   getIt.registerLazySingleton(() => OrdersCubit(ordersUseCase: getIt()));
   getIt.registerLazySingleton(() => MoreCubit(aboutUsUseCase: getIt(), privacyUseCase: getIt(), termsUseCase: getIt()));
-  getIt.registerLazySingleton(() => AddressCubit(addAddressUseCase: getIt(), mainAddressUseCase: getIt(), addressUseCase: getIt()));
-
+  getIt.registerLazySingleton(() => AddressCubit(addAddressUseCase: getIt(), mainAddressUseCase: getIt(), addressUseCase: getIt(), lastAddressUseCase: getIt()));
+  getIt.registerLazySingleton(() =>FavoriteCubit(getFavoriteUseCase: getIt(), addFavoriteUseCase: getIt(), removeFavoriteUseCase: getIt()));
 }

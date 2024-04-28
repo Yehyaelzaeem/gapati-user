@@ -8,6 +8,7 @@ import 'package:cogina/core/global/styles/colors.dart';
 import 'package:cogina/core/global/styles/styles.dart';
 import '../../../../../../../core/helpers/spacing.dart';
 import '../../../../../../core/function/function.dart';
+import '../../../../../../core/helpers/toast_states/enums.dart';
 import '../../../../../../domain/request_body/check_out_body.dart';
 import '../../../../../component/custom_elevated_button.dart';
 import '../../more/address/address_cubit.dart';
@@ -88,9 +89,23 @@ class CustomStepBody4Widget extends StatelessWidget {
                         fontColor: AppColors.whiteColor,
                         onTap: (){
                           logInFirst(function: (){
-                            CheckOutBody checkOutBody=CheckOutBody(paymentMethod: 'cash', address: AddressCubit.get(context).mainAddressModel!.data![0].addressTo, latitude: '32.1194242', longitude: '20.1861500');
-                            cubit.checkOut(checkOutBody: checkOutBody, context: context);
-                          }, context: context);
+                            AddressCubit addressCubit= AddressCubit.get(context);
+                            if(addressCubit.lastAddressModel==null&&addressCubit.phoneController.text.isEmpty&&addressCubit.addressController.text.isEmpty){
+                              cubit.changeSteps(0);
+                              showToast(text: LocaleKeys.mesAddress.tr(), state: ToastStates.error, context: context);
+                            }else{
+                              if(addressCubit.phoneController.text.isEmpty&&addressCubit.addressController.text.isEmpty){
+                                CheckOutBody checkOutBody=CheckOutBody(
+                                    paymentMethod: 'cash', address: AddressCubit.get(context).lastAddressModel!.data!.toAddress, latitude: '32.1194242', longitude: '20.1861500', phone: AddressCubit.get(context).lastAddressModel!.data!.phone);
+                                cubit.checkOut(checkOutBody: checkOutBody, context: context);
+                              }else{
+                                CheckOutBody checkOutBody=CheckOutBody(
+                                    paymentMethod: 'cash', address: addressCubit.addressController.text, latitude: '32.1194242', longitude: '20.1861500', phone: addressCubit.phoneController.text);
+                                cubit.checkOut(checkOutBody: checkOutBody, context: context);
+                              }
+
+                            }
+                           }, context: context);
 
                         }, buttonText: LocaleKeys.payNow.tr());
                   },

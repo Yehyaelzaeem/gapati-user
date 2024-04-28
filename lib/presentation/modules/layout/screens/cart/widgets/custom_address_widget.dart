@@ -34,41 +34,42 @@ class CustomAddressWidget extends StatelessWidget {
                 key: formKey,
                 child: Column(
                   children: [
-                    FittedBox(
-                      child: Padding(
-                        padding:  EdgeInsets.only(right: 10.w),
-                        child: Row(
-                          children: [
-                            Radio(
-                              value: 0,
-                              groupValue: cubit.typeAddress,
-                              onChanged: (value) {
-                                cubit.changeTypeOfAddress(value!);
-                              },
-                            ),
-                             Text(LocaleKeys.myHome.tr()),
-                            Radio(
-                              value: 1,
-                              groupValue:  cubit.typeAddress,
-                              onChanged: (value) {
-                                cubit.changeTypeOfAddress(value!);
-                              },
-                            ),
-                            Text(LocaleKeys.work.tr()),
-                            Radio(
-                              value: 2,
-                              groupValue:  cubit.typeAddress,
-                              onChanged: (value) {
-                                cubit.changeTypeOfAddress(value!);
-                              },
-                            ),
-                             Text(LocaleKeys.other.tr()),
-                          ],
-                        ),
-                      ),
-                    ),
+                    // FittedBox(
+                    //   child: Padding(
+                    //     padding:  EdgeInsets.only(right: 10.w),
+                    //     child: Row(
+                    //       children: [
+                    //         Radio(
+                    //           value: 0,
+                    //           groupValue: cubit.typeAddress,
+                    //           onChanged: (value) {
+                    //             cubit.changeTypeOfAddress(value!);
+                    //           },
+                    //         ),
+                    //          Text(LocaleKeys.myHome.tr()),
+                    //         Radio(
+                    //           value: 1,
+                    //           groupValue:  cubit.typeAddress,
+                    //           onChanged: (value) {
+                    //             cubit.changeTypeOfAddress(value!);
+                    //           },
+                    //         ),
+                    //         Text(LocaleKeys.work.tr()),
+                    //         Radio(
+                    //           value: 2,
+                    //           groupValue:  cubit.typeAddress,
+                    //           onChanged: (value) {
+                    //             cubit.changeTypeOfAddress(value!);
+                    //           },
+                    //         ),
+                    //          Text(LocaleKeys.other.tr()),
+                    //       ],
+                    //     ),
+                    //   ),
+                    // ),
                     verticalSpace(10),
-                    CustomTextField(hintText: LocaleKeys.telephoneNumber.tr(), controller: cubit.phoneController,
+                    CustomTextField(hintText: LocaleKeys.telephoneNumber.tr(),
+                      controller: cubit.phController,
                       borderRadius: 50,
                       textInputType: TextInputType.number,
                       validationFunc: (value){
@@ -83,7 +84,8 @@ class CustomAddressWidget extends StatelessWidget {
                       hintColor:AppColors.customGray,
                     ),
                     verticalSpace(10),
-                    CustomTextField(hintText: LocaleKeys.address.tr(), controller: cubit.addressController,
+                    CustomTextField(hintText: LocaleKeys.address.tr(),
+                      controller: cubit.addController,
                       borderRadius: 50,
                       textInputAction: TextInputAction.done,
                       validationFunc: (value){
@@ -99,7 +101,7 @@ class CustomAddressWidget extends StatelessWidget {
                     ),
                     verticalSpace(20),
                     CustomElevatedButton(
-                        isLoading: state is AddAddressLoadingState,
+                        isLoading: state is AddressLoadingState,
                         borderRadius: 50,
                         backgroundColor: buttonColor,
                         fontSize: 17,
@@ -108,8 +110,9 @@ class CustomAddressWidget extends StatelessWidget {
                         fontColor: AppColors.whiteColor,
                         onTap: (){
                           if (formKey.currentState!.validate()) {
-                            AddressBody addressBody=AddressBody(addressType: cubit.typeAddress.toString(), address: cubit.addressController.text, latitude: '32.1194242', longitude: '32.1194242');
-                            cubit.addMainAddress(addressBody: addressBody, context: context,pop: pop);
+                            // AddressBody addressBody=AddressBody(addressType: cubit.typeAddress.toString(), address: cubit.addressController.text, latitude: '32.1194242', longitude: '32.1194242');
+                            // cubit.addMainAddress(addressBody: addressBody, context: context,pop: pop);
+                            cubit.addAddress(phone: cubit.phController.text, address:cubit.addController.text );
                           }
 
                         }, buttonText: buttonTitle),

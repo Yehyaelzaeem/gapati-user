@@ -4,6 +4,7 @@ import 'package:cogina/presentation/modules/auth/register/register_cubit.dart';
 import 'package:cogina/presentation/modules/layout/layout_cubit.dart';
 import 'package:cogina/presentation/modules/layout/screens/cart/cart_cubit.dart';
 import 'package:cogina/presentation/modules/layout/screens/cart/check_out/check_out_cubit.dart';
+import 'package:cogina/presentation/modules/layout/screens/favorite/favorite_cubit.dart';
 import 'package:cogina/presentation/modules/layout/screens/home/home_cubit.dart';
 import 'package:cogina/presentation/modules/layout/screens/more/address/address_cubit.dart';
 import 'package:cogina/presentation/modules/layout/screens/more/more_cubit.dart';
@@ -38,6 +39,7 @@ class GenerateMultiBloc extends StatelessWidget {
         BlocProvider(create: (_) => getIt<OrdersCubit>()),
         BlocProvider(create: (_) => getIt<AddressCubit>()),
         BlocProvider(create: (_) => getIt<MoreCubit>()),
+        BlocProvider(create: (_) => getIt<FavoriteCubit>()),
       ],
       child: child,
     );

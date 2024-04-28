@@ -22,7 +22,7 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CartCubit cubit =CartCubit.get(context);
-    cubit.getCart(context);
+    // cubit.getCart(context);
     return
       Scaffold(
       appBar:
@@ -45,20 +45,18 @@ class CartScreen extends StatelessWidget {
                       children: [
                         SizedBox(height: 10.h,),
                          CustomCartTopWidget(title:
-                         cubit.storeDate!=null?
-                         cubit.storeDate!.name!:'',
-                             number: cubit.items!=null?
-                             cubit.items!.length.toString():'0',
+                             cubit.storeName!=null?
+                             cubit.storeName!:'',
+                             number: cubit.products.isNotEmpty?
+                             cubit.products.length.toString():'0',
                              iconData: Icons.shopping_cart_outlined,
                              iconBackGround: AppColors.primaryColor),
                         SizedBox(height: 10.h,),
-                        if(cubit.items!=null)
-                            if(cubit.items!.isNotEmpty)
-                               ...cubit.items!.map((e) =>  CustomCartItem(item: e,hasShadow: true,))
+                            if(cubit.products.isNotEmpty)
+                               ...cubit.products.map((e) =>  CustomCartItem(product: e,hasShadow: true, storeId:e.storeId!.toString(),))
                             else
-                             const SizedBox.shrink()
-                        else
-                          const SizedBox.shrink(),
+                             const SizedBox.shrink(),
+
                          SizedBox(height: 10.h,),
                        const CustomTotalWidget(),
                         SizedBox(height: 20.h,),
@@ -70,7 +68,7 @@ class CartScreen extends StatelessWidget {
                             width: MediaQuery.of(context).size.width*0.9,
                             onTap: (){
                               CheckOutCubit.get(context).changeSteps(0);
-                              AddressCubit.get(context).getMainAddress();
+                              AddressCubit.get(context).getLastAddress();
                               NavigationService.push(RoutesRestaurants.checkOut);
                             }, buttonText: LocaleKeys.checkout.tr()),
                         SizedBox(height: 60.h,),

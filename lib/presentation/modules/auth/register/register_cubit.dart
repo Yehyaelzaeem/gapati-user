@@ -1,10 +1,12 @@
 import 'package:cogina/domain/request_body/register_body.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../core/routing/navigation_services.dart';
-import '../../../../core/routing/routes.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import '../../../../core/helpers/toast_states/enums.dart';
 import '../../../../data/model/base/response_model.dart';
+import '../../../../data/model/response/register_model.dart';
 import '../../../../domain/usecase/auth/register_usecase.dart';
+import '../login/login_cubit.dart';
 part 'register_state.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
@@ -21,25 +23,45 @@ class RegisterCubit extends Cubit<RegisterState> {
   ///getters
   RegisterBody get body => _body;
 
+  String type ='register';
   ///calling APIs Functions
-  Future<ResponseModel> register(context) async {
+  Future<ResponseModel?> register(context) async {
+    LoginCubit cubit =LoginCubit.get(context);
+    cubit.phoneController.text=phoneController.text;
     emit(RegisterLoadingState()) ;
-    _assignRegisterBody(firstName: firstNameController.text, lastName:  lastNameController.text, phone: phoneController.text);
-    ResponseModel responseModel = await _registerUseCase.call(body: body);
-    if (responseModel.isSuccess) {
-      // AuthModel authModel = responseModel.data;
-       NavigationService.push(RoutesRestaurants.registerSuccessScreen);
+    try{
+      _assignRegisterBody(firstName: firstNameController.text, lastName:  lastNameController.text, phone: phoneController.text);
+      ResponseModel responseModel = await _registerUseCase.call(body: body);
+      RegisterModel registerModel =responseModel.data;
+      if(responseModel.data!=null){
+        if (responseModel.isSuccess) {
+          showToast(text: registerModel.data!.otp.toString(), state: ToastStates.success,
+              context: context,gravity: ToastGravity.TOP,timeInSecForIosWeb: 250);
+          changeType('otp');
+          emit(RegisterSuccessState()) ;
+        }else{
+          emit(RegisterErrorState()) ;
+        }
+      }else{
+      }
       emit(RegisterSuccessState()) ;
-    }else{
+      return responseModel;
+    }catch (e){
       emit(RegisterErrorState()) ;
     }
-    return responseModel;
+    emit(RegisterErrorState()) ;
+    return null;
   }
   void _assignRegisterBody({
     required String firstName,
     required String lastName,
     required String phone}) {
     body.setData(firstName: firstName, lastName: lastName, phone: phone);
+  }
+  void changeType(String _type){
+    type=_type;
+    emit(ChangeTypeState()) ;
+
   }
 
 }

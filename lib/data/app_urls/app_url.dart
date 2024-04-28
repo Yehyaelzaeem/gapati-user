@@ -26,8 +26,10 @@ class AppURL {
   static const String kAddQtURL = "shopping-cart/add";
   static const String kSubQtURL = "shopping-cart/sub";
   static const String kAddItemURL = "shopping-cart/insert";
+  static const String kUpdateItemURL = "shopping-cart/update";
   static const String kDeleteItemURL = "shopping-cart/delete";
   static const String kGetMainAddressURL = "other-trip/get-main-address";
+  static const String kGetLastAddressURL = "last-address";
   static const String kGetAllAddressURL = "other-trip/all-address";
   static const String kAddMainAddressURL = "other-trip/main-address";
   ///checkout
@@ -39,6 +41,10 @@ class AppURL {
   static const String kGetPrivacyURL = "privacy-policy";
   static const String kGetTermsURL = "terms";
   static const String kGetAboutUsURL = "how-we-are";
+ /// favorite
+  static const String kGetFavoriteURL = "fav/list";
+  static const String kAddFavoriteURL = "fav/add";
+  static const String kRemoveFavoriteURL = "fav/remove";
 
   /// order
   static const String kRestaurantOrdersURL = "stores/checkout";

@@ -5,7 +5,9 @@ import 'package:cogina/presentation/modules/layout/screens/orders/widgets/custom
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../../core/assets_constant/images.dart';
 import '../../../../component/custom_app_bar.dart';
+import '../../../../component/custom_not_found_data.dart';
 import '../../../visitor/visitor_screen.dart';
 import 'orders_cubit.dart';
 
@@ -30,7 +32,8 @@ class OrdersScreen extends StatelessWidget {
         builder: (context,state){
           if(cubit.orderModel!=null){
             if(cubit.orderModel!.data!.isEmpty){
-              return Center(child: Text(LocaleKeys.notFoundData.tr()),);
+              return CustomNotFoundDataWidget(image: RestaurantImages.cart,title: LocaleKeys.notFoundData.tr(), type: 'svg',);
+
             }else{
               return ListView.builder(
                   itemCount: cubit.orderModel!.data!.length,

@@ -1,5 +1,6 @@
 
 import 'package:cogina/core/helpers/extensions.dart';
+import 'package:cogina/presentation/modules/layout/screens/favorite/favorite_cubit.dart';
 import 'package:cogina/presentation/modules/layout/screens/home/home_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,6 +27,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
     HomeCubit cubit =HomeCubit.get(context);
     cubit.getHome();
     cubit.getOffers();
+    FavoriteCubit.get(context).getFavorite(context);
     BlocProvider.of<LayoutCubit>(context, listen: false).init(widget._currentPage);
     BlocProvider.of<LayoutCubit>(context, listen: false).initLayOut();
   }

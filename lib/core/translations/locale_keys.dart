@@ -112,6 +112,7 @@ class LocaleKeys
   static const creatingAccountAgree = 'creating_account_agree';
   static const alreadyHaveAccount = 'already_have_account';
   static const lyd = 'lyd';
+  static const anotherCart = 'another_cart';
 
 
 

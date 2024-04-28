@@ -11,7 +11,7 @@ import '../../presentation/modules/intro/on_boarding/on_boarding_screen.dart';
 import '../../presentation/modules/latest_sales/latest_sales_screen.dart';
 import '../../presentation/modules/layout/layout_screen.dart';
 import '../../presentation/modules/layout/screens/cart/cart_screen.dart';
-import '../../presentation/modules/layout/screens/cart/check_out/chech_out.dart';
+import '../../presentation/modules/layout/screens/cart/check_out/chech_out_screen.dart';
 import '../../presentation/modules/layout/screens/cart/order_success/order_success_screen.dart';
 import '../../presentation/modules/layout/screens/home/home_screen.dart';
 import '../../presentation/modules/layout/screens/home/meal/add_meal_screen.dart';
@@ -52,7 +52,9 @@ class RouteRestaurantsGenerator {
         case RoutesRestaurants.addMealScreen:
         return platformPageRoute(const AddMealScreen());
       case RoutesRestaurants.mealDetailsScreen:
-        return platformPageRoute( MealDetailsScreen(storeId: arguments?['storeId'],categoriesItemsModelData:  arguments?['categoriesItemsModelData'],));
+        return platformPageRoute( MealDetailsScreen(storeId: arguments?['storeId'],
+          storeName:arguments?['storeName'],
+          categoriesItemsModelData:  arguments?['categoriesItemsModelData'],));
       case RoutesRestaurants.orderDetailsScreen:
         return platformPageRoute(OrderDetailsScreen(
           orderId: arguments?['orderId'],
@@ -63,7 +65,7 @@ class RouteRestaurantsGenerator {
         case RoutesRestaurants.onBoardingScreen:
         return platformPageRoute(const OnBoardingScreen());
       case RoutesRestaurants.restaurantScreen:
-        return platformPageRoute( RestaurantScreen(id: arguments?['id'],));
+        return platformPageRoute( RestaurantScreen(id: arguments?['id'], storeName:arguments?['storeName'],));
       case RoutesRestaurants.cartScreen:
         return platformPageRoute(CartScreen(
           isLayOut: arguments?['isLayout'],

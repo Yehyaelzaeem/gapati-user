@@ -3,6 +3,7 @@ import 'package:cogina/core/global/styles/styles.dart';
 import 'package:cogina/core/helpers/extensions.dart';
 import 'package:cogina/core/helpers/spacing.dart';
 import 'package:cogina/core/routing/routes.dart';
+import 'package:cogina/core/services/error/error_handler.dart';
 import 'package:cogina/core/translations/locale_keys.dart';
 import 'package:cogina/presentation/component/component.dart';
 import 'package:cogina/presentation/modules/auth/login/login_cubit.dart';
@@ -13,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/routing/navigation_services.dart';
+import '../register/register_cubit.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -68,6 +70,7 @@ class LoginScreen extends StatelessWidget {
                             horizontalSpace(10),
                             InkWell(
                               onTap: (){
+                                 RegisterCubit.get(context).changeType('register');
                                 NavigationService.push(RoutesRestaurants.registerScreen);
                               },
                               child: Text(

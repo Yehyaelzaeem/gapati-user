@@ -1,12 +1,18 @@
+import 'package:cogina/domain/logger.dart';
+import 'package:cogina/presentation/modules/layout/screens/cart/cart_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/global/styles/colors.dart';
 import '../../core/helpers/toast_states/enums.dart';
+import '../../data/model/response/category_item_model.dart';
 
 class CustomCheckButton extends StatelessWidget {
-  const CustomCheckButton({super.key});
-
+  const CustomCheckButton({super.key, this.categoriesItemsModelData, this.width, this.height});
+  final CategoryItemsData? categoriesItemsModelData;
+  final double? width;
+  final double? height;
   @override
   Widget build(BuildContext context) {
     return     FittedBox(
@@ -14,11 +20,13 @@ class CustomCheckButton extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: ElevatedButton(
               onPressed: () {
-                // showToast(text: '', state: ToastStates.error, context: context);
-              },
+                if(categoriesItemsModelData!=null){
+                  CartCubit.get(context).removeProduct(categoriesItemsModelData!);
+                }
+                },
               style: ElevatedButton.styleFrom(
                 elevation: 0,
-                minimumSize: const Size(100, 30), // Set your desired width and height
+                minimumSize:  Size(width??120.w, height??40.h), // Set your desired width and height
                 backgroundColor: AppColors.primaryColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(60),

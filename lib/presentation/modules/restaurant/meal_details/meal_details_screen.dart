@@ -1,5 +1,6 @@
 import 'package:cogina/core/helpers/spacing.dart';
 import 'package:cogina/core/translations/locale_keys.dart';
+import 'package:cogina/domain/logger.dart';
 import 'package:cogina/presentation/component/custom_multi_select_chip.dart';
 import 'package:cogina/presentation/component/images/custom_image.dart';
 import 'package:cogina/presentation/modules/restaurant/meal_details/widget/custom_name_price_widget.dart';
@@ -16,21 +17,26 @@ import '../../../../../../core/global/styles/colors.dart';
 import '../../../../../../core/global/styles/styles.dart';
 import '../../../../core/function/function.dart';
 import '../../../../data/model/response/category_item_model.dart';
+import '../../../../data/model/response/iitem_extra_model.dart';
 import '../../../../domain/request_body/add_item_body.dart';
+import '../../../component/custom_add_cart_button.dart';
 import '../../../component/custom_check_button.dart';
 import '../../../component/custom_elevated_button.dart';
 import '../../layout/screens/cart/cart_cubit.dart';
 
 class MealDetailsScreen extends StatelessWidget {
-  MealDetailsScreen({super.key, this.categoriesItemsModelData, required this.storeId});
+  MealDetailsScreen({super.key, this.categoriesItemsModelData, required this.storeId, required this.storeName});
   final CategoryItemsData? categoriesItemsModelData;
   final String storeId;
+  final String storeName;
+  List<ItemExtraModelData> extraItems=[];
 
   @override
   Widget build(BuildContext context) {
     CartCubit cartCubit=CartCubit.get(context);
     RestaurantCubit cubit = RestaurantCubit.get(context);
-    cubit.getItemExtra(id: categoriesItemsModelData!.id!);
+    cubit.getItemExtra(id: categoriesItemsModelData!.id!,);
+
 
     return Scaffold(
       backgroundColor: const Color(0xffF1F2F6),
@@ -44,7 +50,7 @@ class MealDetailsScreen extends StatelessWidget {
                   height: MediaQuery.of(context).size.height * 0.4,
                   child: CustomImage(image: categoriesItemsModelData!.image!)),
               CustomTopBackWidget(),
-              CustomTopFavWidget(),
+              CustomTopFavWidget(categoryItemsData: categoriesItemsModelData!,),
               categoriesItemsModelData!.priceDiscount != null ?
               CustomOfferWidget(priceDiscount: categoriesItemsModelData!.priceDiscount!,):
               const SizedBox.shrink()
@@ -103,9 +109,7 @@ class MealDetailsScreen extends StatelessWidget {
                                      crossAxisAlignment: CrossAxisAlignment.start,
                                      children: [
                                        SizedBox(height: 5.h,),
-                                       cubit.itemExtraModelDataList != null
-                                           ? cubit.itemExtraModelDataList!
-                                           .isNotEmpty
+                                       cubit.itemExtraModelDataList != null ? cubit.itemExtraModelDataList!.isNotEmpty
                                            ?  Padding(
                                          padding: const EdgeInsets.symmetric(
                                              vertical: 10,
@@ -120,11 +124,14 @@ class MealDetailsScreen extends StatelessWidget {
                                                    color: AppColors.black),
                                              ),
                                              verticalSpace(10),
-                                             MultiSelectChip(
-                                                 onSelectionChanged: (value){
-                                                   cartCubit.extraIdList=value.map((e) => e!.id!.toString()).toList();
-                                                 }, reportList: cubit.itemExtraModelDataList!.map((e) => e).toList(),
-                                             )
+                                             StatefulBuilder(builder: (context,setState){
+                                               return MultiSelectChip(
+                                                   onSelectionChanged: (value){
+                                                     categoriesItemsModelData!.itemExtraModelDataList=value.map((e) => e).toList();
+                                                   },
+                                                   reportList: cubit.itemExtraModelDataList!,
+                                               );
+                                             })
                                            ],
                                          ),
                                        )
@@ -152,43 +159,9 @@ class MealDetailsScreen extends StatelessWidget {
                                verticalSpace(10),
                                SizedBox(height: 15.h,),
                                Center(
-                                 child: StatefulBuilder(builder: (context,setState){
-                                   return Column(
-                                     crossAxisAlignment: CrossAxisAlignment.center,
-                                     children: [
-                                       categoriesItemsModelData!.inCart==true?
-                                       CustomCheckButton():
-                                       Center(
-                                         child: Padding(
-                                           padding:
-                                           const EdgeInsets.symmetric(horizontal: 10),
-                                           child: CustomElevatedButton(
-                                               borderRadius: 50,
-                                               height: 40.h,
-                                               width: 200.w,
-                                               borderColor: AppColors.primaryColor,
-                                               fontColor: Colors.white,
-                                               onTap: () {
-                                                 logInFirst(function: (){
-                                                   AddItemBody addItemBody=
-                                                   AddItemBody(itemId: categoriesItemsModelData!.id.toString(), qt: '1', storeId: storeId,
-                                                       extraId: cartCubit.extraIdList
-                                                   );
-                                                   cartCubit.addItemCart(addItemBody: addItemBody, context: context).then((value){
-                                                     setState((){
-                                                       categoriesItemsModelData!.inCart=true;
-                                                       RestaurantCubit cubit =RestaurantCubit.get(context);
-                                                       cubit.getCategoryItems(categoryId:categoriesItemsModelData!.categoryId!, storeId:categoriesItemsModelData!.storeId!,notNull: true);
-                                                     });
-                                                   });
-                                                 }, context: context);
-                                               },
-                                               buttonText: LocaleKeys.addCart.tr()),
-                                         ),
-                                       )
-                                     ],
-                                   );
-                                 }),
+                                 child: CustomAddCartButton(
+                                   width: 200.w,
+                                   categoriesItemsModelData:  categoriesItemsModelData!, storeName: storeName,),
                                )
                              ],
                            ),

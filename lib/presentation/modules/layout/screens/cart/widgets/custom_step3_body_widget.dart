@@ -22,7 +22,7 @@ class CustomStepBody3Widget extends StatelessWidget {
     CartCubit cubit =CartCubit.get(context);
     CheckOutCubit  checkOutCubit=CheckOutCubit.get(context);
     AddressCubit addressCubit =AddressCubit.get(context);
-    return BlocConsumer<CartCubit, CartState>(
+    return BlocConsumer<AddressCubit, AddressState>(
               listener: (context, state) {},
               builder: (context, state) {
                 return SingleChildScrollView(
@@ -39,27 +39,34 @@ class CustomStepBody3Widget extends StatelessWidget {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-
-                            CustomCartTopWidget(title: LocaleKeys.inCart.tr(), number:cubit.items!=null?
-                             cubit.items!.length.toString():'0', iconData: Icons.shopping_cart_outlined, iconBackGround: AppColors.primaryColor,size: 25,),
+                            CustomCartTopWidget(title: LocaleKeys.inCart.tr(), number:cubit.products.isNotEmpty?
+                             cubit.products.length.toString():'0', iconData: Icons.shopping_cart_outlined, iconBackGround: AppColors.primaryColor,size: 25,),
                             verticalSpace(10),
-                            if(cubit.items!=null)
-                              if(cubit.items!.isNotEmpty)
-                                ...cubit.items!.map((e) =>  CustomCartItem(item: e,hasShadow: true,height:130.h,imageWidth: 110.w,
+                              if(cubit.products.isNotEmpty)
+                                ...cubit.products.map((e) =>  CustomCartItem(product: e,hasShadow: true,height:130.h,imageWidth: 110.w,
                                 chipRadius: 10,
-                                  chipHeight: 30.h,
+                                  chipHeight: 30.h, storeId: e.storeId!.toString(),
                                 ))
                               else
-                                const SizedBox.shrink()
-                            else
-                              const SizedBox.shrink(),
+                                const SizedBox.shrink(),
+
                              CustomCartTopWidget(title: LocaleKeys.delivered.tr(), number: '0.0 ${LocaleKeys.lyd.tr()}', iconData: Icons.delivery_dining_outlined, iconBackGround: AppColors.buttonOrangeColor,size: 25,),
-                            addressCubit.mainAddressModel!=null?
-                            Padding(
-                              padding:EdgeInsets.symmetric(horizontal: 25.w),
-                              child: Text(addressCubit.mainAddressModel!.data![0].addressTo.toString(),
-                                style: TextStyles.font15CustomGray400Weight,),
-                            ):const SizedBox.shrink(),
+                            if(addressCubit.addressController.text.isNotEmpty)
+                                Padding(
+                                  padding:EdgeInsets.symmetric(horizontal: 25.w),
+                                  child: Text(addressCubit.addressController.text,
+                                    style: TextStyles.font15CustomGray400Weight,),
+                                )
+                            else
+                              addressCubit.lastAddressModel!=null?
+                              Padding(
+                                padding:EdgeInsets.symmetric(horizontal: 25.w),
+                                child: Text(addressCubit.lastAddressModel!.data!.toAddress.toString(),
+                                  style: TextStyles.font15CustomGray400Weight,),
+                              ):
+                              SizedBox.shrink(),
+
+
                             verticalSpace(10),
                             Padding(
                               padding:EdgeInsets.symmetric(horizontal: 20.w),
@@ -68,13 +75,13 @@ class CustomStepBody3Widget extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(50),
                                       color: AppColors.backGroundGray
                                   ),
-                                  child:  CustomTextRowCartWidget(horizontal:20,vertical:13,title: LocaleKeys.standard.tr(), text: '${cubit.cartModel!=null?cubit.cartModel!.data!=null?cubit.cartModel!.data!.total:'0.0':'0.0'} ${LocaleKeys.lyd.tr()}')),
+                                  child:  CustomTextRowCartWidget(horizontal:20,vertical:13,title: LocaleKeys.standard.tr(), text: '${cubit.totalPrice()} ${LocaleKeys.lyd.tr()}')),
                             ),
                             verticalSpace(30),
                              CustomTextRowCartWidget(title: LocaleKeys.subtotal.tr(), text: '0.0 ${LocaleKeys.lyd.tr()}'),
                              CustomTextRowCartWidget(title: LocaleKeys.discount.tr(), text: '0.0 ${LocaleKeys.lyd.tr()}'),
                              CustomTextRowCartWidget(title: LocaleKeys.shipping.tr(), text: '0.0 ${LocaleKeys.lyd.tr()}'),
-                             CustomTextRowCartWidget(title: LocaleKeys.total.tr(), text: '${cubit.cartModel!=null?cubit.cartModel!.data!=null?cubit.cartModel!.data!.total:'0.0':'0.0'} ${LocaleKeys.lyd.tr()}'),
+                             CustomTextRowCartWidget(title: LocaleKeys.total.tr(), text: '${cubit.totalPrice()} ${LocaleKeys.lyd.tr()}'),
                             verticalSpace(10),
                             Center(
                               child: CustomElevatedButton(

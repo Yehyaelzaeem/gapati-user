@@ -1,3 +1,4 @@
+import 'package:cogina/core/helpers/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:cogina/core/global/styles/styles.dart';
@@ -18,7 +19,10 @@ class CustomRestaurantItemWidget extends StatelessWidget {
         child: Column(
           children: [
             CustomLogoRestaurant(image: dataHome.image,),
-            Expanded(child: Text(dataHome.name!,style: TextStyles.font16Black500Weight)),
+            verticalSpace(5),
+            FittedBox(child: Text(dataHome.name!,style: TextStyles.font16Black500Weight.copyWith(
+              height: 1,
+            ))),
           ],
         ),
       ),

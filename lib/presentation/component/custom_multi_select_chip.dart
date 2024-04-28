@@ -1,14 +1,11 @@
-import 'package:cogina/core/translations/locale_keys.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../core/global/styles/colors.dart';
 import '../../data/model/response/iitem_extra_model.dart';
 
 class MultiSelectChip extends StatefulWidget {
   final List<ItemExtraModelData> reportList;
-  final Function(List<dynamic>) onSelectionChanged;
+  final Function(List<ItemExtraModelData>) onSelectionChanged;
   final List<ItemExtraModelData>? initialSelection;
   final double? height;
   final double? width;
@@ -21,7 +18,8 @@ class MultiSelectChip extends StatefulWidget {
         super.key,
         required this.reportList,
         required this.onSelectionChanged,
-        this.initialSelection, this.height, this.width, this.horizontal, this.vertical, this.radius, this.paddingTop,
+        this.initialSelection, this.height, this.width, this.horizontal,
+         this.vertical, this.radius, this.paddingTop,
       });
 
   @override
@@ -30,7 +28,7 @@ class MultiSelectChip extends StatefulWidget {
 }
 
 class _MultiSelectChipState extends State<MultiSelectChip> {
-  List<dynamic> selectedChoices = [];
+  List<ItemExtraModelData> selectedChoices = [];
 
   @override
   void initState() {
@@ -76,6 +74,8 @@ class _MultiSelectChipState extends State<MultiSelectChip> {
                         if (selectedChoices.isNotEmpty) {
                           widget.onSelectionChanged(selectedChoices);
                         }
+
+
                       });
                     },
                   ),

@@ -122,6 +122,8 @@ class Item {
   String? priceDiscount;
   int? priceAfterDiscount;
   String? image;
+  bool? inCart;
+  bool? inFav;
 
   Item(
       {this.id,
@@ -131,7 +133,11 @@ class Item {
         this.price,
         this.priceDiscount,
         this.priceAfterDiscount,
-        this.image});
+        this.image,
+        this.inCart,
+        this.inFav,
+
+      });
 
   Item.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -141,7 +147,10 @@ class Item {
     price = json['price'];
     priceDiscount = json['price_discount'];
     priceAfterDiscount = json['price_after_discount'];
+    priceAfterDiscount = json['price_after_discount'];
     image = json['image'];
+    inCart = json['incart'];
+    inFav = json['inFav'];
   }
 
   Map<String, dynamic> toJson() {

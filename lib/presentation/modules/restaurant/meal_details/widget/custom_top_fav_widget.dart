@@ -3,13 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/global/styles/colors.dart';
+import '../../../../../data/model/response/category_item_model.dart';
+import '../../../layout/screens/favorite/favorite_cubit.dart';
 
 class CustomTopFavWidget extends StatelessWidget {
-   CustomTopFavWidget({super.key});
-  bool isFav = false;
+   CustomTopFavWidget({super.key, required this.categoryItemsData});
+  final CategoryItemsData categoryItemsData;
   @override
   Widget build(BuildContext context) {
-    return  Positioned(
+    FavoriteCubit favoriteCubit =FavoriteCubit.get(context);
+    return
+      Positioned(
         top: 60.h,
         left:context.locale.languageCode==Locale('en').toString()? null:20.w,
         right:context.locale.languageCode==Locale('en').toString()? 20.w:null,
@@ -25,27 +29,22 @@ class CustomTopFavWidget extends StatelessWidget {
                         blurRadius: 7,
                         offset: Offset(1, 5))
                   ]),
-              child: InkWell(
-                onTap: () {
+              child:
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: InkWell(onTap: (){
                   setState(() {
-                    isFav = !isFav;
+                    if(categoryItemsData.inFav==false){
+                      favoriteCubit.addFavorite(itemId: categoryItemsData.id!, context: context,);
+                      categoryItemsData.inFav=true;
+                    }else{
+                      favoriteCubit.removeFavorite(itemId: categoryItemsData.id!, context: context);
+                      categoryItemsData.inFav=false;
+                    }
                   });
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(5.0),
-                  child: isFav == true
-                      ? const Icon(
-                    Icons.favorite,
-                    size: 18,
-                    color: AppColors.redColor,
-                  )
-                      : const Icon(
-                    Icons.favorite_border_rounded,
-                    size: 18,
-                    color: AppColors.customGray,
-                  ),
-                ),
+                }, child:categoryItemsData.inFav==true? Icon(Icons.favorite,color: Colors.red,):Icon(Icons.favorite_border_rounded,color: Colors.grey,)),
               ),
+
             );
           },
         ));

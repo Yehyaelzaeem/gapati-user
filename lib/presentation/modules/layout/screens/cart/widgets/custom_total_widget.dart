@@ -28,9 +28,7 @@ class CustomTotalWidget extends StatelessWidget {
                     fontWeight: FontWeight.bold
                 ),),
               const Spacer(),
-              Text(cubit.cartModel != null ?
-              cubit.cartModel!.data != null ?
-              '${cubit.cartModel!.data!.total} ${LocaleKeys.lyd.tr()}' : '0.0 ${LocaleKeys.lyd.tr()}' : '0.0 ${LocaleKeys.lyd.tr()}',
+              Text( '${cubit.totalPrice()} ${LocaleKeys.lyd.tr()}',
                 style: TextStyles.font16Black600Weight.copyWith(
                     color: AppColors.redColor.withOpacity(0.6)
                 ),

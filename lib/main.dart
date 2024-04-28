@@ -21,7 +21,7 @@ void main() async{
   await domain_injection.init();
   await injection.init();
 
-//e
+//pushNamedAndRemoveUntil
   runApp(
        GenerateMultiBloc(
         child:  EasyLocalization(

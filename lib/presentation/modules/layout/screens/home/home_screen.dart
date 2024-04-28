@@ -22,6 +22,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     HomeCubit cubit =HomeCubit.get(context);
+    cubit.getOffers();
     return   Container(
       color: AppColors.backGroundPink,
       child: BlocConsumer<HomeCubit, HomeState>(

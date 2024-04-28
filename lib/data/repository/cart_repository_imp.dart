@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'package:cogina/domain/logger.dart';
 import 'package:cogina/domain/request_body/add_item_body.dart';
+import 'package:cogina/domain/request_body/update_item_body.dart';
 import 'package:dio/dio.dart';
 import '../../domain/repository/cart_repo.dart';
 import '../app_urls/app_url.dart';
@@ -81,6 +81,19 @@ class CartRepositoryImp implements CartRepository{
       Response response = await _dioClient.post(
           AppURL.kDeleteItemURL,
           data2: data
+      );
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+
+  @override
+  Future<ApiResponse> updateItem({required UpdateItemBody updateItemBody}) async{
+    try {
+      Response response = await _dioClient.post(
+          AppURL.kUpdateItemURL,
+          queryParameters: updateItemBody.toJson()
       );
       return ApiResponse.withSuccess(response);
     } catch (e) {

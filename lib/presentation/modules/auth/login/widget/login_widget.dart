@@ -3,6 +3,7 @@ import 'package:cogina/presentation/modules/auth/login/login_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -91,18 +92,22 @@ class LoginWidget extends StatelessWidget {
                   ),
                 ],
               ),
-              CustomElevatedButton(
-                onTap: (){
-                  // LoginCubit.get(context).changeType('otp');
-                  cubit.otpCode(cubit.phoneController.text,context);
-
-                },
-                buttonText: LocaleKeys.signIn.tr(),
-                width: MediaQuery.of(context).size.width,
-                height: 40,
-                fontSize: 17,
-                borderRadius: 40,
-              )
+              BlocConsumer<LoginCubit, LoginState>(
+                          listener: (context, state) {},
+                          builder: (context, state) {
+                            return CustomElevatedButton(
+                                        isLoading: state is OtpLoadingState,
+                                        onTap: (){
+                                          cubit.otpCode(cubit.phoneController.text,context);
+                                        },
+                                        buttonText: LocaleKeys.signIn.tr(),
+                                        width: MediaQuery.of(context).size.width,
+                                        height: 40,
+                                        fontSize: 17,
+                                        borderRadius: 40,
+                                      );
+                          },
+                        )
             ],
           );
         }),

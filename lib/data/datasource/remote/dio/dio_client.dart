@@ -47,7 +47,7 @@ class DioClient {
         'Accept': 'application/json; charset=UTF-8',
         'x-api-key': AppURL.kAPIKey,
         'Content-Type': 'application/json; charset=UTF-8',
-        'Content-Language':  NavigationService.navigationKey.currentContext!.locale.languageCode,
+        'Accept-Language':  NavigationService.navigationKey.currentContext!.locale.languageCode,
         // 'Authorization': 'Bearer $token',
       };
 

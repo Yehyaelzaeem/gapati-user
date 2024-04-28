@@ -19,7 +19,7 @@ class CustomTopBackWidget extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(50),
-                color: AppColors.whiteColor,
+                color: AppColors.whiteColor.withOpacity(0.9),
                 boxShadow: const [
                   BoxShadow(
                       color: Colors.black12,
@@ -27,11 +27,11 @@ class CustomTopBackWidget extends StatelessWidget {
                       offset: Offset(1, 5))
                 ]),
             child: Padding(
-              padding: const EdgeInsets.all(3.0),
+              padding: const EdgeInsets.all(8.0),
               child: Icon(
                 Icons.arrow_back_ios_new_rounded,
-                size: 20,
-                color: AppColors.customGray.withOpacity(0.4),
+                size: 25,
+                color: Colors.grey,
               ),
             ),
           ),

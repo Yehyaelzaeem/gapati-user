@@ -37,8 +37,9 @@ class HomeCubit extends Cubit<HomeState> {
     }
     return responseModel;
   }
-  Future<ResponseModel> getOffers() async {
-    offerList=null;
+  Future<ResponseModel> getOffers({bool? isDoNull}) async {
+    isDoNull==true?
+    offerList=null:null;
     emit(OffersLoadingState()) ;
     ResponseModel responseModel = await _offersUseCase.call();
     if (responseModel.isSuccess) {

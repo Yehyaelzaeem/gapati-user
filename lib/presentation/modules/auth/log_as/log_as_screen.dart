@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/assets_constant/images.dart';
 import '../../../../core/global/styles/styles.dart';
+import '../register/register_cubit.dart';
 
 class LogAsScreen extends StatelessWidget {
   const LogAsScreen({super.key});
@@ -69,8 +70,8 @@ class LogAsScreen extends StatelessWidget {
             height: 45.h,
             width: MediaQuery.of(context).size.width*0.8,
             onTap:(){
+              RegisterCubit.get(context).changeType('register');
               context.pushNamed(RoutesRestaurants.registerScreen);
-
             },
             buttonText: LocaleKeys.signUp.tr(),
             fontSize: 18,

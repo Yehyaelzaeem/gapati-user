@@ -1,3 +1,5 @@
+import 'iitem_extra_model.dart';
+
 class CategoryItemModel {
   CategoryItemModelData? data;
 
@@ -80,6 +82,10 @@ class CategoryItemsData {
   int? storeId;
   String? image;
   bool? inCart;
+  bool? inFav;
+  int? count;
+  List<ItemExtraModelData>? itemExtraModelDataList;
+
 
   CategoryItemsData(
       {this.id,
@@ -93,6 +99,9 @@ class CategoryItemsData {
         this.storeId,
         this.image,
         this.inCart,
+        this.inFav,
+        this.count,
+        this.itemExtraModelDataList,
       });
 
   CategoryItemsData.fromJson(Map<String, dynamic> json) {
@@ -107,6 +116,7 @@ class CategoryItemsData {
     storeId = json['store_id'];
     image = json['image'];
     inCart = json['incart'];
+    inFav = json['inFav'];
   }
 
   Map<String, dynamic> toJson() {
@@ -122,6 +132,7 @@ class CategoryItemsData {
     data['store_id'] = storeId;
     data['image'] = image;
     data['incart'] = inCart;
+    data['inFav'] = inFav;
     return data;
   }
 }

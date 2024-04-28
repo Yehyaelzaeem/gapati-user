@@ -17,13 +17,15 @@ import '../widgets/shimmer_categories_restaurant.dart';
 import 'package:badges/badges.dart' as badges;
 
 class RestaurantScreen extends StatelessWidget {
-  const RestaurantScreen({super.key, required this.id});
+  const RestaurantScreen({super.key, required this.id, required this.storeName});
   final int id;
+  final String storeName;
+
   @override
   Widget build(BuildContext context) {
     RestaurantCubit cubit =RestaurantCubit.get(context);
     CartCubit cartCubit =CartCubit.get(context);
-    cartCubit.getCart(context);
+    // cartCubit.getCart(context);
     cubit.getCategories(id: id);
     return  DefaultTabController(
       length: 3,
@@ -103,11 +105,11 @@ class RestaurantScreen extends StatelessWidget {
                                                       badges.Badge(
                                                          position: badges.BadgePosition.topEnd(top: -15,end:
                                                          context.locale.languageCode==Locale('en').toString()? -25:30),
-                                                        showBadge: cartCubit.items!=null?true:false,
+                                                        showBadge: cartCubit.products.isNotEmpty?true:false,
                                                         ignorePointer: false,
                                                         onTap: () {},
                                                         badgeContent:
-                                                        Text('${cartCubit.items!=null?cartCubit.items!.length:'0'}',
+                                                        Text('${cartCubit.products.isNotEmpty?cartCubit.products.length:'0'}',
                                                         style: TextStyles.font14White500Weight,
                                                         ),
                                                         badgeAnimation: badges.BadgeAnimation.rotation(
@@ -154,7 +156,7 @@ class RestaurantScreen extends StatelessWidget {
                                        child: TabBarView(
                                          children: [
                                            ...cubit.categoriesModelList!.map((e) =>
-                                            CustomBestMealsWidget(categoryId: e.id!, storeId: id,),)
+                                            CustomBestMealsWidget(categoryId: e.id!, storeId: id, storeName:storeName,),)
                                          ],
                                        ),
                                      ),

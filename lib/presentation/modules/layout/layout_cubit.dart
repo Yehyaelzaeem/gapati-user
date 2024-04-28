@@ -33,7 +33,7 @@ class LayoutCubit extends Cubit<LayoutState> {
   void initLayOut(){
     _getUserTokenUseCase.call().then((value){
       ProfileCubit.get(NavigationService.navigationKey.currentContext!).getProfile();
-      HomeCubit.get(NavigationService.navigationKey.currentContext!).getOffers();
+      HomeCubit.get(NavigationService.navigationKey.currentContext!).getOffers(isDoNull: true);
       emit(LayoutInitial());
     });
   }

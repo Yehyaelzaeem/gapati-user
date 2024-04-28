@@ -1,12 +1,7 @@
 import 'dart:async';
-import 'package:cogina/domain/logger.dart';
-import 'package:cogina/domain/request_body/add_item_body.dart';
 import 'package:cogina/domain/request_body/address_body.dart';
-import 'package:cogina/domain/request_body/check_out_body.dart';
 import 'package:dio/dio.dart';
 import '../../domain/repository/address_repo.dart';
-import '../../domain/repository/cart_repo.dart';
-import '../../domain/repository/check_out_repo.dart';
 import '../app_urls/app_url.dart';
 import '../datasource/remote/dio/dio_client.dart';
 import '../datasource/remote/exception/api_error_handler.dart';
@@ -49,6 +44,18 @@ class AddressRepositoryImp implements AddressRepository{
     try {
       Response response = await _dioClient.get(
         AppURL.kGetAllAddressURL,
+      );
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+
+  @override
+  Future<ApiResponse> getLastAddress() async{
+    try {
+      Response response = await _dioClient.get(
+        AppURL.kGetLastAddressURL,
       );
       return ApiResponse.withSuccess(response);
     } catch (e) {

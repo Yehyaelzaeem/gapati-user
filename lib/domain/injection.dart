@@ -1,6 +1,7 @@
 
 import 'package:cogina/domain/usecase/address/add_address_usecase.dart';
 import 'package:cogina/domain/usecase/address/address_usecase.dart';
+import 'package:cogina/domain/usecase/address/last_address_usecase.dart';
 import 'package:cogina/domain/usecase/address/main_address_usecase.dart';
 import 'package:cogina/domain/usecase/auth/check_otp_usecase.dart';
 import 'package:cogina/domain/usecase/auth/register_usecase.dart';
@@ -10,9 +11,11 @@ import 'package:cogina/domain/usecase/cart/add_qt_usecase.dart';
 import 'package:cogina/domain/usecase/cart/cart_usecase.dart';
 import 'package:cogina/domain/usecase/cart/delete_item_usecase.dart';
 import 'package:cogina/domain/usecase/cart/sub_qt_usecase.dart';
-import 'package:cogina/domain/usecase/check_out/add_address_usecase.dart';
+import 'package:cogina/domain/usecase/cart/update_item_usecase.dart';
 import 'package:cogina/domain/usecase/check_out/check_out_usecase.dart';
-import 'package:cogina/domain/usecase/check_out/main_address_usecase.dart';
+import 'package:cogina/domain/usecase/favorite/add_favorite_usecase.dart';
+import 'package:cogina/domain/usecase/favorite/get_favorite_usecase.dart';
+import 'package:cogina/domain/usecase/favorite/remove_favorite_usecase.dart';
 import 'package:cogina/domain/usecase/home/home_usecase.dart';
 import 'package:cogina/domain/usecase/home/offers_usecase.dart';
 import 'package:cogina/domain/usecase/local/clear_user_data_usecase.dart';
@@ -68,8 +71,10 @@ Future<void> init() async {
    getIt.registerLazySingleton(() => AddItemUseCase(repository: getIt()));
    getIt.registerLazySingleton(() => DeleteItemUseCase(repository: getIt()));
    getIt.registerLazySingleton(() => MainAddressUseCase(repository: getIt()));
+   getIt.registerLazySingleton(() => LastAddressUseCase(repository: getIt()));
    getIt.registerLazySingleton(() => AddAddressUseCase(repository: getIt()));
    getIt.registerLazySingleton(() => AddressUseCase(repository: getIt()));
+   getIt.registerLazySingleton(() => UpdateItemUseCase(repository: getIt()));
 
 
    ///CheckOut
@@ -81,7 +86,10 @@ Future<void> init() async {
    getIt.registerLazySingleton(() => TermsUseCase(repository: getIt()));
    getIt.registerLazySingleton(() => PrivacyUseCase(repository: getIt()));
    getIt.registerLazySingleton(() => AboutUsUseCase(repository: getIt()));
-
+ ///favorite
+   getIt.registerLazySingleton(() => GetFavoriteUseCase(repository: getIt()));
+   getIt.registerLazySingleton(() => AddFavoriteUseCase(repository: getIt()));
+   getIt.registerLazySingleton(() => RemoveFavoriteUseCase(repository: getIt()));
 
   ///notifications
   // getIt.registerLazySingleton(() => GetNotificationsUseCase(repository: getIt()));

@@ -12,8 +12,11 @@ import '../../../../../../core/function/function.dart';
 import '../../../../../../data/model/response/category_item_model.dart';
 import '../../../../../../data/model/response/offers_model.dart';
 import '../../../../../../domain/request_body/add_item_body.dart';
+import '../../../../../component/custom_add_cart_button.dart';
+import '../../../../../component/custom_check_button.dart';
 import '../../../../../component/custom_elevated_button.dart';
 import '../../cart/cart_cubit.dart';
+import '../home_cubit.dart';
 
 
 class CustomProductItemWidget extends StatelessWidget {
@@ -22,6 +25,20 @@ class CustomProductItemWidget extends StatelessWidget {
   final OffersModelData offersModelData;
   @override
   Widget build(BuildContext context) {
+    CategoryItemsData categoryItemsData= CategoryItemsData(
+      id: offersModelData.item!.id,
+      name: offersModelData.item!.name,
+      description: '',
+      categoryId: offersModelData.item!.categoryId,
+      categoryName: offersModelData.item!.categoryName,
+      price: offersModelData.item!.price,
+      priceDiscount: offersModelData.item!.priceDiscount,
+      priceAfterDiscount: offersModelData.item!.priceAfterDiscount,
+      storeId: 0,
+      image: offersModelData.item!.image,
+      inCart: offersModelData.item!.inCart,
+      inFav: offersModelData.item!.inFav,
+    );
     return InkWell(
       onTap: (){
         CategoryItemsData categoryItemsData =CategoryItemsData(
@@ -34,7 +51,9 @@ class CustomProductItemWidget extends StatelessWidget {
           priceDiscount: offersModelData.item!.priceDiscount,
           priceAfterDiscount: offersModelData.item!.priceAfterDiscount,
           storeId: offersModelData.restaurant!.id,
-          image: offersModelData.item!.image
+          image: offersModelData.item!.image,
+          inCart: offersModelData.item!.inCart,
+          inFav: offersModelData.item!.inFav,
         );
         NavigationService.push(RoutesRestaurants.mealDetailsScreen,arguments: {'storeId':offersModelData.id.toString(),'categoriesItemsModelData':categoryItemsData});
       },
@@ -130,22 +149,13 @@ class CustomProductItemWidget extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
+                  verticalSpace(10),
                   Center(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: CustomElevatedButton(
-                          borderRadius: 50,
-                          height: 30,
-                          fontColor: Colors.white,
-                          backgroundColor: AppColors.buttonOrangeColor,
-                          onTap: (){
-                            logInFirst(function: (){
-                              AddItemBody addItemBody=
-                              AddItemBody(itemId: offersModelData.item!.id.toString(), qt: '1', storeId: offersModelData.restaurant!.id.toString());
-                              CartCubit.get(context).addItemCart(addItemBody: addItemBody, context: context);
-                            }, context: context);
-                            }, buttonText: LocaleKeys.addCart.tr()),
-                    ),
+                    child: CustomAddCartButton(
+                      color: AppColors.buttonOrangeColor,
+                      width: 200.w,
+                      height: 30.h,
+                      categoriesItemsModelData: categoryItemsData, storeName: '',),
                   ),
                 ],
               ),

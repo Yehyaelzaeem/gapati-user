@@ -17,6 +17,7 @@ import '../../../../domain/request_body/login_body.dart';
 import '../../../../domain/usecase/auth/check_otp_usecase.dart';
 import '../../../../domain/usecase/auth/sign_in_usecase.dart';
 import '../../../../domain/usecase/local/save_data_usecase.dart';
+import '../register/register_cubit.dart';
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
@@ -54,7 +55,6 @@ class LoginCubit extends Cubit<LoginState> {
     // // String? fcmToken= await getDeviceToken();
     // if(fcmToken==null){return ResponseModel(false, tr(LocaleKeys.error));}
     emit(LoginLoadingState()) ;
-    log('login body ', '$phone/$otp');
     _assignLoginBody(phone, otp);
     ResponseModel responseModel = await _signInUseCase.call(loginBody: body);
     if (responseModel.isSuccess) {
@@ -62,41 +62,45 @@ class LoginCubit extends Cubit<LoginState> {
       kUser = userModel;
       String token = userModel.data!.token!;
       if (token.isNotEmpty) {
-        log('login bod55555y ', '$phone/$otp');
-
         await _saveUserDataUseCase.call(token: token);
       }
-      log('login8888 body ', '$phone/$otp');
-
       await BlocProvider.of<LocalAuthCubit>(context,listen: false).userLoginSuccessfully();
-
+      phoneController.text='';
+      RegisterCubit registerCubit =RegisterCubit.get(context);
+      registerCubit.phoneController.text='';
+      registerCubit.lastNameController.text='';
+      registerCubit.firstNameController.text='';
       NavigationService.pushReplacement(RoutesRestaurants.layout,arguments: {'currentPage':0});
       emit(LoginSuccessState()) ;
-
     }else{
      emit(LoginErrorState(responseModel.error)) ;
     }
     return responseModel;
   }
 
-  Future<ResponseModel> otpCode(String phone,context) async {
+  Future<ResponseModel?> otpCode(String phone,context) async {
     emit(OtpLoadingState()) ;
-    _assignOtpBody(phone);
-    ResponseModel responseModel = await _otpUseCase.call(body: otpBody);
-    if(responseModel.data!=null){
-      AuthModel otpModel =responseModel.data;
-      if (responseModel.isSuccess) {
-        showToast(text: otpModel.otp.toString(), state: ToastStates.success,
-          context: context,gravity: ToastGravity.TOP,timeInSecForIosWeb: 250);
-        changeType('otp');
-        emit(OtpSuccessState()) ;
-      }else{
-        log('error', '${otpModel.toJson()}');
-        log('error', '${responseModel.message}');
-        emit(OtpErrorState()) ;
+    try{
+      _assignOtpBody(phone);
+      ResponseModel responseModel = await _otpUseCase.call(body: otpBody);
+      if(responseModel.data!=null){
+        AuthModel otpModel =responseModel.data;
+        if (responseModel.isSuccess) {
+          showToast(text: otpModel.otp.toString(), state: ToastStates.success,
+              context: context,gravity: ToastGravity.TOP,timeInSecForIosWeb: 250);
+          changeType('otp');
+          emit(OtpSuccessState()) ;
+        }else{
+          log('error', '${otpModel.toJson()}');
+          log('error', '${responseModel.message}');
+          emit(OtpErrorState()) ;
+        }
       }
+    }catch (e){
+      emit(OtpErrorState()) ;
     }
-    return responseModel;
+    emit(OtpSuccessState()) ;
+    return null;
   }
 
   void _assignLoginBody(String phone,String otp) {

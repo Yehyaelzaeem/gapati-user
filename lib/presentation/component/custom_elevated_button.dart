@@ -44,7 +44,7 @@ class CustomElevatedButton extends StatelessWidget {
       ),
       child:
       isLoading==true?
-       Center(child: CircularProgressIndicator(color: loadingColor??AppColors.whiteColor,),):
+       Center(child: CircularProgressIndicator(color: loadingColor??AppColors.whiteColor),):
       Text(
         buttonText,
         style: TextStyle(

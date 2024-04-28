@@ -47,7 +47,8 @@ class MoreScreen extends StatelessWidget {
               verticalSpace(10),
               CustomIsUser(
                 isUser: isUser,
-                widget: BlocConsumer<ProfileCubit, ProfileState>(
+                widget:
+                BlocConsumer<ProfileCubit, ProfileState>(
                   builder: (context, state) {
                     if (cubit.profileModel != null) {
                       return Container(
@@ -157,18 +158,18 @@ class MoreScreen extends StatelessWidget {
                       CustomIsUser(
                         isUser: isUser,
                         widget: verticalSpace(20),),
-                      CustomIsUser(
-                        isUser: isUser,
-                        widget: CustomProfileItemWidget(
-                        backgroundColor: Colors.deepPurpleAccent,
-                        iconData: Icons.location_on_outlined,
-                        text: LocaleKeys.addresses.tr(),
-                        onTap: () {
-                          AddressCubit.get(context).getAllAddress();
-                          NavigationService.push(RoutesRestaurants.addresses);
-                        },
-                      ),),
-                      verticalSpace(20),
+                      // CustomIsUser(
+                      //   isUser: isUser,
+                      //   widget: CustomProfileItemWidget(
+                      //   backgroundColor: Colors.deepPurpleAccent,
+                      //   iconData: Icons.location_on_outlined,
+                      //   text: LocaleKeys.addresses.tr(),
+                      //   onTap: () {
+                      //     AddressCubit.get(context).getAllAddress();
+                      //     NavigationService.push(RoutesRestaurants.addresses);
+                      //   },
+                      // ),),
+                      // verticalSpace(20),
                       CustomProfileItemWidget(
                         backgroundColor: Colors.cyanAccent.shade700,
                         iconData: Icons.info_outline,

@@ -20,11 +20,11 @@ class CartModelData {
   int? id;
   Store? store;
   List<String>? branch;
-  int? subTotal;
+  dynamic subTotal;
   int? deliveryFees;
-  int? cartItemCount;
-  int? tax;
-  int? total;
+  int? count;
+  dynamic tax;
+  dynamic total;
   String? promoCode;
   List<Items>? items;
 
@@ -34,11 +34,12 @@ class CartModelData {
         this.branch,
         this.subTotal,
         this.deliveryFees,
-        this.cartItemCount,
+        this.count,
         this.tax,
         this.total,
         this.promoCode,
-        this.items});
+        this.items,
+      });
 
   CartModelData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -46,7 +47,7 @@ class CartModelData {
     branch = json['branch'].cast<String>();
     subTotal = json['sub_total'];
     deliveryFees = json['delivery_fees'];
-    cartItemCount = json['cart_item_count'];
+    count = json['cart_item_count'];
     tax = json['tax'];
     total = json['total'];
     promoCode = json['promo_code'];
@@ -67,7 +68,7 @@ class CartModelData {
     data['branch'] = branch;
     data['sub_total'] = subTotal;
     data['delivery_fees'] = deliveryFees;
-    data['cart_item_count'] = cartItemCount;
+    data['cart_item_count'] = count;
     data['tax'] = tax;
     data['total'] = total;
     data['promo_code'] = promoCode;

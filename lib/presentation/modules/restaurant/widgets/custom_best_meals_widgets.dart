@@ -11,10 +11,11 @@ import '../restaurant_cubit.dart';
 import 'custom_meal_widget.dart';
 
 class CustomBestMealsWidget extends StatefulWidget {
-  const CustomBestMealsWidget({super.key, this.padding, required this.categoryId, required this.storeId});
+  const CustomBestMealsWidget({super.key, this.padding, required this.categoryId, required this.storeId, required this.storeName});
   final double? padding;
   final int categoryId;
   final int storeId;
+  final String storeName;
 
   @override
   State<CustomBestMealsWidget> createState() => _CustomBestMealsWidgetState();
@@ -24,9 +25,9 @@ class _CustomBestMealsWidgetState extends State<CustomBestMealsWidget> {
 
   @override
   void initState() {
-    super.initState();
     RestaurantCubit cubit =RestaurantCubit.get(context);
     cubit.getCategoryItems(categoryId: widget.categoryId, storeId:widget.storeId);
+    super.initState();
   }
   @override
   Widget build(BuildContext context) {
@@ -47,9 +48,9 @@ class _CustomBestMealsWidgetState extends State<CustomBestMealsWidget> {
                                 onTap: (){
                                   Navigator.push(context, MaterialPageRoute(builder: (context)=>
                                       MealDetailsScreen(categoriesItemsModelData: cubit.categoryItemsModelList![index],
-                                        storeId: cubit.categoryItemsModelList![index].storeId.toString(),)));
+                                        storeId: cubit.categoryItemsModelList![index].storeId.toString(), storeName: widget.storeName,)));
                                 },
-                                child:  CustomMealWidget(categoriesItemsModelData: cubit.categoryItemsModelList![index], storeId: cubit.categoryItemsModelList![index].storeId!.toString(),));
+                                child:  CustomMealWidget(categoriesItemsModelData: cubit.categoryItemsModelList![index], storeName: widget.storeName,));
                           }),
                     );
 
