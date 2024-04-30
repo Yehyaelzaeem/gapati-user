@@ -31,6 +31,8 @@ import 'package:cogina/domain/usecase/profile/update_profile_usecase.dart';
 import 'package:cogina/domain/usecase/restaurant/categories_usecase.dart';
 import 'package:cogina/domain/usecase/restaurant/category_items_usecase.dart';
 import 'package:cogina/domain/usecase/restaurant/item_extra_usecase.dart';
+import 'package:cogina/domain/usecase/restaurant/search_items_usecase.dart';
+import 'package:cogina/domain/usecase/search/search_usecase.dart';
 
 import '../data/injection.dart';
 
@@ -56,6 +58,9 @@ Future<void> init() async {
    ///Home
    getIt.registerLazySingleton(() => HomeUseCase(repository: getIt()));
    getIt.registerLazySingleton(() => OffersUseCase(repository: getIt()));
+   ///Search
+   getIt.registerLazySingleton(() => SearchUseCase(repository: getIt()));
+   getIt.registerLazySingleton(() => SearchItemsUseCase(repository: getIt()));
 
 
    ///Restaurant

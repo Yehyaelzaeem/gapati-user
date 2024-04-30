@@ -1,3 +1,4 @@
+import 'package:cogina/core/function/function.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -32,7 +33,9 @@ class CustomTopFavWidget extends StatelessWidget {
               child:
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: InkWell(onTap: (){
+                child:
+                InkWell(onTap: (){
+                logInFirst(function: (){
                   setState(() {
                     if(categoryItemsData.inFav==false){
                       favoriteCubit.addFavorite(itemId: categoryItemsData.id!, context: context,);
@@ -42,6 +45,7 @@ class CustomTopFavWidget extends StatelessWidget {
                       categoryItemsData.inFav=false;
                     }
                   });
+                }, context: context);
                 }, child:categoryItemsData.inFav==true? Icon(Icons.favorite,color: Colors.red,):Icon(Icons.favorite_border_rounded,color: Colors.grey,)),
               ),
 

@@ -26,7 +26,8 @@ class CustomTextField extends StatelessWidget {
   final String? Function(String?)? validationFunc;
   final void Function(String)? onFieldSubmitted;
   final TextStyle? hintStyle;
-  const CustomTextField({
+  final void Function(String)? onChanged;
+   const CustomTextField({
     Key? key,
     required this.hintText,
     required this.controller,
@@ -51,6 +52,7 @@ class CustomTextField extends StatelessWidget {
     this.hintColor,
     this.suffixIcon,
     this.onFieldSubmitted,
+    this.onChanged,
   }) : super(key: key);
 
   @override
@@ -85,6 +87,7 @@ class CustomTextField extends StatelessWidget {
       cursorWidth: 1,
       textInputAction: textInputAction ?? TextInputAction.next,
       keyboardType: textInputType ?? TextInputType.text,
+      onChanged:onChanged ,
     );
   }
 }

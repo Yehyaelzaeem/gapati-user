@@ -111,7 +111,10 @@
   "creating_account_agree": "By creating an account you agree our",
   "already_have_account": "Already have an account?",
   "lyd": "LYD",
-  "another_cart": "You Have Another Shopping Cart"
+  "another_cart": "You Have Another Shopping Cart",
+  "cart_empty": "Cart is Empty",
+  "the_search": "The Search",
+  "start_search": "What do you want to search for ?"
 
 
 }

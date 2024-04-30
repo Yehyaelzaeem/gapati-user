@@ -24,7 +24,7 @@ class OrderDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     OrdersCubit cubit =OrdersCubit.get(context);
-    cubit.getOrders(orderId: orderId);
+    cubit.getOrdersDetails(orderId: orderId);
     return Scaffold(
       appBar: const CustomAppBar(),
       body: BlocConsumer<OrdersCubit, OrdersState>(

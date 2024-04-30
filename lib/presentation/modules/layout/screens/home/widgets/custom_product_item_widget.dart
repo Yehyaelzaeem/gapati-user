@@ -1,3 +1,4 @@
+import 'package:cogina/core/helpers/extensions.dart';
 import 'package:cogina/core/helpers/spacing.dart';
 import 'package:cogina/core/translations/locale_keys.dart';
 import 'package:cogina/presentation/component/images/custom_image.dart';
@@ -25,37 +26,25 @@ class CustomProductItemWidget extends StatelessWidget {
   final OffersModelData offersModelData;
   @override
   Widget build(BuildContext context) {
-    CategoryItemsData categoryItemsData= CategoryItemsData(
+    CategoryItemsData categoryItemsData =CategoryItemsData(
       id: offersModelData.item!.id,
-      name: offersModelData.item!.name,
-      description: '',
+      name: offersModelData.name,
+      description: offersModelData.description,
       categoryId: offersModelData.item!.categoryId,
       categoryName: offersModelData.item!.categoryName,
       price: offersModelData.item!.price,
       priceDiscount: offersModelData.item!.priceDiscount,
       priceAfterDiscount: offersModelData.item!.priceAfterDiscount,
-      storeId: 0,
+      storeId: offersModelData.restaurant!.id,
       image: offersModelData.item!.image,
+      count: 1,
       inCart: offersModelData.item!.inCart,
       inFav: offersModelData.item!.inFav,
     );
     return InkWell(
       onTap: (){
-        CategoryItemsData categoryItemsData =CategoryItemsData(
-          id: offersModelData.item!.id,
-          name: offersModelData.name,
-          description: offersModelData.description,
-          categoryId: offersModelData.item!.categoryId,
-          categoryName: offersModelData.item!.categoryName,
-          price: offersModelData.item!.price,
-          priceDiscount: offersModelData.item!.priceDiscount,
-          priceAfterDiscount: offersModelData.item!.priceAfterDiscount,
-          storeId: offersModelData.restaurant!.id,
-          image: offersModelData.item!.image,
-          inCart: offersModelData.item!.inCart,
-          inFav: offersModelData.item!.inFav,
-        );
-        NavigationService.push(RoutesRestaurants.mealDetailsScreen,arguments: {'storeId':offersModelData.id.toString(),'categoriesItemsModelData':categoryItemsData});
+        context.pushNamed(RoutesRestaurants.mealDetailsScreen,arguments: {
+          'storeId':offersModelData.restaurant!.id!.toString(),'storeName':offersModelData.restaurant!.name!,'categoriesItemsModelData':categoryItemsData});
       },
       child: Container(
         width: MediaQuery.of(context).size.width*0.45,
@@ -149,13 +138,12 @@ class CustomProductItemWidget extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
-                  verticalSpace(10),
                   Center(
                     child: CustomAddCartButton(
                       color: AppColors.buttonOrangeColor,
                       width: 200.w,
                       height: 30.h,
-                      categoriesItemsModelData: categoryItemsData, storeName: '',),
+                      categoriesItemsModelData: categoryItemsData, storeName: 'offers',),
                   ),
                 ],
               ),

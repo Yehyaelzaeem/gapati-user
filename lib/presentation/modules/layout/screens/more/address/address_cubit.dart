@@ -36,7 +36,6 @@ class AddressCubit extends Cubit<AddressState> {
     ResponseModel responseModel = await _mainAddressUseCase.call();
     if (responseModel.isSuccess) {
       mainAddressModel =responseModel.data;
-      log('sssssssssssssss', mainAddressModel!.toJson().toString());
       emit(GetAddressSuccessState()) ;
     }else{
       emit(GetAddressErrorState()) ;
@@ -44,6 +43,7 @@ class AddressCubit extends Cubit<AddressState> {
     return responseModel;
   }
   Future<ResponseModel> getLastAddress() async {
+
     emit(GetLastAddressLoadingState()) ;
     ResponseModel responseModel = await _lastAddressUseCase.call();
     if (responseModel.isSuccess) {

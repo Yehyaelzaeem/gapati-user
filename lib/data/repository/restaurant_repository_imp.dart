@@ -49,4 +49,16 @@ class RestaurantRepositoryImp implements RestaurantRepository{
     }
   }
 
+  @override
+  Future<ApiResponse> searchItem({required String searchText, required int storeId}) async{
+    try {
+      Response response = await _dioClient.get(
+          AppURL.kSearchItemURI(searchText: searchText, storeId: storeId)
+      );
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+
 }

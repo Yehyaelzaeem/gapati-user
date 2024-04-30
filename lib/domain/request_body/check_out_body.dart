@@ -1,45 +1,83 @@
+class CheckOutModel {
+  String name;
+  String lat;
+  String lng;
+  String address;
+  String paymentMethod;
+  String note;
+  String phone;
+  String storeId;
+  String branchId;
+  List<ItemModel> items;
 
-class CheckOutBody {
-  final String _paymentMethod;
-  final String _address;
-  final String _latitude;
-  final String _longitude;
-  final String? _note;
-  final String? _phone;
-  String get paymentMethod=>_paymentMethod;
-  String get address=>_address;
-  String get latitude=>_latitude;
-  String get longitude=>_longitude;
-  String? get note=>_note;
-  String? get phone=>_phone;
-  CheckOutBody({required paymentMethod,required address,required latitude,
-    required longitude , note,required phone,
-  }) :
-      _paymentMethod=paymentMethod,
-      _address=address,
-      _latitude=latitude,
-      _longitude=longitude,
-      _note=note,
-      _phone=phone;
+  CheckOutModel({
+    required this.name,
+    required this.lat,
+    required this.lng,
+    required this.address,
+    required this.paymentMethod,
+    required this.note,
+    required this.phone,
+    required this.storeId,
+    required this.branchId,
+    required this.items,
+  });
 
   Map<String, dynamic> toJson() {
-    if(_note!=null){
+    return {
+      'name': name,
+      'lat': lat,
+      'lng': lng,
+      'address': address,
+      'payment_method': paymentMethod,
+      'note': note,
+      'phone': phone,
+      'store_id': storeId,
+      'branch_id': branchId,
+      'item': items.map((item) => item.toJson()).toList(),
+    };
+  }
+}
+
+class ItemModel {
+  String itemId;
+  String qty;
+  String note;
+  List<ExtraModel> extras;
+
+  ItemModel({
+    required this.itemId,
+    required this.qty,
+    required this.note,
+    required this.extras,
+  });
+
+  Map<String, dynamic> toJson() {
+    if(extras.isNotEmpty){
       return {
-        "payment_method": _paymentMethod,
-        "address": _address,
-        "lat": _latitude,
-        "lng": _longitude,
-        "note": _note,
-        "phone": _phone,
-      };
-    }else{
-      return {
-        "payment_method": _paymentMethod,
-        "address": _address,
-        "lat": _latitude,
-        "lng": _longitude,
-        "phone": _phone,
+        'item_id': itemId,
+        'qty': qty,
+        'note': note,
+        'extras': extras.map((extra) => extra.toJson()).toList(),
       };
     }
+  else{
+      return {
+        'item_id': itemId,
+        'qty': qty,
+        'note': note,
+      };
+
+    }
+  }
+}
+
+class ExtraModel {
+  String extraId;
+
+  ExtraModel({required this.extraId});
+
+  Map<String, dynamic> toJson() {
+    return {'extra_id': extraId};
   }
 }

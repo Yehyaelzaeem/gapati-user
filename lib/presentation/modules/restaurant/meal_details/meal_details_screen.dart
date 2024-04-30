@@ -17,7 +17,7 @@ import '../../../../../../core/global/styles/colors.dart';
 import '../../../../../../core/global/styles/styles.dart';
 import '../../../../core/function/function.dart';
 import '../../../../data/model/response/category_item_model.dart';
-import '../../../../data/model/response/iitem_extra_model.dart';
+import '../../../../data/model/response/item_extra_model.dart';
 import '../../../../domain/request_body/add_item_body.dart';
 import '../../../component/custom_add_cart_button.dart';
 import '../../../component/custom_check_button.dart';
@@ -36,8 +36,6 @@ class MealDetailsScreen extends StatelessWidget {
     CartCubit cartCubit=CartCubit.get(context);
     RestaurantCubit cubit = RestaurantCubit.get(context);
     cubit.getItemExtra(id: categoriesItemsModelData!.id!,);
-
-
     return Scaffold(
       backgroundColor: const Color(0xffF1F2F6),
       body: Stack(
@@ -125,11 +123,26 @@ class MealDetailsScreen extends StatelessWidget {
                                              ),
                                              verticalSpace(10),
                                              StatefulBuilder(builder: (context,setState){
+
+                                               List<ItemExtraModelData> initialSelection = cubit.itemExtraModelDataList!
+                                                   .where((element) =>
+                                                   cartCubit.products.any((product) =>
+                                                   product.itemExtraModelDataList != null &&
+                                                       product.itemExtraModelDataList!.any((itemExtra) =>
+                                                       itemExtra.id == element.id)))
+                                                   .toList();
                                                return MultiSelectChip(
                                                    onSelectionChanged: (value){
+                                                     log('value d', value.map((e) => e.toJson()).toList().toString());
+
                                                      categoriesItemsModelData!.itemExtraModelDataList=value.map((e) => e).toList();
+                                                     if (cartCubit.products.where((CategoryItemsData element) => element.id == categoriesItemsModelData!.id).toList().length > 0){
+                                                       cartCubit.updateExtra(categoriesItemsModelData!, value.map((e) => e).toList());
+                                                     }
+
                                                    },
                                                    reportList: cubit.itemExtraModelDataList!,
+                                                 initialSelection:initialSelection
                                                );
                                              })
                                            ],

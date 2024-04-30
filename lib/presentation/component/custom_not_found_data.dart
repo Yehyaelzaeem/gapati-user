@@ -15,18 +15,19 @@ class CustomNotFoundDataWidget extends StatelessWidget {
   final String type;
   @override
   Widget build(BuildContext context) {
-    return  Column(
+    return
+      Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         type=='png'?
-        FittedBox(child: Image.asset(image)):
-        FittedBox(child: SvgPicture.asset(image,)),
-        verticalSpace(30),
+        Expanded(child: Image.asset(image)):
+        Expanded(child: SvgPicture.asset(image,)),
         Text('${title}',
             style: TextStyles.font18Black700Weight.copyWith(
                 color: AppColors.customBlack.withOpacity(0.6)
-            )
-        )
+            ),
+        ),
+        verticalSpace(100),
       ],
     );
   }

@@ -15,7 +15,7 @@ class OrdersCubit extends Cubit<OrdersState> {
 
   OrderModel? orderModel;
   OrderDetailsModel? orderDetailsModel;
-  Future<ResponseModel> getRestaurantOrders() async {
+  Future<ResponseModel> getOrders() async {
     emit(RestaurantsOrdersLoadingState()) ;
     ResponseModel responseModel = await _ordersUseCase.getRestaurantsOrder();
     if (responseModel.isSuccess) {
@@ -29,7 +29,7 @@ class OrdersCubit extends Cubit<OrdersState> {
     return responseModel;
   }
 
-  Future<ResponseModel> getOrders({required int orderId}) async {
+  Future<ResponseModel> getOrdersDetails({required int orderId}) async {
     emit(OrdersLoadingState()) ;
     ResponseModel responseModel = await _ordersUseCase.getOrders(orderId: orderId);
     if (responseModel.isSuccess) {

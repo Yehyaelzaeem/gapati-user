@@ -2,6 +2,7 @@ import 'package:cogina/core/helpers/extensions.dart';
 import 'package:cogina/core/routing/routes.dart';
 import 'package:cogina/core/translations/locale_keys.dart';
 import 'package:cogina/presentation/component/component.dart';
+import 'package:cogina/presentation/modules/layout/screens/cart/cart_cubit.dart';
 import 'package:cogina/presentation/modules/layout/screens/favorite/favorite_cubit.dart';
 import 'package:cogina/presentation/modules/layout/screens/favorite/widgets/custom_favorite_item.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -65,9 +66,7 @@ class FavoriteScreen extends StatelessWidget {
                                         inFav: favoriteItem.inFav,
                                       );
                                       context.pushNamed(RoutesRestaurants.mealDetailsScreen,arguments: {
-                                        'storeId':favoriteItem.storeId.toString(),
-                                        'categoriesItemsModelData':categoryItemsData
-                                      });
+                                        'storeId':favoriteItem.storeId.toString(),'storeName':'','categoriesItemsModelData':categoryItemsData});
                                     },
                                     child: CustomFavoriteItem(favoriteModelData: favoriteItem,));
                               },

@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../data/model/response/cart_model.dart';
 import '../../../../../data/model/response/category_item_model.dart';
-import '../../../../../data/model/response/iitem_extra_model.dart';
+import '../../../../../data/model/response/item_extra_model.dart';
 import '../../../../../domain/usecase/cart/add_item_usecase.dart';
 import '../../../../../domain/usecase/cart/add_qt_usecase.dart';
 import '../../../../../domain/usecase/cart/cart_usecase.dart';
@@ -49,6 +49,10 @@ class CartCubit extends Cubit<CartState> {
     products.where((CategoryItemsData element) => element.id == product.id).first.count = product.count;
     emit(GetCartDataState());
   }
+  Future<dynamic> updateExtra(CategoryItemsData product,List<ItemExtraModelData> itemExtraModelData) async {
+    products.where((CategoryItemsData element) => element.id == product.id).first.itemExtraModelDataList = itemExtraModelData;
+    emit(UpdateExtraCartDataState());
+  }
   Future<dynamic> removeQty(CategoryItemsData product) async {
     product.count = product.count! - 1;
     if (product.count == 0)
@@ -65,11 +69,21 @@ class CartCubit extends Cubit<CartState> {
   double totalPrice() {
     double total = 0;
     products.forEach((CategoryItemsData element) {
-      total += element.priceAfterDiscount! * element.count!;
+      total += getItemPrice(element);
+      // total=0.0;
     });
     return total;
   }
+  double getItemPrice(CategoryItemsData product) {
+    double totalItem = double.parse(product.priceAfterDiscount!.toString());
+    if(product.itemExtraModelDataList!=null&&product.itemExtraModelDataList!.length!=0){
+      product.itemExtraModelDataList!.forEach((element) {
+        totalItem += double.parse(element.price!) ;
+      });
+    }
 
+    return totalItem * product.count!;
+  }
   void removeAll() {
     products.clear();
   }

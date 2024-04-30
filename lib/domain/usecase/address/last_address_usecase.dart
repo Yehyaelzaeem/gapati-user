@@ -16,11 +16,14 @@ class LastAddressUseCase implements BaseUseCase<LastAddressModel>{
   @override
   ResponseModel<LastAddressModel> onConvert(BaseModel baseModel) {
     try{
-      LastAddressModel? lastAddressModel = LastAddressModel.fromJson(baseModel.responseData);
-      return ResponseModel(baseModel.status??true, baseModel.message,data: lastAddressModel);
+      if(baseModel.code =='200' ||baseModel.code =='201'){
+          LastAddressModel lastAddressModel = LastAddressModel.fromJson(baseModel.responseData);
+        return ResponseModel(baseModel.status??true, baseModel.message,data: lastAddressModel);
+      }else{
+        return ResponseModel(baseModel.status??false, baseModel.message,data: baseModel.responseData);
+      }
     }catch(e){
-      LastAddressModel? lastAddressModel = LastAddressModel.fromJson(baseModel.responseData);
-      return ResponseModel(baseModel.status??false, baseModel.message,data: lastAddressModel);
+      return ResponseModel(baseModel.status??false, baseModel.message,data: baseModel.responseData);
     }
   }
 }

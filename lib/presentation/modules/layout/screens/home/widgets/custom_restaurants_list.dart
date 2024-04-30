@@ -32,6 +32,7 @@ class CustomRestaurantsListWidget extends StatelessWidget {
                             NavigationService.push(RoutesRestaurants.restaurantScreen,arguments: {'id':e.id,'storeName':e.name});
                           },
                           child:  CustomRestaurantItemWidget(dataHome: e,))),
+                      cubit.listData!.length>3?
                       InkWell(
                         onTap: (){
                           NavigationService.push(RoutesRestaurants.restaurantsScreen);
@@ -71,7 +72,7 @@ class CustomRestaurantsListWidget extends StatelessWidget {
                             ),
                           ),
                         ),
-                      )
+                      ):SizedBox.shrink()
                     ],
                   )
                   // ListView.builder(

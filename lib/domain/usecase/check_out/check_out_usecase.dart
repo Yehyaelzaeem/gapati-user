@@ -15,14 +15,18 @@ import '../base_usecase/base_usecase.dart';
 class CheckOutUseCase implements BaseUseCase<dynamic>{
   final CheckOutRepository repository;
   CheckOutUseCase({required this.repository});
-  Future<ResponseModel> call({required CheckOutBody checkOutBody}) async {
+  Future<ResponseModel> call({required CheckOutModel checkOutBody}) async {
     return BaseUseCaseCall.onGetData<dynamic>( await repository.checkOut(checkOutBody: checkOutBody), onConvert,tag: 'CheckOutUseCase');
   }
 
   @override
   ResponseModel<dynamic> onConvert(BaseModel baseModel) {
     try{
-      return ResponseModel(baseModel.status??true , baseModel.message,data: baseModel.responseData);
+      if(baseModel.code =='200' ||baseModel.code =='201'){
+        return ResponseModel(baseModel.status??true, baseModel.message,data: baseModel.responseData);
+      }else{
+        return ResponseModel(baseModel.status??false, baseModel.message,data: baseModel.responseData);
+      }
     }catch(e){
       return ResponseModel(baseModel.status??false, baseModel.message,data: baseModel.responseData);
     }

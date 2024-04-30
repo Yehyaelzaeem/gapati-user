@@ -11,6 +11,7 @@ import 'package:cogina/presentation/modules/layout/screens/more/more_cubit.dart'
 import 'package:cogina/presentation/modules/layout/screens/more/profile/profile_cubit.dart';
 import 'package:cogina/presentation/modules/layout/screens/orders/orders_cubit.dart';
 import 'package:cogina/presentation/modules/restaurant/restaurant_cubit.dart';
+import 'package:cogina/presentation/modules/search/search_cubit.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -40,6 +41,7 @@ class GenerateMultiBloc extends StatelessWidget {
         BlocProvider(create: (_) => getIt<AddressCubit>()),
         BlocProvider(create: (_) => getIt<MoreCubit>()),
         BlocProvider(create: (_) => getIt<FavoriteCubit>()),
+        BlocProvider(create: (_) => getIt<SearchCubit>()),
       ],
       child: child,
     );

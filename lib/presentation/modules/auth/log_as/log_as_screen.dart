@@ -34,13 +34,13 @@ class LogAsScreen extends StatelessWidget {
                 animatedTexts: [
                   TyperAnimatedText(LocaleKeys.welcomeMes.tr(),
                       textStyle: TextStyles.font20Black700Weight.copyWith(
-                      height: 1,
+                       height: 2,
                       color:AppColors.customBlack,
                       fontSize: 17.sp,
                   ),textAlign: TextAlign.center),
                   TyperAnimatedText(LocaleKeys.welcomeMes.tr(),
                                       textStyle: TextStyles.font20Black700Weight.copyWith(
-                                      height: 1,
+                                      height: 2,
                                       color:AppColors.customBlack,
                                       fontSize: 17.sp,
                                   ),textAlign: TextAlign.center),

@@ -19,7 +19,7 @@ class OrdersScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     OrdersCubit cubit =OrdersCubit.get(context);
-    cubit.getRestaurantOrders();
+    cubit.getOrders();
     return
       HomeCubit.get(context).token!=null&&HomeCubit.get(context).token!.isNotEmpty?
       Scaffold(

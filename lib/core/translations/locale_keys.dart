@@ -113,6 +113,9 @@ class LocaleKeys
   static const alreadyHaveAccount = 'already_have_account';
   static const lyd = 'lyd';
   static const anotherCart = 'another_cart';
+  static const cartEmpty = 'cart_empty';
+  static const theSearch = 'the_search';
+  static const startSearch = 'start_search';
 
 
 

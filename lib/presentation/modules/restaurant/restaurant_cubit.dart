@@ -4,16 +4,19 @@ import '../../../data/model/base/response_model.dart';
 import '../../../data/model/response/categories_model.dart';
 import '../../../data/model/response/category_all_items_model.dart';
 import '../../../data/model/response/category_item_model.dart';
-import '../../../data/model/response/iitem_extra_model.dart';
+import '../../../data/model/response/item_extra_model.dart';
+import '../../../data/model/response/search_item_model.dart';
 import '../../../domain/usecase/restaurant/categories_usecase.dart';
 import '../../../domain/usecase/restaurant/category_items_usecase.dart';
 import '../../../domain/usecase/restaurant/item_extra_usecase.dart';
+import '../../../domain/usecase/restaurant/search_items_usecase.dart';
 part 'restaurant_state.dart';
 
 class RestaurantCubit extends Cubit<RestaurantState> {
-  RestaurantCubit({required ItemExtraUseCase itemExtraUseCase,required CategoriesUseCase categoriesUseCase,required CategoryItemsUseCase categoryItemsUseCase}) :
-        _categoriesUseCase = categoriesUseCase,_categoryItemsUseCase=categoryItemsUseCase ,_itemExtraUseCase=itemExtraUseCase ,super(RestaurantInitial());
+  RestaurantCubit({required SearchItemsUseCase searchItemsUseCase,required ItemExtraUseCase itemExtraUseCase,required CategoriesUseCase categoriesUseCase,required CategoryItemsUseCase categoryItemsUseCase}) :
+       _searchItemsUseCase=searchItemsUseCase, _categoriesUseCase = categoriesUseCase,_categoryItemsUseCase=categoryItemsUseCase ,_itemExtraUseCase=itemExtraUseCase ,super(RestaurantInitial());
 
+  final SearchItemsUseCase _searchItemsUseCase;
   final CategoriesUseCase _categoriesUseCase;
   final ItemExtraUseCase _itemExtraUseCase;
   final CategoryItemsUseCase _categoryItemsUseCase;
@@ -24,7 +27,7 @@ class RestaurantCubit extends Cubit<RestaurantState> {
   List<ItemExtraModelData>? itemExtraModelDataList;
 
   Future<ResponseModel> getCategories({required int id}) async {
-    // categoriesModelList=null;
+     categoriesModelList=null;
     emit(GetCategoriesLoadingState()) ;
     ResponseModel responseModel = await _categoriesUseCase.call(id: id);
     if (responseModel.isSuccess) {
@@ -33,6 +36,18 @@ class RestaurantCubit extends Cubit<RestaurantState> {
       emit(GetCategoriesSuccessState()) ;
     }else{
       emit(GetCategoriesErrorState()) ;
+    }
+    return responseModel;
+  }
+  SearchItemModel? searchItemModel;
+  Future<ResponseModel> searchItems({required int storeId,required String searchText}) async {
+    emit(SearchLoadingState()) ;
+    ResponseModel responseModel = await _searchItemsUseCase.call(searchText: searchText, storeId: storeId);
+    if (responseModel.isSuccess) {
+       searchItemModel =responseModel.data;
+      emit(SearchSuccessState()) ;
+    }else{
+      emit(SearchErrorState()) ;
     }
     return responseModel;
   }
@@ -63,6 +78,12 @@ class RestaurantCubit extends Cubit<RestaurantState> {
       emit(GetCategoriesErrorState()) ;
     }
     return responseModel;
+  }
+  TextEditingController searchController = TextEditingController();
+  bool isSearchStart=false;
+  void changeSearchStart(bool x){
+    isSearchStart=x;
+    emit(ChangeLoadingState());
   }
 
 }

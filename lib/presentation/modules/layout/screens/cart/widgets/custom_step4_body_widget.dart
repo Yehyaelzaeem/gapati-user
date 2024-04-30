@@ -1,4 +1,5 @@
 import 'package:cogina/core/translations/locale_keys.dart';
+import 'package:cogina/presentation/modules/layout/screens/cart/cart_cubit.dart';
 import 'package:cogina/presentation/modules/layout/screens/cart/check_out/check_out_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -38,8 +39,8 @@ class CustomStepBody4Widget extends StatelessWidget {
             child: Row(
               children: [
                 Radio(
-                  value: true,
-                  groupValue: selectedRadioValue,
+                  value: 0,
+                  groupValue: 0,
                   onChanged: (value) {
                     setSelectedRadioValue(value.toString());
                   },
@@ -88,25 +89,7 @@ class CustomStepBody4Widget extends StatelessWidget {
                         fontSize: 17,
                         fontColor: AppColors.whiteColor,
                         onTap: (){
-                          logInFirst(function: (){
-                            AddressCubit addressCubit= AddressCubit.get(context);
-                            if(addressCubit.lastAddressModel==null&&addressCubit.phoneController.text.isEmpty&&addressCubit.addressController.text.isEmpty){
-                              cubit.changeSteps(0);
-                              showToast(text: LocaleKeys.mesAddress.tr(), state: ToastStates.error, context: context);
-                            }else{
-                              if(addressCubit.phoneController.text.isEmpty&&addressCubit.addressController.text.isEmpty){
-                                CheckOutBody checkOutBody=CheckOutBody(
-                                    paymentMethod: 'cash', address: AddressCubit.get(context).lastAddressModel!.data!.toAddress, latitude: '32.1194242', longitude: '20.1861500', phone: AddressCubit.get(context).lastAddressModel!.data!.phone);
-                                cubit.checkOut(checkOutBody: checkOutBody, context: context);
-                              }else{
-                                CheckOutBody checkOutBody=CheckOutBody(
-                                    paymentMethod: 'cash', address: addressCubit.addressController.text, latitude: '32.1194242', longitude: '20.1861500', phone: addressCubit.phoneController.text);
-                                cubit.checkOut(checkOutBody: checkOutBody, context: context);
-                              }
-
-                            }
-                           }, context: context);
-
+                         cubit.sendCheckOutData(context);
                         }, buttonText: LocaleKeys.payNow.tr());
                   },
                   ),

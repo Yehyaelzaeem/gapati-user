@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../core/global/styles/colors.dart';
-import '../../data/model/response/iitem_extra_model.dart';
+import '../../data/model/response/item_extra_model.dart';
 
 class MultiSelectChip extends StatefulWidget {
   final List<ItemExtraModelData> reportList;
@@ -45,7 +45,6 @@ class _MultiSelectChipState extends State<MultiSelectChip> {
       choices.add(
           Stack(
             children: [
-
               Container(
                 child: Padding(
                   padding:  EdgeInsets.only(top:widget.paddingTop?? 17.h),
@@ -71,9 +70,11 @@ class _MultiSelectChipState extends State<MultiSelectChip> {
                           selectedChoices.add(item);
                         }
 
-                        if (selectedChoices.isNotEmpty) {
-                          widget.onSelectionChanged(selectedChoices);
-                        }
+                        // if (selectedChoices.isNotEmpty) {
+                        //   widget.onSelectionChanged(selectedChoices);
+                        // }
+                        widget.onSelectionChanged(selectedChoices);
+
 
 
                       });

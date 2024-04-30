@@ -1,4 +1,5 @@
 import 'package:cogina/core/translations/locale_keys.dart';
+import 'package:cogina/domain/logger.dart';
 import 'package:cogina/presentation/modules/restaurant/widgets/shimmer_categories_restaurant.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -32,6 +33,7 @@ class _CustomBestMealsWidgetState extends State<CustomBestMealsWidget> {
   @override
   Widget build(BuildContext context) {
     RestaurantCubit cubit =RestaurantCubit.get(context);
+
     return
       BlocConsumer<RestaurantCubit, RestaurantState>(
               listener: (context, state) {},
@@ -50,7 +52,8 @@ class _CustomBestMealsWidgetState extends State<CustomBestMealsWidget> {
                                       MealDetailsScreen(categoriesItemsModelData: cubit.categoryItemsModelList![index],
                                         storeId: cubit.categoryItemsModelList![index].storeId.toString(), storeName: widget.storeName,)));
                                 },
-                                child:  CustomMealWidget(categoriesItemsModelData: cubit.categoryItemsModelList![index], storeName: widget.storeName,));
+                                child:
+                                CustomMealWidget(categoriesItemsModelData: cubit.categoryItemsModelList![index], storeName: widget.storeName,));
                           }),
                     );
 

@@ -46,7 +46,10 @@
   "checkout": "الدفع",
   "total_amount": "المبلغ الإجمالي",
   "search": "بحث",
+  "the_search": "البحث",
   "description": "الوصف",
+  "start_search": "ماذا ترغب في البحث عنه ؟",
+
   "extra_components": "المكونات الإضافية",
   "choose_sandwich": "اختر الساندويتش الأول",
   "address": "العنوان",
@@ -108,6 +111,7 @@
   "creating_account_agree": "بإنشاء حسابك، أنت توافق على",
   "already_have_account": "هل لديك حساب بالفعل؟",
   "lyd": "دينار",
-  "another_cart": "لديك عربة تسوق أخرى"
+  "another_cart": "لديك عربة تسوق أخرى",
+  "cart_empty": "السلة فارغة"
 
 }

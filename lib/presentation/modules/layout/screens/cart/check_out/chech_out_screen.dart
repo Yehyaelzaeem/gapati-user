@@ -37,16 +37,18 @@ class CheckOutScreen extends StatelessWidget {
               elevation: 0,
               margin: EdgeInsets.zero,
               onStepTapped: (int step) {
-                 if(HomeCubit.get(context).token!=null&&HomeCubit.get(context).token!.isNotEmpty){
-                   cubit.changeSteps(step);
-                   // if(AddressCubit.get(context).lastAddressModel!=null){
-                   //   cubit.changeSteps(step);
-                   // }else{
-                   //   showToast(text: LocaleKeys.mesAddress.tr(), state: ToastStates.error, context: context);
-                   // }
-                 }else{
-                   cubit.changeSteps(step);
-                 }
+                cubit.changeSteps(step);
+
+                // if(HomeCubit.get(context).token!=null&&HomeCubit.get(context).token!.isNotEmpty){
+                //    cubit.changeSteps(step);
+                //    // if(AddressCubit.get(context).lastAddressModel!=null){
+                //    //   cubit.changeSteps(step);
+                //    // }else{
+                //    //   showToast(text: LocaleKeys.mesAddress.tr(), state: ToastStates.error, context: context);
+                //    // }
+                //  }else{
+                //    cubit.changeSteps(step);
+                //  }
 
               },
               steps: <Step>[

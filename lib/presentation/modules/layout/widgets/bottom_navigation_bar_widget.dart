@@ -50,7 +50,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
         onClick: () => _onTap(tab.index),
 
         child:
-        Icon(_currentIndex== tab.index? tab.selectIcon: tab.unSelectIcon,color: _currentIndex== tab.index? Theme.of(context).primaryColor: Theme.of(context).hintColor),
+        _currentIndex== tab.index? tab.selectIcon: tab.unSelectIcon,
 
         // child: SvgPicture.asset(tab.image,
         //     height: 28.r, width: 28.r, color: Theme.of(context).primaryColor),

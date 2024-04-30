@@ -161,6 +161,40 @@ class DioClient {
       rethrow;
     }
   }
+  Future<Response> request(
+      String uri, {
+        dynamic data,
+        String? method,
+      }) async {
+    try {
+      var dio2 = Dio();
+      var headers = {
+        'User-Agent': 'android',
+        'Accept-Language':  NavigationService.navigationKey.currentContext!.locale.languageCode,
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vc2FyZWVhLWJhY2tlbmQudGVzdC9hcGkvYXV0aC9vdHAiLCJpYXQiOjE3MTE5MzQxODMsImV4cCI6MTcxNDkzNDE4MywibmJmIjoxNzExOTM0MTgzLCJqdGkiOiJ0S3dMOVdnTGpLTHJHMzJ2Iiwic3ViIjoxMjMsInBydiI6IjQxZWZiN2JhZDdmNmY2MzJlMjQwNWJkM2E3OTNiOGE2YmRlYzY3NzcifQ.uH11niUzniMaPrKqfpdOd7YTOLDYwGgYLRLCDfNPOfU',
+        'Accept': 'application/json'
+      };
+
+      var response = await dio2.request(
+        '${AppURL.kBaseURL}$uri',
+        data:data,
+        options: Options(
+          method: method,
+          headers: headers
+        )
+      );
+      return response;
+    } on FormatException catch (_) {
+      log( 'Unable to process the data','');
+      throw const FormatException("Unable to process the data");
+    }  on DioError catch (e) {
+       log('post:', e.message);
+
+      rethrow;
+    }
+  }
+
 
 
   Future<Response> put(

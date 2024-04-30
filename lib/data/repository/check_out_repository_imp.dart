@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:cogina/domain/request_body/check_out_body.dart';
 import 'package:dio/dio.dart';
 import '../../domain/repository/check_out_repo.dart';
@@ -14,12 +15,19 @@ class CheckOutRepositoryImp implements CheckOutRepository{
   })  : _dioClient = dioClient;
 
   @override
-  Future<ApiResponse> checkOut({required CheckOutBody checkOutBody}) async{
+  Future<ApiResponse> checkOut({required CheckOutModel checkOutBody}) async{
     try {
       Response response = await _dioClient.post(
           AppURL.kCheckOutURL,
           queryParameters: checkOutBody.toJson()
       );
+      /*
+      Response response = await _dioClient.request(
+          AppURL.kCheckOutURL,
+          method: 'POST',
+          data: checkOutBody.toJson()
+      );
+       */
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));

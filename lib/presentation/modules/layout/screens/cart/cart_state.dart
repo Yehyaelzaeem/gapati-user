@@ -22,6 +22,7 @@ class UpdateItemErrorState extends CartState {}
 class AddStoreNameState extends CartState {}
 
 
+class UpdateExtraCartDataState extends CartState {}
 class GetCartDataState extends CartState {}
 class SetItemsCartDataState extends CartState {}
 class GetItemsCartDataState extends CartState {}

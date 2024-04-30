@@ -25,20 +25,24 @@ class CustomNamePriceWidget extends StatelessWidget {
           ),
           Row(
             children: [
-              Text(
-                name,
-                style: TextStyles.font18Black700Weight.copyWith(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 24,
-                    color: AppColors.customBlack),
+              Expanded(
+                child: Text(
+                  name,
+                  style: TextStyles.font18Black700Weight.copyWith(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24,
+                      color: AppColors.customBlack),
+                ),
               ),
-              const Spacer(),
+              horizontalSpace(20),
               Row(
                 children: [
                   priceDiscount !=
                       null ? Text(
                     '${double.parse(price.toString()).toStringAsFixed(1)} ${LocaleKeys.lyd.tr()}',
                     style: TextStyles.font16Black600Weight.copyWith(fontSize: 14,
+                        decorationColor: AppColors.blackColor,
+                        decorationThickness: 25,
                         decoration: TextDecoration.lineThrough),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,

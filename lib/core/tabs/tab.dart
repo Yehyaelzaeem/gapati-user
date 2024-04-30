@@ -11,8 +11,8 @@ class NavigationTab {
     required this.index,
   });
   final String name;
-  final IconData selectIcon;
-  final IconData unSelectIcon;
+  final Widget selectIcon;
+  final Widget unSelectIcon;
   final String image;
   final Widget initialRoute;
   final int index;

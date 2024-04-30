@@ -1,4 +1,4 @@
-import 'iitem_extra_model.dart';
+import 'item_extra_model.dart';
 
 class CategoryItemModel {
   CategoryItemModelData? data;

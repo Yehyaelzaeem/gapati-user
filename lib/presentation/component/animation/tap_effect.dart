@@ -5,7 +5,7 @@ class TapEffect extends StatefulWidget {
       {Key? key,
       this.isClickable = true,
       required this.onClick,
-      required this.child})
+      required this.child, })
       : super(key: key);
 
   final bool isClickable;

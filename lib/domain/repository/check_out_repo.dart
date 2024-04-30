@@ -11,6 +11,6 @@ import '../request_body/register_body.dart';
 
 mixin CheckOutRepository {
 
-  Future<ApiResponse> checkOut({required CheckOutBody checkOutBody}) ;
+  Future<ApiResponse> checkOut({required CheckOutModel checkOutBody}) ;
 
 }

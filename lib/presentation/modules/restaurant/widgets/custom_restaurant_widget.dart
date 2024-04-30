@@ -16,7 +16,7 @@ class CustomRestaurantWidget extends StatelessWidget {
     return
       InkWell(
         onTap: (){
-          NavigationService.push(RoutesRestaurants.restaurantScreen,arguments: {'id':restaurantData.id});
+          NavigationService.push(RoutesRestaurants.restaurantScreen,arguments: {'id':restaurantData.id,'storeName':restaurantData.name});
         },
         child: Padding(
         padding: const EdgeInsets.all(8.0),

@@ -13,6 +13,7 @@ import '../../../../../../core/global/styles/colors.dart';
 import '../../../../../../core/global/styles/styles.dart';
 import '../../../../../../core/routing/navigation_services.dart';
 import '../../../../../../core/routing/routes.dart';
+import '../../../search/search_cubit.dart';
 import 'widgets/shimmer_restaurant.dart';
 import 'home_cubit.dart';
 
@@ -58,6 +59,9 @@ class HomeScreen extends StatelessWidget {
                                   right: 10.w,
                                   child: InkWell(
                                     onTap: (){
+                                      SearchCubit searchCubit =SearchCubit.get(context);
+                                      searchCubit.searchController.text='';
+                                      searchCubit.changeSearchStart(false);
                                       NavigationService.push(RoutesRestaurants.searchScreen);
                                     },
                                     child: Container(

@@ -23,13 +23,12 @@ class LayoutScreen extends StatefulWidget {
 class _LayoutScreenState extends State<LayoutScreen> {
   @override
   void initState() {
-    super.initState();
     HomeCubit cubit =HomeCubit.get(context);
     cubit.getHome();
     cubit.getOffers();
-    FavoriteCubit.get(context).getFavorite(context);
     BlocProvider.of<LayoutCubit>(context, listen: false).init(widget._currentPage);
     BlocProvider.of<LayoutCubit>(context, listen: false).initLayOut();
+    super.initState();
   }
 
   @override

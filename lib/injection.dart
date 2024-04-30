@@ -10,6 +10,7 @@ import 'package:cogina/presentation/modules/layout/screens/more/more_cubit.dart'
 import 'package:cogina/presentation/modules/layout/screens/more/profile/profile_cubit.dart';
 import 'package:cogina/presentation/modules/layout/screens/orders/orders_cubit.dart';
 import 'package:cogina/presentation/modules/restaurant/restaurant_cubit.dart';
+import 'package:cogina/presentation/modules/search/search_cubit.dart';
 import 'data/injection.dart';
 import 'domain/provider/local_auth_provider_cubit.dart';
 
@@ -23,9 +24,10 @@ Future<void> init() async {
   getIt.registerLazySingleton(() => LocalAuthCubit( getProfileUseCase:  getIt(), isUserLoginUseCase: getIt(), clearUserDataUseCase: getIt()));
   getIt.registerLazySingleton(() => CartCubit(cartUseCase: getIt(), addQTUseCase: getIt(), subQTUseCase: getIt(),
     addItemUseCase: getIt(), deleteItemUseCase: getIt(), updateItemUseCase: getIt(),));
-  getIt.registerLazySingleton(() => RestaurantCubit(categoriesUseCase: getIt(), categoryItemsUseCase: getIt(), itemExtraUseCase: getIt()));
+  getIt.registerLazySingleton(() => RestaurantCubit(categoriesUseCase: getIt(), categoryItemsUseCase: getIt(), itemExtraUseCase: getIt(), searchItemsUseCase: getIt()));
   getIt.registerLazySingleton(() => CheckOutCubit( checkOutUseCase:  getIt(),));
   getIt.registerLazySingleton(() => OrdersCubit(ordersUseCase: getIt()));
+  getIt.registerLazySingleton(() => SearchCubit(searchUseCase: getIt()));
   getIt.registerLazySingleton(() => MoreCubit(aboutUsUseCase: getIt(), privacyUseCase: getIt(), termsUseCase: getIt()));
   getIt.registerLazySingleton(() => AddressCubit(addAddressUseCase: getIt(), mainAddressUseCase: getIt(), addressUseCase: getIt(), lastAddressUseCase: getIt()));
   getIt.registerLazySingleton(() =>FavoriteCubit(getFavoriteUseCase: getIt(), addFavoriteUseCase: getIt(), removeFavoriteUseCase: getIt()));

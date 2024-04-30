@@ -49,24 +49,29 @@ class _CustomMealWidgetState extends State<CustomMealWidget> {
                 width: 140.w,
                 height: double.infinity,
                 child: CustomImage(image: widget.categoriesItemsModelData!.image!,radius: 20,)),
-            SizedBox(width: 5.w,),
+            SizedBox(width: 8.w,),
             Expanded(
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  SizedBox(height: 1.h,),
                    Flexible(
                      child: Column(
+                       crossAxisAlignment: CrossAxisAlignment.start,
                        children: [
+                         SizedBox(height: 10.h,),
                          Text(widget.categoriesItemsModelData!.name!,
                            style: TextStyles.font16Black600Weight,
+                           maxLines: 1,
+                           overflow: TextOverflow.ellipsis,
                          ),
                          Flexible(
                            child: Text(widget.categoriesItemsModelData!.description!,
                              style: TextStyles.font15CustomGray400Weight.copyWith(
-                                 fontSize: 13
+                                 fontSize: 13,
+                               height: 1.2
                              ),
-                             textAlign: TextAlign.center,
+                             // textAlign: TextAlign.center,
                              maxLines: 3,
                              overflow: TextOverflow.ellipsis,
                            ),
@@ -74,10 +79,11 @@ class _CustomMealWidgetState extends State<CustomMealWidget> {
                        ],
                      ),
                    ),
-                  CustomAddCartButton(
-                    height: 33.h,
-                    categoriesItemsModelData:  widget.categoriesItemsModelData!, storeName: widget.storeName,)
-                ,verticalSpace(10.h)
+                  FittedBox(
+                    child: CustomAddCartButton(
+                      height: 30.h,
+                      categoriesItemsModelData:  widget.categoriesItemsModelData!, storeName: widget.storeName,),
+                  )
                 ],
               ),
             ),
@@ -88,15 +94,17 @@ class _CustomMealWidgetState extends State<CustomMealWidget> {
                 SizedBox(height: 10.h,),
                 IconButton(
                     onPressed: (){
-                  setState(() {
-                    if(widget.categoriesItemsModelData!.inFav==false){
-                      favoriteCubit.addFavorite(itemId: widget.categoriesItemsModelData!.id!, context: context);
-                      widget.categoriesItemsModelData!.inFav=true;
-                    }else{
-                      favoriteCubit.removeFavorite(itemId: widget.categoriesItemsModelData!.id!, context: context);
-                      widget.categoriesItemsModelData!.inFav=false;
-                    }
-                  });
+                      logInFirst(function: (){
+                        setState(() {
+                          if(widget.categoriesItemsModelData!.inFav==false){
+                            favoriteCubit.addFavorite(itemId: widget.categoriesItemsModelData!.id!, context: context);
+                            widget.categoriesItemsModelData!.inFav=true;
+                          }else{
+                            favoriteCubit.removeFavorite(itemId: widget.categoriesItemsModelData!.id!, context: context);
+                            widget.categoriesItemsModelData!.inFav=false;
+                          }
+                        });
+                      }, context: context);
                 },
                     icon:widget.categoriesItemsModelData!.inFav==true? Icon(Icons.favorite,color: Colors.red,):Icon(Icons.favorite_border_rounded,color: Colors.grey,)),
                 SizedBox(height: 5.h,),
@@ -109,6 +117,8 @@ class _CustomMealWidgetState extends State<CustomMealWidget> {
                        Text(
                          '${double.parse(widget.categoriesItemsModelData!.price!.toString()).toStringAsFixed(1)} ${LocaleKeys.lyd.tr()}',
                          style: TextStyles.font16Black600Weight.copyWith(
+                             decorationColor: AppColors.blackColor,
+                             decorationThickness: 2,
                              decoration: TextDecoration.lineThrough,
                              fontSize: 14,
                              fontWeight: FontWeight.w400

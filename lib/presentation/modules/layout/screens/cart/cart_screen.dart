@@ -1,3 +1,4 @@
+import 'package:cogina/core/function/function.dart';
 import 'package:cogina/core/translations/locale_keys.dart';
 import 'package:cogina/presentation/modules/layout/screens/cart/cart_cubit.dart';
 import 'package:cogina/presentation/modules/layout/screens/cart/widgets/custom_cart_item.dart';
@@ -13,6 +14,7 @@ import '../../../../../../core/routing/routes.dart';
 import '../../../../component/custom_app_bar.dart';
 import '../../../../component/custom_elevated_button.dart';
 import '../../layout_cubit.dart';
+import '../home/home_cubit.dart';
 import '../more/address/address_cubit.dart';
 import 'check_out/check_out_cubit.dart';
 
@@ -68,7 +70,9 @@ class CartScreen extends StatelessWidget {
                             width: MediaQuery.of(context).size.width*0.9,
                             onTap: (){
                               CheckOutCubit.get(context).changeSteps(0);
-                              AddressCubit.get(context).getLastAddress();
+                              if(HomeCubit.get(context).token!=null&&HomeCubit.get(context).token!.isNotEmpty){
+                                AddressCubit.get(context).getLastAddress();
+                              }
                               NavigationService.push(RoutesRestaurants.checkOut);
                             }, buttonText: LocaleKeys.checkout.tr()),
                         SizedBox(height: 60.h,),

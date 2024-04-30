@@ -81,14 +81,15 @@ class CustomStepBody1Widget extends StatelessWidget {
                           fontColor: AppColors.whiteColor,
                           width: MediaQuery.of(context).size.width*0.9,
                           onTap: (){
-                            logInFirst(function: (){
-                              CheckOutCubit.get(context).changeSteps(1);
-                              // if(cubit.mainAddressModel!=null){
-                              //   CheckOutCubit.get(context).changeSteps(1);
-                              // }else{
-                              //   showToast(text: LocaleKeys.mesAddress.tr(), state: ToastStates.error, context: context);
-                              // }
-                            }, context: context);
+                            CheckOutCubit.get(context).changeSteps(1);
+                            // logInFirst(function: (){
+                            //   CheckOutCubit.get(context).changeSteps(1);
+                            //   // if(cubit.mainAddressModel!=null){
+                            //   //   CheckOutCubit.get(context).changeSteps(1);
+                            //   // }else{
+                            //   //   showToast(text: LocaleKeys.mesAddress.tr(), state: ToastStates.error, context: context);
+                            //   // }
+                            // }, context: context);
 
 
 
