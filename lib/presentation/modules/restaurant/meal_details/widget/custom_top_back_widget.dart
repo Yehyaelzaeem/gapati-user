@@ -2,10 +2,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/global/styles/colors.dart';
+import '../../../layout/screens/cart/cart_cubit.dart';
 
 class CustomTopBackWidget extends StatelessWidget {
-  const CustomTopBackWidget({super.key});
-
+  const CustomTopBackWidget({super.key, required this.type});
+  final String type;
   @override
   Widget build(BuildContext context) {
     return Positioned(
@@ -14,6 +15,10 @@ class CustomTopBackWidget extends StatelessWidget {
         right:context.locale.languageCode==Locale('en').toString()? null:20.w,
         child: InkWell(
           onTap: () {
+            if(type=='cart'){
+              CartCubit cartCubit =CartCubit.get(context);
+              cartCubit.updateData();
+            }
             Navigator.of(context).pop();
           },
           child: Container(

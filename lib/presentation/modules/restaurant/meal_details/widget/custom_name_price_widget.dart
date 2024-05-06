@@ -38,7 +38,7 @@ class CustomNamePriceWidget extends StatelessWidget {
               Row(
                 children: [
                   priceDiscount !=
-                      null ? Text(
+                      null &&priceDiscount !='0'? Text(
                     '${double.parse(price.toString()).toStringAsFixed(1)} ${LocaleKeys.lyd.tr()}',
                     style: TextStyles.font16Black600Weight.copyWith(fontSize: 14,
                         decorationColor: AppColors.blackColor,

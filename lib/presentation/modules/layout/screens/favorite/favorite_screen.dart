@@ -84,7 +84,7 @@ class FavoriteScreen extends StatelessWidget {
                       }
                     },
                   )):
-      CustomVisitorScreen();
+      CustomVisitorScreen(screenName: 'favorite',);
 
   }
 }

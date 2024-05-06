@@ -1,5 +1,7 @@
 import 'package:cogina/core/function/function.dart';
+import 'package:cogina/core/helpers/extensions.dart';
 import 'package:cogina/core/translations/locale_keys.dart';
+import 'package:cogina/domain/logger.dart';
 import 'package:cogina/presentation/modules/layout/screens/cart/cart_cubit.dart';
 import 'package:cogina/presentation/modules/layout/screens/cart/widgets/custom_cart_item.dart';
 import 'package:cogina/presentation/modules/layout/screens/cart/widgets/custom_cart_top_widget.dart';
@@ -69,14 +71,18 @@ class CartScreen extends StatelessWidget {
                             fontSize: 16,
                             width: MediaQuery.of(context).size.width*0.9,
                             onTap: (){
-                              CheckOutCubit.get(context).changeSteps(0);
-                              if(HomeCubit.get(context).token!=null&&HomeCubit.get(context).token!.isNotEmpty){
-                                AddressCubit.get(context).getLastAddress();
+                              if(cubit.products.isNotEmpty){
+                                CheckOutCubit.get(context).changeSteps(0);
+                                if(HomeCubit.get(context).token!=null&&HomeCubit.get(context).token!.isNotEmpty){
+                                  AddressCubit.get(context).getLastAddress();
+                                }
+                                NavigationService.push(RoutesRestaurants.checkOut);
                               }
-                              NavigationService.push(RoutesRestaurants.checkOut);
-                            }, buttonText: LocaleKeys.checkout.tr()),
+                              else{
+                                context.pushNamedAndRemoveUntil(RoutesRestaurants.restaurantsScreen,predicate: (Route<dynamic> route) =>route.isFirst);
+                              }
+                            }, buttonText:cubit.products.isNotEmpty? LocaleKeys.checkout.tr():LocaleKeys.goToShopping.tr()),
                         SizedBox(height: 60.h,),
-
                       ],
                     ),
                   );

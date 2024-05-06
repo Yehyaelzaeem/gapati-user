@@ -33,7 +33,6 @@ class OrdersScreen extends StatelessWidget {
           if(cubit.orderModel!=null){
             if(cubit.orderModel!.data!.isEmpty){
               return CustomNotFoundDataWidget(image: RestaurantImages.cart,title: LocaleKeys.notFoundData.tr(), type: 'svg',);
-
             }else{
               return ListView.builder(
                   itemCount: cubit.orderModel!.data!.length,
@@ -50,6 +49,6 @@ class OrdersScreen extends StatelessWidget {
         listener: (context,state){},
       )
     ):
-       CustomVisitorScreen();
+       CustomVisitorScreen(screenName: 'orders',);
   }
 }

@@ -202,7 +202,7 @@ class RestaurantScreen extends StatelessWidget {
                                             onTap: (){
                                               Navigator.push(context, MaterialPageRoute(builder: (context)=>
                                                   MealDetailsScreen(categoriesItemsModelData: categoryItemsData,
-                                                    storeId: e.storeId.toString(), storeName: storeName,)));
+                                                    storeId: e.storeId.toString(), storeName: storeName, type: 'details',)));
                                             },
                                             child: CustomMealWidget(categoriesItemsModelData:categoryItemsData, storeName: storeName,),
                                           );

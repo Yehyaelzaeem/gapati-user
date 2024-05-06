@@ -28,7 +28,7 @@ class CustomProductItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     CategoryItemsData categoryItemsData =CategoryItemsData(
       id: offersModelData.item!.id,
-      name: offersModelData.name,
+      name: offersModelData.item!.name,
       description: offersModelData.description,
       categoryId: offersModelData.item!.categoryId,
       categoryName: offersModelData.item!.categoryName,
@@ -44,6 +44,7 @@ class CustomProductItemWidget extends StatelessWidget {
     return InkWell(
       onTap: (){
         context.pushNamed(RoutesRestaurants.mealDetailsScreen,arguments: {
+          'type':'details',
           'storeId':offersModelData.restaurant!.id!.toString(),'storeName':offersModelData.restaurant!.name!,'categoriesItemsModelData':categoryItemsData});
       },
       child: Container(
@@ -115,8 +116,8 @@ class CustomProductItemWidget extends StatelessWidget {
                         '${offersModelData.item!.price} ${LocaleKeys.lyd.tr()}',
                         style: TextStyles.font16Black600Weight.copyWith(
                           decoration: TextDecoration.lineThrough,
-                            decorationThickness: 2,
-                            decorationColor: Colors.grey.shade400,
+                            decorationThickness: 5,
+                            decorationColor: Colors.grey.shade900,
                           color: Colors.grey.shade400
                         ),
                         maxLines: 1,

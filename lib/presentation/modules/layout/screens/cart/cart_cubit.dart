@@ -37,32 +37,39 @@ class CartCubit extends Cubit<CartState> {
   List<CategoryItemsData> products = <CategoryItemsData>[];
 
   Future<dynamic> addProduct({required CategoryItemsData product ,required String storeName}) async {
-    if (products.where((CategoryItemsData element) => element.id == product.id).toList().length == 0){
+    if (products.where((CategoryItemsData element) => element.id == product.id && element.itemExtraModelDataSelected==product.itemExtraModelDataSelected).toList().length == 0){
       products.add(product);
       addStoreName(storeName);
     };
-    products.where((CategoryItemsData element) => element.id == product.id).first.count = 1;
+    products.where((CategoryItemsData element) => element.id == product.id && element.itemExtraModelDataSelected==product.itemExtraModelDataSelected).first.count = 1;
     emit(GetCartDataState());
   }
-  Future<dynamic> addQty(CategoryItemsData product) async {
-    product.count = product.count! + 1;
-    products.where((CategoryItemsData element) => element.id == product.id).first.count = product.count;
-    emit(GetCartDataState());
+  Future<dynamic> addQty(CategoryItemsData product,String? storeName) async {
+    if (products.where((CategoryItemsData element) => element.id == product.id && element.itemExtraModelDataSelected==product.itemExtraModelDataSelected).toList().length == 0){
+      addProduct(product: product, storeName: storeName!);
+      emit(GetCartDataState());
+    }else{
+      product.count = product.count! + 1;
+      products.where((CategoryItemsData element) => element.id == product.id && element.itemExtraModelDataSelected==product.itemExtraModelDataSelected).first.count = product.count;
+      emit(GetCartDataState());
+
+    }
+      emit(GetCartDataState());
   }
   Future<dynamic> updateExtra(CategoryItemsData product,List<ItemExtraModelData> itemExtraModelData) async {
-    products.where((CategoryItemsData element) => element.id == product.id).first.itemExtraModelDataList = itemExtraModelData;
-    emit(UpdateExtraCartDataState());
+    product.itemExtraModelDataSelected=itemExtraModelData;
+    products.firstWhere((CategoryItemsData element) => element.id == product.id && element.itemExtraModelDataSelected==product.itemExtraModelDataSelected).itemExtraModelDataSelected = itemExtraModelData;
   }
   Future<dynamic> removeQty(CategoryItemsData product) async {
     product.count = product.count! - 1;
     if (product.count == 0)
-      products.removeWhere((CategoryItemsData element) => element.id == product.id);
+      products.removeWhere((CategoryItemsData element) => element.id == product.id && element.itemExtraModelDataSelected==product.itemExtraModelDataSelected);
     else
-      products.where((CategoryItemsData element) => element.id == product.id).first.count = product.count;
+      products.where((CategoryItemsData element) => element.id == product.id && element.itemExtraModelDataSelected==product.itemExtraModelDataSelected).first.count = product.count;
     emit(GetCartDataState());  }
 
   Future<dynamic>  removeProduct(CategoryItemsData product) async {
-    products.removeWhere((CategoryItemsData element) => element.id == product.id);
+    products.removeWhere((CategoryItemsData element) => element.id == product.id && element.itemExtraModelDataSelected==product.itemExtraModelDataSelected);
     emit(GetCartDataState());
   }
 
@@ -76,8 +83,8 @@ class CartCubit extends Cubit<CartState> {
   }
   double getItemPrice(CategoryItemsData product) {
     double totalItem = double.parse(product.priceAfterDiscount!.toString());
-    if(product.itemExtraModelDataList!=null&&product.itemExtraModelDataList!.length!=0){
-      product.itemExtraModelDataList!.forEach((element) {
+    if(product.itemExtraModelDataSelected!=null&&product.itemExtraModelDataSelected!.length!=0){
+      product.itemExtraModelDataSelected!.forEach((element) {
         totalItem += double.parse(element.price!) ;
       });
     }
@@ -87,7 +94,10 @@ class CartCubit extends Cubit<CartState> {
   void removeAll() {
     products.clear();
   }
-
+void updateData(){
+    log('yehay', 'sssssssssssssssssssssssssssssssssssssss');
+  emit(UpdateExtraCartDataState());
+}
 
 
 

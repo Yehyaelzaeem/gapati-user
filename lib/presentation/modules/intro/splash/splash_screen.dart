@@ -1,8 +1,10 @@
+import 'package:cogina/domain/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/routing/navigation_services.dart';
 import '../../../../core/routing/routes.dart';
 import '../../../../data/app_urls/app_url.dart';
+import '../../../../data/datasource/local/cache_consumer.dart';
 import '../../../../data/datasource/remote/dio/dio_client.dart';
 import '../../../../data/injection.dart';
 import '../../../../domain/provider/local_auth_provider_cubit.dart';
@@ -50,10 +52,9 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
 
 
   navigationPage() async{
-
     bool isAuthed = await _viewModel.isLogin();
     if (isAuthed) {
-      NavigationService.pushNamedAndRemoveUntil( RoutesRestaurants.layout,arguments: {'currentPage':0});
+      NavigationService.pushNamedAndRemoveUntil(RoutesRestaurants.layout,arguments: {'currentPage':0});
     }else{
       dioClient.token=null;
       NavigationService.pushNamedAndRemoveUntil(RoutesRestaurants.onBoardingScreen);

@@ -53,8 +53,9 @@ class RouteRestaurantsGenerator {
         return platformPageRoute(const AddMealScreen());
       case RoutesRestaurants.mealDetailsScreen:
         return platformPageRoute( MealDetailsScreen(storeId: arguments?['storeId'],
+          count: arguments?['count'],itemExtraList: arguments?['itemExtraList'],
           storeName:arguments?['storeName'],
-          categoriesItemsModelData:  arguments?['categoriesItemsModelData'],));
+          categoriesItemsModelData:  arguments?['categoriesItemsModelData'], type:  arguments?['type'], ));
       case RoutesRestaurants.orderDetailsScreen:
         return platformPageRoute(OrderDetailsScreen(
           orderId: arguments?['orderId'],

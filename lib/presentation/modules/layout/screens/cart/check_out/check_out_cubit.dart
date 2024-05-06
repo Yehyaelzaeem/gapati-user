@@ -41,8 +41,8 @@ class CheckOutCubit extends Cubit<CheckOutState> {
                 branchId: '0', items: cartCubit.products.map((e) => ItemModel(
                       itemId: e.id.toString(),
                       qty: e.count!.toString(),
-                      note: '',
-                      extras: e.itemExtraModelDataList?.map((e) => ExtraModel(extraId: e.id!.toString())).toList() ?? [],
+                      note: 'note',
+                      extras: e.itemExtraModelDataSelected?.map((e) => ExtraModel(extraId: e.id!.toString())).toList() ?? [],
                    )).toList());
              checkOut(checkOutBody: checkOutBody, context: context);
           }else{
@@ -56,7 +56,7 @@ class CheckOutCubit extends Cubit<CheckOutState> {
                 itemId: e.id.toString(),
                 qty: e.count!.toString(),
                 note: '',
-                extras: e.itemExtraModelDataList?.map((e) => ExtraModel(extraId: e.id!.toString())).toList() ?? [],
+                extras: e.itemExtraModelDataSelected?.map((e) => ExtraModel(extraId: e.id!.toString())).toList() ?? [],
             )).toList());
              checkOut(checkOutBody: checkOutBody, context: context);
           }
@@ -65,7 +65,7 @@ class CheckOutCubit extends Cubit<CheckOutState> {
       else{
         showToast(text: LocaleKeys.cartEmpty.tr(), state: ToastStates.error, context: context);
       }
-    }, context: context);
+    }, context: context, screenName: 'checkOut');
   }
 
   ///Check Out
@@ -80,6 +80,7 @@ class CheckOutCubit extends Cubit<CheckOutState> {
         cubit.phController.text='';
         cubit.addressController.text='';
         cubit.addController.text='';
+        CartCubit.get(context).removeAll();
         showToast(text: responseModel.message.toString(), state: ToastStates.success, context: context);
         NavigationService.push(RoutesRestaurants.successOrderScreen);
       });

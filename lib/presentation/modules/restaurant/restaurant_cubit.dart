@@ -25,6 +25,7 @@ class RestaurantCubit extends Cubit<RestaurantState> {
   List<CategoriesModelData>? categoriesModelList;
   List<CategoryItemsData>? categoryItemsModelList;
   List<ItemExtraModelData>? itemExtraModelDataList;
+  List<ItemExtraModelData>? itemExtraModelDataList2;
 
   Future<ResponseModel> getCategories({required int id}) async {
      categoriesModelList=null;
@@ -83,6 +84,10 @@ class RestaurantCubit extends Cubit<RestaurantState> {
   bool isSearchStart=false;
   void changeSearchStart(bool x){
     isSearchStart=x;
+    emit(ChangeLoadingState());
+  }
+  void change(Function x){
+    x();
     emit(ChangeLoadingState());
   }
 

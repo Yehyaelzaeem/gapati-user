@@ -9,6 +9,8 @@ import '../../../../../core/global/styles/styles.dart';
 import '../../../../../core/helpers/spacing.dart';
 import '../../../../component/custom_elevated_button.dart';
 import '../login_cubit.dart';
+import 'package:flutter/material.dart';
+
 
 class OtpWidget extends StatefulWidget {
   const OtpWidget({super.key});
@@ -54,6 +56,7 @@ class _OtpWidgetState extends State<OtpWidget> {
                   color: Colors.grey
                 ),
               ),
+
               VerificationCode(
                 textStyle: TextStyle(fontSize: 20.0, color: Colors.blue.shade900,fontWeight: FontWeight.bold),
                 keyboardType: TextInputType.number,

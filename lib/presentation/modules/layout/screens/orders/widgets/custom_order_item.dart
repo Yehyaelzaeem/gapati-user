@@ -10,7 +10,6 @@ import '../../../../../../../core/routing/navigation_services.dart';
 import '../../../../../../../core/routing/routes.dart';
 import '../../../../../../data/model/response/order_model.dart';
 
-
 class CustomOrderItemWidget extends StatelessWidget {
   const CustomOrderItemWidget({super.key, required this.orderModelData});
   final OrderModelData orderModelData;
@@ -62,19 +61,21 @@ class CustomOrderItemWidget extends StatelessWidget {
                 ),
                 Container(
                   width: 70.w,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(' ${orderModelData.price} ${LocaleKeys.lyd.tr()}',style: TextStyles.font18Black700Weight.copyWith(
-                          color: AppColors.secondPrimaryColor),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,),
-                      Text('${LocaleKeys.delivered.tr()}',style: TextStyles.font18Black700Weight.copyWith(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 11.sp,
-                          color: AppColors.primaryColor),),
-                    ],
+                  child: FittedBox(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(' ${orderModelData.price} ${LocaleKeys.lyd.tr()}',style: TextStyles.font18Black700Weight.copyWith(
+                            color: AppColors.secondPrimaryColor),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,),
+                        Text('${LocaleKeys.delivered.tr()}',style: TextStyles.font18Black700Weight.copyWith(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 11.sp,
+                            color: AppColors.primaryColor),),
+                      ],
+                    ),
                   ),
                 )
               ],

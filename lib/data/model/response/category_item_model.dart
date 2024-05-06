@@ -84,7 +84,8 @@ class CategoryItemsData {
   bool? inCart;
   bool? inFav;
   int? count;
-  List<ItemExtraModelData>? itemExtraModelDataList;
+  List<ItemExtraModelData>? itemExtraModelDataSelected;
+  List<ItemExtraModelData>? itemExtraModelMain2;
 
 
   CategoryItemsData(
@@ -101,7 +102,7 @@ class CategoryItemsData {
         this.inCart,
         this.inFav,
         this.count,
-        this.itemExtraModelDataList,
+        this.itemExtraModelDataSelected,
       });
 
   CategoryItemsData.fromJson(Map<String, dynamic> json) {

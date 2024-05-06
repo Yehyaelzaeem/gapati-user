@@ -16,6 +16,7 @@ import '../../../generated/locale_keys.g.dart';
 import '../../core/global/styles/styles.dart';
 import '../../core/helpers/spacing.dart';
 import '../../domain/provider/local_auth_provider_cubit.dart';
+import '../modules/auth/login/login_cubit.dart';
 import 'base/simple_dialogs.dart';
 
 Future<bool?> showLogoutDialog(BuildContext context) async {
@@ -52,7 +53,7 @@ Future<bool?> showDeleteAccountDialog(BuildContext context) async {
   );
 }
 
-void showSignUpDialog({required BuildContext context}) {
+void showSignUpDialog({required BuildContext context,required String screenName}) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -107,7 +108,9 @@ void showSignUpDialog({required BuildContext context}) {
                   width: 200.w,
                   height: 40.h,
                   onTap: (){
-                    context.pushNamedAndRemoveUntil(RoutesRestaurants.logAsScreen, predicate: (route) => route.isFirst);
+                    LoginCubit.get(context).visitorLocation(screenName: screenName).then((value) {
+                      context.pushNamedAndRemoveUntil(RoutesRestaurants.logAsScreen, predicate: (route) => route.isFirst);
+                    });
                   }, buttonText:  LocaleKeys.signUp.tr(),
                    ),
               ),

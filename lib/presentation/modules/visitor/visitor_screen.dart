@@ -7,10 +7,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../core/helpers/spacing.dart';
 import '../../../core/routing/routes.dart';
 import '../../../core/translations/locale_keys.dart';
+import '../auth/login/login_cubit.dart';
 
 class CustomVisitorScreen extends StatelessWidget {
-  const CustomVisitorScreen({super.key});
-
+  const CustomVisitorScreen({super.key, required this.screenName});
+  final String screenName;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +38,9 @@ class CustomVisitorScreen extends StatelessWidget {
               height: 40.h,
               width: 200.w,
               onTap: (){
-                context.pushNamedAndRemoveUntil(RoutesRestaurants.logAsScreen, predicate: (route) => route.isFirst);
+                LoginCubit.get(context).visitorLocation(screenName: screenName).then((value) {
+                  context.pushNamedAndRemoveUntil(RoutesRestaurants.logAsScreen, predicate: (route) => route.isFirst);
+                });
 
             }, buttonText:LocaleKeys.signUp.tr(), ),
           ],

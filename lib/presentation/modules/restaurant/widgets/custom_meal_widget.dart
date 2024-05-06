@@ -104,7 +104,7 @@ class _CustomMealWidgetState extends State<CustomMealWidget> {
                             widget.categoriesItemsModelData!.inFav=false;
                           }
                         });
-                      }, context: context);
+                      }, context: context, screenName: 'favoriteDetails');
                 },
                     icon:widget.categoriesItemsModelData!.inFav==true? Icon(Icons.favorite,color: Colors.red,):Icon(Icons.favorite_border_rounded,color: Colors.grey,)),
                 SizedBox(height: 5.h,),
@@ -113,7 +113,7 @@ class _CustomMealWidgetState extends State<CustomMealWidget> {
                  child: FittedBox(
                    child: Column(
                      children: [
-                       widget.categoriesItemsModelData!.priceDiscount!=null?
+                       widget.categoriesItemsModelData!.priceDiscount!=null&& widget.categoriesItemsModelData!.priceDiscount! !="0"?
                        Text(
                          '${double.parse(widget.categoriesItemsModelData!.price!.toString()).toStringAsFixed(1)} ${LocaleKeys.lyd.tr()}',
                          style: TextStyles.font16Black600Weight.copyWith(

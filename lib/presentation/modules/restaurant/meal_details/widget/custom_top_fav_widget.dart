@@ -45,7 +45,7 @@ class CustomTopFavWidget extends StatelessWidget {
                       categoryItemsData.inFav=false;
                     }
                   });
-                }, context: context);
+                }, context: context, screenName: 'favoriteDetails');
                 }, child:categoryItemsData.inFav==true? Icon(Icons.favorite,color: Colors.red,):Icon(Icons.favorite_border_rounded,color: Colors.grey,)),
               ),
 

@@ -57,7 +57,7 @@ class ItemModel {
       return {
         'item_id': itemId,
         'qty': qty,
-        'note': note,
+        'note': 'note',
         'extras': extras.map((extra) => extra.toJson()).toList(),
       };
     }

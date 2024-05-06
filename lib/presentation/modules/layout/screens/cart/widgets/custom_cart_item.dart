@@ -36,10 +36,12 @@ class CustomCartItem extends StatelessWidget {
       child: InkWell(
         onTap: (){
              context.pushNamed(RoutesRestaurants.mealDetailsScreen,arguments: {
+                'count':product!.count,'itemExtraList':product!.itemExtraModelDataSelected,
+               'type':'cart',
                'storeId':product!.storeId.toString(),'storeName':cubit.storeName,'categoriesItemsModelData':product!});
         },
         child: Container(
-          height:product!.itemExtraModelDataList!=null&&product!.itemExtraModelDataList!.length!=0? height?? 150.h:120.h,
+          height:product!.itemExtraModelDataSelected!=null&&product!.itemExtraModelDataSelected!.length!=0? height?? 150.h:120.h,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(20),
@@ -75,7 +77,9 @@ class CustomCartItem extends StatelessWidget {
                         StatefulBuilder(builder: (context,setState){
                           return  InkWell(
                               onTap: (){
-                              logInFirst(function: (){
+                              logInFirst(
+                                  screenName: 'favoriteDetails',
+                                  function: (){
                                 setState(() {
                                   if(product!.inFav==false){
                                     favoriteCubit.addFavorite(itemId: product!.id!, context: context,);
@@ -93,7 +97,7 @@ class CustomCartItem extends StatelessWidget {
                         horizontalSpace(10)
                       ],
                     ),
-                    product!.itemExtraModelDataList!=null &&  product!.itemExtraModelDataList!.length!=0?
+                    product!.itemExtraModelDataSelected!=null &&  product!.itemExtraModelDataSelected!.length!=0?
                     Padding(
                       padding:  EdgeInsets.only(right: 8.w),
                       child: StatefulBuilder(builder: (context,setState){
@@ -105,16 +109,16 @@ class CustomCartItem extends StatelessWidget {
                               MultiSelectChip(
                                 height:chipHeight??45.h,
                                 radius:chipRadius?? 12,
-                                initialSelection:product!.itemExtraModelDataList!.map((e) => e).toList(),
+                                initialSelection:product!.itemExtraModelDataSelected!.map((e) => e).toList(),
                                 onSelectionChanged: (value){
                                   setState((){
-                                    product!.itemExtraModelDataList=value.map((e) => e).toList();
+                                    product!.itemExtraModelDataSelected=value.map((e) => e).toList();
                                   });
                                   if (cubit.products.where((CategoryItemsData element) => element.id == product!.id).toList().length > 0){
                                     cubit.updateExtra(product!, value.map((e) => e).toList());
                                   }
                                 },
-                                reportList: product!.itemExtraModelDataList!.map((e) => e).toList(),
+                                reportList: product!.itemExtraModelDataSelected!.map((e) => e).toList(),
                                 paddingTop: 12,
                               ),
                             ],
@@ -166,7 +170,7 @@ class CustomCartItem extends StatelessWidget {
                                   child: Icon(Icons.add,color: AppColors.primaryColor,weight: 5,size: 20,),
                                 ),
                                 onTap: (){
-                                  cubit.addQty(product!);
+                                  cubit.addQty(product!,'test');
                                 },
                               ),
                             ],

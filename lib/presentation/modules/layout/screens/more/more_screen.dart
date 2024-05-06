@@ -1,4 +1,6 @@
 import 'package:cogina/core/helpers/extensions.dart';
+import 'package:cogina/data/datasource/local/cache_consumer.dart';
+import 'package:cogina/data/injection.dart';
 import 'package:cogina/presentation/modules/layout/screens/home/home_cubit.dart';
 import 'package:cogina/presentation/modules/layout/screens/more/address/address_cubit.dart';
 import 'package:cogina/presentation/modules/layout/screens/more/profile/profile_cubit.dart';
@@ -20,6 +22,7 @@ import '../../../../component/custom_elevated_button.dart';
 import '../../../../component/custom_is_user.dart';
 import '../../../../component/images/custom_image.dart';
 import '../../../../dialog/show_logout_dialog.dart';
+import '../../../auth/login/login_cubit.dart';
 import '../../layout_cubit.dart';
 import 'more_cubit.dart';
 
@@ -273,9 +276,10 @@ class MoreScreen extends StatelessWidget {
                         CustomElevatedButton(
                           height: 40.h,
                           width: 200.w,
-                          onTap: (){
-                            context.pushNamedAndRemoveUntil(RoutesRestaurants.logAsScreen, predicate: (route) => route.isFirst);
-
+                          onTap: ()async{
+                            LoginCubit.get(context).visitorLocation(screenName: 'more').then((value) {
+                              context.pushNamedAndRemoveUntil(RoutesRestaurants.logAsScreen, predicate: (route) => route.isFirst);
+                            });
                           }, buttonText:'sign_up'.tr(), ),                ],
                     ),
                   ),

@@ -14,3 +14,4 @@ class LoginLoadingState extends LoginState {}
 class OtpLoadingState extends LoginState {}
 class OtpSuccessState extends LoginState {}
 class OtpErrorState extends LoginState {}
+class VisitorState extends LoginState {}

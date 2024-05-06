@@ -24,35 +24,37 @@ class LogAsScreen extends StatelessWidget {
         children: [
           verticalSpace(50),
           Image.asset(RestaurantImages.logo),
-          SizedBox(
-            width: MediaQuery.of(context).size.width*0.8,
-            child: DefaultTextStyle(
-              style: const TextStyle(
-                fontSize: 30.0,
-              ),
-              child: AnimatedTextKit(
-                animatedTexts: [
-                  TyperAnimatedText(LocaleKeys.welcomeMes.tr(),
-                      textStyle: TextStyles.font20Black700Weight.copyWith(
-                       height: 2,
-                      color:AppColors.customBlack,
-                      fontSize: 17.sp,
-                  ),textAlign: TextAlign.center),
-                  TyperAnimatedText(LocaleKeys.welcomeMes.tr(),
-                                      textStyle: TextStyles.font20Black700Weight.copyWith(
-                                      height: 2,
-                                      color:AppColors.customBlack,
-                                      fontSize: 17.sp,
-                                  ),textAlign: TextAlign.center),
+          Expanded(
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width*0.8,
 
-                ],
-                onTap: () {
-                  print("Tap Event");
-                },
+              child: DefaultTextStyle(
+                style: const TextStyle(
+                  fontSize: 30.0,
+                ),
+                child: AnimatedTextKit(
+                  animatedTexts: [
+                    TyperAnimatedText(LocaleKeys.welcomeMes.tr(),
+                        textStyle: TextStyles.font20Black700Weight.copyWith(
+                         height: 2,
+                        color:AppColors.customBlack,
+                        fontSize: 17.sp,
+                    ),textAlign: TextAlign.center),
+                    TyperAnimatedText(LocaleKeys.welcomeMes.tr(),
+                                        textStyle: TextStyles.font20Black700Weight.copyWith(
+                                        height: 2,
+                                        color:AppColors.customBlack,
+                                        fontSize: 17.sp,
+                                    ),textAlign: TextAlign.center),
+
+                  ],
+                  onTap: () {
+                    print("Tap Event");
+                  },
+                ),
               ),
             ),
           ),
-          Spacer(),
           CustomElevatedButton(
             borderRadius: 50,
             height: 45.h,
@@ -64,7 +66,6 @@ class LogAsScreen extends StatelessWidget {
               fontSize: 18,
           ),
           verticalSpace(15),
-
           CustomElevatedButton(
             borderRadius: 50,
             height: 45.h,

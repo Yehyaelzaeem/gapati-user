@@ -1,5 +1,6 @@
 import 'package:cogina/domain/logger.dart';
 import 'package:cogina/domain/request_body/otp_body.dart';
+import 'package:cogina/presentation/modules/layout/screens/home/home_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,7 +9,9 @@ import '../../../../core/helpers/toast_states/enums.dart';
 import '../../../../core/routing/navigation_services.dart';
 import '../../../../core/routing/routes.dart';
 import '../../../../core/utils/globals.dart';
+import '../../../../data/datasource/local/cache_consumer.dart';
 import '../../../../data/datasource/remote/exception/error_widget.dart';
+import '../../../../data/injection.dart';
 import '../../../../data/model/base/response_model.dart';
 import '../../../../data/model/response/otp_model.dart';
 import '../../../../data/model/response/user_model.dart';
@@ -17,6 +20,7 @@ import '../../../../domain/request_body/login_body.dart';
 import '../../../../domain/usecase/auth/check_otp_usecase.dart';
 import '../../../../domain/usecase/auth/sign_in_usecase.dart';
 import '../../../../domain/usecase/local/save_data_usecase.dart';
+import '../../layout/layout_cubit.dart';
 import '../register/register_cubit.dart';
 part 'login_state.dart';
 
@@ -70,7 +74,28 @@ class LoginCubit extends Cubit<LoginState> {
       registerCubit.phoneController.text='';
       registerCubit.lastNameController.text='';
       registerCubit.firstNameController.text='';
-      NavigationService.pushReplacement(RoutesRestaurants.layout,arguments: {'currentPage':0});
+      CacheConsumer cacheConsumer =CacheConsumer(secureStorage: getIt(), sharedPreferences: getIt(),);
+      var key =cacheConsumer.get('visitor');
+      LayoutCubit layoutCubit=LayoutCubit.get(context);
+       if(key!=null){
+         layoutCubit.initLayOut();
+         if(key=='favorite'){
+           NavigationService.pushNamedAndRemoveUntil(RoutesRestaurants.layout,arguments: {'currentPage':1});
+         }
+         else if(key=='orders'){
+           NavigationService.pushNamedAndRemoveUntil(RoutesRestaurants.layout,arguments: {'currentPage':2});
+         } else if(key=='more'){
+           NavigationService.pushNamedAndRemoveUntil(RoutesRestaurants.layout,arguments: {'currentPage':4});
+         } else if(key=='checkOut'){
+           NavigationService.pushNamedAndRemoveUntil(RoutesRestaurants.checkOut,);
+         }
+         else {
+           NavigationService.pushNamedAndRemoveUntil(RoutesRestaurants.layout,arguments: {'currentPage':0});
+         }
+       }
+       else{
+         NavigationService.pushNamedAndRemoveUntil(RoutesRestaurants.layout,arguments: {'currentPage':0});
+       }
       emit(LoginSuccessState()) ;
     }else{
      emit(LoginErrorState(responseModel.error)) ;
@@ -109,6 +134,13 @@ class LoginCubit extends Cubit<LoginState> {
   void _assignOtpBody(String phone) {
     otpBody.setData(phone: phone);
   }
+
+  Future<void> visitorLocation({required String screenName}) async{
+    CacheConsumer cacheConsumer =CacheConsumer(secureStorage: getIt(), sharedPreferences: getIt(),);
+    cacheConsumer.save('visitor', screenName);
+    emit(VisitorState()) ;
+  }
+
 
 
 

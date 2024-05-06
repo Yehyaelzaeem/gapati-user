@@ -15,7 +15,8 @@ class OffersWidget extends StatelessWidget {
       BlocConsumer<HomeCubit, HomeState>(
         listener: (context, state) {},
         builder: (context, state) {
-          return GridView.count(
+          return
+            GridView.count(
               shrinkWrap: true,
               padding: EdgeInsets.symmetric(vertical: 15.h),
               physics: const NeverScrollableScrollPhysics(),
@@ -31,3 +32,58 @@ class OffersWidget extends StatelessWidget {
       );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

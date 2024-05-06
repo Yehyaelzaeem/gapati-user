@@ -24,7 +24,7 @@ class ItemExtraModelData {
   String? name;
   String? price;
 
-  ItemExtraModelData({this.id, this.name, this.price});
+  ItemExtraModelData({this.id, this.name, this.price,});
 
   ItemExtraModelData.fromJson(Map<String, dynamic> json) {
     id = json['id'];

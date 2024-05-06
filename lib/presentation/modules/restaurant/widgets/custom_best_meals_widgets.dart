@@ -50,7 +50,7 @@ class _CustomBestMealsWidgetState extends State<CustomBestMealsWidget> {
                                 onTap: (){
                                   Navigator.push(context, MaterialPageRoute(builder: (context)=>
                                       MealDetailsScreen(categoriesItemsModelData: cubit.categoryItemsModelList![index],
-                                        storeId: cubit.categoryItemsModelList![index].storeId.toString(), storeName: widget.storeName,)));
+                                        storeId: cubit.categoryItemsModelList![index].storeId.toString(), storeName: widget.storeName, type: 'details',)));
                                 },
                                 child:
                                 CustomMealWidget(categoriesItemsModelData: cubit.categoryItemsModelList![index], storeName: widget.storeName,));

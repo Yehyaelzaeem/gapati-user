@@ -114,7 +114,7 @@ class CustomFavoriteItem extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        '${favoriteModelData.priceAfterDiscount} ${LocaleKeys.lyd.tr()}',
+                        '${double.parse(favoriteModelData.priceAfterDiscount.toString()).toStringAsFixed(1)} ${LocaleKeys.lyd.tr()}',
                         style: TextStyles.font16Black600Weight.copyWith(
                             height: 1,
                             fontSize: 12.sp,
@@ -125,7 +125,7 @@ class CustomFavoriteItem extends StatelessWidget {
                       ),
                       horizontalSpace(10),
                       Text(
-                        '${favoriteModelData.price} ${LocaleKeys.lyd.tr()}',
+                        '${double.parse(favoriteModelData.price.toString()).toStringAsFixed(1)} ${LocaleKeys.lyd.tr()}',
                         style: TextStyles.font16Black600Weight.copyWith(
                             decoration: TextDecoration.lineThrough,
                             decorationThickness: 2,
