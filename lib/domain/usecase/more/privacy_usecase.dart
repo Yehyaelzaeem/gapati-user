@@ -11,7 +11,7 @@ class PrivacyUseCase implements BaseUseCase<MoreContactUsModel>{
   final MoreRepository repository;
   PrivacyUseCase({required this.repository});
   Future<ResponseModel> call() async {
-    return BaseUseCaseCall.onGetData<MoreContactUsModel>( await repository.getAboutUs(), onConvert,tag: 'PrivacyUseCase');
+    return BaseUseCaseCall.onGetData<MoreContactUsModel>( await repository.getPrivacy(), onConvert,tag: 'PrivacyUseCase');
   }
 
   @override

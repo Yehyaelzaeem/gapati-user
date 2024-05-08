@@ -11,7 +11,12 @@ import '../request_body/register_body.dart';
 
 mixin FavoriteRepository {
 
-  Future<ApiResponse> getFavorite() ;
-  Future<ApiResponse> addFavorite({required int itemId}) ;
-  Future<ApiResponse> removeFavorite({required int itemId}) ;
+  Future<ApiResponse> getFavorite();
+  Future<ApiResponse> addFavorite({required int itemId});
+  Future<ApiResponse> removeFavorite({required int itemId});
+
+
+  Future<ApiResponse> getFavoriteRestaurant() ;
+  Future<ApiResponse> addFavoriteRestaurant({required int restaurantId}) ;
+  Future<ApiResponse> removeFavoriteRestaurant({required int restaurantId}) ;
 }

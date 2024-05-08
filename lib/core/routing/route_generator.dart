@@ -66,7 +66,7 @@ class RouteRestaurantsGenerator {
         case RoutesRestaurants.onBoardingScreen:
         return platformPageRoute(const OnBoardingScreen());
       case RoutesRestaurants.restaurantScreen:
-        return platformPageRoute( RestaurantScreen(id: arguments?['id'], storeName:arguments?['storeName'],));
+        return platformPageRoute( RestaurantScreen(id: arguments?['id'],image: arguments?['image'], storeName:arguments?['storeName'],));
       case RoutesRestaurants.cartScreen:
         return platformPageRoute(CartScreen(
           isLayOut: arguments?['isLayout'],

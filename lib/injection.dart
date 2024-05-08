@@ -30,5 +30,5 @@ Future<void> init() async {
   getIt.registerLazySingleton(() => SearchCubit(searchUseCase: getIt()));
   getIt.registerLazySingleton(() => MoreCubit(aboutUsUseCase: getIt(), privacyUseCase: getIt(), termsUseCase: getIt()));
   getIt.registerLazySingleton(() => AddressCubit(addAddressUseCase: getIt(), mainAddressUseCase: getIt(), addressUseCase: getIt(), lastAddressUseCase: getIt()));
-  getIt.registerLazySingleton(() =>FavoriteCubit(getFavoriteUseCase: getIt(), addFavoriteUseCase: getIt(), removeFavoriteUseCase: getIt()));
+  getIt.registerLazySingleton(() =>FavoriteCubit(getFavoriteUseCase: getIt(), addFavoriteUseCase: getIt(), removeFavoriteUseCase: getIt(), getFavoriteRestaurantUseCase: getIt(), addFavoriteRestaurantUseCase: getIt(), removeFavoriteRestaurantUseCase: getIt()));
 }

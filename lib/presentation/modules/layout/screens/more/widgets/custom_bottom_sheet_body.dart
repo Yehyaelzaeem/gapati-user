@@ -9,6 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../core/routing/routes.dart';
 import '../../../../../../core/translations/locale_keys.dart';
 import '../../../../../../generated/locale_keys.g.dart';
+import '../../../../../component/custom_loading_widget.dart';
 import '../../../layout_cubit.dart';
 
 class CustomBottomSheetBody extends StatelessWidget {
@@ -79,7 +80,7 @@ class CustomBottomSheetBody extends StatelessWidget {
                   width: MediaQuery.of(context).size.width*0.9,
                   onTap: (){
                     showDialog(context: context, builder: (context){
-                      return const Center(child: CircularProgressIndicator(),);
+                      return const CustomLoadingWidget();
                     });
                     Future.delayed(const Duration(seconds: 1)).then((value) {
                       context.pushNamedAndRemoveUntil(RoutesRestaurants.splashScreen, predicate: (route) => route.isFirst);

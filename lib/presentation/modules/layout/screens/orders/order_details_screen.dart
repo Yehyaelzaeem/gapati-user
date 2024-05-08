@@ -10,6 +10,7 @@ import 'package:cogina/core/global/styles/styles.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../component/custom_app_bar.dart';
+import '../../../../component/custom_loading_widget.dart';
 import '../cart/widgets/custom_cart_item.dart';
 import '../cart/widgets/custom_text_row_cart.dart';
 import '../cart/widgets/custom_visa_widget.dart';
@@ -141,7 +142,7 @@ class OrderDetailsScreen extends StatelessWidget {
                 }
               }
               else{
-                return Center(child: CircularProgressIndicator(),);
+                return CustomLoadingWidget();
               }
 
             },

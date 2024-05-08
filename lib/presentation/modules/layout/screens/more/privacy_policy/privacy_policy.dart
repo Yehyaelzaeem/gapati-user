@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../core/translations/locale_keys.dart';
 import '../../../../../component/custom_app_contant_data.dart';
+import '../../../../../component/custom_loading_widget.dart';
 import '../more_cubit.dart';
 
 
@@ -31,7 +32,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
                   ));
             }
             else{
-              return Center(child: CircularProgressIndicator(),);
+              return CustomLoadingWidget();
             }
           },
         )

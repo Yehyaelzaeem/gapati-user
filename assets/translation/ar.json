@@ -113,6 +113,9 @@
   "lyd": "دينار",
   "another_cart": "لديك عربة تسوق أخرى",
   "cart_empty": "السلة فارغة",
-  "go_to_shopping": "إِذهب الى التسوق"
+  "go_to_shopping": "إِذهب الى التسوق",
+
+  "meals": "الوجبات",
+  "restaurants": "المطاعم"
 
 }

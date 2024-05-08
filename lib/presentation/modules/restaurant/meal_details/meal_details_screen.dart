@@ -35,7 +35,6 @@ class MealDetailsScreen extends StatelessWidget {
     CartCubit cartCubit=CartCubit.get(context);
     RestaurantCubit cubit = RestaurantCubit.get(context);
     cubit.getItemExtra(id: categoriesItemsModelData!.id!,).then((value) {
-      // categoriesItemsModelData!.itemExtraModelMain=cubit.itemExtraModelDataList!;
     });
     return WillPopScope(
       onWillPop: () {

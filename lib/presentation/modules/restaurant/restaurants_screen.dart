@@ -1,8 +1,11 @@
 import 'package:cogina/presentation/component/component.dart';
 import 'package:cogina/presentation/modules/layout/screens/home/home_cubit.dart';
 import 'package:cogina/presentation/modules/restaurant/widgets/custom_restaurant_widget.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../core/translations/locale_keys.dart';
 
 class RestaurantsScreen extends StatelessWidget {
   const RestaurantsScreen({super.key});
@@ -14,8 +17,8 @@ class RestaurantsScreen extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         return Scaffold(
-            appBar: const CustomAppBar(
-              title: 'All Restaurants',
+            appBar:  CustomAppBar(
+              title: LocaleKeys.restaurants.tr(),
             ),
             body:
             cubit.listData!=null?

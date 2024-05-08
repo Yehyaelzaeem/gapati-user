@@ -21,6 +21,7 @@ class LayoutCubit extends Cubit<LayoutState> {
      if(HomeCubit.get(context).token!=null&&HomeCubit.get(context).token!.isNotEmpty){
        ProfileCubit.get(context).getProfile();
        FavoriteCubit.get(context).getFavorite(context);
+       FavoriteCubit.get(context).getFavoriteRestaurant(context);
        HomeCubit.get(context).getOffers(isDoNull: true);
        emit(LayoutInitial());
      }

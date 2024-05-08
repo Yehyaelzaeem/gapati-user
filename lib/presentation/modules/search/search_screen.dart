@@ -11,6 +11,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../../core/global/styles/colors.dart';
 import '../../../core/assets_constant/images.dart';
 import '../../../data/model/response/home_model.dart';
+import '../../component/custom_loading_widget.dart';
 import '../../component/custom_text_field.dart';
 import '../restaurant/widgets/custom_restaurant_widget.dart';
 
@@ -99,7 +100,7 @@ class SearchScreen extends StatelessWidget {
                           ],
                         )
                     else
-                      Center(child: CircularProgressIndicator(),)
+                      CustomLoadingWidget()
                   else
                     Column(
                       children: [

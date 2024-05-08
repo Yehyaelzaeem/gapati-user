@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../core/global/styles/styles.dart';
 import '../../../../../core/routing/navigation_services.dart';
+import '../../../../core/function/function.dart';
 import '../../../../data/model/response/home_model.dart';
 import '../../../component/custom_rate.dart';
+import '../../layout/screens/favorite/favorite_cubit.dart';
 import '../../layout/screens/home/widgets/custom_logo_restuarant.dart';
 
 class CustomRestaurantWidget extends StatelessWidget {
@@ -13,10 +15,11 @@ class CustomRestaurantWidget extends StatelessWidget {
   final DataHome restaurantData;
   @override
   Widget build(BuildContext context) {
+
     return
       InkWell(
         onTap: (){
-          NavigationService.push(RoutesRestaurants.restaurantScreen,arguments: {'id':restaurantData.id,'storeName':restaurantData.name});
+          NavigationService.push(RoutesRestaurants.restaurantScreen,arguments: {'id':restaurantData.id,'storeName':restaurantData.name,'image':restaurantData.banner});
         },
         child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -45,11 +48,30 @@ class CustomRestaurantWidget extends StatelessWidget {
                     verticalSpace(10),
                     Row(
                       children: [
-                        Text(restaurantData.name!,
+                        Text(restaurantData.name??'',
                           style: TextStyles.font16Black600Weight,
                         ),
                         const Spacer(),
-                        const Icon(Icons.favorite,color: Colors.red,),
+                        StatefulBuilder(builder: (context,setState){
+                          return
+                            InkWell(
+                                onTap: (){
+                                  FavoriteCubit cubit=FavoriteCubit.get(context);
+                                   logInFirst(function: (){
+                                              setState(() {
+                                                if(restaurantData.inFav==false){
+                                                  cubit.addFavoriteRestaurant(restaurantId: restaurantData.id!, context: context,);
+                                                  restaurantData.inFav=true;
+                                                }else{
+                                                  cubit.removeFavoriteRestaurant(restaurantId: restaurantData.id!, context: context);
+                                                  restaurantData.inFav=false;
+                                                }
+                                              });
+                                            }, context: context, screenName: 'favoriteDetails');
+                                   },
+                                child:restaurantData.inFav==true?
+                                Icon(Icons.favorite,color: Colors.red,):Icon(Icons.favorite_border_rounded,color: Colors.grey,));
+                        }),
                         horizontalSpace(15)
                       ],
                     ),

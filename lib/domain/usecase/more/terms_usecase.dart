@@ -11,7 +11,7 @@ class TermsUseCase implements BaseUseCase<MoreContactUsModel>{
   final MoreRepository repository;
   TermsUseCase({required this.repository});
   Future<ResponseModel> call() async {
-    return BaseUseCaseCall.onGetData<MoreContactUsModel>( await repository.getAboutUs(), onConvert,tag: 'TermsUseCase');
+    return BaseUseCaseCall.onGetData<MoreContactUsModel>( await repository.getTerms(), onConvert,tag: 'TermsUseCase');
   }
 
   @override

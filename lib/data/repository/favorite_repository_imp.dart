@@ -57,4 +57,46 @@ class FavoriteRepositoryImp implements FavoriteRepository{
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
     }
   }
+
+  @override
+  Future<ApiResponse> addFavoriteRestaurant({required int restaurantId}) async{
+    try {
+      Response response = await _dioClient.post(
+          AppURL.kAddFavoriteRestaurantURL,
+          queryParameters: {
+            'restaurant_id':restaurantId.toString()
+          }
+      );
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+
+  @override
+  Future<ApiResponse> getFavoriteRestaurant() async{
+    try {
+      Response response = await _dioClient.get(
+        AppURL.kGetFavoriteRestaurantURL,
+      );
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+
+  @override
+  Future<ApiResponse> removeFavoriteRestaurant({required int restaurantId}) async{
+    try {
+      Response response = await _dioClient.post(
+          AppURL.kRemoveFavoriteRestaurantURL,
+          queryParameters: {
+            'restaurant_id':restaurantId.toString()
+          }
+      );
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
 }

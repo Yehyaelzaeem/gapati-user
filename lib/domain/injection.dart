@@ -13,8 +13,11 @@ import 'package:cogina/domain/usecase/cart/delete_item_usecase.dart';
 import 'package:cogina/domain/usecase/cart/sub_qt_usecase.dart';
 import 'package:cogina/domain/usecase/cart/update_item_usecase.dart';
 import 'package:cogina/domain/usecase/check_out/check_out_usecase.dart';
+import 'package:cogina/domain/usecase/favorite/add_favorite_restaurant_usecase.dart';
 import 'package:cogina/domain/usecase/favorite/add_favorite_usecase.dart';
+import 'package:cogina/domain/usecase/favorite/get_favorite_resataurant_usecase.dart';
 import 'package:cogina/domain/usecase/favorite/get_favorite_usecase.dart';
+import 'package:cogina/domain/usecase/favorite/remove_favorite_restaurant_usecase.dart';
 import 'package:cogina/domain/usecase/favorite/remove_favorite_usecase.dart';
 import 'package:cogina/domain/usecase/home/home_usecase.dart';
 import 'package:cogina/domain/usecase/home/offers_usecase.dart';
@@ -95,6 +98,9 @@ Future<void> init() async {
    getIt.registerLazySingleton(() => GetFavoriteUseCase(repository: getIt()));
    getIt.registerLazySingleton(() => AddFavoriteUseCase(repository: getIt()));
    getIt.registerLazySingleton(() => RemoveFavoriteUseCase(repository: getIt()));
+   getIt.registerLazySingleton(() => GetFavoriteRestaurantUseCase(repository: getIt()));
+   getIt.registerLazySingleton(() => AddFavoriteRestaurantUseCase(repository: getIt()));
+   getIt.registerLazySingleton(() => RemoveFavoriteRestaurantUseCase(repository: getIt()));
 
   ///notifications
   // getIt.registerLazySingleton(() => GetNotificationsUseCase(repository: getIt()));

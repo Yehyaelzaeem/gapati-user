@@ -12,7 +12,10 @@ class MoreCubit extends Cubit<MoreState> {
   final AboutUsUseCase _aboutUsUseCase;
   final PrivacyUseCase _privacyUseCase;
   final TermsUseCase _termsUseCase;
-  MoreCubit({required AboutUsUseCase aboutUsUseCase,required PrivacyUseCase privacyUseCase,required TermsUseCase termsUseCase}) :
+  MoreCubit({
+    required AboutUsUseCase aboutUsUseCase,
+    required PrivacyUseCase privacyUseCase,
+    required TermsUseCase termsUseCase}) :
         _aboutUsUseCase =aboutUsUseCase,_privacyUseCase=privacyUseCase,_termsUseCase=termsUseCase,
         super(MoreInitial());
 

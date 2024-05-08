@@ -117,6 +117,8 @@ class LocaleKeys
   static const theSearch = 'the_search';
   static const startSearch = 'start_search';
   static const goToShopping = 'go_to_shopping';
+  static const meals = 'meals';
+  static const restaurants = 'restaurants';
 
 
 

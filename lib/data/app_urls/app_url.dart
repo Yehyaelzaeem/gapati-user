@@ -48,6 +48,9 @@ class AppURL {
   static const String kGetFavoriteURL = "fav/list";
   static const String kAddFavoriteURL = "fav/add";
   static const String kRemoveFavoriteURL = "fav/remove";
+  static const String kGetFavoriteRestaurantURL = "fav-restaurant/list";
+  static const String kAddFavoriteRestaurantURL = "fav-restaurant/add";
+  static const String kRemoveFavoriteRestaurantURL = "fav-restaurant/remove";
 
   /// order
   static const String kRestaurantOrdersURL = "stores/checkout";

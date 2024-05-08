@@ -1,5 +1,6 @@
 import 'package:cogina/core/helpers/spacing.dart';
 import 'package:cogina/core/translations/locale_keys.dart';
+import 'package:cogina/presentation/component/images/custom_image.dart';
 import 'package:cogina/presentation/modules/layout/screens/cart/cart_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,7 @@ import '../../../../../../core/global/styles/styles.dart';
 import '../../../../core/routing/navigation_services.dart';
 import '../../../../core/routing/routes.dart';
 import '../../../../data/model/response/category_item_model.dart';
+import '../../../component/custom_loading_widget.dart';
 import '../../../component/custom_text_field.dart';
 import '../meal_details/meal_details_screen.dart';
 import '../restaurant_cubit.dart';
@@ -21,9 +23,10 @@ import '../widgets/shimmer_categories_restaurant.dart';
 import 'package:badges/badges.dart' as badges;
 
 class RestaurantScreen extends StatelessWidget {
-  const RestaurantScreen({super.key, required this.id, required this.storeName});
+  const RestaurantScreen({super.key, required this.id, required this.storeName,  this.image});
   final int id;
   final String storeName;
+  final String? image;
 
   @override
   Widget build(BuildContext context) {
@@ -45,8 +48,8 @@ class RestaurantScreen extends StatelessWidget {
                         children: [
                           SizedBox(
                               height: 280.h,
-                              child:
-                              Image.asset(RestaurantImages.mc1,fit: BoxFit.cover,)
+                              width: double.infinity,
+                              child: CustomImage(image: image!=null?image!:'',fit: BoxFit.cover),
                           ),
                         ],
                       ),
@@ -225,7 +228,7 @@ class RestaurantScreen extends StatelessWidget {
                                     else
                                       Padding(
                                         padding: const EdgeInsets.only(top: 58.0),
-                                        child: Center(child: CircularProgressIndicator(),),
+                                        child: CustomLoadingWidget(),
                                       )
                                   ],
                                 ),

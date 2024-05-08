@@ -54,7 +54,9 @@ class DataHome {
   int? rate;
   Discount? discount;
   String? distance;
+  String? banner;
   bool? opening;
+  bool? inFav;
 
   DataHome(
       {this.id,
@@ -64,6 +66,8 @@ class DataHome {
         this.rate,
         this.discount,
         this.distance,
+        this.banner,
+        this.inFav,
         this.opening});
 
   DataHome.fromJson(Map<String, dynamic> json) {
@@ -75,7 +79,9 @@ class DataHome {
     discount = json['discount'] != null
         ? Discount.fromJson(json['discount'])
         : null;
+    banner = json['banner'];
     distance = json['distance'];
+    inFav = json['inFav'];
     opening = json['opening'];
   }
 
@@ -85,7 +91,9 @@ class DataHome {
     data['name'] = name;
     data['category'] = category;
     data['image'] = image;
+    data['banner'] = banner;
     data['rate'] = rate;
+    data['inFav'] = inFav;
     if (discount != null) {
       data['discount'] = discount!.toJson();
     }

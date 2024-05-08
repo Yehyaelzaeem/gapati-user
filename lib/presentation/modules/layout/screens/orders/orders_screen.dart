@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/assets_constant/images.dart';
 import '../../../../component/custom_app_bar.dart';
+import '../../../../component/custom_loading_widget.dart';
 import '../../../../component/custom_not_found_data.dart';
 import '../../../visitor/visitor_screen.dart';
 import 'orders_cubit.dart';
@@ -42,7 +43,7 @@ class OrdersScreen extends StatelessWidget {
             }
           }
           else{
-            return Center(child: CircularProgressIndicator(),);
+            return CustomLoadingWidget();
           }
 
         },

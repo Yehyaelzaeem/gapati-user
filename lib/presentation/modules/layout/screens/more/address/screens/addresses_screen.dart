@@ -5,6 +5,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../../component/custom_app_bar.dart';
+import '../../../../../../component/custom_loading_widget.dart';
 import '../address_cubit.dart';
 import '../widgets/custom_expansiontile_widget.dart';
 
@@ -51,7 +52,7 @@ class AddressesScreen extends StatelessWidget {
             ) :
               Padding(
                 padding:  EdgeInsets.only(top: MediaQuery.of(context).size.height*0.35),
-                child: Center(child: CircularProgressIndicator(),),
+                child: CustomLoadingWidget(),
               );
           },
           listener: (BuildContext context ,AddressState state){},
