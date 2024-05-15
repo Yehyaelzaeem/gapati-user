@@ -1,3 +1,4 @@
+import 'package:cogina/presentation/component/custom_loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -44,7 +45,7 @@ class CustomElevatedButton extends StatelessWidget {
       ),
       child:
       isLoading==true?
-       Center(child: CircularProgressIndicator(color: loadingColor??AppColors.whiteColor),):
+       Center(child: CustomLoadingWidget(color: loadingColor??AppColors.whiteColor),):
       Text(
         buttonText,
         style: TextStyle(

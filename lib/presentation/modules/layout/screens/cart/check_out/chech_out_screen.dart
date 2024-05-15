@@ -54,7 +54,7 @@ class CheckOutScreen extends StatelessWidget {
               steps: <Step>[
                 Step(
                   title: const SizedBox.shrink(),
-                  content: const CustomStepBody1Widget(),
+                  content:  CustomStepBody1Widget(),
                   isActive:  cubit.currentStep >= 0,
                   state: cubit.currentStep >= 0 ? StepState.complete : StepState
                       .indexed,

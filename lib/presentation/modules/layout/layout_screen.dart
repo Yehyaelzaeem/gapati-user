@@ -4,6 +4,7 @@ import 'package:cogina/presentation/modules/layout/screens/favorite/favorite_cub
 import 'package:cogina/presentation/modules/layout/screens/home/home_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geolocator/geolocator.dart';
 import '../../../core/tabs/tab.dart';
 import '../../../domain/provider/local_auth_provider_cubit.dart';
 import 'layout_cubit.dart';
@@ -23,6 +24,7 @@ class LayoutScreen extends StatefulWidget {
 class _LayoutScreenState extends State<LayoutScreen> {
   @override
   void initState() {
+    getPermission();
     HomeCubit cubit =HomeCubit.get(context);
     cubit.getHome();
     cubit.getOffers();
@@ -65,5 +67,17 @@ class _LayoutScreenState extends State<LayoutScreen> {
 
 
     );
+  }
+  Future getPermission()async{
+    bool service;
+    LocationPermission permission;
+    service =await Geolocator.isLocationServiceEnabled();
+    if(service ==false){
+    }
+    permission =await Geolocator.checkPermission();
+    if(permission ==LocationPermission.denied){
+      permission =await Geolocator.requestPermission();
+    }
+    return permission;
   }
 }

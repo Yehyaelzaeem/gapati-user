@@ -10,11 +10,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../../../../core/assets_constant/images.dart';
 import '../../../../../../core/global/styles/colors.dart';
 import '../../../../../../core/global/styles/styles.dart';
+import '../../../../core/function/function.dart';
 import '../../../../core/routing/navigation_services.dart';
 import '../../../../core/routing/routes.dart';
 import '../../../../data/model/response/category_item_model.dart';
 import '../../../component/custom_loading_widget.dart';
 import '../../../component/custom_text_field.dart';
+import '../../layout/screens/favorite/favorite_cubit.dart';
 import '../meal_details/meal_details_screen.dart';
 import '../restaurant_cubit.dart';
 import '../widgets/custom_best_meals_widgets.dart';
@@ -23,11 +25,11 @@ import '../widgets/shimmer_categories_restaurant.dart';
 import 'package:badges/badges.dart' as badges;
 
 class RestaurantScreen extends StatelessWidget {
-  const RestaurantScreen({super.key, required this.id, required this.storeName,  this.image});
+   RestaurantScreen({super.key, required this.id, required this.storeName,  this.image,required this.inFav});
   final int id;
   final String storeName;
   final String? image;
-
+  bool inFav;
   @override
   Widget build(BuildContext context) {
     RestaurantCubit cubit =RestaurantCubit.get(context);
@@ -71,10 +73,48 @@ class RestaurantScreen extends StatelessWidget {
                               ),
                               child:  Padding(
                                 padding: const EdgeInsets.all(3.0),
-                                child: Icon(Icons.arrow_back_ios_new_rounded,size: 18,color: AppColors.customGray.withOpacity(0.4),),
+                                child: Icon(Icons.arrow_back_ios_new_rounded,color: AppColors.customGray.withOpacity(0.4),),
                               ),
                             ),
                           )),
+                      Positioned(
+                          top: 60.h,
+                          left: context.locale.languageCode==Locale('ar').toString()?10.w:null,
+                          right: context.locale.languageCode==Locale('ar').toString()?null:10.w,
+                          child:
+                          Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(50),
+                                color: AppColors.whiteColor,
+                                boxShadow: const [BoxShadow(color: Colors.black12,blurRadius: 7,
+                                    offset: Offset(1, 5)
+                                )]
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(3.0),
+                              child: StatefulBuilder(builder: (context,setState){
+                                return
+                                  InkWell(
+                                      onTap: (){
+                                        FavoriteCubit cubit=FavoriteCubit.get(context);
+                                        logInFirst(function: (){
+                                          setState(() {
+                                            if(inFav==false){
+                                              cubit.addFavoriteRestaurant(restaurantId: id, context: context,);
+                                              inFav=true;
+                                            }else{
+                                              cubit.removeFavoriteRestaurant(restaurantId: id, context: context);
+                                              inFav=false;
+                                            }
+                                          });
+                                        }, context: context, screenName: 'favoriteDetails');
+                                      },
+                                      child:inFav==true?
+                                      Icon(Icons.favorite,color: Colors.red,):Icon(Icons.favorite_border_rounded,color: Colors.grey,));
+                              }),
+                            ),
+                          ),
+                      ),
                       Positioned(
                           top: 95.h,
                           left: context.locale.languageCode.toString()==Locale('en')?20:0,

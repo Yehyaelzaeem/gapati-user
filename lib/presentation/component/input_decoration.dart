@@ -28,7 +28,10 @@ InputDecoration customInputDecoration({
       fontWeight: fontWeight ?? FontWeight.w400,
     ),
     enabled: enabled ?? true,
-    border: OutlineInputBorder(
+    border:enabled == false ? OutlineInputBorder(
+      borderRadius: BorderRadius.circular(borderRadius ?? 8.r),
+      borderSide: BorderSide.none, // Set border color to none for testing
+    ): OutlineInputBorder(
       borderRadius: BorderRadius.circular(borderRadius ?? 8.r),
       borderSide: BorderSide(color: borderColor ?? Colors.grey),
     ),

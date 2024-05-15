@@ -66,10 +66,10 @@ class CustomStepBody3Widget extends StatelessWidget {
                                                             style: TextStyles.font15CustomGray400Weight,),
                                                         )
                                                       else
-                                                        addressCubit.lastAddressModel!=null?
+                                                        addressCubit.orderAddress!=null?
                                                         Padding(
                                                           padding:EdgeInsets.symmetric(horizontal: 25.w),
-                                                          child: Text(addressCubit.lastAddressModel!.data!.toAddress.toString(),
+                                                          child: Text(addressCubit.orderAddress!.address.toString(),
                                                             style: TextStyles.font15CustomGray400Weight,),
                                                         ):
                                                         SizedBox.shrink(),

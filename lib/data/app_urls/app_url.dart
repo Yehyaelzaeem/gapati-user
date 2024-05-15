@@ -31,8 +31,14 @@ class AppURL {
   static const String kDeleteItemURL = "shopping-cart/delete";
   static const String kGetMainAddressURL = "other-trip/get-main-address";
   static const String kGetLastAddressURL = "last-address";
-  static const String kGetAllAddressURL = "other-trip/all-address";
-  static const String kAddMainAddressURL = "other-trip/main-address";
+
+
+  ///Address
+  static const String kAddAddressURL = "address/add";
+  static const String kGetAllAddressURL = "address/list";
+  static  String kDeleteAddressURL(int id)=> "address/delete/$id";
+  static  String kUpdateAddressURL(int id)=> "address/update/$id";
+
   ///checkout
   static const String kCheckOutURL = "stores/checkout/store";
   ///Search

@@ -11,57 +11,26 @@ class AddressModel {
       });
     }
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.data != null) {
-      data['data'] = this.data!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
 }
 
 class AddressModelData {
   int? id;
-  String? latTo;
-  String? lngTo;
-  String? addressTo;
-  String? image;
-  bool? isMain;
-  int? addressType;
+  String? lat;
+  String? lng;
+  String? address;
+  String? phone;
   String? addressToNote;
 
-  AddressModelData(
-      {this.id,
-        this.latTo,
-        this.lngTo,
-        this.addressTo,
-        this.image,
-        this.isMain,
-        this.addressType,
-        this.addressToNote});
+  AddressModelData({this.id,this.lat, this.lng, this.address, this.phone, this.addressToNote});
 
-  AddressModelData.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    latTo = json['lat_to'];
-    lngTo = json['lng_to'];
-    addressTo = json['address_to'];
-    image = json['image'];
-    isMain = json['is_main'];
-    addressType = json['address_type'];
-    addressToNote = json['address_to_note'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['lat_to'] = this.latTo;
-    data['lng_to'] = this.lngTo;
-    data['address_to'] = this.addressTo;
-    data['image'] = this.image;
-    data['is_main'] = this.isMain;
-    data['address_type'] = this.addressType;
-    data['address_to_note'] = this.addressToNote;
-    return data;
+  factory AddressModelData.fromJson(Map<String, dynamic> json) {
+    return AddressModelData(
+      id: json["id"],
+      lat: json["lat"],
+      lng: json["lng"],
+      address: json["address"],
+      phone: json["phone"],
+      addressToNote: json["addressToNote"],
+    );
   }
 }

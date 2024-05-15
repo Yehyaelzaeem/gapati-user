@@ -19,5 +19,6 @@ class RestaurantImages{
   static const String signUp = '${baseImage}sign.svg';
   static const String fav = '${baseImage}fav.svg';
   static const String cart = '${baseImage}cart.svg';
+  static const String location = '${baseImage}location.png';
 
 }

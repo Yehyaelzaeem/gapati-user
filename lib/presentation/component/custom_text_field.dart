@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../core/routing/navigation_services.dart';
 import 'input_decoration.dart';
 
 class CustomTextField extends StatelessWidget {
@@ -90,4 +91,73 @@ class CustomTextField extends StatelessWidget {
       onChanged:onChanged ,
     );
   }
+}
+InputDecoration customInputDecration({
+  String? hintText,
+  TextEditingController? controller,
+  Icon? prefixIcon,
+  Color? prefixIconColor,
+  Color? fillColor,
+  double? contentHorizontalPadding,
+  double? contentVerticalPadding,
+  int? maxLines,
+  String? hintFontFamily,
+  String? validationMessage,
+  bool? isPassword,
+  Color? borderColor,
+  FontWeight? fontWeight,
+  double? fontSize,
+  double? borderRadius,
+  bool? enabled,
+  TextInputType? textInputType,
+  TextInputAction? textInputAction,
+  String? Function(String?)? validationFunc,
+  TextStyle? hintStyle,
+  Color? hintColor,
+  IconButton? suffixIcon,
+}) {
+  bool isBorderEnabled = enabled ?? true;
+  return InputDecoration(
+    hintText: hintText,
+    filled: true,
+    fillColor: fillColor,
+    contentPadding: EdgeInsets.symmetric(
+      horizontal: contentHorizontalPadding ?? 16.0,
+      vertical: contentVerticalPadding ?? 12.0,
+    ),
+    border: isBorderEnabled ? OutlineInputBorder(
+      borderSide: BorderSide(
+        color: borderColor ?? Colors.black, // Adjust the color here
+        width: 1.0,
+      ),
+      borderRadius: BorderRadius.circular(borderRadius ?? 8.0),
+    ) : InputBorder.none, // Use InputBorder.none when not enabled
+    enabledBorder: isBorderEnabled ? OutlineInputBorder(
+      borderSide: BorderSide(
+        color: borderColor ?? Colors.black, // Adjust the color here
+        width: 1.0,
+      ),
+      borderRadius: BorderRadius.circular(borderRadius ?? 8.0),
+    ) : InputBorder.none, // Use InputBorder.none when not enabled
+    focusedBorder: OutlineInputBorder(
+      borderSide: BorderSide(
+        color: borderColor ?? Theme.of(NavigationService.navigationKey.currentContext!).primaryColor, // Adjust the color here
+        width: 2.0,
+      ),
+      borderRadius: BorderRadius.circular(borderRadius ?? 8.0),
+    ),
+    errorBorder: OutlineInputBorder(
+      borderSide: BorderSide(
+        color: Colors.red,
+        width: 1.0,
+      ),
+      borderRadius: BorderRadius.circular(borderRadius ?? 8.0),
+    ),
+    hintStyle: hintStyle,
+    prefixIcon: prefixIcon,
+    prefixIconColor: prefixIconColor,
+    suffixIcon: suffixIcon,
+    errorStyle: TextStyle(fontSize: 12.0),
+    counterText: '',
+  );
 }

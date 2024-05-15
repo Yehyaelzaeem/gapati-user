@@ -27,7 +27,6 @@ class FavoriteScreen extends StatelessWidget {
     FavoriteCubit cubit =FavoriteCubit.get(context);
     return HomeCubit.get(context).token!=null&&HomeCubit.get(context).token!.isNotEmpty?
       Scaffold(
-
       body:
       Column(
         children: [

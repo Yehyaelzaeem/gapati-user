@@ -9,6 +9,8 @@ class RoutesRestaurants {
   static const String layout = "/layout";
   static const String successOrderScreen = "/successOrderScreen";
   static const String checkOut = "/checkOut";
+  static const String customGoogleMapScreen = "/customGoogleMapScreen";
+  static const String constLocationMap = "/constLocationMap";
   static const String editProfileScreen = "/editProfileScreen";
   static const String addAddressScreen = "/addAddressScreen";
   static const String addresses = "/address";

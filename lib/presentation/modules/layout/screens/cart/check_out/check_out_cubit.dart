@@ -27,39 +27,24 @@ class CheckOutCubit extends Cubit<CheckOutState> {
       CartCubit cartCubit =CartCubit.get(context);
       AddressCubit addressCubit= AddressCubit.get(context);
       if(cartCubit.products.isNotEmpty){
-        if(addressCubit.lastAddressModel==null&&addressCubit.phoneController.text.isEmpty&&addressCubit.addressController.text.isEmpty){
+        if(addressCubit.orderAddress==null){
           CheckOutCubit.get(context).changeSteps(0);
           showToast(text: LocaleKeys.mesAddress.tr(), state: ToastStates.error, context: context);
         }
         else{
-          if(addressCubit.phoneController.text.isEmpty&&addressCubit.addressController.text.isEmpty){
-            CheckOutModel checkOutBody=CheckOutModel(
-                name: cartCubit.storeName!, lat: '22222', lng: '2222',
-                address:addressCubit.lastAddressModel!.data!.toAddress!,
-                paymentMethod: 'cash',
-                note: 'note', phone: addressCubit.lastAddressModel!.data!.phone!, storeId: cartCubit.products[0].storeId!.toString(),
-                branchId: '0', items: cartCubit.products.map((e) => ItemModel(
-                      itemId: e.id.toString(),
-                      qty: e.count!.toString(),
-                      note: 'note',
-                      extras: e.itemExtraModelDataSelected?.map((e) => ExtraModel(extraId: e.id!.toString())).toList() ?? [],
-                   )).toList());
-             checkOut(checkOutBody: checkOutBody, context: context);
-          }else{
-            CheckOutModel checkOutBody=CheckOutModel(
-                name: cartCubit.storeName!, lat: '22222', lng: '2222',
-                address:addressCubit.addressController.text,
-                paymentMethod: 'cash',
-                note: 'note', phone: addressCubit.phoneController.text,
-                storeId: cartCubit.products[0].storeId!.toString(),
-                branchId: '0', items: cartCubit.products.map((e) => ItemModel(
-                itemId: e.id.toString(),
-                qty: e.count!.toString(),
-                note: '',
-                extras: e.itemExtraModelDataSelected?.map((e) => ExtraModel(extraId: e.id!.toString())).toList() ?? [],
-            )).toList());
-             checkOut(checkOutBody: checkOutBody, context: context);
-          }
+          CheckOutModel checkOutBody=CheckOutModel(
+              name: cartCubit.storeName!,
+              addressId:addressCubit.orderAddress!.id!.toString(),
+              paymentMethod: 'cash',
+              note: 'note',
+              storeId: cartCubit.products[0].storeId!.toString(),
+              branchId: '0', items: cartCubit.products.map((e) => ItemModel(
+            itemId: e.id.toString(),
+            qty: e.count!.toString(),
+            note: 'note',
+            extras: e.itemExtraModelDataSelected?.map((e) => ExtraModel(extraId: e.id!.toString())).toList() ?? [],
+          )).toList());
+          checkOut(checkOutBody: checkOutBody, context: context);
         }
       }
       else{
@@ -74,12 +59,7 @@ class CheckOutCubit extends Cubit<CheckOutState> {
     ResponseModel responseModel = await _checkOutUseCase.call(checkOutBody: checkOutBody);
     if (responseModel.isSuccess) {
       Future.delayed(const Duration(microseconds: 0)).then((value) {
-        // CartCubit.get(context).getCart(context);
         AddressCubit cubit=  AddressCubit.get(context);
-        cubit.phoneController.text='';
-        cubit.phController.text='';
-        cubit.addressController.text='';
-        cubit.addController.text='';
         CartCubit.get(context).removeAll();
         showToast(text: responseModel.message.toString(), state: ToastStates.success, context: context);
         NavigationService.push(RoutesRestaurants.successOrderScreen);
@@ -94,8 +74,9 @@ class CheckOutCubit extends Cubit<CheckOutState> {
     return responseModel;
   }
 
-  /// Change State
 
+
+  /// Change State
   void changeSteps(int x){
     currentStep =x;
     emit(ChangeTypeState()) ;

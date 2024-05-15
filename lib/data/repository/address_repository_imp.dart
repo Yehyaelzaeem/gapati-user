@@ -27,10 +27,10 @@ class AddressRepositoryImp implements AddressRepository{
   }
 
   @override
-  Future<ApiResponse> addMainAddress({required AddressBody addressBody})async {
+  Future<ApiResponse> addAddress({required AddressBody addressBody})async {
     try {
       Response response = await _dioClient.post(
-        AppURL.kAddMainAddressURL,
+        AppURL.kAddAddressURL,
         queryParameters: addressBody.toJson()
       );
       return ApiResponse.withSuccess(response);
@@ -56,6 +56,31 @@ class AddressRepositoryImp implements AddressRepository{
     try {
       Response response = await _dioClient.get(
         AppURL.kGetLastAddressURL,
+      );
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+
+  @override
+  Future<ApiResponse> deleteAddress({required int addressId}) async{
+    try {
+      Response response = await _dioClient.post(
+        AppURL.kDeleteAddressURL(addressId),
+      );
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+
+  @override
+  Future<ApiResponse> updateAddress({required AddressBody addressBody, required int addressId})async{
+    try {
+      Response response = await _dioClient.post(
+        AppURL.kUpdateAddressURL(addressId),
+          queryParameters: addressBody.toJson()
       );
       return ApiResponse.withSuccess(response);
     } catch (e) {

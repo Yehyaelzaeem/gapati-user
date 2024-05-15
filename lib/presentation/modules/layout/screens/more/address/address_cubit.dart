@@ -1,7 +1,7 @@
 import 'package:cogina/core/helpers/extensions.dart';
-import 'package:cogina/domain/logger.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geolocator/geolocator.dart';
 import '../../../../../../core/helpers/toast_states/enums.dart';
 import '../../../../../../data/model/base/response_model.dart';
 import '../../../../../../data/model/response/address_model.dart';
@@ -10,93 +10,121 @@ import '../../../../../../data/model/response/main_address_model.dart';
 import '../../../../../../domain/request_body/address_body.dart';
 import '../../../../../../domain/usecase/address/add_address_usecase.dart';
 import '../../../../../../domain/usecase/address/address_usecase.dart';
-import '../../../../../../domain/usecase/address/last_address_usecase.dart';
-import '../../../../../../domain/usecase/address/main_address_usecase.dart';
+import '../../../../../../domain/usecase/address/delete_address_usecase.dart';
+import '../../../../../../domain/usecase/address/update_address_usecase.dart';
+import '../../../../../component/google_map/address_location_model.dart';
 part 'address_state.dart';
 
 class AddressCubit extends Cubit<AddressState> {
   final AddressUseCase _addressUseCase;
-  final MainAddressUseCase _mainAddressUseCase;
   final AddAddressUseCase _addAddressUseCase;
-  final LastAddressUseCase _lastAddressUseCase;
-  AddressCubit({required LastAddressUseCase lastAddressUseCase,required AddAddressUseCase addAddressUseCase,required MainAddressUseCase mainAddressUseCase,required AddressUseCase addressUseCase}):
-        _addAddressUseCase=addAddressUseCase,_lastAddressUseCase=lastAddressUseCase,_mainAddressUseCase =mainAddressUseCase,_addressUseCase =addressUseCase, super(AddressInitial());
+  final DeleteAddressUseCase _deleteAddressUseCase;
+  final UpdateAddressUseCase _updateAddressUseCase;
+  AddressCubit({required UpdateAddressUseCase updateAddressUseCase,required DeleteAddressUseCase deleteAddressUseCase,required AddAddressUseCase addAddressUseCase,required AddressUseCase addressUseCase}):
+        _updateAddressUseCase=updateAddressUseCase,
+        _deleteAddressUseCase=deleteAddressUseCase,
+        _addAddressUseCase=addAddressUseCase,
+       _addressUseCase =addressUseCase, super(AddressInitial());
+
+
   MainAddressModelData? mainAddressModel;
   AddressModel? addressModel;
   int typeAddress=0;
+  AddressModelData? orderAddress;
   TextEditingController addressController =TextEditingController();
-  TextEditingController addController =TextEditingController();
-  TextEditingController phController =TextEditingController();
   TextEditingController phoneController =TextEditingController();
+  TextEditingController locationController =TextEditingController();
+  TextEditingController noteController =TextEditingController();
+
   static AddressCubit get(BuildContext context) => BlocProvider.of(context);
-  LastAddressModel? lastAddressModel;
-  /// Address
-  Future<ResponseModel> getMainAddress() async {
-    emit(GetAddressLoadingState()) ;
-    ResponseModel responseModel = await _mainAddressUseCase.call();
-    if (responseModel.isSuccess) {
-      mainAddressModel =responseModel.data;
-      emit(GetAddressSuccessState()) ;
-    }else{
-      emit(GetAddressErrorState()) ;
-    }
-    return responseModel;
-  }
-  Future<ResponseModel> getLastAddress() async {
 
-    emit(GetLastAddressLoadingState()) ;
-    ResponseModel responseModel = await _lastAddressUseCase.call();
-    if (responseModel.isSuccess) {
-      lastAddressModel =responseModel.data;
-      emit(GetLastAddressSuccessState()) ;
-    }else{
-      emit(GetLastAddressErrorState()) ;
-    }
-    return responseModel;
-  }
-  addAddress({required String phone, required String address}){
-    emit(AddressLoadingState());
-    Future.delayed(Duration(seconds: 1)).then((value) {
-      phoneController.text=phone;
-      addressController.text=address;
-      emit(AddressSuccessState());
-    });
-
-  }
   Future<ResponseModel> getAllAddress() async {
     addressModel=null;
     emit(GetAllAddressLoadingState()) ;
     ResponseModel responseModel = await _addressUseCase.call();
     if (responseModel.isSuccess) {
       addressModel =responseModel.data;
+     orderAddress=
+      addressModel!=null && addressModel!.data!.isNotEmpty?
+      addressModel!.data![0]:null;
       emit(GetAllAddressSuccessState()) ;
     }else{
       emit(GetAllAddressErrorState()) ;
     }
     return responseModel;
   }
-  Future<ResponseModel> addMainAddress({required AddressBody addressBody,required BuildContext context,bool? pop}) async {
-    emit(AddAddressLoadingState()) ;
+  Future<ResponseModel> addAddress({required AddressBody addressBody,required BuildContext context,bool? pop}) async {
+    emit(AddressLoadingState()) ;
     ResponseModel responseModel = await _addAddressUseCase.call(addressBody: addressBody);
     if (responseModel.isSuccess) {
-      getMainAddress();
       getAllAddress();
       Future.delayed(const Duration(microseconds: 0)).then((value) {
         showToast(text: responseModel.message.toString(), state: ToastStates.success, context: context);
+        initRemoveData();
         pop==true?
-            context.pop():null;
+        context.pop():null;
       });
-      phoneController.text='';
-      addressController.text='';
+
       emit(AddAddressSuccessState()) ;
     }else{
       emit(AddAddressErrorState()) ;
     }
     return responseModel;
   }
+  Future<ResponseModel> updateAddress({required AddressBody addressBody,required BuildContext context,required addressId}) async {
+    emit(UpdateAddressLoadingState()) ;
+    ResponseModel responseModel = await _updateAddressUseCase.call(addressBody: addressBody, addressId: addressId);
+    if (responseModel.isSuccess) {
+      getAllAddress();
+      Future.delayed(const Duration(microseconds: 0)).then((value) {
+        showToast(text: responseModel.message.toString(), state: ToastStates.success, context: context);
+      });
+      emit(UpdateAddressSuccessState()) ;
+    }else{
+      emit(UpdateAddressErrorState()) ;
+    }
+    return responseModel;
+  }
+  Future<ResponseModel> deleteAddress({required int addressId}) async {
+    emit(DeleteAddressLoadingState()) ;
+    ResponseModel responseModel = await _deleteAddressUseCase.call(addressId: addressId);
+    if (responseModel.isSuccess) {
+      getAllAddress();
+      emit(DeleteAddressSuccessState()) ;
+    }else{
+      emit(DeleteAddressErrorState()) ;
+    }
+    return responseModel;
+  }
 
+  void initData(AddressModelData addressModelData){
+    addressController=TextEditingController(text:addressModelData.address??'');
+    phoneController=TextEditingController(text:addressModelData.phone??'');
+    locationController=TextEditingController(text:'${addressModelData.lat}/${addressModelData.lng}'??'');
+    emit(ChangeTypeState()) ;
+  }
+  void initRemoveData(){
+    phoneController.text='';
+    addressController.text='';
+    locationController.text='';
+    noteController.text='';
+    emit(ChangeTypeState()) ;
+  }
   void changeTypeOfAddress(int x){
     typeAddress =x;
     emit(ChangeTypeState()) ;
+  }
+
+  double? lat;
+  double? long;
+  Position? p ;
+  AddressLocationModel? addressLocationModel;
+  Future<void> getLocation(context)async{
+    p =await Geolocator.getCurrentPosition().then((Position value) {
+      lat=value.latitude;
+      long=value.longitude;
+      emit(GetPositionState());
+      return null;
+    });
   }
 }

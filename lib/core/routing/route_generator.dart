@@ -2,6 +2,8 @@ import 'package:cogina/core/routing/platform_page_route.dart';
 import 'package:cogina/core/routing/undefined_route_screen.dart';
 import 'package:cogina/presentation/modules/intro/splash/splash_screen.dart';
 import 'package:flutter/cupertino.dart';
+import '../../presentation/component/google_map/const_location_map.dart';
+import '../../presentation/component/google_map/custom_google_map.dart';
 import '../../presentation/modules/auth/log_as/log_as_screen.dart';
 import '../../presentation/modules/auth/login/login_screen.dart';
 import '../../presentation/modules/auth/register/register_screen.dart';
@@ -16,8 +18,8 @@ import '../../presentation/modules/layout/screens/cart/order_success/order_succe
 import '../../presentation/modules/layout/screens/home/home_screen.dart';
 import '../../presentation/modules/layout/screens/home/meal/add_meal_screen.dart';
 import '../../presentation/modules/layout/screens/more/about_us/about_us_screen.dart';
-import '../../presentation/modules/layout/screens/more/address/screens/add_address_screen.dart';
-import '../../presentation/modules/layout/screens/more/address/screens/addresses_screen.dart';
+import '../../presentation/modules/layout/screens/more/address/add_address/add_address_screen.dart';
+import '../../presentation/modules/layout/screens/more/address/addresses_screen.dart';
 import '../../presentation/modules/layout/screens/more/privacy_policy/privacy_policy.dart';
 import '../../presentation/modules/layout/screens/more/profile/change_password/change_password_screen.dart';
 import '../../presentation/modules/layout/screens/more/profile/edit_profile/edit_profile_screen.dart';
@@ -66,7 +68,7 @@ class RouteRestaurantsGenerator {
         case RoutesRestaurants.onBoardingScreen:
         return platformPageRoute(const OnBoardingScreen());
       case RoutesRestaurants.restaurantScreen:
-        return platformPageRoute( RestaurantScreen(id: arguments?['id'],image: arguments?['image'], storeName:arguments?['storeName'],));
+        return platformPageRoute( RestaurantScreen(id: arguments?['id'],image: arguments?['image'], storeName:arguments?['storeName'], inFav:  arguments?['isFav'],));
       case RoutesRestaurants.cartScreen:
         return platformPageRoute(CartScreen(
           isLayOut: arguments?['isLayout'],
@@ -79,6 +81,10 @@ class RouteRestaurantsGenerator {
         return platformPageRoute(const EditProfileScreen());
         case RoutesRestaurants.addAddressScreen:
         return platformPageRoute(const AddAddressScreen());
+        case RoutesRestaurants.customGoogleMapScreen:
+        return platformPageRoute(  CustomGoogleMapScreen(lat: arguments?['lat'], long: arguments?['long'],));
+       case RoutesRestaurants.constLocationMap:
+        return platformPageRoute(  ConstLocationMap(lat: arguments?['lat'], long: arguments?['long'],));
       case RoutesRestaurants.addresses:
         return platformPageRoute(const AddressesScreen());
       case RoutesRestaurants.notification:

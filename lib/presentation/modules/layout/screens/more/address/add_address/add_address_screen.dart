@@ -1,7 +1,8 @@
 import 'package:cogina/core/helpers/spacing.dart';
+import 'package:cogina/core/translations/locale_keys.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../../../component/custom_app_bar.dart';
 import '../../../cart/widgets/custom_address_widget.dart';
 
@@ -11,17 +12,19 @@ class AddAddressScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      appBar:   const CustomAppBar(
-        title: 'Address',
+      appBar:    CustomAppBar(
+        title: LocaleKeys.address.tr(),
       ),
 
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.w),
-        child: Column(
-          children: [
-            verticalSpace(30),
-            const CustomAddressWidget(buttonTitle: 'Add',pop: true,),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              verticalSpace(30),
+               CustomAddressWidget(buttonTitle: LocaleKeys.add.tr(),pop: true,),
+            ],
+          ),
         ),
       ),
     );

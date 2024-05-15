@@ -21,6 +21,15 @@ class GetAllAddressLoadingState extends AddressState {}
 class GetAllAddressSuccessState extends AddressState {}
 class GetAllAddressErrorState extends AddressState {}
 
+class DeleteAddressLoadingState extends AddressState {}
+class DeleteAddressSuccessState extends AddressState {}
+class DeleteAddressErrorState extends AddressState {}
+
+class UpdateAddressLoadingState extends AddressState {}
+class UpdateAddressSuccessState extends AddressState {}
+class UpdateAddressErrorState extends AddressState {}
+
 class ChangeTypeState extends AddressState {}
 class AddressLoadingState extends AddressState {}
 class AddressSuccessState extends AddressState {}
+class GetPositionState extends AddressState {}

@@ -114,8 +114,14 @@
   "another_cart": "لديك عربة تسوق أخرى",
   "cart_empty": "السلة فارغة",
   "go_to_shopping": "إِذهب الى التسوق",
+  "mapTitle": "اختر عنوانك",
 
   "meals": "الوجبات",
-  "restaurants": "المطاعم"
+  "restaurants": "المطاعم",
+  "location": "الموقع",
+  "location_mess": "الموقع فارغ",
+  "note": "ملاحظة",
+  "update": "تحديث",
+  "delete": "حذف"
 
 }

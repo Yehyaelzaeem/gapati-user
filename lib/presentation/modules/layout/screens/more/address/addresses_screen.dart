@@ -1,13 +1,17 @@
+import 'package:cogina/core/global/fonts/app_fonts.dart';
+import 'package:cogina/core/global/styles/styles.dart';
 import 'package:cogina/core/helpers/extensions.dart';
 import 'package:cogina/core/routing/routes.dart';
 import 'package:cogina/core/translations/locale_keys.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../../component/custom_app_bar.dart';
-import '../../../../../../component/custom_loading_widget.dart';
-import '../address_cubit.dart';
-import '../widgets/custom_expansiontile_widget.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../../../core/assets_constant/images.dart';
+import '../../../../../component/custom_app_bar.dart';
+import '../../../../../component/custom_loading_widget.dart';
+import 'address_cubit.dart';
+import 'widgets/custom_expansiontile_widget.dart';
 
 
 class AddressesScreen extends StatelessWidget {
@@ -21,23 +25,33 @@ class AddressesScreen extends StatelessWidget {
         title: LocaleKeys.addresses.tr(),
         actions: [
           IconButton(onPressed: (){
+            cubit.getLocation(context);
             context.pushNamed(RoutesRestaurants.addAddressScreen);
           }, icon: Icon(Icons.add))
         ],
       ),
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
-        child: BlocConsumer<AddressCubit,AddressState>(
+        child:
+        BlocConsumer<AddressCubit,AddressState>(
           builder: (BuildContext context ,AddressState state){
             return
               cubit.addressModel !=null?
               Column(
               children: <Widget>[
-                // CustomAddAddressButton(),
                 cubit.addressModel!.data!.length==0?
                     Padding(
-                      padding:  EdgeInsets.only(top: MediaQuery.of(context).size.height*0.35),
-                      child: Center(child: Text(LocaleKeys.notFoundData.tr()),),
+                      padding:  EdgeInsets.only(top: 50.h),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(RestaurantImages.location),
+                          Center(child: Text(LocaleKeys.notFoundData.tr(),style: TextStyles.font20Black700Weight.copyWith(
+                            fontFamily: AppFonts.lateefFont,
+                            fontSize: 30
+                          ),),),
+                        ],
+                      ),
                     ):
                 ListView.builder(
                   physics: NeverScrollableScrollPhysics(),

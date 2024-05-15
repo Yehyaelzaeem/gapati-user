@@ -6,11 +6,11 @@ import '../base_usecase/base_use_case_call.dart';
 import '../base_usecase/base_usecase.dart';
 
 
-class AddAddressUseCase implements BaseUseCase<dynamic>{
+class UpdateAddressUseCase implements BaseUseCase<dynamic>{
   final AddressRepository repository;
-  AddAddressUseCase({required this.repository});
-  Future<ResponseModel> call({required AddressBody addressBody}) async {
-    return BaseUseCaseCall.onGetData<dynamic>( await repository.addAddress(addressBody: addressBody), onConvert,tag: 'AddAddressUseCase');
+  UpdateAddressUseCase({required this.repository});
+  Future<ResponseModel> call({required AddressBody addressBody,required int addressId}) async {
+    return BaseUseCaseCall.onGetData<dynamic>( await repository.updateAddress(addressBody: addressBody,addressId:addressId), onConvert,tag: 'UpdateAddressUseCase');
   }
 
   @override

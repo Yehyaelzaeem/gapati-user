@@ -10,6 +10,7 @@ import '../../../../../domain/usecase/favorite/get_favorite_resataurant_usecase.
 import '../../../../../domain/usecase/favorite/get_favorite_usecase.dart';
 import '../../../../../domain/usecase/favorite/remove_favorite_restaurant_usecase.dart';
 import '../../../../../domain/usecase/favorite/remove_favorite_usecase.dart';
+import '../home/home_cubit.dart';
 part 'favorite_state.dart';
 
 class FavoriteCubit extends Cubit<FavoriteState> {
@@ -77,6 +78,7 @@ class FavoriteCubit extends Cubit<FavoriteState> {
       ResponseModel responseModel = await _addFavoriteRestaurantUseCase.call(restaurantId: restaurantId);
       if (responseModel.isSuccess) {
         getFavoriteRestaurant(context);
+        HomeCubit.get(context).getHome();
         showToast(text: responseModel.message!, state: ToastStates.success, context: context);
         emit(GetFavoriteSuccessState()) ;
       }else{
@@ -89,6 +91,7 @@ class FavoriteCubit extends Cubit<FavoriteState> {
       ResponseModel responseModel = await _removeFavoriteUseCase.call(itemId: itemId);
       if (responseModel.isSuccess) {
         getFavorite(context);
+        HomeCubit.get(context).getHome();
         showToast(text: responseModel.message!, state: ToastStates.success, context: context);
         emit(GetFavoriteSuccessState()) ;
       }else{

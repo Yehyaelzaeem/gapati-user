@@ -1,23 +1,17 @@
 class CheckOutModel {
   String name;
-  String lat;
-  String lng;
-  String address;
+  String addressId;
   String paymentMethod;
   String note;
-  String phone;
   String storeId;
   String branchId;
   List<ItemModel> items;
 
   CheckOutModel({
     required this.name,
-    required this.lat,
-    required this.lng,
-    required this.address,
+    required this.addressId,
     required this.paymentMethod,
     required this.note,
-    required this.phone,
     required this.storeId,
     required this.branchId,
     required this.items,
@@ -26,12 +20,9 @@ class CheckOutModel {
   Map<String, dynamic> toJson() {
     return {
       'name': name,
-      'lat': lat,
-      'lng': lng,
-      'address': address,
+      'address_id': addressId,
       'payment_method': paymentMethod,
       'note': note,
-      'phone': phone,
       'store_id': storeId,
       'branch_id': branchId,
       'item': items.map((item) => item.toJson()).toList(),
@@ -65,7 +56,7 @@ class ItemModel {
       return {
         'item_id': itemId,
         'qty': qty,
-        'note': note,
+        'note': 'note',
       };
 
     }

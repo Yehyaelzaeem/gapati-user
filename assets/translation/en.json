@@ -117,5 +117,14 @@
   "start_search": "What do you want to search for ?",
   "go_to_shopping": "Go to shopping",
   "meals": "Meals",
-  "restaurants": "Restaurants"
+  "restaurants": "Restaurants",
+  "location": "location",
+  "location_mess": "Location is empty",
+
+  "mapTitle": "Choose your address",
+  "note": "Note",
+  "update": "Update",
+  "delete": "Delete"
+
+
 }

@@ -26,6 +26,8 @@ class LocaleKeys
   static const goodMorning = 'good_morning';
   static const offerMeals = 'offer_meals';
   static const notFoundData = 'not_found_data';
+  static const mapTitle = 'mapTitle';
+  static const note = 'note';
   static const seeAll = 'see_all';
   static const seeMore = 'see_more';
   static const from = 'from';
@@ -119,6 +121,10 @@ class LocaleKeys
   static const goToShopping = 'go_to_shopping';
   static const meals = 'meals';
   static const restaurants = 'restaurants';
+  static const location = 'location';
+  static const locationMess = 'location_mess';
+  static const update = 'update';
+  static const delete = 'delete';
 
 
 

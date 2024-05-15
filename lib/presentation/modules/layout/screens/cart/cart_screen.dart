@@ -73,9 +73,7 @@ class CartScreen extends StatelessWidget {
                             onTap: (){
                               if(cubit.products.isNotEmpty){
                                 CheckOutCubit.get(context).changeSteps(0);
-                                if(HomeCubit.get(context).token!=null&&HomeCubit.get(context).token!.isNotEmpty){
-                                  AddressCubit.get(context).getLastAddress();
-                                }
+                                AddressCubit.get(context).getAllAddress();
                                 NavigationService.push(RoutesRestaurants.checkOut);
                               }
                               else{

@@ -113,10 +113,12 @@ class CustomCartItem extends StatelessWidget {
                                 onSelectionChanged: (value){
                                   setState((){
                                     product!.itemExtraModelDataSelected=value.map((e) => e).toList();
+                                    if (cubit.products.where((CategoryItemsData element) => element.id == product!.id).toList().length > 0){
+                                      cubit.updateExtra(product!, value.map((e) => e).toList()).then((value){
+                                        cubit.updateData();
+                                      });
+                                    }
                                   });
-                                  if (cubit.products.where((CategoryItemsData element) => element.id == product!.id).toList().length > 0){
-                                    cubit.updateExtra(product!, value.map((e) => e).toList());
-                                  }
                                 },
                                 reportList: product!.itemExtraModelDataSelected!.map((e) => e).toList(),
                                 paddingTop: 12,
