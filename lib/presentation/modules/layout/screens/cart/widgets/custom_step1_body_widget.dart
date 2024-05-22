@@ -52,7 +52,8 @@ class CustomStepBody1Widget extends StatelessWidget {
                                   color:AppColors.whiteColor,
                                   borderRadius: BorderRadius.circular(8.sp)
                               ),
-                              child: Row(
+                              child:
+                              Row(
                                 children: [
                                   Radio(
                                     activeColor:AppColors.primaryColor,

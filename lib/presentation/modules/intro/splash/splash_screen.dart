@@ -1,3 +1,5 @@
+import 'package:cogina/core/global/fonts/app_fonts.dart';
+import 'package:cogina/core/global/styles/styles.dart';
 import 'package:cogina/domain/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -68,6 +70,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Container(
+        width: double.infinity,
           decoration: BoxDecoration(
             color: Colors.white,
             // image: DecorationImage(
@@ -82,20 +85,35 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
             fit: StackFit.loose,
             children: [
               Positioned(
-                top: height * 0.4,
-                left: width * 0.1,
-                child: SlideTransition(
-                  position: _animation!,
-                  child: AnimatedContainer(
-                    height: MediaQuery.of(context).size.height,
-                    width: MediaQuery.of(context).size.width,
-                    alignment: Alignment.topLeft,
-                    duration: Duration(seconds: 0),
-                    child: Image(
-                      height: height * 0.2 + 20,
-                      width: width * 0.8 + 10,
-                      fit: BoxFit.contain,
-                      image: AssetImage('assets/images/logo.jpg'),
+                top: height * 0.1,
+                 // left: width * 0.1,
+                child: Center(
+                  child: SlideTransition(
+                    position: _animation!,
+                    child: AnimatedContainer(
+                      height: MediaQuery.of(context).size.height,
+                      width: MediaQuery.of(context).size.width,
+                      alignment: Alignment.topCenter,
+                      duration: Duration(seconds: 0),
+                      child:
+                        Center(
+                          child: Container(
+                              height: height * 0.2 + 20,
+                              width: width ,
+                            child: Center(
+                              child: Text('LOGO',style: TextStyles.font20Black700Weight.copyWith(
+                                fontFamily: AppFonts.lateefFont,
+                                fontSize: 50
+                              ),),
+                            ),
+                          ),
+                        )
+                      // Image(
+                      //   height: height * 0.2 + 20,
+                      //   width: width * 0.8 + 10,
+                      //   fit: BoxFit.contain,
+                      //   image: AssetImage('assets/images/logo.jpg'),
+                      // ),
                     ),
                   ),
                 ),
