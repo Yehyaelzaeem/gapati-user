@@ -55,7 +55,9 @@ class MyApp extends StatelessWidget {
       useInheritedMediaQuery: true,
       builder: (BuildContext context, Widget? child) {
         return MaterialApp(
-            title: 'كُوجِينَا',
+            title:
+            // 'Welt App',
+            'كُوجِينَا',
             debugShowCheckedModeBanner: false,
           localizationsDelegates: [CountryLocalizations.delegate, ...context.localizationDelegates,],
           supportedLocales: context.supportedLocales,

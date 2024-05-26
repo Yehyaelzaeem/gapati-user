@@ -11,6 +11,7 @@ import '../../../../data/datasource/remote/dio/dio_client.dart';
 import '../../../../data/injection.dart';
 import '../../../../domain/provider/local_auth_provider_cubit.dart';
 import '../../../../data/injection.dart' as data_injection;
+import '../../../component/custom_logo.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
@@ -86,7 +87,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
             children: [
               Positioned(
                 top: height * 0.1,
-                 // left: width * 0.1,
+                  left: width * 0.1,
                 child: Center(
                   child: SlideTransition(
                     position: _animation!,
@@ -96,24 +97,19 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
                       alignment: Alignment.topCenter,
                       duration: Duration(seconds: 0),
                       child:
-                        Center(
-                          child: Container(
-                              height: height * 0.2 + 20,
-                              width: width ,
-                            child: Center(
-                              child: Text('LOGO',style: TextStyles.font20Black700Weight.copyWith(
-                                fontFamily: AppFonts.lateefFont,
-                                fontSize: 50
-                              ),),
-                            ),
-                          ),
-                        )
-                      // Image(
-                      //   height: height * 0.2 + 20,
-                      //   width: width * 0.8 + 10,
-                      //   fit: BoxFit.contain,
-                      //   image: AssetImage('assets/images/logo.jpg'),
-                      // ),
+                        // Center(
+                        //   child: Container(
+                        //       height: height * 0.2 + 20,
+                        //       width: width ,
+                        //     child: CustomLogo()
+                        //   ),
+                        // )
+                      Image(
+                        height: height * 0.2 + 20,
+                        width: width * 0.8 + 10,
+                        fit: BoxFit.contain,
+                        image: AssetImage('assets/images/logo.jpg'),
+                      ),
                     ),
                   ),
                 ),

@@ -183,9 +183,8 @@ class MoreScreen extends StatelessWidget {
                           NavigationService.push(RoutesRestaurants.aboutUsScreen);
                         },
                       ),
-                      CustomIsUser(
-                        isUser: isUser,
-                        widget: verticalSpace(20),),
+
+                      verticalSpace(20),
                       CustomProfileItemWidget(
                         backgroundColor: Colors.grey.shade700,
                         iconData: Icons.privacy_tip_outlined,

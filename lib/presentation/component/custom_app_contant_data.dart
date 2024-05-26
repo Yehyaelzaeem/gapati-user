@@ -1,11 +1,11 @@
-import 'package:cogina/core/assets_constant/images.dart';
 import 'package:cogina/core/global/styles/colors.dart';
 import 'package:cogina/core/translations/locale_keys.dart';
+import 'package:cogina/presentation/component/custom_logo.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import '../../core/assets_constant/images.dart';
 import '../../core/global/styles/styles.dart';
 import '../../core/helpers/spacing.dart';
 
@@ -26,7 +26,11 @@ class CustomAppContData extends StatelessWidget {
                 width: 130.w,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(100),
-                  child:Image.asset(RestaurantImages.logo2)
+                  child:
+                    // CustomLogo()
+                  Image.asset(RestaurantImages.logo2)
+
+
                   // Image.network(
                   //   image,
                   //   fit: BoxFit.cover,

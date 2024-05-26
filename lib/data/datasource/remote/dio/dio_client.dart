@@ -172,7 +172,7 @@ class DioClient {
         'User-Agent': 'android',
         'Accept-Language':  NavigationService.navigationKey.currentContext!.locale.languageCode,
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vc2FyZWVhLWJhY2tlbmQudGVzdC9hcGkvYXV0aC9vdHAiLCJpYXQiOjE3MTE5MzQxODMsImV4cCI6MTcxNDkzNDE4MywibmJmIjoxNzExOTM0MTgzLCJqdGkiOiJ0S3dMOVdnTGpLTHJHMzJ2Iiwic3ViIjoxMjMsInBydiI6IjQxZWZiN2JhZDdmNmY2MzJlMjQwNWJkM2E3OTNiOGE2YmRlYzY3NzcifQ.uH11niUzniMaPrKqfpdOd7YTOLDYwGgYLRLCDfNPOfU',
+        'Authorization': 'Bearer $token',
         'Accept': 'application/json'
       };
 

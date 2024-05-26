@@ -83,8 +83,14 @@ class SearchScreen extends StatelessWidget {
                       if( cubit.searchModel!.data!.isNotEmpty)
                           ...cubit.searchModel!.data!.map((e) => CustomRestaurantWidget(restaurantData:
                                 DataHome(
-                                id: e.id,name: e.name,category: e.category,
-                                image: e.image,rate: e.rate,distance: e.distance,
+                                  id: e.id,
+                                  name: e.name,
+                                  category: e.category,
+                                  image: e.image,
+                                  rate: e.rate,
+                                  banner: e.banner,
+                                  distance: e.distance,
+                                  inFav: e.isFav,
                                 opening: e.opening,)))
                       else
                         Column(

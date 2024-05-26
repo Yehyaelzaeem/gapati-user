@@ -29,7 +29,8 @@ class CustomRestaurantsListWidget extends StatelessWidget {
                     children: [
                       ...cubit.listData!.map((e) => InkWell(
                           onTap: (){
-                            NavigationService.push(RoutesRestaurants.restaurantScreen,arguments: {'id':e.id,'storeName':e.name,'image':e.banner!});
+
+                            NavigationService.push(RoutesRestaurants.restaurantScreen,arguments: {'id':e.id,'storeName':e.name,'image':e.banner!,'isFav':e.inFav});
                           },
                           child:  CustomRestaurantItemWidget(dataHome: e,))),
                       cubit.listData!.length>3?

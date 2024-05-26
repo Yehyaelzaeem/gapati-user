@@ -25,16 +25,18 @@ import '../widgets/shimmer_categories_restaurant.dart';
 import 'package:badges/badges.dart' as badges;
 
 class RestaurantScreen extends StatelessWidget {
-   RestaurantScreen({super.key, required this.id, required this.storeName,  this.image,required this.inFav});
+   RestaurantScreen({super.key, required this.id, required this.storeName,  required this.image,required this.inFav});
   final int id;
   final String storeName;
-  final String? image;
+  final String image;
   bool inFav;
   @override
   Widget build(BuildContext context) {
     RestaurantCubit cubit =RestaurantCubit.get(context);
     CartCubit cartCubit =CartCubit.get(context);
     // cartCubit.getCart(context);
+    print('imagedd ${image.toString()}');
+
     cubit.getCategories(id: id);
     return  BlocConsumer<RestaurantCubit, RestaurantState>(
             listener: (context, state) {},
@@ -51,7 +53,7 @@ class RestaurantScreen extends StatelessWidget {
                           SizedBox(
                               height: 280.h,
                               width: double.infinity,
-                              child: CustomImage(image: image!=null?image!:'',fit: BoxFit.cover),
+                              child: CustomImage(image: image??'',fit: BoxFit.cover),
                           ),
                         ],
                       ),

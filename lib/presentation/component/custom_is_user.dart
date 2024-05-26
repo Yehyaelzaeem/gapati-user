@@ -1,3 +1,4 @@
+import 'package:cogina/presentation/component/custom_logo.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../core/assets_constant/images.dart';
@@ -10,9 +11,15 @@ class CustomIsUser extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return isUser==true?widget:
-             hasLogo!=null? Image.asset(RestaurantImages.logo2,
+             hasLogo!=null?
+                 // Container(
+                 //   height: MediaQuery.of(context).size.height*0.2,
+                 //   child: CustomLogo(),
+                 // )
+             Image.asset(RestaurantImages.logo2,
                height: MediaQuery.of(context).size.height*0.2,
-             ):
+             )
+                 :
                SizedBox.shrink();
   }
 }

@@ -15,7 +15,7 @@ class CustomRestaurantWidget extends StatelessWidget {
   final DataHome restaurantData;
   @override
   Widget build(BuildContext context) {
-
+   print('test ${restaurantData.toJson()}');
     return
       InkWell(
         onTap: (){
