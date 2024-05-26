@@ -2,11 +2,15 @@ import 'package:cogina/presentation/modules/intro/splash/splash_screen.dart';
 import 'package:country_code_picker/country_localizations.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_storage/get_storage.dart';
 import 'bloc.dart';
+import 'core/notification/notification_service.dart';
 import 'core/routing/navigation_services.dart';
 import 'core/routing/route_generator.dart';
+import 'firebase_options.dart';
 import 'injection.dart' as injection;
 import 'data/injection.dart' as data_injection;
 import 'domain/injection.dart' as domain_injection;
@@ -20,6 +24,12 @@ void main() async{
   await data_injection.init();
   await domain_injection.init();
   await injection.init();
+  await GetStorage.init();
+  await Firebase.initializeApp(
+     options: DefaultFirebaseOptions.currentPlatform,
+  );
+  final NotificationService notificationService = NotificationService();
+  notificationService.init();
 
 //pushNamedAndRemoveUntil
   runApp(
@@ -44,7 +54,7 @@ final supportedLocales = <Locale>[
   const Locale('en'),
   const Locale('ar'),
 ];
-BuildContext? appContext;
+BuildContext appContext=NavigationService.navigationKey.currentContext!;
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
@@ -55,7 +65,9 @@ class MyApp extends StatelessWidget {
       useInheritedMediaQuery: true,
       builder: (BuildContext context, Widget? child) {
         return MaterialApp(
-            title: 'كُوجِينَا',
+            title:
+            // 'Welt App',
+            'كُوجِينَا',
             debugShowCheckedModeBanner: false,
           localizationsDelegates: [CountryLocalizations.delegate, ...context.localizationDelegates,],
           supportedLocales: context.supportedLocales,

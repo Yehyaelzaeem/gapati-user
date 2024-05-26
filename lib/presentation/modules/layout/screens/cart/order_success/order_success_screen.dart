@@ -4,7 +4,6 @@ import 'package:cogina/core/global/styles/styles.dart';
 import 'package:cogina/core/helpers/spacing.dart';
 import 'package:cogina/presentation/component/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
-
 import '../../../../../../../core/routing/navigation_services.dart';
 import '../../../../../../../core/routing/routes.dart';
 

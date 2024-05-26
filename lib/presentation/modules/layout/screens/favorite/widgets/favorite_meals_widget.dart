@@ -1,6 +1,5 @@
 import 'package:cogina/core/helpers/extensions.dart';
 import 'package:cogina/core/routing/routes.dart';
-import 'package:cogina/core/translations/locale_keys.dart';
 import 'package:cogina/presentation/component/custom_loading_widget.dart';
 import 'package:cogina/presentation/modules/layout/screens/favorite/favorite_cubit.dart';
 import 'package:cogina/presentation/modules/layout/screens/favorite/widgets/custom_favorite_item.dart';
@@ -11,6 +10,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../core/assets_constant/images.dart';
 import '../../../../../../data/model/response/category_item_model.dart';
+import '../../../../../../generated/locale_keys.g.dart';
 import '../../../../../component/custom_not_found_data.dart';
 
 class FavoriteMealsWidget extends StatelessWidget {

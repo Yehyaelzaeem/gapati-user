@@ -1,5 +1,4 @@
 import 'package:cogina/core/helpers/spacing.dart';
-import 'package:cogina/core/translations/locale_keys.dart';
 import 'package:cogina/generated/locale_keys.g.dart';
 import 'package:cogina/presentation/modules/layout/screens/orders/widgets/custom_order_details_item.dart';
 import 'package:cogina/presentation/modules/layout/screens/orders/widgets/custom_steps_order_widget.dart';

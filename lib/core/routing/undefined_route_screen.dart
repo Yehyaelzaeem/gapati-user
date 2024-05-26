@@ -6,8 +6,6 @@ import 'package:flutter/material.dart';
 
 import '../../generated/locale_keys.g.dart';
 
-
-
 class UndefinedRouteScreen extends StatelessWidget {
   const UndefinedRouteScreen({Key? key}) : super(key: key);
 
@@ -15,7 +13,7 @@ class UndefinedRouteScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Scaffold(
         body: Center(
-          child:Text(tr(LocaleKey2.noRouteFound),style: const TextStyle().titleStyle(),) ,
+          child:Text(tr(LocaleKeys.notFoundData),style: const TextStyle().titleStyle(),) ,
         ),
     );
   }

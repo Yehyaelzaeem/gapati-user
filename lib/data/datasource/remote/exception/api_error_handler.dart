@@ -13,15 +13,16 @@ class ApiErrorHandler {
         if (error is DioError) {
           switch (error.type) {
             case DioErrorType.cancel:
-              return  ErrorModel(code:error.response?.statusCode??0 ,codeError: ErrorEnum.cancel,errorMessage: tr(LocaleKey2.noConnection));
+              return  ErrorModel(code:error.response?.statusCode??0 ,codeError: ErrorEnum.cancel,errorMessage:
+              'error');
             case DioErrorType.connectTimeout:
-              return   ErrorModel(code:error.response?.statusCode??0 ,codeError: ErrorEnum.connectTimeout,errorMessage: tr(LocaleKey2.noConnection));
+              return   ErrorModel(code:error.response?.statusCode??0 ,codeError: ErrorEnum.connectTimeout,errorMessage:'error');
             case DioErrorType.receiveTimeout:
-              return  ErrorModel(code:error.response?.statusCode??0 ,codeError: ErrorEnum.receiveTimeout,errorMessage: tr(LocaleKey2.noConnection));
+              return  ErrorModel(code:error.response?.statusCode??0 ,codeError: ErrorEnum.receiveTimeout,errorMessage: 'error');
             case DioErrorType.sendTimeout:
-              return  ErrorModel(code:error.response?.statusCode??0 ,codeError: ErrorEnum.sendTimeout,errorMessage: tr(LocaleKey2.noConnection));
+              return  ErrorModel(code:error.response?.statusCode??0 ,codeError: ErrorEnum.sendTimeout,errorMessage: 'error');
             case DioErrorType.other:
-              return   ErrorModel(code:error.response?.statusCode??0 ,codeError: ErrorEnum.other,errorMessage: tr(LocaleKey2.noConnection),);
+              return   ErrorModel(code:error.response?.statusCode??0 ,codeError: ErrorEnum.other,errorMessage: 'error',);
             case DioErrorType.response:
               switch (error.response!.statusCode) {
                 case 401:return  const ErrorModel(code:401 ,codeError: ErrorEnum.auth,errorMessage:  'Unauthorized');

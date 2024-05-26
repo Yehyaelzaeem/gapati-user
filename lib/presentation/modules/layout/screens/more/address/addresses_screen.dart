@@ -2,7 +2,7 @@ import 'package:cogina/core/global/fonts/app_fonts.dart';
 import 'package:cogina/core/global/styles/styles.dart';
 import 'package:cogina/core/helpers/extensions.dart';
 import 'package:cogina/core/routing/routes.dart';
-import 'package:cogina/core/translations/locale_keys.dart';
+import '../../../../../../../generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

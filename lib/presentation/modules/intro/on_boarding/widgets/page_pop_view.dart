@@ -50,6 +50,7 @@ class PagePopup extends StatelessWidget {
                           textAlign: TextAlign.justify,
                           style: TextStyles.font18Black700Weight.copyWith(
                             fontWeight: FontWeight.w500,
+                            fontSize: 16,
                             color: AppColors.customGray
                           ),
                         ),

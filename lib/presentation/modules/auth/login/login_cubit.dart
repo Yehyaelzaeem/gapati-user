@@ -77,6 +77,7 @@ class LoginCubit extends Cubit<LoginState> {
       CacheConsumer cacheConsumer =CacheConsumer(secureStorage: getIt(), sharedPreferences: getIt(),);
       var key =cacheConsumer.get('visitor');
       LayoutCubit layoutCubit=LayoutCubit.get(context);
+      log('visitor', key.toString());
        if(key!=null){
          layoutCubit.initLayOut();
          if(key=='favorite'){

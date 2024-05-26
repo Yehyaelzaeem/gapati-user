@@ -104,9 +104,9 @@ class CustomTextFieldPhone extends StatelessWidget {
       validateFunc: validateFunc ??
           (value) {
             if (value ==null||value.toString().isEmpty) {
-              return tr(LocaleKey2.msgPhoneNumberRequired);
+              return '';
             } else if (value.toString().length == 10) {
-              return tr(LocaleKey2.msgInvalidPhoneNumber);
+              return '';
             }
 
             if (validateFunc != null) return validateFunc!(value);

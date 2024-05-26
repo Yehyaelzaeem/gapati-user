@@ -6,7 +6,6 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../../../core/assets_constant/images.dart';
 import '../../../../../../core/global/styles/colors.dart';
 import '../../../../../../core/global/styles/styles.dart';
-import '../../../../../../core/translations/locale_keys.dart';
 
 class CustomNotFoundDataWidget extends StatelessWidget {
   const CustomNotFoundDataWidget({super.key, required  this.title, required this.type, required this.image});

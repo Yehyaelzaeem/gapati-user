@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../../core/translations/locale_keys.dart';
+import '../../../../../../../generated/locale_keys.g.dart';
 import '../../../../../component/custom_app_contant_data.dart';
 import '../../../../../component/custom_loading_widget.dart';
 import '../more_cubit.dart';
@@ -19,7 +19,7 @@ class TermsConditionScreen extends StatelessWidget {
     return
       Scaffold(
           appBar:  CustomAppBar(
-            title: LocaleKeys.termsAndConditions.tr(),
+            title: LocaleKeys.termsConditions.tr(),
           ),
           body: BlocBuilder<MoreCubit, MoreState>(
             builder: (context, state) {

@@ -4,7 +4,6 @@ import 'package:cogina/core/helpers/extensions.dart';
 import 'package:cogina/core/helpers/spacing.dart';
 import 'package:cogina/core/routing/routes.dart';
 import 'package:cogina/core/services/error/error_handler.dart';
-import 'package:cogina/core/translations/locale_keys.dart';
 import 'package:cogina/presentation/component/component.dart';
 import 'package:cogina/presentation/modules/auth/login/login_cubit.dart';
 import 'package:cogina/presentation/modules/auth/login/widget/login_widget.dart';
@@ -14,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/routing/navigation_services.dart';
+import '../../../../generated/locale_keys.g.dart';
 import '../register/register_cubit.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -22,7 +22,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     LoginCubit cubit =LoginCubit.get(context);
-    cubit.type=='auth';
+    cubit.changeType('auth');
     return Scaffold(
       resizeToAvoidBottomInset: true, // Set to true to allow the Scaffold to resize when the keyboard is displayed
       backgroundColor: AppColors.backGroundGray,

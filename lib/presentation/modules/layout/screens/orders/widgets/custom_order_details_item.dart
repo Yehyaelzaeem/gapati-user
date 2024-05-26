@@ -7,7 +7,7 @@ import 'package:cogina/core/global/styles/styles.dart';
 import '../../../../../../../core/helpers/spacing.dart';
 import '../../../../../../../core/routing/navigation_services.dart';
 import '../../../../../../../core/routing/routes.dart';
-import '../../../../../../core/translations/locale_keys.dart';
+import '../../../../../../../generated/locale_keys.g.dart';
 import '../../../../../../data/model/response/order_details_model.dart';
 import '../../../../restaurant/widgets/custom_chip.dart';
 

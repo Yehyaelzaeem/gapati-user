@@ -115,8 +115,8 @@ class AddressCubit extends Cubit<AddressState> {
     emit(ChangeTypeState()) ;
   }
 
-  double? lat;
-  double? long;
+  dynamic lat;
+  dynamic long;
   Position? p ;
   AddressLocationModel? addressLocationModel;
   Future<void> getLocation(context)async{

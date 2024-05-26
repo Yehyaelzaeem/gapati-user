@@ -1,6 +1,6 @@
 import 'package:cogina/core/global/styles/styles.dart';
 import 'package:cogina/core/helpers/spacing.dart';
-import 'package:cogina/core/translations/locale_keys.dart';
+import '../../../../../../../generated/locale_keys.g.dart';
 import 'package:cogina/presentation/component/component.dart';
 import 'package:cogina/presentation/modules/search/search_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -83,8 +83,14 @@ class SearchScreen extends StatelessWidget {
                       if( cubit.searchModel!.data!.isNotEmpty)
                           ...cubit.searchModel!.data!.map((e) => CustomRestaurantWidget(restaurantData:
                                 DataHome(
-                                id: e.id,name: e.name,category: e.category,
-                                image: e.image,rate: e.rate,distance: e.distance,
+                                  id: e.id,
+                                  name: e.name,
+                                  category: e.category,
+                                  image: e.image,
+                                  rate: e.rate,
+                                  banner: e.banner,
+                                  distance: e.distance,
+                                  inFav: e.isFav,
                                 opening: e.opening,)))
                       else
                         Column(

@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../../core/routing/routes.dart';
-import '../../../../../../../core/translations/locale_keys.dart';
+import '../../../../../../../generated/locale_keys.g.dart';
 import '../../../../../../../data/model/response/address_model.dart';
 import '../../../../../../../domain/request_body/address_body.dart';
 

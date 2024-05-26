@@ -1,5 +1,4 @@
 import 'package:cogina/core/helpers/extensions.dart';
-import 'package:cogina/core/translations/locale_keys.dart';
 import 'package:cogina/presentation/component/component.dart';
 import 'package:cogina/presentation/modules/auth/register/register_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -9,6 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/global/styles/colors.dart';
 import '../../../../../core/global/styles/styles.dart';
 import '../../../../../core/helpers/spacing.dart';
+import '../../../../generated/locale_keys.g.dart';
 import '../../../component/custom_elevated_button.dart';
 import '../../../component/custom_text_field.dart';
 import '../../../dialog/base/dailog.dart';
@@ -138,7 +138,7 @@ class RegisterScreen extends StatelessWidget {
                                             InkWell(
                                               onTap:(){
                                                 customShowDialog(
-                                                    title: LocaleKeys.termsAndConditions.tr(),
+                                                    title: LocaleKeys.termsConditions.tr(),
                                                     body:
                                                     '''
                   As of my last update in January 2022, McDonald's is a globally recognized fast-food restaurant chain known for its hamburgers, cheeseburgers, French fries, and other fast-food items. Here are some general points about McDonald's:
@@ -162,7 +162,7 @@ class RegisterScreen extends StatelessWidget {
                                                     context: context);
                                               },
                                               child: Text(
-                                                LocaleKeys.termsAndConditions.tr(),
+                                                LocaleKeys.termsConditions.tr(),
                                                 style: TextStyles.font18Black700Weight
                                                     .copyWith(fontWeight: FontWeight.w500,fontSize: 14,color: Colors.blue),
                                               ),

@@ -1,5 +1,4 @@
 import 'package:cogina/core/helpers/toast_states/enums.dart';
-import 'package:cogina/core/translations/locale_keys.dart';
 import 'package:cogina/presentation/modules/layout/screens/home/widgets/custom_restaurants_list.dart';
 import 'package:cogina/presentation/modules/layout/screens/home/widgets/offers_widgets.dart';
 import 'package:cogina/presentation/modules/layout/screens/home/widgets/shimmer_offers.dart';
@@ -13,6 +12,7 @@ import '../../../../../../core/global/styles/colors.dart';
 import '../../../../../../core/global/styles/styles.dart';
 import '../../../../../../core/routing/navigation_services.dart';
 import '../../../../../../core/routing/routes.dart';
+import '../../../../../generated/locale_keys.g.dart';
 import '../../../search/search_cubit.dart';
 import 'widgets/shimmer_restaurant.dart';
 import 'home_cubit.dart';

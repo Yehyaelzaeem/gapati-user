@@ -31,6 +31,7 @@ class SearchModelData {
   Discount? discount;
   String? distance;
   bool? opening;
+  bool? isFav;
 
   SearchModelData(
       {this.id,
@@ -41,6 +42,7 @@ class SearchModelData {
         this.rate,
         this.discount,
         this.distance,
+        this.isFav,
         this.opening});
 
   SearchModelData.fromJson(Map<String, dynamic> json) {
@@ -54,6 +56,7 @@ class SearchModelData {
         ? new Discount.fromJson(json['discount'])
         : null;
     distance = json['distance'];
+    isFav = json['inFav'];
     opening = json['opening'];
   }
 
@@ -70,6 +73,7 @@ class SearchModelData {
     }
     data['distance'] = this.distance;
     data['opening'] = this.opening;
+    data['inFav'] = this.isFav;
     return data;
   }
 }

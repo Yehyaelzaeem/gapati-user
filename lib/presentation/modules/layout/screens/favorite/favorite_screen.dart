@@ -1,6 +1,5 @@
 import 'package:cogina/core/helpers/extensions.dart';
 import 'package:cogina/core/routing/routes.dart';
-import 'package:cogina/core/translations/locale_keys.dart';
 import 'package:cogina/presentation/component/component.dart';
 import 'package:cogina/presentation/modules/layout/screens/cart/cart_cubit.dart';
 import 'package:cogina/presentation/modules/layout/screens/favorite/favorite_cubit.dart';
@@ -13,6 +12,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/assets_constant/images.dart';
 import '../../../../../data/model/response/category_item_model.dart';
+import '../../../../../generated/locale_keys.g.dart';
 import '../../../../component/custom_not_found_data.dart';
 import '../../../../component/tabview/tabbar_widget.dart';
 import '../../../restaurant/meal_details/meal_details_screen.dart';

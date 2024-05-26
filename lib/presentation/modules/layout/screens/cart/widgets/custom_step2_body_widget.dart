@@ -1,10 +1,10 @@
 import 'package:cogina/core/global/styles/colors.dart';
 import 'package:cogina/core/global/styles/styles.dart';
-import 'package:cogina/core/translations/locale_keys.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../../core/helpers/spacing.dart';
+import '../../../../../../generated/locale_keys.g.dart';
 import '../../../../../component/custom_elevated_button.dart';
 import '../check_out/check_out_cubit.dart';
 
@@ -36,12 +36,12 @@ class CustomStepBody2Widget extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       color: AppColors.redColor.withOpacity(0.5)
                     ),) ,
-                    Text('3-5 ${LocaleKeys.dayDelivery.tr()}',
-                    style: TextStyles.font16Black600Weight.copyWith(
-                      color: AppColors.customGray,
-                      fontWeight: FontWeight.w700
-                    ),
-                    ),
+                    // Text('3-5 ${LocaleKeys.dayDelivery.tr()}',
+                    // style: TextStyles.font16Black600Weight.copyWith(
+                    //   color: AppColors.customGray,
+                    //   fontWeight: FontWeight.w700
+                    // ),
+                    // ),
                   ],
                 ),
                 const Spacer(),
@@ -73,7 +73,7 @@ class CustomStepBody2Widget extends StatelessWidget {
               onTap: (){
                 cubit.changeSteps(2);
 
-              }, buttonText:LocaleKeys.continueButton.tr()),
+              }, buttonText:LocaleKeys.continue2.tr()),
         ),
         verticalSpace(40),
       ],

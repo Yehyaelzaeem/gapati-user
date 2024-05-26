@@ -1,6 +1,5 @@
 
 import 'package:cogina/core/helpers/extensions.dart';
-import 'package:cogina/presentation/modules/layout/screens/favorite/favorite_cubit.dart';
 import 'package:cogina/presentation/modules/layout/screens/home/home_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -38,7 +37,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
     int currentIndex = context.watch<LayoutCubit>().currentIndex;
     final LayoutCubit viewModel = BlocProvider.of<LayoutCubit>(context);
     List<NavigationTab> kTabs =getDataTabs();
-    return Scaffold(
+    return  Scaffold(
       extendBody: true,
       extendBodyBehindAppBar: true,
       body: PopScope(
@@ -52,7 +51,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
             if(isAuthed){
 
             }else{
-               context.pop();
+              context.pop();
             }
           }
         },

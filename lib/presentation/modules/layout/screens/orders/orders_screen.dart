@@ -1,5 +1,5 @@
 import 'package:cogina/core/global/styles/colors.dart';
-import 'package:cogina/core/translations/locale_keys.dart';
+import '../../../../../../../generated/locale_keys.g.dart';
 import 'package:cogina/presentation/modules/layout/screens/home/home_cubit.dart';
 import 'package:cogina/presentation/modules/layout/screens/orders/widgets/custom_order_item.dart';
 import 'package:easy_localization/easy_localization.dart';

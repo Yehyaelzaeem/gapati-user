@@ -5,9 +5,11 @@ import 'package:cogina/presentation/modules/layout/screens/cart/cart_cubit.dart'
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_storage/get_storage.dart';
 import '../../core/routing/routes.dart';
 import '../../core/utils/globals.dart';
 import '../../data/app_urls/app_url.dart';
+import '../../data/datasource/local/storage_keys.dart';
 import '../../data/datasource/remote/dio/dio_client.dart';
 import '../../data/model/base/response_model.dart';
 import '../usecase/local/clear_user_data_usecase.dart';
@@ -40,12 +42,14 @@ class LocalAuthCubit extends Cubit<LocalAuthState> {
         super(LocalAuthState());
 
   ///call APIs Functions
-  Future<bool> isLogin() async {
-    ResponseModel responseModel = await _isUserLoginUseCase.call();
-    if (responseModel.isSuccess) {
-      emit(state.copyWith(isLogin: true));
-    }
-    return responseModel.isSuccess;
+   bool isLogin()  {
+    final box = GetStorage();
+    return box.read(StorageKeys.kIsAuthed)??false;
+    // ResponseModel responseModel = await _isUserLoginUseCase.call();
+    // if (responseModel.isSuccess) {
+    //   emit(state.copyWith(isLogin: true));
+    // }
+    // return responseModel.isSuccess;
   }
 
   Future<bool> logOut(BuildContext context) async {

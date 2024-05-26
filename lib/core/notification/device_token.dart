@@ -9,7 +9,7 @@ Future<String?> getDeviceToken() async {
     log("FCM token: $token");
     return token;
   } catch (e) {
-    log("FCM token error: $e");
+    log("FCM token error:  $e");
     return null;
   }
 }

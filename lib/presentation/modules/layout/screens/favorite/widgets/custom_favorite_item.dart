@@ -7,8 +7,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:cogina/core/global/styles/colors.dart';
 
 import '../../../../../../../core/assets_constant/images.dart';
-import '../../../../../../core/translations/locale_keys.dart';
 import '../../../../../../data/model/response/favorite_model.dart';
+import '../../../../../../generated/locale_keys.g.dart';
 import '../favorite_cubit.dart';
 
 

@@ -1,4 +1,3 @@
-import 'package:cogina/core/translations/locale_keys.dart';
 import 'package:cogina/presentation/modules/layout/screens/cart/cart_cubit.dart';
 import 'package:cogina/presentation/modules/layout/screens/cart/check_out/check_out_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -8,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:cogina/core/global/styles/colors.dart';
 import 'package:cogina/core/global/styles/styles.dart';
 import '../../../../../../../core/helpers/spacing.dart';
+import '../../../../../../generated/locale_keys.g.dart';
 import '../../../../../component/custom_elevated_button.dart';
 import '../../more/address/address_cubit.dart';
 import 'custom_cart_item.dart';

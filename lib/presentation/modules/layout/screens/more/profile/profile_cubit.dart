@@ -13,6 +13,7 @@ import '../../../../../../domain/request_body/profile_body.dart';
 import '../../../../../../domain/usecase/local/get_user_token_usecase.dart';
 import '../../../../../../domain/usecase/profile/get_profile_usecase.dart';
 import '../../../../../../domain/usecase/profile/update_profile_usecase.dart';
+import '../../../../chats/cubit/chat_cubit.dart';
 
 part 'profile_state.dart';
 
@@ -27,13 +28,20 @@ class ProfileCubit extends Cubit<ProfileState> {
   TextEditingController phoneController =TextEditingController();
   final formKey = GlobalKey<FormState>();
 
-  Future<ResponseModel> getProfile() async {
+  Future<ResponseModel> getProfile({bool? updateFirebase}) async {
     profileModel=null;
     emit(GetProfileLoadingState()) ;
     ResponseModel responseModel = await _profileUseCase.call();
     if (responseModel.isSuccess) {
       GetProfileModel model =responseModel.data;
       profileModel=model.data;
+      if(updateFirebase==true){
+        ChatCubit.get().updateUserProfile(
+            name: '${profileModel?.firstName??''} ${profileModel?.lastName??''}',
+            phone:  profileModel?.mobileNumber??'',
+            image: profileModel?.image??''
+        );
+      }
       emit(GetProfileSuccessState()) ;
     }else{
       emit(GetProfileErrorState()) ;
@@ -52,7 +60,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     _assignProfileBody(phone: phoneController.text, email: emailController.text);
     ResponseModel responseModel = await _updateProfileUseCase.call(profileBody: body);
     if (responseModel.isSuccess) {
-      getProfile();
+      getProfile(updateFirebase: true);
       Navigator.of(NavigationService.navigationKey.currentContext!).pop();
       emit(UpdateProfileSuccessState()) ;
     }else{

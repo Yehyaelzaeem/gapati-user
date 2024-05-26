@@ -108,7 +108,7 @@ class CustomTextFieldArea extends StatelessWidget {
           validateFunc: validateFunc ??
                   (value) {
                 if ((value == null || value.isEmpty) && isRequired) {
-                  return tr(LocaleKey2.msgFormFieldRequired);
+                  return '';
                 }
                 if (validateFunc != null) return validateFunc!(value);
                 return null;

@@ -1,5 +1,6 @@
 import 'package:cogina/presentation/modules/auth/login/login_cubit.dart';
 import 'package:cogina/presentation/modules/auth/register/register_cubit.dart';
+import 'package:cogina/presentation/modules/chats/cubit/chat_cubit.dart';
 import 'package:cogina/presentation/modules/layout/layout_cubit.dart';
 import 'package:cogina/presentation/modules/layout/screens/cart/cart_cubit.dart';
 import 'package:cogina/presentation/modules/layout/screens/cart/check_out/check_out_cubit.dart';
@@ -17,6 +18,7 @@ import 'domain/provider/local_auth_provider_cubit.dart';
 Future<void> init() async {
   // Bloc
   getIt.registerLazySingleton(() => LayoutCubit(getUserTokenUseCase: getIt(),));
+  getIt.registerLazySingleton(() => ChatCubit());
   getIt.registerLazySingleton(() => ProfileCubit(profileUseCase: getIt(), updateProfileUseCase: getIt(),));
   getIt.registerLazySingleton(() => HomeCubit(homeUseCase: getIt(), offersUseCase:  getIt()));
   getIt.registerLazySingleton(() => LoginCubit(saveUserDataUseCase: getIt(), signInUseCase: getIt(), otpUseCase: getIt()));

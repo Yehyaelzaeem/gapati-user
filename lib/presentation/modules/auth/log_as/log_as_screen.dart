@@ -3,13 +3,14 @@ import 'package:cogina/core/global/styles/colors.dart';
 import 'package:cogina/core/helpers/extensions.dart';
 import 'package:cogina/core/helpers/spacing.dart';
 import 'package:cogina/core/routing/routes.dart';
-import 'package:cogina/core/translations/locale_keys.dart';
 import 'package:cogina/presentation/component/custom_elevated_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/assets_constant/images.dart';
 import '../../../../core/global/styles/styles.dart';
+import '../../../../generated/locale_keys.g.dart';
+import '../../../component/custom_logo.dart';
 import '../register/register_cubit.dart';
 
 class LogAsScreen extends StatelessWidget {
@@ -22,12 +23,14 @@ class LogAsScreen extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+         // verticalSpace(200),
+         //  CustomLogo(),
+         //  verticalSpace(130),
           verticalSpace(50),
           Image.asset(RestaurantImages.logo),
           Expanded(
             child: SizedBox(
               width: MediaQuery.of(context).size.width*0.8,
-
               child: DefaultTextStyle(
                 style: const TextStyle(
                   fontSize: 30.0,
@@ -46,7 +49,6 @@ class LogAsScreen extends StatelessWidget {
                                         color:AppColors.customBlack,
                                         fontSize: 17.sp,
                                     ),textAlign: TextAlign.center),
-
                   ],
                   onTap: () {
                     print("Tap Event");
@@ -77,7 +79,6 @@ class LogAsScreen extends StatelessWidget {
             buttonText: LocaleKeys.signUp.tr(),
             fontSize: 18,
           ),
-
           verticalSpace(10),
           InkWell(
             onTap: (){
@@ -91,9 +92,7 @@ class LogAsScreen extends StatelessWidget {
             ),
             ),
           ),
-
           verticalSpace(50),
-
         ],
       ),
     );

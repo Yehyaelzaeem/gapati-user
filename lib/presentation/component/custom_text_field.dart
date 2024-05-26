@@ -146,6 +146,7 @@ InputDecoration customInputDecration({
       ),
       borderRadius: BorderRadius.circular(borderRadius ?? 8.0),
     ),
+
     errorBorder: OutlineInputBorder(
       borderSide: BorderSide(
         color: Colors.red,

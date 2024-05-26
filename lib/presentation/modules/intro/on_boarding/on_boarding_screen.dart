@@ -1,8 +1,6 @@
 import 'dart:async';
 import 'package:cogina/core/global/styles/colors.dart';
 import 'package:cogina/core/helpers/extensions.dart';
-import 'package:cogina/core/translations/locale_keys.dart';
-import 'package:cogina/domain/logger.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,6 +9,7 @@ import '../../../../core/global/styles/styles.dart';
 import '../../../../core/resources/values_manager.dart';
 import '../../../../core/routing/routes.dart';
 import '../../../../generated/assets.dart';
+import '../../../../generated/locale_keys.g.dart';
 import '../../../component/custom_button.dart';
 import '../../../component/spaces.dart';
 import 'widgets/page_pop_view.dart';
@@ -92,7 +91,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     PagePopup(imageData: pageViewModelData[0]),
                     PagePopup(imageData: pageViewModelData[1]),
                     PagePopup(imageData: pageViewModelData[2]),
-
                   ],
                 ),
                 Positioned(

@@ -102,9 +102,9 @@ class CustomTextFieldEmail extends StatelessWidget {
           (value) {
 
             if (value ==null||value.toString().isEmpty) {
-              return tr(LocaleKey2.msgEmailRequired);
+              return '';
             } else if (!isEmail(value)) {
-              return tr(LocaleKey2.msgInvalidEmail);
+              return '';
             }
 
             if (validateFunc != null) return validateFunc!(value);

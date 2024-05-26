@@ -3,6 +3,8 @@
 class RoutesRestaurants {
   static const String splashScreen = "/splashScreen";
   static const String onBoardingScreen = "/onBoardingScreen";
+  static const String chatsScreen = "/chatsScreen";
+  static const String chatRoomScreen = "/chatRoomScreen";
   static const String restaurantsHome = "/restaurantsHome";
   static const String restaurant = "/restaurant";
   static const String orderMapScreen = "/orderMapScreen";

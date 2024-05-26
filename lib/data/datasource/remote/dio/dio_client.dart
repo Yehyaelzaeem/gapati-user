@@ -1,13 +1,9 @@
 import 'dart:io';
-import 'dart:ui';
-
-
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import '../../../../core/routing/navigation_services.dart';
 import '../../../../domain/logger.dart';
-import '../../../../main.dart';
 import '../../../app_urls/app_url.dart';
 import '../../local/cache_consumer.dart';
 import '../../local/storage_keys.dart';
@@ -19,7 +15,7 @@ class DioClient {
   final CacheConsumer cacheConsumer;
 
   Dio? dio;
-  String? token;
+  var token;
 
   _getToken() async{
     if (token == null) {
@@ -172,7 +168,7 @@ class DioClient {
         'User-Agent': 'android',
         'Accept-Language':  NavigationService.navigationKey.currentContext!.locale.languageCode,
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vc2FyZWVhLWJhY2tlbmQudGVzdC9hcGkvYXV0aC9vdHAiLCJpYXQiOjE3MTE5MzQxODMsImV4cCI6MTcxNDkzNDE4MywibmJmIjoxNzExOTM0MTgzLCJqdGkiOiJ0S3dMOVdnTGpLTHJHMzJ2Iiwic3ViIjoxMjMsInBydiI6IjQxZWZiN2JhZDdmNmY2MzJlMjQwNWJkM2E3OTNiOGE2YmRlYzY3NzcifQ.uH11niUzniMaPrKqfpdOd7YTOLDYwGgYLRLCDfNPOfU',
+        'Authorization': 'Bearer $token',
         'Accept': 'application/json'
       };
 

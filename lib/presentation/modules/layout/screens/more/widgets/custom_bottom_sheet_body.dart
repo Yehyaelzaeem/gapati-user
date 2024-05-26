@@ -7,7 +7,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../core/routing/routes.dart';
-import '../../../../../../core/translations/locale_keys.dart';
 import '../../../../../../generated/locale_keys.g.dart';
 import '../../../../../component/custom_loading_widget.dart';
 import '../../../layout_cubit.dart';

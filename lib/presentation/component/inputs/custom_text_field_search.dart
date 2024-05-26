@@ -81,7 +81,7 @@ class CustomTextFieldSearch extends StatelessWidget {
       prefixIcon: iconData ?? Icons.search,
       prefixIconColor:prefixIconColor?? AppColors.black,
       defaultValue: defaultValue,
-      hint: hint??tr(LocaleKey2.searchHint),
+      hint: hint??'search',
       onTap: onTap,
       autoValidate: autoValidate,
       enable: enable,

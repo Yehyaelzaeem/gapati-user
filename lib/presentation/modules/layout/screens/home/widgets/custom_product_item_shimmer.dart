@@ -1,5 +1,4 @@
 import 'package:cogina/core/helpers/spacing.dart';
-import 'package:cogina/core/translations/locale_keys.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,6 +8,7 @@ import 'package:shimmer/shimmer.dart';
 import '../../../../../../../core/assets_constant/images.dart';
 import '../../../../../../../core/routing/navigation_services.dart';
 import '../../../../../../../core/routing/routes.dart';
+import '../../../../../../generated/locale_keys.g.dart';
 import '../../../../../component/custom_elevated_button.dart';
 import '../../../../../component/custom_rate.dart';
 

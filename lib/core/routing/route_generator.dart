@@ -8,6 +8,8 @@ import '../../presentation/modules/auth/log_as/log_as_screen.dart';
 import '../../presentation/modules/auth/login/login_screen.dart';
 import '../../presentation/modules/auth/register/register_screen.dart';
 import '../../presentation/modules/auth/register/register_success_screen.dart';
+import '../../presentation/modules/chats/presentation/chat_room.dart';
+import '../../presentation/modules/chats/presentation/chats_screen.dart';
 import '../../presentation/modules/intro/choose_user/choose_user_screen.dart';
 import '../../presentation/modules/intro/on_boarding/on_boarding_screen.dart';
 import '../../presentation/modules/latest_sales/latest_sales_screen.dart';
@@ -53,6 +55,10 @@ class RouteRestaurantsGenerator {
         return platformPageRoute( const LoginScreen());
         case RoutesRestaurants.addMealScreen:
         return platformPageRoute(const AddMealScreen());
+        case RoutesRestaurants.chatsScreen:
+        return platformPageRoute(const ChatsScreen());
+        case RoutesRestaurants.chatRoomScreen:
+        return platformPageRoute( ChatRoomScreen(user: arguments?['user'],));
       case RoutesRestaurants.mealDetailsScreen:
         return platformPageRoute( MealDetailsScreen(storeId: arguments?['storeId'],
           count: arguments?['count'],itemExtraList: arguments?['itemExtraList'],

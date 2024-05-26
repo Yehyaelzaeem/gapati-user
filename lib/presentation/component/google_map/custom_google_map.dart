@@ -2,7 +2,8 @@ import 'dart:async';
 import 'package:cogina/core/global/styles/colors.dart';
 import 'package:cogina/core/helpers/extensions.dart';
 import 'package:cogina/core/resources/color.dart';
-import 'package:cogina/core/translations/locale_keys.dart';
+import '../../../../../../../generated/locale_keys.g.dart';
+import 'package:cogina/domain/logger.dart';
 import 'package:cogina/presentation/modules/layout/screens/more/address/address_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +30,7 @@ class _MapScreenState extends State<CustomGoogleMapScreen> {
   @override
   void initState() {
     markerPosition =LatLng(widget.lat, widget.long);
+    getAddressPosition(LatLng(widget.lat, widget.long));
     super.initState();
   }
   TextEditingController searchController = TextEditingController();
@@ -120,9 +122,9 @@ class _MapScreenState extends State<CustomGoogleMapScreen> {
                   );
                   if(getCountry.isNotEmpty){
                     AddressCubit a =AddressCubit.get(context);
-                    a.lat=double.parse(getLat);
-                    a.long=double.parse(getLong);
-                    a.locationController.text='${getCountry}/${getBigCity}/${getCity}/${getStreet}/${getLocality}';
+                    a.lat=getLat.isNotEmpty?double.parse(getLat):double.parse(widget.lat.toString());
+                    a.long=getLong.isNotEmpty?double.parse(getLong):double.parse(widget.long.toString());
+                    a.locationController.text='${getCity}/${getStreet}';
                    context.pop();
                   }
                 },
@@ -148,6 +150,7 @@ class _MapScreenState extends State<CustomGoogleMapScreen> {
   void _updateMarker(LatLng newPosition) {
     setState((){
       getAddressPosition(newPosition);
+      log('tag', newPosition.toJson().toString());
       getLat=newPosition.latitude.toString();
       getLong=newPosition.longitude.toString();
       markerPosition = newPosition;

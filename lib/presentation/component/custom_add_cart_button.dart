@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../core/global/styles/colors.dart';
 import '../../core/helpers/toast_states/enums.dart';
-import '../../core/translations/locale_keys.dart';
 import '../../data/model/response/category_item_model.dart';
+import '../../generated/locale_keys.g.dart';
 import '../modules/layout/screens/cart/cart_cubit.dart';
 import 'custom_elevated_button.dart';
 

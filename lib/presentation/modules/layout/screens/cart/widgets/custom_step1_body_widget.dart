@@ -1,4 +1,5 @@
-import 'package:cogina/core/translations/locale_keys.dart';
+import 'package:cogina/core/helpers/extensions.dart';
+import 'package:cogina/core/routing/routes.dart';
 import 'package:cogina/domain/logger.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,6 +11,7 @@ import '../../../../../../../core/global/styles/styles.dart';
 import '../../../../../../../core/helpers/spacing.dart';
 import '../../../../../../core/function/function.dart';
 import '../../../../../../core/helpers/toast_states/enums.dart';
+import '../../../../../../generated/locale_keys.g.dart';
 import '../../../../../component/custom_elevated_button.dart';
 import '../../../../../component/custom_loading_widget.dart';
 import '../../more/address/address_cubit.dart';
@@ -32,7 +34,21 @@ class CustomStepBody1Widget extends StatelessWidget {
             cubit.addressModel!.data!.length==0?
             Padding(
               padding:  EdgeInsets.only(top: MediaQuery.of(context).size.height*0.35),
-              child: Center(child: Text(LocaleKeys.notFoundData.tr()),),
+              child: Column(
+                children: [
+                  Center(child: Text(LocaleKeys.notFoundAddress.tr()),),
+                  verticalSpace(10),
+                  CustomElevatedButton(
+                      backgroundColor: AppColors.whiteColor,
+                      borderColor: AppColors.customGray,
+                      fontColor: AppColors.primaryColor,
+                      borderRadius: 8,
+                      onTap: (){
+                        context.pushNamed(RoutesRestaurants.addAddressScreen);
+                      },
+                      buttonText: LocaleKeys.addAddress.tr())
+                ],
+              ),
             ):
               Container(
                 height: MediaQuery.of(context).size.height*0.65,
@@ -85,7 +101,7 @@ class CustomStepBody1Widget extends StatelessWidget {
                           log('tag', cubit.orderAddress.toString());
                            CheckOutCubit.get(context).changeSteps(1);
                         },
-                        buttonText: LocaleKeys.continueButton.tr())
+                        buttonText: LocaleKeys.continue2.tr())
                   ],
                 ),
               ) :

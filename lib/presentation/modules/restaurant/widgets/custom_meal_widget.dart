@@ -1,6 +1,6 @@
 import 'package:cogina/core/helpers/spacing.dart';
 import 'package:cogina/core/helpers/toast_states/enums.dart';
-import 'package:cogina/core/translations/locale_keys.dart';
+import '../../../../../../../generated/locale_keys.g.dart';
 import 'package:cogina/domain/logger.dart';
 import 'package:cogina/presentation/component/images/custom_image.dart';
 import 'package:cogina/presentation/modules/layout/screens/cart/cart_cubit.dart';

@@ -5,7 +5,6 @@ import 'package:cogina/core/assets_constant/images.dart';
 import 'package:cogina/core/global/styles/colors.dart';
 import 'package:cogina/core/helpers/extensions.dart';
 import 'package:cogina/core/routing/routes.dart';
-import 'package:cogina/core/translations/locale_keys.dart';
 import 'package:cogina/presentation/component/custom_elevated_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -91,7 +90,7 @@ void showSignUpDialog({required BuildContext context,required String screenName}
                     ),
                     verticalSpace(10),
                     Text(
-                      LocaleKeys.logFirst.tr(),
+                      LocaleKeys.logInFirst.tr(),
                       style: TextStyles.font15CustomGray400Weight.copyWith(
                           color: AppColors.customBlack,
                           fontWeight: FontWeight.w700,

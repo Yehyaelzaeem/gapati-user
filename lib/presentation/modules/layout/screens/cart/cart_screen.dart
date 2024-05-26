@@ -1,6 +1,5 @@
 import 'package:cogina/core/function/function.dart';
 import 'package:cogina/core/helpers/extensions.dart';
-import 'package:cogina/core/translations/locale_keys.dart';
 import 'package:cogina/domain/logger.dart';
 import 'package:cogina/presentation/modules/layout/screens/cart/cart_cubit.dart';
 import 'package:cogina/presentation/modules/layout/screens/cart/widgets/custom_cart_item.dart';
@@ -13,6 +12,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../core/global/styles/colors.dart';
 import '../../../../../../core/routing/navigation_services.dart';
 import '../../../../../../core/routing/routes.dart';
+import '../../../../../generated/locale_keys.g.dart';
 import '../../../../component/custom_app_bar.dart';
 import '../../../../component/custom_elevated_button.dart';
 import '../../layout_cubit.dart';

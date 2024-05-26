@@ -1,6 +1,7 @@
 import 'package:cogina/core/helpers/extensions.dart';
 import 'package:cogina/data/datasource/local/cache_consumer.dart';
 import 'package:cogina/data/injection.dart';
+import 'package:cogina/presentation/component/custom_logo.dart';
 import 'package:cogina/presentation/modules/layout/screens/home/home_cubit.dart';
 import 'package:cogina/presentation/modules/layout/screens/more/address/address_cubit.dart';
 import 'package:cogina/presentation/modules/layout/screens/more/profile/profile_cubit.dart';
@@ -16,7 +17,7 @@ import '../../../../../../core/global/styles/styles.dart';
 import '../../../../../../core/helpers/spacing.dart';
 import '../../../../../../core/routing/navigation_services.dart';
 import '../../../../../../core/routing/routes.dart';
-import '../../../../../core/translations/locale_keys.dart';
+import '../../../../../../../generated/locale_keys.g.dart';
 import '../../../../component/custom_app_bar.dart';
 import '../../../../component/custom_elevated_button.dart';
 import '../../../../component/custom_is_user.dart';
@@ -70,6 +71,7 @@ class MoreScreen extends StatelessWidget {
                                     width: 115.h,
                                     child: CustomImage(image:cubit.profileModel!.image!, radius: 100,),
                                   ),
+
                                   Positioned(
                                     bottom: 0,
                                     right: 0,
@@ -174,18 +176,29 @@ class MoreScreen extends StatelessWidget {
                         },
                       ),),
                       verticalSpace(20),
+                      CustomIsUser(
+                        isUser: isUser,
+                        widget: CustomProfileItemWidget(
+                        backgroundColor: Colors.blue,
+                        iconData: Icons.message_outlined,
+                        text:LocaleKeys.messages.tr(),
+                        onTap: () {
+                          context.pushNamed(RoutesRestaurants.chatsScreen);
+                        },
+                      ),),
+                      verticalSpace(20),
                       CustomProfileItemWidget(
                         backgroundColor: Colors.cyanAccent.shade700,
                         iconData: Icons.info_outline,
                         text: LocaleKeys.aboutUs.tr(),
                         onTap: () {
+
                           moreCubit.getAboutUs();
                           NavigationService.push(RoutesRestaurants.aboutUsScreen);
                         },
                       ),
-                      CustomIsUser(
-                        isUser: isUser,
-                        widget: verticalSpace(20),),
+
+                      verticalSpace(20),
                       CustomProfileItemWidget(
                         backgroundColor: Colors.grey.shade700,
                         iconData: Icons.privacy_tip_outlined,
@@ -200,7 +213,7 @@ class MoreScreen extends StatelessWidget {
                       CustomProfileItemWidget(
                         backgroundColor: Colors.blueGrey,
                         iconData: IonIcons.hammer,
-                        text: LocaleKeys.termsAndConditions.tr(),
+                        text: LocaleKeys.termsConditions.tr(),
                         onTap: () {
                           moreCubit.getTerms();
                           NavigationService.push(

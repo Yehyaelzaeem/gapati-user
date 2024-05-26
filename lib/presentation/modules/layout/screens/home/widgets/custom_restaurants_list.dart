@@ -1,5 +1,4 @@
 import 'package:cogina/core/helpers/spacing.dart';
-import 'package:cogina/core/translations/locale_keys.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,6 +7,8 @@ import 'package:cogina/core/global/styles/colors.dart';
 import 'package:cogina/core/global/styles/styles.dart';
 import '../../../../../../../core/routing/navigation_services.dart';
 import '../../../../../../../core/routing/routes.dart';
+import '../../../../../../generated/locale_keys.g.dart';
+import '../../../../restaurant/restaurant/restaurant_screen.dart';
 import '../home_cubit.dart';
 import 'custom_restaurant_item_widget.dart';
 
@@ -29,7 +30,8 @@ class CustomRestaurantsListWidget extends StatelessWidget {
                     children: [
                       ...cubit.listData!.map((e) => InkWell(
                           onTap: (){
-                            NavigationService.push(RoutesRestaurants.restaurantScreen,arguments: {'id':e.id,'storeName':e.name,'image':e.banner!});
+                            NavigationService.push(RoutesRestaurants.restaurantScreen,arguments:
+                            {'id':e.id,'storeName':e.name,'image':e.banner!,'isFav':e.inFav});
                           },
                           child:  CustomRestaurantItemWidget(dataHome: e,))),
                       cubit.listData!.length>3?

@@ -1,4 +1,3 @@
-import 'package:cogina/core/translations/locale_keys.dart';
 import 'package:cogina/presentation/modules/layout/screens/cart/widgets/custom_step1_body_widget.dart';
 import 'package:cogina/presentation/modules/layout/screens/cart/widgets/custom_step2_body_widget.dart';
 import 'package:cogina/presentation/modules/layout/screens/cart/widgets/custom_step4_body_widget.dart';
@@ -9,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../../../core/global/styles/colors.dart';
 import '../../../../../../core/function/function.dart';
 import '../../../../../../core/helpers/toast_states/enums.dart';
+import '../../../../../../generated/locale_keys.g.dart';
 import '../../../../../component/custom_app_bar.dart';
 import '../../home/home_cubit.dart';
 import '../../more/address/address_cubit.dart';

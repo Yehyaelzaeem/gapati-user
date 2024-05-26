@@ -6,6 +6,7 @@ class RestaurantImages{
   static const String logo2 = '${baseImage}logo2.png';
   static const String search = '${baseImage}search.png';
 
+  static const String chat = '${baseImage}chat.png';
   static const String bur1 = '${baseImage}bur1.png';
   static const String banner = '${baseImage}banner.png';
   static const String home1 = '${baseImage}home1.png';
