@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../core/helpers/spacing.dart';
 import '../../../core/routing/routes.dart';
-import '../../../core/translations/locale_keys.dart';
+import '../../../../../../../generated/locale_keys.g.dart';
 import '../auth/login/login_cubit.dart';
 
 class CustomVisitorScreen extends StatelessWidget {
@@ -29,7 +29,7 @@ class CustomVisitorScreen extends StatelessWidget {
             height: MediaQuery.of(context).size.height*0.2,
             ),
             verticalSpace(5),
-            Text(LocaleKeys.logFirst.tr(),
+            Text(LocaleKeys.logInFirst.tr(),
               style: TextStyle(
                 fontSize: 20.sp,
                 fontWeight: FontWeight.bold,

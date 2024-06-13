@@ -12,7 +12,7 @@ import '../../../../core/tabs/tab.dart';
 import '../../../../generated/assets.dart';
 import '../../../core/global/styles/styles.dart';
 import '../../../core/routing/navigation_services.dart';
-import '../../../core/translations/locale_keys.dart';
+import '../../../../../../../generated/locale_keys.g.dart';
 import 'screens/home/home_screen.dart';
 import 'screens/orders/orders_screen.dart';
 import 'package:badges/badges.dart' as badges;

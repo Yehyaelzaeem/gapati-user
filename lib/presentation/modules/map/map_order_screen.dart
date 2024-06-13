@@ -5,7 +5,7 @@ import 'package:cogina/presentation/modules/map/widgets/custom_colum_stepper_bod
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/global/styles/styles.dart';
-import '../../../core/translations/locale_keys.dart';
+import '../../../../../../../generated/locale_keys.g.dart';
 import '../../component/custom_elevated_button.dart';
 import '../layout/layout_screen.dart';
 

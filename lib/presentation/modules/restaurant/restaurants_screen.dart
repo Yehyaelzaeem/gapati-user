@@ -5,7 +5,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../core/translations/locale_keys.dart';
+import '../../../../../../../generated/locale_keys.g.dart';
 
 class RestaurantsScreen extends StatelessWidget {
   const RestaurantsScreen({super.key});

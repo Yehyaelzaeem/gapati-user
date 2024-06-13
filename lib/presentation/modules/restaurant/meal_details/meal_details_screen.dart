@@ -1,6 +1,6 @@
 import 'package:cogina/core/helpers/extensions.dart';
 import 'package:cogina/core/helpers/spacing.dart';
-import 'package:cogina/core/translations/locale_keys.dart';
+import '../../../../../../../generated/locale_keys.g.dart';
 import 'package:cogina/presentation/component/custom_multi_select_chip.dart';
 import 'package:cogina/presentation/component/images/custom_image.dart';
 import 'package:cogina/presentation/modules/restaurant/meal_details/widget/custom_name_price_widget.dart';

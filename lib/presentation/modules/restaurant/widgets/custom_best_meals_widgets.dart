@@ -1,4 +1,6 @@
-import 'package:cogina/core/translations/locale_keys.dart';
+import '../../../../../../../generated/locale_keys.g.dart';
+import '../../../../../../../generated/locale_keys.g.dart';
+
 import 'package:cogina/domain/logger.dart';
 import 'package:cogina/presentation/modules/restaurant/widgets/shimmer_categories_restaurant.dart';
 import 'package:easy_localization/easy_localization.dart';

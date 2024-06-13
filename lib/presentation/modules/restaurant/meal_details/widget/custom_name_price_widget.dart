@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/global/styles/colors.dart';
 import '../../../../../core/global/styles/styles.dart';
 import '../../../../../core/helpers/spacing.dart';
-import '../../../../../core/translations/locale_keys.dart';
+import '../../../../../../../generated/locale_keys.g.dart';
 
 class CustomNamePriceWidget extends StatelessWidget {
   const CustomNamePriceWidget({super.key, required this.name, this.priceDiscount, this.price, this.priceAfterDiscount});
