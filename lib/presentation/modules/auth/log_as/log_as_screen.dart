@@ -3,13 +3,13 @@ import 'package:cogina/core/global/styles/colors.dart';
 import 'package:cogina/core/helpers/extensions.dart';
 import 'package:cogina/core/helpers/spacing.dart';
 import 'package:cogina/core/routing/routes.dart';
+import 'package:cogina/core/translations/locale_keys.dart';
 import 'package:cogina/presentation/component/custom_elevated_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/assets_constant/images.dart';
 import '../../../../core/global/styles/styles.dart';
-import '../../../../generated/locale_keys.g.dart';
 import '../../../component/custom_logo.dart';
 import '../register/register_cubit.dart';
 

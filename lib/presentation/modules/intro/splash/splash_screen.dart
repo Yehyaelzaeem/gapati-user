@@ -24,7 +24,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   AnimationController? _animationController;
   Animation<Offset>? _animation;
   late final LocalAuthCubit _viewModel;
-   DioClient dioClient =DioClient(AppURL.kBaseURL, getIt(),loggingInterceptor: getIt(), cacheConsumer: getIt());
+  DioClient dioClient =DioClient(AppURL.kBaseURL, getIt(),loggingInterceptor: getIt(), cacheConsumer: getIt());
   @override
   void initState() {
     super.initState();
@@ -55,11 +55,11 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
 
 
   navigationPage() async{
-    bool isAuthed =  _viewModel.isLogin();
-    if (isAuthed==true) {
+    bool isAuthed = await _viewModel.isLogin();
+    if (isAuthed) {
       NavigationService.pushNamedAndRemoveUntil(RoutesRestaurants.layout,arguments: {'currentPage':0});
     }else{
-       dioClient.token=null;
+      dioClient.token=null;
       NavigationService.pushNamedAndRemoveUntil(RoutesRestaurants.onBoardingScreen);
     }
   }
@@ -86,8 +86,8 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
             fit: StackFit.loose,
             children: [
               Positioned(
-                top: height * 0.4,
-                   // left: width * 0.1,
+                top: height * 0.1,
+                  left: width * 0.1,
                 child: Center(
                   child: SlideTransition(
                     position: _animation!,

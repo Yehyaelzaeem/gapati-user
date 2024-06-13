@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "912896616367",
+    "firebase_url": "https://kojena-backend-default-rtdb.firebaseio.com",
+    "project_id": "kojena-backend",
+    "storage_bucket": "kojena-backend.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:912896616367:android:5aba9ee20302523be2f15a",
+        "android_client_info": {
+          "package_name": "com.example.cogina"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOsDF3LNsTk2DgQmUPTOMjuN3CaMe5Ud0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:912896616367:android:e378cfa6f013d59fe2f15a",
+        "android_client_info": {
+          "package_name": "com.example.cogina_delivery"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOsDF3LNsTk2DgQmUPTOMjuN3CaMe5Ud0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:912896616367:android:61225392656f338be2f15a",
+        "android_client_info": {
+          "package_name": "com.example.cogina_restaurants"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOsDF3LNsTk2DgQmUPTOMjuN3CaMe5Ud0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
