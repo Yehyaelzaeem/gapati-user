@@ -128,5 +128,25 @@
   "orderSuccessful": "Order Successful!",
   "orderSuccessfulMes": "Your order will be delivered on time. \n Thank you",
   "viewOrders": "View Order",
-  "continueShopping": "Continue Shopping"
+  "continueShopping": "Continue Shopping",
+
+  "yourOrderCode": "Your Order Code",
+  "items": "Items",
+  "orderPlaced": "Order Placed",
+  "orderPlacedMess": "we have received your order",
+  "confirmed": "Confirmed",
+  "confirmedMess": "your order has been confirmed",
+  "orderShipped": "Order Shipped",
+  "estimatedFor": "Estimated for",
+  "outForDelivery": "Out for delivery",
+  "backToHome": "Back to Home",
+
+  "noAvailableTrip": "No data available for this trip.",
+  "errorLoadingData.": "Error loading data.",
+  "rate": "Rating",
+  "doRate": "Rate Now",
+  "selectRate": "Select a rating to improve the service",
+  "typing": "Type a comment",
+  "rateNow": "Rate Now"
+
 }

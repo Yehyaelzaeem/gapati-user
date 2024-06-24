@@ -9,9 +9,9 @@ class Constants {
   // static const String  kGoogleMapKey= 'AIzaSyDNSpdaE88kKP67ne51BWtpyQsdZJIeV5E';
   // static const String  kGoogleMapKey= 'AIzaSyBvjoIOOX8uJteEXBRDoYmt_lK2a4tpwok';
 
-  static const String  kTerms = '${AppURL.kBaseURL}setting/setting-view/terms';
-  static const String  kAboutUs = '${AppURL.kBaseURL}setting/setting-view/about_us';
-  static const String  kPayment = '${AppURL.kBaseURL}orders/payment?order_id=6&payment_type=cash';
+  static  String  kTerms = '${AppURL.kBaseURL}setting/setting-view/terms';
+  static  String  kAboutUs = '${AppURL.kBaseURL}setting/setting-view/about_us';
+  static  String  kPayment = '${AppURL.kBaseURL}orders/payment?order_id=6&payment_type=cash';
 
 
 

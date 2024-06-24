@@ -8,6 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../core/helpers/spacing.dart';
 import '../../../core/routing/routes.dart';
 import '../../../../../../../generated/locale_keys.g.dart';
+import '../../../main.dart';
 import '../auth/login/login_cubit.dart';
 
 class CustomVisitorScreen extends StatelessWidget {
@@ -22,9 +23,10 @@ class CustomVisitorScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Container(
-            //     height: MediaQuery.of(context).size.height*0.2,
-            //     child: CustomLogo()),
+            isWeltApp==true?
+            Container(
+                height: MediaQuery.of(context).size.height*0.2,
+                child: CustomLogo()):
             Image.asset(RestaurantImages.logo2,
             height: MediaQuery.of(context).size.height*0.2,
             ),

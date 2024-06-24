@@ -2,6 +2,7 @@ import 'package:cogina/presentation/component/custom_logo.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../core/assets_constant/images.dart';
+import '../../main.dart';
 
 class CustomIsUser extends StatelessWidget {
   const CustomIsUser({super.key, required this.isUser, required this.widget, this.hasLogo});
@@ -12,10 +13,11 @@ class CustomIsUser extends StatelessWidget {
   Widget build(BuildContext context) {
     return isUser==true?widget:
              hasLogo!=null?
-                 // Container(
-                 //   height: MediaQuery.of(context).size.height*0.2,
-                 //   child: CustomLogo(),
-                 // )
+             isWeltApp==true?
+                 Container(
+                   height: MediaQuery.of(context).size.height*0.2,
+                   child: CustomLogo(),
+                 ):
              Image.asset(RestaurantImages.logo2,
                height: MediaQuery.of(context).size.height*0.2,
              )

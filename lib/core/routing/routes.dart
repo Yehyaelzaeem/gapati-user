@@ -10,6 +10,7 @@ class RoutesRestaurants {
   static const String orderMapScreen = "/orderMapScreen";
   static const String layout = "/layout";
   static const String successOrderScreen = "/successOrderScreen";
+  static const String rateScreen = "/rateScreen";
   static const String checkOut = "/checkOut";
   static const String customGoogleMapScreen = "/customGoogleMapScreen";
   static const String constLocationMap = "/constLocationMap";

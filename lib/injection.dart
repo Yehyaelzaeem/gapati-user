@@ -10,6 +10,7 @@ import 'package:cogina/presentation/modules/layout/screens/more/address/address_
 import 'package:cogina/presentation/modules/layout/screens/more/more_cubit.dart';
 import 'package:cogina/presentation/modules/layout/screens/more/profile/profile_cubit.dart';
 import 'package:cogina/presentation/modules/layout/screens/orders/orders_cubit.dart';
+import 'package:cogina/presentation/modules/layout/screens/orders/rate/rate_cubit.dart';
 import 'package:cogina/presentation/modules/restaurant/restaurant_cubit.dart';
 import 'package:cogina/presentation/modules/search/search_cubit.dart';
 import 'data/injection.dart';
@@ -19,6 +20,7 @@ Future<void> init() async {
   // Bloc
   getIt.registerLazySingleton(() => LayoutCubit(getUserTokenUseCase: getIt(),));
   getIt.registerLazySingleton(() => ChatCubit());
+  getIt.registerLazySingleton(() => RateCubit());
   getIt.registerLazySingleton(() => ProfileCubit(profileUseCase: getIt(), updateProfileUseCase: getIt(),));
   getIt.registerLazySingleton(() => HomeCubit(homeUseCase: getIt(), offersUseCase:  getIt()));
   getIt.registerLazySingleton(() => LoginCubit(saveUserDataUseCase: getIt(), signInUseCase: getIt(), otpUseCase: getIt()));

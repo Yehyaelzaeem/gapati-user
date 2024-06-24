@@ -15,6 +15,7 @@ import 'injection.dart' as injection;
 import 'data/injection.dart' as data_injection;
 import 'domain/injection.dart' as domain_injection;
 import 'core/global/styles/colors.dart';
+bool isWeltApp=true;
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -66,7 +67,8 @@ class MyApp extends StatelessWidget {
       builder: (BuildContext context, Widget? child) {
         return MaterialApp(
             title:
-            // 'Welt App',
+            isWeltApp==true?
+            'Welt App':
             'كُوجِينَا',
             debugShowCheckedModeBanner: false,
           localizationsDelegates: [CountryLocalizations.delegate, ...context.localizationDelegates,],

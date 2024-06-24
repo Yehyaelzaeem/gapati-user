@@ -129,5 +129,23 @@
   "orderSuccessful": "تم الطلب بنجاح!",
   "orderSuccessfulMes": "سيتم توصيل طلبك في الوقت المحدد. \n شكراً لك",
   "viewOrders": "عرض الطلب",
-  "continueShopping": "متابعة التسوق"
+  "continueShopping": "متابعة التسوق",
+  "yourOrderCode": "رمز طلبك",
+  "items": "عناصر",
+  "orderPlaced": "تم الطلب",
+  "orderPlacedMess": "لقد استلمنا طلبك",
+  "confirmed": "مؤكد",
+  "confirmedMess": "تم تأكيد طلبك",
+  "orderShipped": "تم شحن الطلب",
+  "estimatedFor": "المتوقع في",
+  "outForDelivery": "خرج للتسليم",
+  "backToHome": "العودة إلى الصفحة الرئيسية",
+  "noAvailableTrip": "لا توجد بيانات متاحة لهذه الرحلة.",
+  "errorLoadingData": "خطأ في تحميل البيانات.",
+  "rate": "التقييم",
+  "doRate": "قم بالتقييم الان",
+  "selectRate": "حدد التقييم لتحسين الخدمة",
+  "typing": "اكتب تعليقا",
+  "rateNow": "قم بالتقييم الآن"
+
 }

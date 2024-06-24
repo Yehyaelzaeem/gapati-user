@@ -1,5 +1,7 @@
+import 'package:cogina/core/helpers/extensions.dart';
 import 'package:cogina/core/helpers/spacing.dart';
 import 'package:cogina/generated/locale_keys.g.dart';
+import 'package:cogina/presentation/component/custom_elevated_button.dart';
 import 'package:cogina/presentation/modules/layout/screens/orders/widgets/custom_order_details_item.dart';
 import 'package:cogina/presentation/modules/layout/screens/orders/widgets/custom_steps_order_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -8,6 +10,8 @@ import 'package:cogina/core/global/styles/colors.dart';
 import 'package:cogina/core/global/styles/styles.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../../core/routing/navigation_services.dart';
+import '../../../../../core/routing/routes.dart';
 import '../../../../component/custom_app_bar.dart';
 import '../../../../component/custom_loading_widget.dart';
 import '../cart/widgets/custom_cart_item.dart';
@@ -74,21 +78,29 @@ class OrderDetailsScreen extends StatelessWidget {
                                     fontSize: 16.sp
                                 ),),
                                 verticalSpace(5),
-                                Text(phone,style: TextStyles.font20Black700Weight.copyWith(
-                                    fontWeight: FontWeight.w600,
-                                    color: AppColors.customGray,
-                                    fontSize: 12.sp
-                                ),),
-                                verticalSpace(40),
-                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    CustomStepsOrderWidget(text: LocaleKeys.ordered.tr(),),
-                                    CustomStepsOrderWidget(text: LocaleKeys.processing.tr(),),
-                                    CustomStepsOrderWidget(text: LocaleKeys.shipped.tr(),),
-                                    CustomStepsOrderWidget(text: LocaleKeys.delivered.tr(),),
-                                  ],
+                                Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 16.w),
+                                  child: Text(phone,style: TextStyles.font20Black700Weight.copyWith(
+                                      fontWeight: FontWeight.w600,
+                                      color: AppColors.customGray,
+                                      fontSize: 12.sp
+                                  ),),
                                 ),
+                                verticalSpace(40),
+                                 InkWell(
+                                   onTap: (){
+                                     NavigationService.push(RoutesRestaurants.orderMapScreen,arguments: {'orderId':orderId,'orderTotal':total});
+                                   },
+                                   child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      CustomStepsOrderWidget(text: LocaleKeys.ordered.tr(),),
+                                      CustomStepsOrderWidget(text: LocaleKeys.processing.tr(),),
+                                      CustomStepsOrderWidget(text: LocaleKeys.shipped.tr(),),
+                                      CustomStepsOrderWidget(text: LocaleKeys.delivered.tr(),),
+                                    ],
+                                                                   ),
+                                 ),
                                 verticalSpace(20),
                               ],
                             ),
@@ -101,13 +113,13 @@ class OrderDetailsScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               verticalSpace(20),
-                              Text(LocaleKeys.paymentMethod.tr(),style: TextStyles.font20Black700Weight.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16.sp
-                              ),),
-                              verticalSpace(10),
-                              const CustomVisaWidget(),
-                              verticalSpace(10),
+                              // Text(LocaleKeys.paymentMethod.tr(),style: TextStyles.font20Black700Weight.copyWith(
+                              //     fontWeight: FontWeight.bold,
+                              //     fontSize: 16.sp
+                              // ),),
+                              // verticalSpace(10),
+                              // const CustomVisaWidget(),
+                              // verticalSpace(10),
                               Text(LocaleKeys.orderSummary.tr(),style: TextStyles.font20Black700Weight.copyWith(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 16.sp
@@ -130,6 +142,19 @@ class OrderDetailsScreen extends StatelessWidget {
                                   ],
                                 ),
                               ),
+                              Center(
+                                child: CustomElevatedButton(
+                                  width:  MediaQuery.of(context).size.width*0.9,
+                                    backgroundColor: AppColors.whiteColor,
+                                    borderColor: AppColors.primaryColor,
+                                    fontColor: AppColors.primaryColor,
+                                    borderRadius: 8,
+                                    height: 40.h,
+                                    onTap: (){
+                                      context.pushNamed(RoutesRestaurants.rateScreen,arguments: {'orderId':orderId});
+                                    },
+                                    buttonText: LocaleKeys.rateNow.tr()),
+                              )
 
                             ],
                           ),

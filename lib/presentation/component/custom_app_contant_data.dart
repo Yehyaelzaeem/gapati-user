@@ -1,13 +1,13 @@
 import 'package:cogina/core/assets_constant/images.dart';
 import 'package:cogina/core/global/styles/colors.dart';
-import 'package:cogina/core/translations/locale_keys.dart';
+import 'package:cogina/presentation/component/custom_logo.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
+import '../../../../generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../core/global/styles/styles.dart';
 import '../../core/helpers/spacing.dart';
+import '../../main.dart';
 
 class CustomAppContData extends StatelessWidget {
   const CustomAppContData({super.key, required this.image, required this.des});
@@ -26,17 +26,14 @@ class CustomAppContData extends StatelessWidget {
                 width: 130.w,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(100),
-                  child:Image.asset(RestaurantImages.logo2)
-                  // Image.network(
-                  //   image,
-                  //   fit: BoxFit.cover,
-                  //   errorBuilder: (context,error,v){
-                  //     return const Center(child: CircularProgressIndicator(()),);
-                  //   },
-                  // ),
+                  child:
+                  isWeltApp==true?
+                  CustomLogo():
+                  Image.asset(RestaurantImages.logo2)
                 )),
           ),
           SizedBox(height: 35.h,),
+          isWeltApp==true?SizedBox.shrink():
           Text(
            LocaleKeys.appName.tr(),
             style: TextStyles.font18Black700Weight.copyWith(

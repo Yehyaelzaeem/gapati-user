@@ -11,6 +11,7 @@ import '../../../../data/datasource/remote/dio/dio_client.dart';
 import '../../../../data/injection.dart';
 import '../../../../domain/provider/local_auth_provider_cubit.dart';
 import '../../../../data/injection.dart' as data_injection;
+import '../../../../main.dart';
 import '../../../component/custom_logo.dart';
 
 class SplashPage extends StatefulWidget {
@@ -86,8 +87,11 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
             fit: StackFit.loose,
             children: [
               Positioned(
-                top: height * 0.1,
-                  left: width * 0.1,
+                top:
+                isWeltApp==true?
+                height * 0.1:
+                height * 0.4,
+                  // left: width * 0.1,
                 child: Center(
                   child: SlideTransition(
                     position: _animation!,
@@ -97,13 +101,14 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
                       alignment: Alignment.topCenter,
                       duration: Duration(seconds: 0),
                       child:
-                        // Center(
-                        //   child: Container(
-                        //       height: height * 0.2 + 20,
-                        //       width: width ,
-                        //     child: CustomLogo()
-                        //   ),
-                        // )
+                      isWeltApp==true?
+                        Center(
+                          child: Container(
+                              height: height * 0.2 + 20,
+                              width: width ,
+                            child: CustomLogo()
+                          ),
+                        ):
                       Image(
                         height: height * 0.2 + 20,
                         width: width * 0.8 + 10,

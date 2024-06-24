@@ -130,5 +130,22 @@ abstract class  LocaleKeys {
   static const orderSuccessfulMes = 'orderSuccessfulMes';
   static const viewOrders = 'viewOrders';
   static const continueShopping = 'continueShopping';
+  static const yourOrderCode = 'yourOrderCode';
+  static const items = 'items';
+  static const orderPlaced = 'orderPlaced';
+  static const orderPlacedMess = 'orderPlacedMess';
+  static const confirmed = 'confirmed';
+  static const confirmedMess = 'confirmedMess';
+  static const orderShipped = 'orderShipped';
+  static const estimatedFor = 'estimatedFor';
+  static const outForDelivery = 'outForDelivery';
+  static const backToHome = 'backToHome';
+  static const noAvailableTrip = 'noAvailableTrip';
+  static const errorLoadingData = 'errorLoadingData';
+  static const rate = 'rate';
+  static const doRate = 'doRate';
+  static const selectRate = 'selectRate';
+  static const typing = 'typing';
+  static const rateNow = 'rateNow';
 
 }

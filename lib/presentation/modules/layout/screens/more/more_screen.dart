@@ -278,7 +278,7 @@ class MoreScreen extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 16.w,vertical: 20.h),
                     child: Column(
                       children: [
-                        Text('Log_in_first'.tr(),
+                        Text(LocaleKeys.logInFirst.tr(),
                           style: TextStyle(
                             fontSize: 20.sp,
                             fontWeight: FontWeight.bold,
@@ -294,7 +294,7 @@ class MoreScreen extends StatelessWidget {
                             LoginCubit.get(context).visitorLocation(screenName: 'more').then((value) {
                               context.pushNamedAndRemoveUntil(RoutesRestaurants.logAsScreen, predicate: (route) => route.isFirst);
                             });
-                          }, buttonText:'sign_up'.tr(), ),                ],
+                          }, buttonText:LocaleKeys.signUp.tr(), ),                ],
                     ),
                   ),
                 ),

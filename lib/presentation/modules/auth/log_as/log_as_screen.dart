@@ -3,13 +3,14 @@ import 'package:cogina/core/global/styles/colors.dart';
 import 'package:cogina/core/helpers/extensions.dart';
 import 'package:cogina/core/helpers/spacing.dart';
 import 'package:cogina/core/routing/routes.dart';
-import 'package:cogina/core/translations/locale_keys.dart';
 import 'package:cogina/presentation/component/custom_elevated_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/assets_constant/images.dart';
 import '../../../../core/global/styles/styles.dart';
+import '../../../../generated/locale_keys.g.dart';
+import '../../../../main.dart';
 import '../../../component/custom_logo.dart';
 import '../register/register_cubit.dart';
 
@@ -23,11 +24,20 @@ class LogAsScreen extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-         // verticalSpace(200),
-         //  CustomLogo(),
-         //  verticalSpace(130),
-          verticalSpace(50),
-          Image.asset(RestaurantImages.logo),
+          isWeltApp==true?
+         Column(
+           children: [
+             verticalSpace(200),
+             CustomLogo(),
+             verticalSpace(130),
+           ],
+         ):
+          Column(
+            children: [
+              verticalSpace(50),
+              Image.asset(RestaurantImages.logo),
+            ],
+          ),
           Expanded(
             child: SizedBox(
               width: MediaQuery.of(context).size.width*0.8,
@@ -37,13 +47,19 @@ class LogAsScreen extends StatelessWidget {
                 ),
                 child: AnimatedTextKit(
                   animatedTexts: [
-                    TyperAnimatedText(LocaleKeys.welcomeMes.tr(),
+                    TyperAnimatedText(
+                        isWeltApp==true?
+                        LocaleKeys.welcomeMes2.tr():
+                        LocaleKeys.welcomeMes.tr(),
                         textStyle: TextStyles.font20Black700Weight.copyWith(
                          height: 2,
                         color:AppColors.customBlack,
                         fontSize: 17.sp,
                     ),textAlign: TextAlign.center),
-                    TyperAnimatedText(LocaleKeys.welcomeMes.tr(),
+                    TyperAnimatedText(
+                        isWeltApp==true?
+                        LocaleKeys.welcomeMes2.tr():
+                        LocaleKeys.welcomeMes.tr(),
                                         textStyle: TextStyles.font20Black700Weight.copyWith(
                                         height: 2,
                                         color:AppColors.customBlack,
