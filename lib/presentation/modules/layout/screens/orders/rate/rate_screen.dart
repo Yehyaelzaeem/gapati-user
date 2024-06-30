@@ -41,11 +41,11 @@ class RateScreen extends StatelessWidget {
               label: LocaleKeys.selectRate.tr(),),
             verticalSpace(10),
             RateWidget(
+              initialRating: 0,
               ignoreGestures: false,
               iconSize: 50,
               onRatingUpdate: (rate){
-                print('rate');
-                print(rate);
+                 cubit.rate=rate;
               },
             ),
             verticalSpace(30),
@@ -58,13 +58,23 @@ class RateScreen extends StatelessWidget {
                 hintText: LocaleKeys.typing.tr(),
                 controller: cubit.textEditingController),
             verticalSpace(80),
-           CustomElevatedButton(
-               width: MediaQuery.of(context).size.width*0.5,
-               height: 40.h,
-               onTap: (){},
-               borderRadius: 8,
-               fontSize: 20,
-               buttonText: LocaleKeys.done.tr())
+           BlocConsumer<RateCubit, RateState>(
+                listener: (context, state) {},
+                builder: (context, state) {
+                  return CustomElevatedButton(
+                            isLoading: state is RateStatesLoading,
+                             width: MediaQuery.of(context).size.width*0.5,
+                             height: 40.h,
+                             onTap: (){
+                              if(cubit.rate !=null){
+                                cubit.rateOrder(orderId.toInt());
+                              }
+                             },
+                             borderRadius: 8,
+                             fontSize: 20,
+                             buttonText: LocaleKeys.done.tr());
+                },
+              )
 
           ],
         ),

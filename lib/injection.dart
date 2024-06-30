@@ -20,7 +20,7 @@ Future<void> init() async {
   // Bloc
   getIt.registerLazySingleton(() => LayoutCubit(getUserTokenUseCase: getIt(),));
   getIt.registerLazySingleton(() => ChatCubit());
-  getIt.registerLazySingleton(() => RateCubit());
+  getIt.registerLazySingleton(() => RateCubit(rateUseCase: getIt()));
   getIt.registerLazySingleton(() => ProfileCubit(profileUseCase: getIt(), updateProfileUseCase: getIt(),));
   getIt.registerLazySingleton(() => HomeCubit(homeUseCase: getIt(), offersUseCase:  getIt()));
   getIt.registerLazySingleton(() => LoginCubit(saveUserDataUseCase: getIt(), signInUseCase: getIt(), otpUseCase: getIt()));

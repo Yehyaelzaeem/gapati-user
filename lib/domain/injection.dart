@@ -31,6 +31,7 @@ import 'package:cogina/domain/usecase/more/about_us_usecase.dart';
 import 'package:cogina/domain/usecase/more/privacy_usecase.dart';
 import 'package:cogina/domain/usecase/more/terms_usecase.dart';
 import 'package:cogina/domain/usecase/orders/orders_usecase.dart';
+import 'package:cogina/domain/usecase/orders/rate_usecase.dart';
 import 'package:cogina/domain/usecase/profile/get_profile_usecase.dart';
 import 'package:cogina/domain/usecase/profile/update_profile_usecase.dart';
 import 'package:cogina/domain/usecase/restaurant/categories_usecase.dart';
@@ -95,6 +96,7 @@ Future<void> init() async {
 
   ///orders
      getIt.registerLazySingleton(() => OrdersUseCase(repository: getIt()));
+     getIt.registerLazySingleton(() => RateUseCase(repository: getIt()));
   ///more
    getIt.registerLazySingleton(() => TermsUseCase(repository: getIt()));
    getIt.registerLazySingleton(() => PrivacyUseCase(repository: getIt()));

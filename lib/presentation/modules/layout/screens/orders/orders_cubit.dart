@@ -30,6 +30,7 @@ class OrdersCubit extends Cubit<OrdersState> {
   }
 
   Future<ResponseModel> getOrdersDetails({required int orderId}) async {
+    orderDetailsModel=null;
     emit(OrdersLoadingState()) ;
     ResponseModel responseModel = await _ordersUseCase.getOrders(orderId: orderId);
     if (responseModel.isSuccess) {

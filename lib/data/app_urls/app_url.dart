@@ -68,6 +68,7 @@ class AppURL {
 
   /// order
   static const String kRestaurantOrdersURL = "stores/checkout";
+  static const String kRateOrdersURL = "stores/checkout/rate-order";
   static  String kOrdersURL({required int id}) => "stores/checkout/details?order_id=$id";
 
   ///setting

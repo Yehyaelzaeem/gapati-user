@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:cogina/domain/request_body/rate_body.dart';
 import 'package:dio/dio.dart';
 import '../../domain/repository/home_repo.dart';
 import '../../domain/repository/orders_repo.dart';
@@ -31,6 +32,19 @@ class OrdersRepositoryImp implements OrdersRepository{
     try {
       Response response = await _dioClient.get(
         AppURL.kRestaurantOrdersURL,
+      );
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+
+  @override
+  Future<ApiResponse> rateOrder({required RateBody rateBody})async {
+    try {
+      Response response = await _dioClient.post(
+        AppURL.kRateOrdersURL,
+        queryParameters: rateBody.toJson()
       );
       return ApiResponse.withSuccess(response);
     } catch (e) {
