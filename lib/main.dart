@@ -19,7 +19,6 @@ bool isWeltApp=true;
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-
   await Future.delayed(const Duration(milliseconds: 300));
   await EasyLocalization.ensureInitialized();
   await data_injection.init();
@@ -33,12 +32,10 @@ void main() async{
   notificationService.init();
 
 //pushNamedAndRemoveUntil
-  runApp(
-       GenerateMultiBloc(
+  runApp(GenerateMultiBloc(
         child:  EasyLocalization(
           supportedLocales: supportedLocales,
           path: 'assets/translation',
-          // if device language not supported
           fallbackLocale: supportedLocales[0],
           saveLocale: true,
           useOnlyLangCode: true,
@@ -47,7 +44,6 @@ void main() async{
             enabled: false,
             builder: (context) => const MyApp(),
           ),
-
         )));
 
 }

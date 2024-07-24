@@ -8,6 +8,7 @@ import '../../../../../../../core/routing/navigation_services.dart';
 import '../../../../../../../core/routing/routes.dart';
 
 class OrderSuccessScreen extends StatelessWidget {
+
   const OrderSuccessScreen({super.key});
 
   @override
@@ -37,8 +38,9 @@ class OrderSuccessScreen extends StatelessWidget {
               height: 45,
               width: MediaQuery.of(context).size.width*0.65,
                 onTap: (){
-                  NavigationService.push(RoutesRestaurants.orderMapScreen);
-                },
+                  NavigationService.push(RoutesRestaurants.ordersScreen);
+                  // NavigationService.push(RoutesRestaurants.orderMapScreen,arguments: {'orderId':orderId,'orderTotal':total});
+                  },
                 buttonText: 'View Orders'),
             verticalSpace(20),
             CustomElevatedButton(

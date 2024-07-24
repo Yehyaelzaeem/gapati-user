@@ -27,6 +27,7 @@ import '../../presentation/modules/layout/screens/more/profile/change_password/c
 import '../../presentation/modules/layout/screens/more/profile/edit_profile/edit_profile_screen.dart';
 import '../../presentation/modules/layout/screens/more/terms_conditions/terms_conditions.dart';
 import '../../presentation/modules/layout/screens/orders/order_details_screen.dart';
+import '../../presentation/modules/layout/screens/orders/orders_screen.dart';
 import '../../presentation/modules/layout/screens/orders/rate/rate_screen.dart';
 import '../../presentation/modules/map/map_order_screen.dart';
 import '../../presentation/modules/notification/notification_screen.dart';
@@ -51,7 +52,9 @@ class RouteRestaurantsGenerator {
           currentPage: arguments?['currentPage'],
         ));
       case RoutesRestaurants.successOrderScreen:
-        return platformPageRoute(const OrderSuccessScreen());
+        return platformPageRoute( OrderSuccessScreen());
+        case RoutesRestaurants.ordersScreen:
+        return platformPageRoute( OrdersScreen());
         case RoutesRestaurants.rateScreen:
         return platformPageRoute( RateScreen(orderId:  arguments?['orderId'],));
         case RoutesRestaurants.loginScreen:

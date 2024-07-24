@@ -55,7 +55,8 @@ class CustomStepBody1Widget extends StatelessWidget {
                 child: Column(
                   children: [
                     Expanded(
-                      child: StatefulBuilder(builder: (context,setState){
+                      child:
+                      StatefulBuilder(builder: (context,setState){
                         return  ListView.builder(
                           itemCount: cubit.addressModel!.data!.length,
                           itemBuilder: (context,index){
