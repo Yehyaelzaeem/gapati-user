@@ -23,7 +23,7 @@ class CustomImage extends StatelessWidget {
           errorBuilder: (context, error, v) {
             return ClipRRect(
               borderRadius: BorderRadius.circular(radius??0),
-              child: Image.asset(RestaurantImages.holder,
+              child: Image.asset(AppImages.holder,
                 fit: BoxFit.cover,
               ),
             );
@@ -66,7 +66,7 @@ class CustomImageOnlyRadius extends StatelessWidget {
                   bottomRight: Radius.circular(bottomRightRadius??0),
                   bottomLeft: Radius.circular(bottomLeftRadius??0)
               ),
-              child: Image.asset(RestaurantImages.holder,
+              child: Image.asset(AppImages.holder,
                 fit: BoxFit.cover,
               ),
             );

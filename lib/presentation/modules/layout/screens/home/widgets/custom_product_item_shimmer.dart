@@ -48,7 +48,7 @@ class CustomProductItemShimmer extends StatelessWidget {
                         color: AppColors.greyColor.withOpacity(0.4),
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      child: Image.asset(RestaurantImages.pro1,)
+                      child: Image.asset(AppImages.pro1,)
                                    ),
                  )
             ),

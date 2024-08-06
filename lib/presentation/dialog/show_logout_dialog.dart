@@ -84,7 +84,7 @@ void showSignUpDialog({required BuildContext context,required String screenName}
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     SvgPicture.asset(
-                      RestaurantImages.signUp,
+                      AppImages.signUp,
                       width: 291.w,
                       height: 217.h,
                     ),

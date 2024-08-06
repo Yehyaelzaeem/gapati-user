@@ -32,7 +32,7 @@ class _GoogleMapScreenState extends State<GoogleMapScreen> {
   void _updateMarkers(Map<dynamic, dynamic> data) async{
     Set<Marker> newMarkers = {};
     BitmapDescriptor mapIcon = await getBitmapDescriptorFromImageProvider(
-      AssetImage(RestaurantImages.car),
+      AssetImage(AppImages.car),
       Size(100, 100),
     );
     data.forEach((key, value) {

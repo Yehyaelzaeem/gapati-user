@@ -70,7 +70,7 @@ class FavoriteMealsWidget extends StatelessWidget {
                 ),
               );
             }else{
-              return CustomNotFoundDataWidget(image: RestaurantImages.fav,title: LocaleKeys.notFoundData.tr(), type: 'svg',);
+              return CustomNotFoundDataWidget(image: AppImages.fav,title: LocaleKeys.notFoundData.tr(), type: 'svg',);
             }
           }
           else{

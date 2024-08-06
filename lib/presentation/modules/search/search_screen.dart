@@ -96,7 +96,7 @@ class SearchScreen extends StatelessWidget {
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            SvgPicture.asset(RestaurantImages.fav),
+                            SvgPicture.asset(AppImages.fav),
                             Text('${LocaleKeys.notFoundData.tr()}',
                               style: TextStyles.font18Black700Weight.copyWith(
                                   color: AppColors.customBlack.withOpacity(0.6)
@@ -111,7 +111,7 @@ class SearchScreen extends StatelessWidget {
                     Column(
                       children: [
                         verticalSpace(50),
-                        Image.asset(RestaurantImages.search),
+                        Image.asset(AppImages.search),
                         Text(LocaleKeys.startSearch.tr(),
                           style: TextStyles.font20Black700Weight.copyWith(
                               color: AppColors.customGray

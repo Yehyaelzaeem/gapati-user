@@ -45,7 +45,7 @@ class AddressesScreen extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Image.asset(RestaurantImages.location),
+                          Image.asset(AppImages.location),
                           Center(child: Text(LocaleKeys.notFoundData.tr(),style: TextStyles.font20Black700Weight.copyWith(
                             fontFamily: AppFonts.lateefFont,
                             fontSize: 30

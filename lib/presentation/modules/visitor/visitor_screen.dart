@@ -17,17 +17,15 @@ class CustomVisitorScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body:
       Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            isWeltApp==true?
-            Container(
-                height: MediaQuery.of(context).size.height*0.2,
-                child: CustomLogo()):
-            Image.asset(RestaurantImages.logo2,
+
+            Image.asset(AppImages.logoW2,
             height: MediaQuery.of(context).size.height*0.2,
             ),
             verticalSpace(5),

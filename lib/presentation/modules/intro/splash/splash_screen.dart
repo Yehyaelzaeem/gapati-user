@@ -1,3 +1,4 @@
+import 'package:cogina/core/assets_constant/images.dart';
 import 'package:cogina/core/global/fonts/app_fonts.dart';
 import 'package:cogina/core/global/styles/styles.dart';
 import 'package:cogina/domain/logger.dart';
@@ -71,91 +72,11 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      body: Container(
-        width: double.infinity,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            // image: DecorationImage(
-            //   image: AssetImage(
-            //     "assets/images/splash_bk.png",
-            //   ),
-            //   fit: BoxFit.cover,
-            // ),
-          ),
-          child: Stack(
-            alignment: Alignment.center,
-            fit: StackFit.loose,
-            children: [
-              Positioned(
-                top:
-                isWeltApp==true?
-                height * 0.1:
-                height * 0.4,
-                  // left: width * 0.1,
-                child: Center(
-                  child: SlideTransition(
-                    position: _animation!,
-                    child: AnimatedContainer(
-                      height: MediaQuery.of(context).size.height,
-                      width: MediaQuery.of(context).size.width,
-                      alignment: Alignment.topCenter,
-                      duration: Duration(seconds: 0),
-                      child:
-                      isWeltApp==true?
-                        Center(
-                          child: Container(
-                              height: height * 0.2 + 20,
-                              width: width ,
-                            child: CustomLogo()
-                          ),
-                        ):
-                      Image(
-                        height: height * 0.2 + 20,
-                        width: width * 0.8 + 10,
-                        fit: BoxFit.contain,
-                        image: AssetImage('assets/images/logo.jpg'),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              // Align(
-              //   alignment: Alignment.center,
-              //   child: Padding(
-              //     padding: const EdgeInsets.only(bottom: 20.0),
-              //     child: Column(
-              //       crossAxisAlignment: CrossAxisAlignment.start,
-              //       mainAxisAlignment: MainAxisAlignment.end,
-              //       children: [
-              //       SizedBox(
-              //       width: width*0.9,
-              //       child: DefaultTextStyle(
-              //         style: const TextStyle(
-              //           fontSize: 30.0,
-              //           fontFamily: 'Bobbers',
-              //         ),
-              //         child: AnimatedTextKit(
-              //           animatedTexts: [
-              //             TyperAnimatedText('مَرْحَبًا بِكُمْ فِي كوجينا، حَيْثُ نَقُدِّمُ لَكُمْ تَجْرِبَةَ طَعَامٍ إِسْتِثْنَائِيَّةً عَبَرَ أَطْيَافِ مُتَعَدِّدَةٍ مِنَ المَأْكُولَاتِ الشَّهِيَّةِ وَالمُخْتَلِفَةِ',textStyle: TextStyles.font20Black700Weight.copyWith(
-              //               height: 0.8,
-              //               fontSize: 16
-              //             )),
-              //
-              //           ],
-              //           onTap: () {
-              //             print("Tap Event");
-              //           },
-              //         ),
-              //       ),
-              //     )
-              //
-              //
-              //       ],
-              //     ),
-              //   ),
-              // ),
-            ],
-          )),
+      backgroundColor: Color(0xff303171),
+      body: Image.asset(AppImages.logo3,
+        height: height,
+        width: width,
+      )
     );
   }
 }

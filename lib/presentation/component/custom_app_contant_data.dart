@@ -27,13 +27,10 @@ class CustomAppContData extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(100),
                   child:
-                  isWeltApp==true?
-                  CustomLogo():
-                  Image.asset(RestaurantImages.logo2)
+                  Image.asset(AppImages.logoW2)
                 )),
           ),
           SizedBox(height: 35.h,),
-          isWeltApp==true?SizedBox.shrink():
           Text(
            LocaleKeys.appName.tr(),
             style: TextStyles.font18Black700Weight.copyWith(

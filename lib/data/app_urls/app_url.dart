@@ -3,12 +3,7 @@ import '../../main.dart';
 class AppURL {
 
   static const String kAPIKey = "";
-  // static const String kBaseURL = "http://kogena.dev03.matrix-clouds.com/api/";
-  static  String kBaseURL =
-  isWeltApp==true?
-  "https://welt-resturant.dev03.matrix-clouds.com/api/":
-  "http://kogena.matrixclouds.net/api/";
-  // static const String kBaseURL = "https://welt-resturant.dev03.matrix-clouds.com/api/";
+  static  String kBaseURL = "http://kogena.matrixclouds.net/api/";
   static const String kApiGoogleMap = "AIzaSyCcLzjD-Xxomlnw7ALIFCNzp4pQzoAp64Y";
 
   ///Auth

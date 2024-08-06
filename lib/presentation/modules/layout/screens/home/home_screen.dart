@@ -41,7 +41,7 @@ class HomeScreen extends StatelessWidget {
                                   child:
                                   Container(
                                       alignment: Alignment.centerRight,
-                                      child: Image.asset(RestaurantImages.home1))
+                                      child: Image.asset(AppImages.home1))
                               ),
 
                               // Positioned(
@@ -148,7 +148,7 @@ class HomeScreen extends StatelessWidget {
                                       },
                                       child: Padding(
                                         padding: const EdgeInsets.all(10.0),
-                                        child: Image.asset(RestaurantImages.banner,
+                                        child: Image.asset(AppImages.banner,
                                           width: double.infinity,
                                           fit: BoxFit.fill,
                                         ),

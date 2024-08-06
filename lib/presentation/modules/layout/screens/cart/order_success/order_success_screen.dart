@@ -21,7 +21,7 @@ class OrderSuccessScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,
           children: [
-            Image.asset(RestaurantImages.successImage),
+            Image.asset(AppImages.successImage),
             verticalSpace(100),
             Text('Order Successful!',
             style:TextStyles.font20Black700Weight.copyWith(

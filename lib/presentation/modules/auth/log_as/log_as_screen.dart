@@ -23,93 +23,81 @@ class LogAsScreen extends StatelessWidget {
       backgroundColor: AppColors.whiteColor,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          isWeltApp==true?
-         Column(
-           children: [
-             verticalSpace(200),
-             CustomLogo(),
-             verticalSpace(130),
-           ],
-         ):
-          Column(
-            children: [
-              verticalSpace(50),
-              Image.asset(RestaurantImages.logo),
-            ],
-          ),
-          Expanded(
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width*0.8,
-              child: DefaultTextStyle(
-                style: const TextStyle(
-                  fontSize: 30.0,
-                ),
-                child: AnimatedTextKit(
-                  animatedTexts: [
-                    TyperAnimatedText(
-                        isWeltApp==true?
-                        LocaleKeys.welcomeMes2.tr():
-                        LocaleKeys.welcomeMes.tr(),
-                        textStyle: TextStyles.font20Black700Weight.copyWith(
-                         height: 2,
-                        color:AppColors.customBlack,
-                        fontSize: 17.sp,
-                    ),textAlign: TextAlign.center),
-                    TyperAnimatedText(
-                        isWeltApp==true?
-                        LocaleKeys.welcomeMes2.tr():
-                        LocaleKeys.welcomeMes.tr(),
-                                        textStyle: TextStyles.font20Black700Weight.copyWith(
-                                        height: 2,
-                                        color:AppColors.customBlack,
-                                        fontSize: 17.sp,
-                                    ),textAlign: TextAlign.center),
-                  ],
-                  onTap: () {
-                    print("Tap Event");
-                  },
-                ),
-              ),
-            ),
-          ),
-          CustomElevatedButton(
-            borderRadius: 50,
-            height: 45.h,
-            width: MediaQuery.of(context).size.width*0.8,
-              onTap:(){
-              context.pushNamed(RoutesRestaurants.loginScreen);
-              },
-              buttonText: LocaleKeys.signIn.tr(),
-              fontSize: 18,
-          ),
-          verticalSpace(15),
-          CustomElevatedButton(
-            borderRadius: 50,
-            height: 45.h,
-            width: MediaQuery.of(context).size.width*0.8,
-            onTap:(){
-              RegisterCubit.get(context).changeType('register');
-              context.pushNamed(RoutesRestaurants.registerScreen);
-            },
-            buttonText: LocaleKeys.signUp.tr(),
-            fontSize: 18,
-          ),
-          verticalSpace(10),
-          InkWell(
-            onTap: (){
-              context.pushNamed(RoutesRestaurants.layout,arguments: {'currentPage':0});
-            },
-            child: Text(LocaleKeys.logGuest.tr(),
-            style: TextStyles.font16Black500Weight.copyWith(
-              decoration: TextDecoration.underline,
-              fontWeight: FontWeight.w500,
-              color: AppColors.customGray
-            ),
-            ),
-          ),
-          verticalSpace(50),
-        ],
+     children: [
+       Column(
+         children: [
+           verticalSpace(50),
+           Image.asset(AppImages.logoW2),
+         ],
+       ),
+       Expanded(
+         child: SizedBox(
+           width: MediaQuery.of(context).size.width*0.8,
+           child: DefaultTextStyle(
+             style: const TextStyle(
+               fontSize: 30.0,
+             ),
+             child: AnimatedTextKit(
+               animatedTexts: [
+                 TyperAnimatedText(
+                     LocaleKeys.welcomeMes.tr(),
+                     textStyle: TextStyles.font20Black700Weight.copyWith(
+                       height: 2,
+                       color:AppColors.customBlack,
+                       fontSize: 17.sp,
+                     ),textAlign: TextAlign.center),
+                 TyperAnimatedText(
+                     LocaleKeys.welcomeMes.tr(),
+                     textStyle: TextStyles.font20Black700Weight.copyWith(
+                       height: 2,
+                       color:AppColors.customBlack,
+                       fontSize: 17.sp,
+                     ),textAlign: TextAlign.center),
+               ],
+               onTap: () {
+                 print("Tap Event");
+               },
+             ),
+           ),
+         ),
+       ),
+       CustomElevatedButton(
+         borderRadius: 50,
+         height: 45.h,
+         width: MediaQuery.of(context).size.width*0.8,
+         onTap:(){
+           context.pushNamed(RoutesRestaurants.loginScreen);
+         },
+         buttonText: LocaleKeys.signIn.tr(),
+         fontSize: 18,
+       ),
+       verticalSpace(15),
+       CustomElevatedButton(
+         borderRadius: 50,
+         height: 45.h,
+         width: MediaQuery.of(context).size.width*0.8,
+         onTap:(){
+           RegisterCubit.get(context).changeType('register');
+           context.pushNamed(RoutesRestaurants.registerScreen);
+         },
+         buttonText: LocaleKeys.signUp.tr(),
+         fontSize: 18,
+       ),
+       verticalSpace(10),
+       InkWell(
+         onTap: (){
+           context.pushNamed(RoutesRestaurants.layout,arguments: {'currentPage':0});
+         },
+         child: Text(LocaleKeys.logGuest.tr(),
+           style: TextStyles.font16Black500Weight.copyWith(
+               decoration: TextDecoration.underline,
+               fontWeight: FontWeight.w500,
+               color: AppColors.customGray
+           ),
+         ),
+       ),
+       verticalSpace(50),
+     ],
       ),
     );
   }

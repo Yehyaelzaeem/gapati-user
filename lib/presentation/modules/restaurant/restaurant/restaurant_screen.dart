@@ -258,7 +258,7 @@ class RestaurantScreen extends StatelessWidget {
                                         Column(
                                           mainAxisAlignment: MainAxisAlignment.center,
                                           children: [
-                                            SvgPicture.asset(RestaurantImages.fav),
+                                            SvgPicture.asset(AppImages.fav),
                                             Text('${LocaleKeys.notFoundData.tr()}',
                                               style: TextStyles.font18Black700Weight.copyWith(
                                                   color: AppColors.customBlack.withOpacity(0.6)
@@ -323,7 +323,7 @@ class RestaurantScreen extends StatelessWidget {
                                 ),
                                 child:  Column(
                                   children: [
-                                    SvgPicture.asset(RestaurantImages.fav,),
+                                    SvgPicture.asset(AppImages.fav,),
                                     Center(child: Text(LocaleKeys.notFoundData.tr(),style: TextStyles.font18Black700Weight,),),
                                   ],
                                 )):

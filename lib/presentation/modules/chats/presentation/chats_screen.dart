@@ -72,7 +72,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
                       } else {
                         return Column(
                           children: [
-                            Image.asset(RestaurantImages.chat),
+                            Image.asset(AppImages.chat),
                             const Center(
                               child: Text('Not Found Any Conversation!',
                                   style: TextStyle(fontSize: 20)),
