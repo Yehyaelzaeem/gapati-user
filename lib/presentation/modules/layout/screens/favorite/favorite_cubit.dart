@@ -1,6 +1,6 @@
-import 'package:cogina/core/helpers/toast_states/enums.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../../core/helpers/toast_states/enums.dart';
 import '../../../../../data/model/base/response_model.dart';
 import '../../../../../data/model/response/favorite_model.dart';
 import '../../../../../data/model/response/home_model.dart';

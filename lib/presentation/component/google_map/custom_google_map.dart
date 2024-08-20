@@ -1,16 +1,17 @@
 import 'dart:async';
-import 'package:cogina/core/global/styles/colors.dart';
-import 'package:cogina/core/helpers/extensions.dart';
-import 'package:cogina/core/resources/color.dart';
+
+import 'package:delivego/core/helpers/extensions.dart';
+
 import '../../../../../../../generated/locale_keys.g.dart';
-import 'package:cogina/domain/logger.dart';
-import 'package:cogina/presentation/modules/layout/screens/more/address/address_cubit.dart';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import '../../../core/global/styles/colors.dart';
 import '../../../core/resources/decoration.dart';
+import '../../modules/layout/screens/more/address/address_cubit.dart';
 import '../custom_elevated_button.dart';
 import '../custom_text_field.dart';
 import 'address_location_model.dart';
@@ -150,7 +151,6 @@ class _MapScreenState extends State<CustomGoogleMapScreen> {
   void _updateMarker(LatLng newPosition) {
     setState((){
       getAddressPosition(newPosition);
-      log('tag', newPosition.toJson().toString());
       getLat=newPosition.latitude.toString();
       getLong=newPosition.longitude.toString();
       markerPosition = newPosition;

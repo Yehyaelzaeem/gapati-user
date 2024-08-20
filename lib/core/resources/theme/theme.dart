@@ -14,7 +14,7 @@ ThemeData get lightTheme {
 
     scaffoldBackgroundColor: scaffoldBackgroundColor,
     textTheme: textTheme,
-    backgroundColor: scaffoldBackgroundColor,
+    canvasColor: scaffoldBackgroundColor,
     cardColor: cardColor,
     brightness: Brightness.light,
     splashColor: primaryColor,
@@ -26,7 +26,6 @@ ThemeData get lightTheme {
     hoverColor: hoverColor,
     floatingActionButtonTheme: floatingActionButtonTheme,
     dividerColor: dividerColor,
-    errorColor: errorColor,
     hintColor: textSecondary,
     primaryColor: primaryColor,
     primaryColorDark: primaryColorDark,
@@ -44,7 +43,6 @@ ThemeData get lightTheme {
 
     primaryColorLight: primaryColorLight,
     disabledColor: unselectedWidgetColor,
-    toggleableActiveColor: primaryColor,
 
     /// Text fields
     inputDecorationTheme: kInputDecorationTheme,
@@ -90,7 +88,30 @@ ThemeData get lightTheme {
 
              // primaryVariant: primaryColor,
              //  secondaryVariant: primaryColor
-    ),
+    ), checkboxTheme: CheckboxThemeData(
+ fillColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+ if (states.contains(MaterialState.disabled)) { return null; }
+ if (states.contains(MaterialState.selected)) { return primaryColor; }
+ return null;
+ }),
+ ), radioTheme: RadioThemeData(
+ fillColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+ if (states.contains(MaterialState.disabled)) { return null; }
+ if (states.contains(MaterialState.selected)) { return primaryColor; }
+ return null;
+ }),
+ ), switchTheme: SwitchThemeData(
+ thumbColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+ if (states.contains(MaterialState.disabled)) { return null; }
+ if (states.contains(MaterialState.selected)) { return primaryColor; }
+ return null;
+ }),
+ trackColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+ if (states.contains(MaterialState.disabled)) { return null; }
+ if (states.contains(MaterialState.selected)) { return primaryColor; }
+ return null;
+ }),
+ ),
   );
 }
 
@@ -104,7 +125,7 @@ ThemeData get darkTheme {
     // accentColor: accentColorDark,
     floatingActionButtonTheme: floatingActionButtonThemeDark,
     dividerColor: dividerColorDark,
-    errorColor: errorColorDark,
+    cardColor: errorColorDark,
     hintColor: textSecondaryDark,
     primaryColor: primaryColorDark,
     bottomNavigationBarTheme: bottomNavigationBarThemeDark,

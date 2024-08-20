@@ -1,4 +1,3 @@
-import 'package:cogina/domain/logger.dart';
 import 'package:flutter/foundation.dart';
 import '../../../data/datasource/remote/exception/api_checker.dart';
 import '../../../data/model/base/api_response.dart';
@@ -38,7 +37,6 @@ class BaseUseCaseCall<R>{
 }
 _log(String? tag,var massage){
   if (tag!=null) {
-    log(tag, 'response :$massage ');
   }
 }
 

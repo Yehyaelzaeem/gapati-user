@@ -1,4 +1,3 @@
-import 'package:cogina/presentation/component/custom_logo.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../core/assets_constant/images.dart';

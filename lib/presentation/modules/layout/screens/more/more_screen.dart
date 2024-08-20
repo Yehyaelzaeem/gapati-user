@@ -1,12 +1,8 @@
-import 'package:cogina/core/helpers/extensions.dart';
-import 'package:cogina/data/datasource/local/cache_consumer.dart';
-import 'package:cogina/data/injection.dart';
-import 'package:cogina/presentation/component/custom_logo.dart';
-import 'package:cogina/presentation/modules/layout/screens/home/home_cubit.dart';
-import 'package:cogina/presentation/modules/layout/screens/more/address/address_cubit.dart';
-import 'package:cogina/presentation/modules/layout/screens/more/profile/profile_cubit.dart';
-import 'package:cogina/presentation/modules/layout/screens/more/widgets/custom_bottom_sheet_body.dart';
-import 'package:cogina/presentation/modules/layout/screens/more/widgets/custom_profile_item_widget.dart';
+
+import 'package:delivego/core/helpers/extensions.dart';
+import 'package:delivego/presentation/modules/layout/screens/more/profile/profile_cubit.dart';
+import 'package:delivego/presentation/modules/layout/screens/more/widgets/custom_bottom_sheet_body.dart';
+import 'package:delivego/presentation/modules/layout/screens/more/widgets/custom_profile_item_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,6 +21,8 @@ import '../../../../component/images/custom_image.dart';
 import '../../../../dialog/show_logout_dialog.dart';
 import '../../../auth/login/login_cubit.dart';
 import '../../layout_cubit.dart';
+import '../home/home_cubit.dart';
+import 'address/address_cubit.dart';
 import 'more_cubit.dart';
 
 
@@ -135,16 +133,16 @@ class MoreScreen extends StatelessWidget {
                     children: [
                       verticalSpace(10),
 
-                      CustomIsUser(
-                        isUser: isUser,
-                        widget:  CustomProfileItemWidget(
-                          backgroundColor: AppColors.secondPrimaryColor,
-                          iconData: Icons.notifications_none_rounded,
-                          text: LocaleKeys.notification.tr(),
-                          onTap: () {
-                            NavigationService.push(RoutesRestaurants.notification);
-                          },
-                        ),),
+                      // CustomIsUser(
+                      //   isUser: isUser,
+                      //   widget:  CustomProfileItemWidget(
+                      //     backgroundColor: AppColors.secondPrimaryColor,
+                      //     iconData: Icons.notifications_none_rounded,
+                      //     text: LocaleKeys.notification.tr(),
+                      //     onTap: () {
+                      //       NavigationService.push(RoutesRestaurants.notification);
+                      //     },
+                      //   ),),
                       CustomIsUser(
                           isUser: isUser,
                         widget:  verticalSpace(20)),

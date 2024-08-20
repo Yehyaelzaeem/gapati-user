@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:cogina/domain/logger.dart';
 
 import '../../../data/model/base/base_model.dart';
 import '../../../data/model/base/response_model.dart';

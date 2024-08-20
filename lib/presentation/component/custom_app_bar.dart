@@ -1,4 +1,4 @@
-import 'package:cogina/core/resources/text_styles.dart';
+import 'package:delivego/core/resources/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../core/resources/values_manager.dart';
@@ -85,7 +85,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                     height: (bottomSize?? 20).h,
                     width: deviceWidth,
                     alignment: Alignment.center,
-                    decoration: BoxDecoration(color: Theme.of(context).backgroundColor,
+                    decoration: BoxDecoration(color: Theme.of(context).cardColor,
                       borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(kFormRadius),
                           topRight: Radius.circular(kFormRadius)),

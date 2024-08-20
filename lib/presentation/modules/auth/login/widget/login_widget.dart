@@ -1,4 +1,3 @@
-import 'package:cogina/presentation/modules/auth/login/login_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +13,7 @@ import '../../../../../generated/locale_keys.g.dart';
 import '../../../../component/custom_elevated_button.dart';
 import '../../../../component/custom_text_field.dart';
 import '../../../../component/inputs/phone_country/custom_text_field_phone_code.dart';
+import '../login_cubit.dart';
 
 class LoginWidget extends StatelessWidget {
    LoginWidget({super.key});

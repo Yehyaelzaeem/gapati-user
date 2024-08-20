@@ -1,6 +1,7 @@
-import 'package:cogina/presentation/modules/chats/presentation/widgets/chat_app_bar.dart';
-import 'package:cogina/presentation/modules/chats/presentation/widgets/input_chat.dart';
-import 'package:cogina/presentation/modules/chats/presentation/widgets/message_card.dart';
+
+import 'package:delivego/presentation/modules/chats/presentation/widgets/chat_app_bar.dart';
+import 'package:delivego/presentation/modules/chats/presentation/widgets/input_chat.dart';
+import 'package:delivego/presentation/modules/chats/presentation/widgets/message_card.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,7 +30,8 @@ const ChatRoomScreen({super.key, required this.user});
           onPopInvoked: (_) async {
             cubit.getChatRoomName('');
           },
-          child: BlocConsumer<ChatCubit, ChatState>(
+          child:
+          BlocConsumer<ChatCubit, ChatState>(
                     listener: (context, state) {},
                     builder: (context, state) {
                       return SafeArea(

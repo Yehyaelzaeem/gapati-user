@@ -1,6 +1,6 @@
 
-import 'package:cogina/core/helpers/extensions.dart';
-import 'package:cogina/presentation/modules/layout/screens/home/home_cubit.dart';
+import 'package:delivego/core/helpers/extensions.dart';
+import 'package:delivego/presentation/modules/layout/screens/home/home_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';

@@ -1,10 +1,10 @@
 
 
-import 'package:cogina/core/global/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../main.dart';
+import '../global/styles/colors.dart';
 import 'values_manager.dart';
 import 'color.dart';
 import '../resources/text_styles.dart';

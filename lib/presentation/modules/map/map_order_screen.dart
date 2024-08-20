@@ -1,16 +1,16 @@
-import 'package:cogina/core/assets_constant/images.dart';
-import 'package:cogina/core/global/styles/colors.dart';
-import 'package:cogina/core/helpers/spacing.dart';
-import 'package:cogina/presentation/component/custom_loading_widget.dart';
-import 'package:cogina/presentation/modules/map/widgets/custom_colum_stepper_body.dart';
-import 'package:cogina/presentation/modules/map/widgets/map_widget.dart';
+
+import 'package:delivego/presentation/modules/map/widgets/custom_colum_stepper_body.dart';
+import 'package:delivego/presentation/modules/map/widgets/map_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/global/styles/styles.dart';
 import '../../../../../../../generated/locale_keys.g.dart';
+import '../../../core/global/styles/colors.dart';
+import '../../../core/helpers/spacing.dart';
 import '../../../domain/logger.dart';
 import '../../component/custom_elevated_button.dart';
+import '../../component/custom_loading_widget.dart';
 import '../layout/layout_screen.dart';
 import '../layout/screens/orders/orders_cubit.dart';
 
@@ -30,11 +30,12 @@ class _OrderMapScreenState extends State<OrderMapScreen> {
   Widget build(BuildContext context) {
     OrdersCubit cubit =OrdersCubit.get(context);
     return Scaffold(
-      body: BlocConsumer<OrdersCubit, OrdersState>(
+      body:
+      BlocConsumer<OrdersCubit, OrdersState>(
               listener: (context, state) {},
               builder: (context, state) {
                 if(cubit.orderDetailsModel!=null) {
-                  final data =cubit.orderDetailsModel!.data!;
+                  final data =cubit.orderDetailsModel!.data?.orderDetails!;
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -64,7 +65,7 @@ class _OrderMapScreenState extends State<OrderMapScreen> {
                              Row(
                                mainAxisAlignment: MainAxisAlignment.center,
                                children: [
-                                 Text('${data.length} ${LocaleKeys.items.tr()} - ',
+                                 Text('${data?.length} ${LocaleKeys.items.tr()} - ',
                                    style:TextStyles.font16Black600Weight.copyWith(
                                        fontWeight: FontWeight.w700,
                                        fontSize: 15

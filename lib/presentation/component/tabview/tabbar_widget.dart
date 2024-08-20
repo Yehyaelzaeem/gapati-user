@@ -1,7 +1,8 @@
-import 'package:cogina/core/global/fonts/app_fonts.dart';
-import 'package:cogina/core/global/styles/colors.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../core/global/fonts/app_fonts.dart';
+import '../../../core/global/styles/colors.dart';
 import '../../../core/global/styles/styles.dart';
 import '../../../core/resources/color.dart';
 

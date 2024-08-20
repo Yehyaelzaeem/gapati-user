@@ -1,7 +1,9 @@
-import 'package:cogina/core/global/styles/colors.dart';
-import 'package:cogina/core/global/styles/styles.dart';
-import 'package:cogina/core/helpers/spacing.dart';
+
 import 'package:flutter/material.dart';
+
+import '../../../../../../core/global/styles/colors.dart';
+import '../../../../../../core/global/styles/styles.dart';
+import '../../../../../../core/helpers/spacing.dart';
 
 class CustomProfileItemWidget extends StatelessWidget {
   const CustomProfileItemWidget({super.key, required this.backgroundColor, required this.iconData, required this.text, this.onTap});

@@ -1,9 +1,9 @@
-import 'package:cogina/presentation/component/images/custom_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:cogina/core/global/styles/colors.dart';
 
 import '../../../../../../../core/assets_constant/images.dart';
+import '../../../../../../core/global/styles/colors.dart';
+import '../../../../../component/images/custom_image.dart';
 
 class CustomLogoRestaurant extends StatelessWidget {
   const CustomLogoRestaurant({super.key, this.height, this.width, this.image});

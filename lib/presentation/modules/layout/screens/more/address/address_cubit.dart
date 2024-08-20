@@ -1,4 +1,4 @@
-import 'package:cogina/core/helpers/extensions.dart';
+import 'package:delivego/core/helpers/extensions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';

@@ -1,6 +1,6 @@
-import 'package:cogina/core/helpers/extensions.dart';
-import 'package:cogina/presentation/component/component.dart';
-import 'package:cogina/presentation/modules/auth/register/register_cubit.dart';
+
+import 'package:delivego/core/helpers/extensions.dart';
+import 'package:delivego/presentation/modules/auth/register/register_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,6 +9,7 @@ import '../../../../../core/global/styles/colors.dart';
 import '../../../../../core/global/styles/styles.dart';
 import '../../../../../core/helpers/spacing.dart';
 import '../../../../generated/locale_keys.g.dart';
+import '../../../component/custom_app_bar.dart';
 import '../../../component/custom_elevated_button.dart';
 import '../../../component/custom_text_field.dart';
 import '../../../dialog/base/dailog.dart';

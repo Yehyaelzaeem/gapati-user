@@ -1,8 +1,8 @@
-import 'package:cogina/core/helpers/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:cogina/core/global/styles/styles.dart';
 import 'package:flutter/cupertino.dart';
+import '../../../../../../core/global/styles/styles.dart';
+import '../../../../../../core/helpers/spacing.dart';
 import '../../../../../../data/model/response/home_model.dart';
 import 'custom_logo_restuarant.dart';
 

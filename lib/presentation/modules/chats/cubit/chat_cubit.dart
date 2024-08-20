@@ -1,7 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:cogina/main.dart';
-import 'package:cogina/presentation/modules/layout/screens/home/home_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -13,6 +11,7 @@ import '../../../../core/routing/navigation_services.dart';
 import '../../../../data/model/response/chat_user.dart';
 import '../../../../data/model/response/message_model.dart';
 import '../../../../domain/logger.dart';
+import '../../../../main.dart';
 import '../../layout/screens/more/profile/profile_cubit.dart';
 part 'chat_state.dart';
 
@@ -304,7 +303,7 @@ class ChatCubit extends Cubit<ChatState> with WidgetsBindingObserver {
       };
 
       // Firebase Project > Project Settings > General Tab > Project ID
-      const projectID = 'kojena-backend';
+      const projectID = 'delivego-47c93';
 
       // get firebase admin token
       final bearerToken = await NotificationAccessToken.getToken;

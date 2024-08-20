@@ -1,20 +1,20 @@
-import 'package:cogina/core/global/styles/colors.dart';
-import 'package:cogina/core/global/styles/styles.dart';
-import 'package:cogina/core/helpers/extensions.dart';
-import 'package:cogina/core/helpers/spacing.dart';
-import 'package:cogina/core/routing/routes.dart';
-import 'package:cogina/core/services/error/error_handler.dart';
-import 'package:cogina/presentation/component/component.dart';
-import 'package:cogina/presentation/modules/auth/login/login_cubit.dart';
-import 'package:cogina/presentation/modules/auth/login/widget/login_widget.dart';
-import 'package:cogina/presentation/modules/auth/login/widget/otp_widget.dart';
+
+import 'package:delivego/core/helpers/extensions.dart';
+import 'package:delivego/presentation/modules/auth/login/widget/login_widget.dart';
+import 'package:delivego/presentation/modules/auth/login/widget/otp_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/routing/navigation_services.dart';
+import '../../../../core/global/styles/colors.dart';
+import '../../../../core/global/styles/styles.dart';
+import '../../../../core/helpers/spacing.dart';
+import '../../../../core/routing/routes.dart';
 import '../../../../generated/locale_keys.g.dart';
+import '../../../component/custom_app_bar.dart';
 import '../register/register_cubit.dart';
+import 'login_cubit.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});

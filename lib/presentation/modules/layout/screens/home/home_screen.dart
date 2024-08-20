@@ -1,10 +1,9 @@
-import 'package:cogina/core/helpers/toast_states/enums.dart';
-import 'package:cogina/presentation/modules/layout/screens/home/widgets/custom_restaurants_list.dart';
-import 'package:cogina/presentation/modules/layout/screens/home/widgets/offers_widgets.dart';
-import 'package:cogina/presentation/modules/layout/screens/home/widgets/shimmer_offers.dart';
+
+import 'package:delivego/presentation/modules/layout/screens/home/widgets/custom_restaurants_list.dart';
+import 'package:delivego/presentation/modules/layout/screens/home/widgets/offers_widgets.dart';
+import 'package:delivego/presentation/modules/layout/screens/home/widgets/shimmer_offers.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:cogina/core/helpers/spacing.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../core/assets_constant/images.dart';
@@ -12,6 +11,8 @@ import '../../../../../../core/global/styles/colors.dart';
 import '../../../../../../core/global/styles/styles.dart';
 import '../../../../../../core/routing/navigation_services.dart';
 import '../../../../../../core/routing/routes.dart';
+import '../../../../../core/helpers/spacing.dart';
+import '../../../../../core/helpers/toast_states/enums.dart';
 import '../../../../../generated/locale_keys.g.dart';
 import '../../../search/search_cubit.dart';
 import 'widgets/shimmer_restaurant.dart';
@@ -78,28 +79,28 @@ class HomeScreen extends StatelessWidget {
                                       ),
                                     ),
                                   )),
-                              Positioned(
-                                  top: 20.h,
-                                  left: 10.w,
-                                  child: InkWell(
-                                    onTap: (){
-                                      NavigationService.push(RoutesRestaurants.notification);
-                                    },
-                                    child:
-                                    Container(
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(50),
-                                          color: AppColors.whiteColor,
-                                          boxShadow: const [BoxShadow(color: Colors.black12,blurRadius: 5,
-                                              offset: Offset(1, 4)
-                                          )]
-                                      ),
-                                      child:  Padding(
-                                        padding: const EdgeInsets.all(5.0),
-                                        child: Icon(Icons.notifications_none_rounded,size: 27,color: AppColors.customGray.withOpacity(0.5),),
-                                      ),
-                                    ),
-                                  ))
+                              // Positioned(
+                              //     top: 20.h,
+                              //     left: 10.w,
+                              //     child: InkWell(
+                              //       onTap: (){
+                              //         NavigationService.push(RoutesRestaurants.notification);
+                              //       },
+                              //       child:
+                              //       Container(
+                              //         decoration: BoxDecoration(
+                              //             borderRadius: BorderRadius.circular(50),
+                              //             color: AppColors.whiteColor,
+                              //             boxShadow: const [BoxShadow(color: Colors.black12,blurRadius: 5,
+                              //                 offset: Offset(1, 4)
+                              //             )]
+                              //         ),
+                              //         child:  Padding(
+                              //           padding: const EdgeInsets.all(5.0),
+                              //           child: Icon(Icons.notifications_none_rounded,size: 27,color: AppColors.customGray.withOpacity(0.5),),
+                              //         ),
+                              //       ),
+                              //     ))
                             ],
                           ),
                           Container(

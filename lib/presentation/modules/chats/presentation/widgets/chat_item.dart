@@ -1,6 +1,5 @@
-import 'package:cogina/core/helpers/extensions.dart';
-import 'package:cogina/core/routing/routes.dart';
-import 'package:cogina/presentation/modules/layout/screens/more/profile/profile_cubit.dart';
+
+import 'package:delivego/core/helpers/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/global/styles/colors.dart';
@@ -8,11 +7,13 @@ import '../../../../../core/global/styles/styles.dart';
 import '../../../../../core/helpers/my_date_util.dart';
 import '../../../../../core/helpers/spacing.dart';
 import '../../../../../core/resources/color.dart';
+import '../../../../../core/routing/routes.dart';
 import '../../../../../data/model/response/chat_user.dart';
 import '../../../../../data/model/response/message_model.dart';
 import '../../../../component/images/custom_image.dart';
 import '../../../../component/texts/black_texts.dart';
 import '../../../../component/texts/hint_texts.dart';
+import '../../../layout/screens/more/profile/profile_cubit.dart';
 import '../../cubit/chat_cubit.dart';
 
 

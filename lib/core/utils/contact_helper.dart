@@ -1,9 +1,9 @@
 import 'dart:io';
 
-import 'package:cogina/core/utils/alerts.dart';
-import 'package:cogina/domain/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import 'alerts.dart';
 
 
 
@@ -38,7 +38,6 @@ class ContactHelper{
 
   static launchCall(String phone ) async {
     launch('tel:+91 88888888888');
-    log('ContactHelper', 'launchCall');
     var url = "tel://$phone";
     if (await canLaunchUrl(Uri.parse(url))) {
       await  launchUrl(Uri.parse(url));
@@ -47,7 +46,6 @@ class ContactHelper{
     }
   }
   static launchSMS(String phone ) async {
-    log('ContactHelper', 'launchSMS');
     launch('sms:+91888888888?body=Hi Welcome to Proto Coders Point');
     var url = 'sms:$phone';
 
@@ -59,7 +57,6 @@ class ContactHelper{
   }
 
   static openWhatsApp1(BuildContext context ,String whatApp ) async{
-     log('ContactHelper', 'openWhatsApp');
     var whatsappURlAndroid = "whatsapp://send?phone=$whatApp&text=hello";
     var whatAppURLIos ="https://wa.me/$whatApp?text=${Uri.parse("hello")}";
     if(Platform.isIOS){
@@ -81,7 +78,6 @@ class ContactHelper{
 
   static openWhatsApp(BuildContext context ,String whatApp ) async{
     String whatsAppUrl = "";
-    log('ContactHelper', 'openWhatsApp');
     String description = "";
 
     if (Platform.isIOS) {

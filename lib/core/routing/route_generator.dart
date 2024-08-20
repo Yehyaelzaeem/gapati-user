@@ -1,6 +1,6 @@
-import 'package:cogina/core/routing/platform_page_route.dart';
-import 'package:cogina/core/routing/undefined_route_screen.dart';
-import 'package:cogina/presentation/modules/intro/splash/splash_screen.dart';
+
+import 'package:delivego/core/routing/platform_page_route.dart';
+import 'package:delivego/core/routing/undefined_route_screen.dart';
 import 'package:flutter/cupertino.dart';
 import '../../presentation/component/google_map/const_location_map.dart';
 import '../../presentation/component/google_map/custom_google_map.dart';
@@ -12,6 +12,7 @@ import '../../presentation/modules/chats/presentation/chat_room.dart';
 import '../../presentation/modules/chats/presentation/chats_screen.dart';
 import '../../presentation/modules/intro/choose_user/choose_user_screen.dart';
 import '../../presentation/modules/intro/on_boarding/on_boarding_screen.dart';
+import '../../presentation/modules/intro/splash/splash_screen.dart';
 import '../../presentation/modules/latest_sales/latest_sales_screen.dart';
 import '../../presentation/modules/layout/layout_screen.dart';
 import '../../presentation/modules/layout/screens/cart/cart_screen.dart';

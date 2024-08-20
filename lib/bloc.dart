@@ -1,20 +1,19 @@
 
-import 'package:cogina/presentation/modules/auth/login/login_cubit.dart';
-import 'package:cogina/presentation/modules/auth/register/register_cubit.dart';
-import 'package:cogina/presentation/modules/chats/cubit/chat_cubit.dart';
-import 'package:cogina/presentation/modules/layout/layout_cubit.dart';
-import 'package:cogina/presentation/modules/layout/screens/cart/cart_cubit.dart';
-import 'package:cogina/presentation/modules/layout/screens/cart/check_out/check_out_cubit.dart';
-import 'package:cogina/presentation/modules/layout/screens/favorite/favorite_cubit.dart';
-import 'package:cogina/presentation/modules/layout/screens/home/home_cubit.dart';
-import 'package:cogina/presentation/modules/layout/screens/more/address/address_cubit.dart';
-import 'package:cogina/presentation/modules/layout/screens/more/more_cubit.dart';
-import 'package:cogina/presentation/modules/layout/screens/more/profile/profile_cubit.dart';
-import 'package:cogina/presentation/modules/layout/screens/orders/orders_cubit.dart';
-import 'package:cogina/presentation/modules/layout/screens/orders/rate/rate_cubit.dart';
-import 'package:cogina/presentation/modules/restaurant/restaurant_cubit.dart';
-import 'package:cogina/presentation/modules/search/search_cubit.dart';
-
+import 'package:delivego/presentation/modules/auth/login/login_cubit.dart';
+import 'package:delivego/presentation/modules/auth/register/register_cubit.dart';
+import 'package:delivego/presentation/modules/chats/cubit/chat_cubit.dart';
+import 'package:delivego/presentation/modules/layout/layout_cubit.dart';
+import 'package:delivego/presentation/modules/layout/screens/cart/cart_cubit.dart';
+import 'package:delivego/presentation/modules/layout/screens/cart/check_out/check_out_cubit.dart';
+import 'package:delivego/presentation/modules/layout/screens/favorite/favorite_cubit.dart';
+import 'package:delivego/presentation/modules/layout/screens/home/home_cubit.dart';
+import 'package:delivego/presentation/modules/layout/screens/more/address/address_cubit.dart';
+import 'package:delivego/presentation/modules/layout/screens/more/more_cubit.dart';
+import 'package:delivego/presentation/modules/layout/screens/more/profile/profile_cubit.dart';
+import 'package:delivego/presentation/modules/layout/screens/orders/orders_cubit.dart';
+import 'package:delivego/presentation/modules/layout/screens/orders/rate/rate_cubit.dart';
+import 'package:delivego/presentation/modules/restaurant/restaurant_cubit.dart';
+import 'package:delivego/presentation/modules/search/search_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'data/injection.dart';

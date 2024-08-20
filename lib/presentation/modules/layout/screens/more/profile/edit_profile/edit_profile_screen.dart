@@ -1,14 +1,14 @@
-import 'package:cogina/core/routing/routes.dart';
-import 'package:cogina/presentation/component/component.dart';
-import 'package:cogina/presentation/component/custom_elevated_button.dart';
-import 'package:cogina/presentation/component/custom_text_field.dart';
-import 'package:cogina/presentation/component/images/custom_image.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:cogina/core/global/styles/colors.dart';
 import '../../../../../../../../core/helpers/spacing.dart';
 import '../../../../../../../../core/routing/navigation_services.dart';
+import '../../../../../../../core/global/styles/colors.dart';
+import '../../../../../../component/custom_app_bar.dart';
+import '../../../../../../component/custom_elevated_button.dart';
+import '../../../../../../component/custom_text_field.dart';
+import '../../../../../../component/images/custom_image.dart';
 import '../profile_cubit.dart';
 
 

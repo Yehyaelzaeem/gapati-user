@@ -1,8 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cogina/core/global/styles/colors.dart';
-import 'package:cogina/presentation/modules/chats/presentation/widgets/user_details_widget.dart';
+import 'package:delivego/presentation/modules/chats/presentation/widgets/user_details_widget.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../../../../../core/global/styles/colors.dart';
 import '../../../../../core/helpers/my_date_util.dart';
 import '../../../../../data/model/response/chat_user.dart';
 import '../../cubit/chat_cubit.dart';

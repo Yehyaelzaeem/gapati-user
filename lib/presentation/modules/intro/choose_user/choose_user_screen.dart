@@ -1,12 +1,15 @@
-import 'package:cogina/core/global/styles/colors.dart';
-import 'package:cogina/core/global/styles/styles.dart';
-import 'package:cogina/core/helpers/extensions.dart';
-import 'package:cogina/core/helpers/spacing.dart';
-import 'package:cogina/core/resources/resources.dart';
-import 'package:cogina/core/routing/routes.dart';
+
+import 'package:delivego/core/helpers/extensions.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../core/global/styles/colors.dart';
+import '../../../../core/global/styles/styles.dart';
+import '../../../../core/helpers/spacing.dart';
+import '../../../../core/resources/decoration.dart';
+import '../../../../core/resources/values_manager.dart';
+import '../../../../core/routing/routes.dart';
 
 class ChooseUserScreen extends StatelessWidget {
   const ChooseUserScreen({super.key});

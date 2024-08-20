@@ -1,17 +1,18 @@
 
 
-import 'package:cogina/data/repository/address_repository_imp.dart';
-import 'package:cogina/data/repository/auth_repository_imp.dart';
-import 'package:cogina/data/repository/cart_repository_imp.dart';
-import 'package:cogina/data/repository/check_out_repository_imp.dart';
-import 'package:cogina/data/repository/favorite_repository_imp.dart';
-import 'package:cogina/data/repository/home_repository_imp.dart';
-import 'package:cogina/data/repository/local_repository_imp.dart';
-import 'package:cogina/data/repository/more_repository_imp.dart';
-import 'package:cogina/data/repository/orders_repository_imp.dart';
-import 'package:cogina/data/repository/profile_repository_imp.dart';
-import 'package:cogina/data/repository/restaurant_repository_imp.dart';
-import 'package:cogina/data/repository/search_repository_imp.dart';
+
+import 'package:delivego/data/repository/address_repository_imp.dart';
+import 'package:delivego/data/repository/auth_repository_imp.dart';
+import 'package:delivego/data/repository/cart_repository_imp.dart';
+import 'package:delivego/data/repository/check_out_repository_imp.dart';
+import 'package:delivego/data/repository/favorite_repository_imp.dart';
+import 'package:delivego/data/repository/home_repository_imp.dart';
+import 'package:delivego/data/repository/local_repository_imp.dart';
+import 'package:delivego/data/repository/more_repository_imp.dart';
+import 'package:delivego/data/repository/orders_repository_imp.dart';
+import 'package:delivego/data/repository/profile_repository_imp.dart';
+import 'package:delivego/data/repository/restaurant_repository_imp.dart';
+import 'package:delivego/data/repository/search_repository_imp.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';

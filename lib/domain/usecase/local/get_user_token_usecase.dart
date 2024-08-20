@@ -1,6 +1,5 @@
 
 
-import 'package:cogina/domain/logger.dart';
 
 import '../../../core/routing/navigation_services.dart';
 import '../../../data/model/base/response_model.dart';
@@ -16,7 +15,6 @@ class GetUserTokenUseCase {
   Future<ResponseModel> call() async {
     String? token =await repository.getUserToken();
      HomeCubit.get(NavigationService.navigationKey.currentContext!).getToken(tk: token);
-    log('tesr', token);
     if (token.isNotEmpty) {
       return ResponseModel(true, 'successful', data: token);
     } else {

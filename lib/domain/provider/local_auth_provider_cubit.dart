@@ -1,7 +1,5 @@
-import 'package:cogina/core/helpers/extensions.dart';
-import 'package:cogina/data/injection.dart';
-import 'package:cogina/domain/logger.dart';
-import 'package:cogina/presentation/modules/layout/screens/cart/cart_cubit.dart';
+
+import 'package:delivego/core/helpers/extensions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,6 +10,7 @@ import '../../data/app_urls/app_url.dart';
 import '../../data/datasource/local/storage_keys.dart';
 import '../../data/datasource/remote/dio/dio_client.dart';
 import '../../data/model/base/response_model.dart';
+import '../../presentation/modules/layout/screens/cart/cart_cubit.dart';
 import '../usecase/local/clear_user_data_usecase.dart';
 import '../usecase/local/get_is_login_usecase.dart';
 import '../usecase/profile/get_profile_usecase.dart';
@@ -66,7 +65,6 @@ class LocalAuthCubit extends Cubit<LocalAuthState> {
 
 
   Future<ResponseModel> _getUser() async {
-    log(_tag, 'getUser');
     notify(true, null);
 
     ResponseModel responseModel = await _getProfileUseCase.call();

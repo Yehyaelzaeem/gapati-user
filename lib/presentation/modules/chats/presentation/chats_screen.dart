@@ -1,7 +1,8 @@
-import 'package:cogina/core/assets_constant/images.dart';
-import 'package:cogina/presentation/modules/chats/presentation/widgets/chat_item.dart';
+
+import 'package:delivego/presentation/modules/chats/presentation/widgets/chat_item.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import '../../../../core/assets_constant/images.dart';
 import '../../../../core/global/styles/colors.dart';
 import '../../../../data/model/response/chat_user.dart';
 import '../../../../generated/locale_keys.g.dart';
@@ -22,6 +23,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
 
   @override
   void initState() {
+
     cubit.getSelfInfo();
     super.initState();
   }
@@ -33,7 +35,8 @@ class _ChatsScreenState extends State<ChatsScreen> {
         color: AppColors.backGroundGray,
         title: LocaleKeys.messages.tr(),
       ),
-      body:  StreamBuilder(
+      body:
+      StreamBuilder(
         stream: cubit.getMyUsersId(),
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {

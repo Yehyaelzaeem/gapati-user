@@ -1,10 +1,11 @@
-import 'package:cogina/core/helpers/spacing.dart';
-import 'package:cogina/core/routing/routes.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../core/global/styles/styles.dart';
 import '../../../../../core/routing/navigation_services.dart';
 import '../../../../core/function/function.dart';
+import '../../../../core/helpers/spacing.dart';
+import '../../../../core/routing/routes.dart';
 import '../../../../data/model/response/home_model.dart';
 import '../../../component/custom_rate.dart';
 import '../../layout/screens/favorite/favorite_cubit.dart';

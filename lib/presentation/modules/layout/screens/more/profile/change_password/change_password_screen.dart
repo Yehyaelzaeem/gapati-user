@@ -1,11 +1,12 @@
-import 'package:cogina/presentation/component/component.dart';
-import 'package:cogina/presentation/component/custom_elevated_button.dart';
-import 'package:cogina/presentation/component/custom_text_field.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../../../core/global/styles/colors.dart';
 import '../../../../../../../../core/helpers/spacing.dart';
+import '../../../../../../component/custom_app_bar.dart';
+import '../../../../../../component/custom_elevated_button.dart';
+import '../../../../../../component/custom_text_field.dart';
 
 class ChangePasswordScreen extends StatelessWidget {
    ChangePasswordScreen({super.key});

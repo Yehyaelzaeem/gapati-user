@@ -90,7 +90,7 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
       child: Container(
 
         decoration: BoxDecoration(
-          color: widget.style?.backgroundColor??Theme.of(context).backgroundColor,
+          color: widget.style?.backgroundColor??Theme.of(context).cardColor,
           borderRadius: const BorderRadius.all(
             Radius.circular(kFormPaddingAllLarge),
           ),

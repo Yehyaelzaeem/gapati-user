@@ -1,7 +1,7 @@
-import 'package:cogina/core/global/styles/colors.dart';
-import 'package:cogina/core/global/styles/styles.dart';
-import 'package:cogina/core/helpers/spacing.dart';
+
 import 'package:flutter/material.dart';
+
+import '../../../../core/global/styles/styles.dart';
 
 class OutlinedChip extends StatelessWidget {
   final String label;

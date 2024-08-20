@@ -5,7 +5,8 @@ import '../../../../../../../core/global/styles/colors.dart';
 import '../../../../../../../core/global/styles/styles.dart';
 
 class CustomStepsOrderWidget extends StatelessWidget {
-  const CustomStepsOrderWidget({super.key, required this.text});
+   CustomStepsOrderWidget({super.key, required this.text,  this.isDone=false});
+  bool isDone;
  final String text;
   @override
   Widget build(BuildContext context) {
@@ -14,8 +15,8 @@ class CustomStepsOrderWidget extends StatelessWidget {
       child:
       Column(
         children: [
-          const Divider(
-            color: AppColors.primaryColor,
+           Divider(
+            color:isDone==true? AppColors.primaryColor:AppColors.customGray.withOpacity(0.2),
             thickness: 10,
             indent: 2,
             endIndent: 2,

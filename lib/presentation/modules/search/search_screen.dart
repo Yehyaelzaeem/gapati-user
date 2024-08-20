@@ -1,8 +1,7 @@
-import 'package:cogina/core/global/styles/styles.dart';
-import 'package:cogina/core/helpers/spacing.dart';
+
+import 'package:delivego/presentation/modules/search/search_cubit.dart';
+
 import '../../../../../../../generated/locale_keys.g.dart';
-import 'package:cogina/presentation/component/component.dart';
-import 'package:cogina/presentation/modules/search/search_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,7 +9,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../../../core/global/styles/colors.dart';
 import '../../../core/assets_constant/images.dart';
+import '../../../core/global/styles/styles.dart';
+import '../../../core/helpers/spacing.dart';
 import '../../../data/model/response/home_model.dart';
+import '../../component/custom_app_bar.dart';
 import '../../component/custom_loading_widget.dart';
 import '../../component/custom_text_field.dart';
 import '../restaurant/widgets/custom_restaurant_widget.dart';

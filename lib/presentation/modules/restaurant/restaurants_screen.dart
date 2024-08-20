@@ -1,11 +1,12 @@
-import 'package:cogina/presentation/component/component.dart';
-import 'package:cogina/presentation/modules/layout/screens/home/home_cubit.dart';
-import 'package:cogina/presentation/modules/restaurant/widgets/custom_restaurant_widget.dart';
+
+import 'package:delivego/presentation/modules/restaurant/widgets/custom_restaurant_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../../generated/locale_keys.g.dart';
+import '../../component/custom_app_bar.dart';
+import '../layout/screens/home/home_cubit.dart';
 
 class RestaurantsScreen extends StatelessWidget {
   const RestaurantsScreen({super.key});

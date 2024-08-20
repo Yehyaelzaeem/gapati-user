@@ -1,4 +1,4 @@
-import 'package:cogina/core/resources/text_styles.dart';
+import 'package:delivego/core/resources/text_styles.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/resources/resources.dart';

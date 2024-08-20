@@ -1,10 +1,10 @@
 import 'package:bloc/bloc.dart';
-import 'package:cogina/main.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../../../../../data/model/base/response_model.dart';
 import '../../../../../../domain/request_body/rate_body.dart';
 import '../../../../../../domain/usecase/orders/rate_usecase.dart';
+import '../../../../../../main.dart';
 
 part 'rate_state.dart';
 

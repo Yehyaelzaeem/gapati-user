@@ -1,8 +1,8 @@
-import 'package:cogina/core/global/styles/colors.dart';
-import 'package:cogina/presentation/modules/notification/widgets/custom_notification_item.dart';
+import 'package:delivego/presentation/modules/notification/widgets/custom_notification_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/global/styles/styles.dart';
+import '../../../core/global/styles/colors.dart';
 
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({super.key});

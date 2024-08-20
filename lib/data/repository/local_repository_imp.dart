@@ -1,4 +1,3 @@
-import 'package:cogina/domain/logger.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:get_storage/get_storage.dart';
 import '../../domain/repository/local_repo.dart';
@@ -22,7 +21,6 @@ class LocalRepositoryImp implements LocalRepository {
   @override
   Future<bool> saveSecuredData(String token) async {
     await _cacheConsumer.saveSecuredData(StorageKeys.kToken, token);
-    log('saveSecuredData', 'token :$token');
     _dioClient!.token = token;
     _dioClient.dio!.options.headers = {
       'Accept': 'application/json; charset=UTF-8',

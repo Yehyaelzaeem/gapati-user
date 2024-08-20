@@ -1,7 +1,7 @@
-import 'package:cogina/core/global/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shimmer/shimmer.dart';
+import '../../../../../../core/global/styles/colors.dart';
 import '../../../../../../core/global/styles/styles.dart';
 import '../../../../../component/images/custom_image.dart';
 class RestaurantShimmerWidget extends StatelessWidget {

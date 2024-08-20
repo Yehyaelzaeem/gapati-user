@@ -1,5 +1,5 @@
-import 'package:cogina/core/global/styles/colors.dart';
 import 'package:flutter/material.dart';
+import '../../../../../core/global/styles/colors.dart';
 import '../../../../../core/helpers/spacing.dart';
 import '../../../../component/images/custom_image.dart';
 import '../../../../component/texts/black_texts.dart';

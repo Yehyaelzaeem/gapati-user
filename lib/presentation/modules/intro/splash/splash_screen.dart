@@ -1,9 +1,7 @@
-import 'package:cogina/core/assets_constant/images.dart';
-import 'package:cogina/core/global/fonts/app_fonts.dart';
-import 'package:cogina/core/global/styles/styles.dart';
-import 'package:cogina/domain/logger.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../core/assets_constant/images.dart';
 import '../../../../core/routing/navigation_services.dart';
 import '../../../../core/routing/routes.dart';
 import '../../../../data/app_urls/app_url.dart';

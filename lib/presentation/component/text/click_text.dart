@@ -24,17 +24,17 @@ class TextClickWidget extends StatelessWidget {
         children: [
           TextSpan(
             text: '${_text ?? ''} ' ,
-            style: Theme.of(context).textTheme.caption!.copyWith(
+            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                 fontSize: 14,
                 height: 1.4,
-                color: _textColor??Theme.of(context).textTheme.caption!.color
+                color: _textColor??Theme.of(context).textTheme.bodyMedium!.color
             ),
           ),
           TextSpan(
             text: _subText ?? '',
             style: Theme.of(context)
                 .textTheme
-                .caption!
+                .bodyMedium!
                 .copyWith(color: Theme.of(context).primaryColorDark, height: 1.4, fontSize: 14,decoration:TextDecoration.underline ),
             recognizer: TapGestureRecognizer()..onTap = _onTap,
           ),

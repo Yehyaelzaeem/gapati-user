@@ -1,14 +1,14 @@
 import '../../../../../../../generated/locale_keys.g.dart';
-import 'package:cogina/presentation/component/images/custom_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:cogina/core/global/styles/colors.dart';
-import 'package:cogina/core/global/styles/styles.dart';
 import '../../../../../../../core/helpers/spacing.dart';
 import '../../../../../../../core/routing/navigation_services.dart';
 import '../../../../../../../core/routing/routes.dart';
+import '../../../../../../core/global/styles/colors.dart';
+import '../../../../../../core/global/styles/styles.dart';
 import '../../../../../../data/model/response/order_model.dart';
+import '../../../../../component/images/custom_image.dart';
 
 class CustomOrderItemWidget extends StatelessWidget {
   const CustomOrderItemWidget({super.key, required this.orderModelData});

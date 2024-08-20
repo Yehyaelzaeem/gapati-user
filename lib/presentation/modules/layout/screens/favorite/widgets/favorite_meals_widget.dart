@@ -1,17 +1,18 @@
-import 'package:cogina/core/helpers/extensions.dart';
-import 'package:cogina/core/routing/routes.dart';
-import 'package:cogina/presentation/component/custom_loading_widget.dart';
-import 'package:cogina/presentation/modules/layout/screens/favorite/favorite_cubit.dart';
-import 'package:cogina/presentation/modules/layout/screens/favorite/widgets/custom_favorite_item.dart';
+
+import 'package:delivego/core/helpers/extensions.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../core/assets_constant/images.dart';
+import '../../../../../../core/routing/routes.dart';
 import '../../../../../../data/model/response/category_item_model.dart';
 import '../../../../../../generated/locale_keys.g.dart';
+import '../../../../../component/custom_loading_widget.dart';
 import '../../../../../component/custom_not_found_data.dart';
+import '../favorite_cubit.dart';
+import 'custom_favorite_item.dart';
 
 class FavoriteMealsWidget extends StatelessWidget {
   const FavoriteMealsWidget({super.key});

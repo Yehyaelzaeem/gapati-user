@@ -1,24 +1,26 @@
-import 'package:cogina/core/helpers/extensions.dart';
-import 'package:cogina/core/helpers/spacing.dart';
+
+import 'package:delivego/core/helpers/extensions.dart';
+import 'package:delivego/presentation/modules/restaurant/meal_details/widget/custom_name_price_widget.dart';
+import 'package:delivego/presentation/modules/restaurant/meal_details/widget/custom_offer_widget.dart';
+import 'package:delivego/presentation/modules/restaurant/meal_details/widget/custom_shimmer_chip.dart';
+import 'package:delivego/presentation/modules/restaurant/meal_details/widget/custom_top_back_widget.dart';
+import 'package:delivego/presentation/modules/restaurant/meal_details/widget/custom_top_fav_widget.dart';
+
 import '../../../../../../../generated/locale_keys.g.dart';
-import 'package:cogina/presentation/component/custom_multi_select_chip.dart';
-import 'package:cogina/presentation/component/images/custom_image.dart';
-import 'package:cogina/presentation/modules/restaurant/meal_details/widget/custom_name_price_widget.dart';
-import 'package:cogina/presentation/modules/restaurant/meal_details/widget/custom_offer_widget.dart';
-import 'package:cogina/presentation/modules/restaurant/meal_details/widget/custom_shimmer_chip.dart';
-import 'package:cogina/presentation/modules/restaurant/meal_details/widget/custom_top_back_widget.dart';
-import 'package:cogina/presentation/modules/restaurant/meal_details/widget/custom_top_fav_widget.dart';
-import 'package:cogina/presentation/modules/restaurant/restaurant_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../core/global/styles/colors.dart';
 import '../../../../../../core/global/styles/styles.dart';
+import '../../../../core/helpers/spacing.dart';
 import '../../../../data/model/response/category_item_model.dart';
 import '../../../../data/model/response/item_extra_model.dart';
 import '../../../component/custom_add_cart_button.dart';
+import '../../../component/custom_multi_select_chip.dart';
+import '../../../component/images/custom_image.dart';
 import '../../layout/screens/cart/cart_cubit.dart';
+import '../restaurant_cubit.dart';
 
 class MealDetailsScreen extends StatelessWidget {
   MealDetailsScreen({super.key, this.categoriesItemsModelData, required this.storeId, required this.storeName, required this.type, this.count, this.itemExtraList});

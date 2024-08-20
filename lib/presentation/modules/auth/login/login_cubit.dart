@@ -1,6 +1,4 @@
-import 'package:cogina/domain/logger.dart';
-import 'package:cogina/domain/request_body/otp_body.dart';
-import 'package:cogina/presentation/modules/layout/screens/home/home_cubit.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,6 +15,7 @@ import '../../../../data/model/response/otp_model.dart';
 import '../../../../data/model/response/user_model.dart';
 import '../../../../domain/provider/local_auth_provider_cubit.dart';
 import '../../../../domain/request_body/login_body.dart';
+import '../../../../domain/request_body/otp_body.dart';
 import '../../../../domain/usecase/auth/check_otp_usecase.dart';
 import '../../../../domain/usecase/auth/sign_in_usecase.dart';
 import '../../../../domain/usecase/local/save_data_usecase.dart';
@@ -77,7 +76,6 @@ class LoginCubit extends Cubit<LoginState> {
       CacheConsumer cacheConsumer =CacheConsumer(secureStorage: getIt(), sharedPreferences: getIt(),);
       var key =cacheConsumer.get('visitor');
       LayoutCubit layoutCubit=LayoutCubit.get(context);
-      log('visitor', key.toString());
        if(key!=null){
          layoutCubit.initLayOut();
          if(key=='favorite'){
@@ -117,8 +115,7 @@ class LoginCubit extends Cubit<LoginState> {
           changeType('otp');
           emit(OtpSuccessState()) ;
         }else{
-          log('error', '${otpModel.toJson()}');
-          log('error', '${responseModel.message}');
+
           emit(OtpErrorState()) ;
         }
       }

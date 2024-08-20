@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:cogina/domain/request_body/address_body.dart';
 import 'package:dio/dio.dart';
 import '../../domain/repository/address_repo.dart';
 import '../../domain/repository/search_repo.dart';

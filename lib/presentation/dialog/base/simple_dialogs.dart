@@ -1,7 +1,8 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:cogina/core/global/styles/colors.dart';
-import 'package:cogina/core/resources/text_styles.dart';
+import 'package:delivego/core/resources/text_styles.dart';
 import 'package:flutter/material.dart';
+
+import '../../../core/global/styles/colors.dart';
 
 
 void showErrorDialog(

@@ -1,13 +1,15 @@
-import 'package:cogina/core/global/styles/colors.dart';
-import 'package:cogina/core/global/styles/styles.dart';
-import 'package:cogina/core/helpers/extensions.dart';
-import 'package:cogina/core/helpers/spacing.dart';
-import 'package:cogina/core/routing/routes.dart';
-import 'package:cogina/presentation/component/custom_elevated_button.dart';
-import 'package:cogina/presentation/modules/auth/register/register_cubit.dart';
+
+import 'package:delivego/core/helpers/extensions.dart';
+import 'package:delivego/presentation/modules/auth/register/register_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../core/global/styles/colors.dart';
+import '../../../../core/global/styles/styles.dart';
+import '../../../../core/helpers/spacing.dart';
+import '../../../../core/routing/routes.dart';
+import '../../../component/custom_elevated_button.dart';
 
 class RegisterSuccessScreen extends StatelessWidget {
   const RegisterSuccessScreen({super.key});

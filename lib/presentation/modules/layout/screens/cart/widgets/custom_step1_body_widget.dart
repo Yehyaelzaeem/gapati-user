@@ -1,6 +1,7 @@
-import 'package:cogina/core/helpers/extensions.dart';
-import 'package:cogina/core/routing/routes.dart';
-import 'package:cogina/domain/logger.dart';
+
+import 'dart:developer';
+
+import 'package:delivego/core/helpers/extensions.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ import '../../../../../../../core/global/styles/styles.dart';
 import '../../../../../../../core/helpers/spacing.dart';
 import '../../../../../../core/function/function.dart';
 import '../../../../../../core/helpers/toast_states/enums.dart';
+import '../../../../../../core/routing/routes.dart';
 import '../../../../../../generated/locale_keys.g.dart';
 import '../../../../../component/custom_elevated_button.dart';
 import '../../../../../component/custom_loading_widget.dart';
@@ -99,7 +101,6 @@ class CustomStepBody1Widget extends StatelessWidget {
                         fontColor: AppColors.whiteColor,
                         width: MediaQuery.of(context).size.width*0.9,
                         onTap: (){
-                          log('tag', cubit.orderAddress.toString());
                            CheckOutCubit.get(context).changeSteps(1);
                         },
                         buttonText: LocaleKeys.continue2.tr())

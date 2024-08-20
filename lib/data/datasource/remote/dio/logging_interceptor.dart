@@ -1,13 +1,6 @@
 import 'dart:developer';
-
-import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:cogina/core/global/styles/colors.dart';
-import 'package:cogina/core/global/styles/styles.dart';
-import 'package:cogina/main.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 
-import '../../../../core/routing/navigation_services.dart';
 
 
 class LoggingInterceptor extends InterceptorsWrapper {

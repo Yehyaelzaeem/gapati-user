@@ -1,5 +1,5 @@
-import 'package:cogina/presentation/modules/intro/splash/splash_screen.dart';
 import 'package:country_code_picker/country_localizations.dart';
+import 'package:delivego/presentation/modules/intro/splash/splash_screen.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';

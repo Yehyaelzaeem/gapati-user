@@ -1,4 +1,3 @@
-import 'package:cogina/domain/logger.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,7 +19,6 @@ class OrdersCubit extends Cubit<OrdersState> {
     ResponseModel responseModel = await _ordersUseCase.getRestaurantsOrder();
     if (responseModel.isSuccess) {
       orderModel=responseModel.data;
-      log('restaurantsOrderData', orderModel!.toJson().toString());
 
       emit(RestaurantsOrdersSuccessState()) ;
     }else{
@@ -35,7 +33,6 @@ class OrdersCubit extends Cubit<OrdersState> {
     ResponseModel responseModel = await _ordersUseCase.getOrders(orderId: orderId);
     if (responseModel.isSuccess) {
       orderDetailsModel=responseModel.data;
-      log('getOrders', orderDetailsModel!.toJson().toString());
       emit(OrdersSuccessState()) ;
     }else{
       emit(OrdersErrorState()) ;

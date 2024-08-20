@@ -1,11 +1,12 @@
-import 'package:cogina/core/assets_constant/images.dart';
-import 'package:cogina/core/global/styles/colors.dart';
-import 'package:cogina/core/global/styles/styles.dart';
-import 'package:cogina/core/helpers/spacing.dart';
-import 'package:cogina/presentation/component/custom_elevated_button.dart';
+
 import 'package:flutter/material.dart';
 import '../../../../../../../core/routing/navigation_services.dart';
 import '../../../../../../../core/routing/routes.dart';
+import '../../../../../../core/assets_constant/images.dart';
+import '../../../../../../core/global/styles/colors.dart';
+import '../../../../../../core/global/styles/styles.dart';
+import '../../../../../../core/helpers/spacing.dart';
+import '../../../../../component/custom_elevated_button.dart';
 
 class OrderSuccessScreen extends StatelessWidget {
 

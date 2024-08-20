@@ -1,21 +1,16 @@
 class OrderDetailsModel {
-  List<OrderDetailsModelData>? data;
+  OrderDetailsModelData? data;
 
   OrderDetailsModel({this.data});
 
   OrderDetailsModel.fromJson(Map<String, dynamic> json) {
-    if (json['data'] != null) {
-      data = <OrderDetailsModelData>[];
-      json['data'].forEach((v) {
-        data!.add(new OrderDetailsModelData.fromJson(v));
-      });
-    }
+    data = json['data'] != null ? new OrderDetailsModelData.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.data != null) {
-      data['data'] = this.data!.map((v) => v.toJson()).toList();
+      data['data'] = this.data!.toJson();
     }
     return data;
   }
@@ -23,35 +18,118 @@ class OrderDetailsModel {
 
 class OrderDetailsModelData {
   int? id;
+  String? status;
+  String? name;
+  String? price;
+  String? note;
+  String? date;
+  String? paymentMethod;
+  String? toLat;
+  String? toLng;
+  String? phone;
+  String? toAddress;
+  int? addressId;
+  String? addressNot;
+  String? image;
+  List<OrderDetails>? orderDetails;
+
+  OrderDetailsModelData(
+      {this.id,
+        this.status,
+        this.name,
+        this.price,
+        this.note,
+        this.date,
+        this.paymentMethod,
+        this.toLat,
+        this.toLng,
+        this.phone,
+        this.toAddress,
+        this.addressId,
+        this.addressNot,
+        this.image,
+        this.orderDetails});
+
+  OrderDetailsModelData.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    status = json['status'];
+    name = json['name'];
+    price = json['price'];
+    note = json['note'];
+    date = json['date'];
+    paymentMethod = json['payment_method'];
+    toLat = json['to_lat'];
+    toLng = json['to_lng'];
+    phone = json['phone'];
+    toAddress = json['to_address'];
+    addressId = json['address_id'];
+    addressNot = json['address_not'];
+    image = json['image'];
+    if (json['order_details'] != null) {
+      orderDetails = <OrderDetails>[];
+      json['order_details'].forEach((v) {
+        orderDetails!.add(new OrderDetails.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['status'] = this.status;
+    data['name'] = this.name;
+    data['price'] = this.price;
+    data['note'] = this.note;
+    data['date'] = this.date;
+    data['payment_method'] = this.paymentMethod;
+    data['to_lat'] = this.toLat;
+    data['to_lng'] = this.toLng;
+    data['phone'] = this.phone;
+    data['to_address'] = this.toAddress;
+    data['address_id'] = this.addressId;
+    data['address_not'] = this.addressNot;
+    data['image'] = this.image;
+
+    if (this.orderDetails != null) {
+      data['order_details'] =
+          this.orderDetails!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+
+
+class OrderDetails {
+  int? id;
   int? tax;
   String? price;
   String? subTotal;
   String? date;
-  String? paymentMethod;
   int? qty;
   Items? items;
-  Extra? extra;
-  OrderDetailsModelData(
+  ItemsExtrat? extra;
+
+  OrderDetails(
       {this.id,
         this.tax,
         this.price,
         this.subTotal,
         this.date,
-        this.paymentMethod,
         this.qty,
-        this.extra,
-        this.items});
+        this.items,
+        this.extra});
 
-  OrderDetailsModelData.fromJson(Map<String, dynamic> json) {
+  OrderDetails.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     tax = json['tax'];
     price = json['price'];
     subTotal = json['sub_total'];
     date = json['date'];
-    paymentMethod = json['payment_method'];
     qty = json['qty'];
-    extra = json['extra'] != null ? new Extra.fromJson(json['extra']) : null;
     items = json['items'] != null ? new Items.fromJson(json['items']) : null;
+    extra =
+    json['extra'] != null ? new ItemsExtrat.fromJson(json['extra']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -61,13 +139,12 @@ class OrderDetailsModelData {
     data['price'] = this.price;
     data['sub_total'] = this.subTotal;
     data['date'] = this.date;
-    data['payment_method'] = this.paymentMethod;
     data['qty'] = this.qty;
-    if (this.extra != null) {
-      data['extra'] = this.extra!.toJson();
-    }
     if (this.items != null) {
       data['items'] = this.items!.toJson();
+    }
+    if (this.extra != null) {
+      data['extra'] = this.extra!.toJson();
     }
     return data;
   }
@@ -79,11 +156,14 @@ class Items {
   String? description;
   int? categoryId;
   String? categoryName;
-  dynamic price;
-  dynamic priceDiscount;
-  dynamic priceAfterDiscount;
+  String? price;
+  String? priceDiscount;
+  int? priceAfterDiscount;
   int? storeId;
   String? image;
+  bool? incart;
+  bool? inFav;
+  ItemsExtrat? itemsExtrat;
 
   Items(
       {this.id,
@@ -95,7 +175,10 @@ class Items {
         this.priceDiscount,
         this.priceAfterDiscount,
         this.storeId,
-        this.image});
+        this.image,
+        this.incart,
+        this.inFav,
+        this.itemsExtrat});
 
   Items.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -108,6 +191,11 @@ class Items {
     priceAfterDiscount = json['price_after_discount'];
     storeId = json['store_id'];
     image = json['image'];
+    incart = json['incart'];
+    inFav = json['inFav'];
+    itemsExtrat = json['items_extrat'] != null
+        ? new ItemsExtrat.fromJson(json['items_extrat'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -122,22 +210,25 @@ class Items {
     data['price_after_discount'] = this.priceAfterDiscount;
     data['store_id'] = this.storeId;
     data['image'] = this.image;
+    data['incart'] = this.incart;
+    data['inFav'] = this.inFav;
+    if (this.itemsExtrat != null) {
+      data['items_extrat'] = this.itemsExtrat!.toJson();
+    }
     return data;
   }
 }
 
+class ItemsExtrat {
+  List<ItemsExtratData>? data;
 
+  ItemsExtrat({this.data});
 
-class Extra {
-  List<ExtraData>? data;
-
-  Extra({this.data});
-
-  Extra.fromJson(Map<String, dynamic> json) {
+  ItemsExtrat.fromJson(Map<String, dynamic> json) {
     if (json['data'] != null) {
-      data = <ExtraData>[];
+      data = <ItemsExtratData>[];
       json['data'].forEach((v) {
-        data!.add(new ExtraData.fromJson(v));
+        data!.add(new ItemsExtratData.fromJson(v));
       });
     }
   }
@@ -151,14 +242,14 @@ class Extra {
   }
 }
 
-class ExtraData {
+class ItemsExtratData {
   int? id;
   String? name;
   String? price;
 
-  ExtraData({this.id, this.name, this.price});
+  ItemsExtratData({this.id, this.name, this.price});
 
-  ExtraData.fromJson(Map<String, dynamic> json) {
+  ItemsExtratData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     price = json['price'];
@@ -167,6 +258,31 @@ class ExtraData {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
+    data['name'] = this.name;
+    data['price'] = this.price;
+    return data;
+  }
+}
+
+class Data {
+  int? id;
+  int? itemId;
+  String? name;
+  String? price;
+
+  Data({this.id, this.itemId, this.name, this.price});
+
+  Data.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    itemId = json['item_id'];
+    name = json['name'];
+    price = json['price'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['item_id'] = this.itemId;
     data['name'] = this.name;
     data['price'] = this.price;
     return data;

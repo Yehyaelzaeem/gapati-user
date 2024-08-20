@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:cogina/domain/request_body/check_out_body.dart';
 import 'package:dio/dio.dart';
 import '../../domain/repository/check_out_repo.dart';
+import '../../domain/request_body/check_out_body.dart';
 import '../app_urls/app_url.dart';
 import '../datasource/remote/dio/dio_client.dart';
 import '../datasource/remote/exception/api_error_handler.dart';

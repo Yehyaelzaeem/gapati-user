@@ -1,8 +1,8 @@
-import 'package:cogina/presentation/component/custom_loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/global/styles/colors.dart';
+import 'custom_loading_widget.dart';
 
 class CustomElevatedButton extends StatelessWidget {
   final String buttonText;

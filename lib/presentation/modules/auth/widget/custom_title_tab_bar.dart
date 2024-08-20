@@ -1,6 +1,7 @@
-import 'package:cogina/core/global/styles/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../core/global/styles/styles.dart';
 
 class CustomTitleTabBarWidget extends StatelessWidget {
   const CustomTitleTabBarWidget({super.key, required this.title});

@@ -1,10 +1,10 @@
-import 'package:cogina/domain/request_body/register_body.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../../../../core/helpers/toast_states/enums.dart';
 import '../../../../data/model/base/response_model.dart';
 import '../../../../data/model/response/register_model.dart';
+import '../../../../domain/request_body/register_body.dart';
 import '../../../../domain/usecase/auth/register_usecase.dart';
 import '../login/login_cubit.dart';
 part 'register_state.dart';

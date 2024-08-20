@@ -2,16 +2,17 @@ import 'dart:async';
 import 'dart:ui';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
-import 'package:cogina/core/global/styles/styles.dart';
-import 'package:cogina/generated/locale_keys.g.dart';
-import 'package:cogina/presentation/component/custom_loading_widget.dart';
+
 import 'package:easy_localization/easy_localization.dart' as tr;
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../../../../core/assets_constant/images.dart';
+import '../../../../core/global/styles/styles.dart';
 import '../../../../data/app_urls/app_url.dart';
+import '../../../../generated/locale_keys.g.dart';
+import '../../../component/custom_loading_widget.dart';
 
 class GoogleMapScreen extends StatefulWidget {
   final int tripId;

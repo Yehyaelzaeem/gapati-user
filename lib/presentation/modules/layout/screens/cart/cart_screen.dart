@@ -1,10 +1,8 @@
-import 'package:cogina/core/function/function.dart';
-import 'package:cogina/core/helpers/extensions.dart';
-import 'package:cogina/domain/logger.dart';
-import 'package:cogina/presentation/modules/layout/screens/cart/cart_cubit.dart';
-import 'package:cogina/presentation/modules/layout/screens/cart/widgets/custom_cart_item.dart';
-import 'package:cogina/presentation/modules/layout/screens/cart/widgets/custom_cart_top_widget.dart';
-import 'package:cogina/presentation/modules/layout/screens/cart/widgets/custom_total_widget.dart';
+
+import 'package:delivego/core/helpers/extensions.dart';
+import 'package:delivego/presentation/modules/layout/screens/cart/widgets/custom_cart_item.dart';
+import 'package:delivego/presentation/modules/layout/screens/cart/widgets/custom_cart_top_widget.dart';
+import 'package:delivego/presentation/modules/layout/screens/cart/widgets/custom_total_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,6 +16,7 @@ import '../../../../component/custom_elevated_button.dart';
 import '../../layout_cubit.dart';
 import '../home/home_cubit.dart';
 import '../more/address/address_cubit.dart';
+import 'cart_cubit.dart';
 import 'check_out/check_out_cubit.dart';
 
 class CartScreen extends StatelessWidget {

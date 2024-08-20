@@ -1,10 +1,10 @@
-import 'package:cogina/presentation/component/component.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../generated/locale_keys.g.dart';
+import '../../../../../component/custom_app_bar.dart';
 import '../../../../../component/custom_app_contant_data.dart';
 import '../../../../../component/custom_loading_widget.dart';
 import '../more_cubit.dart';

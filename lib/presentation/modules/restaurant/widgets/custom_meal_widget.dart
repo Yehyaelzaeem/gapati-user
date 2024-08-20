@@ -1,22 +1,16 @@
-import 'package:cogina/core/helpers/spacing.dart';
-import 'package:cogina/core/helpers/toast_states/enums.dart';
+
 import '../../../../../../../generated/locale_keys.g.dart';
-import 'package:cogina/domain/logger.dart';
-import 'package:cogina/presentation/component/images/custom_image.dart';
-import 'package:cogina/presentation/modules/layout/screens/cart/cart_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../core/global/styles/colors.dart';
 import '../../../../../../core/global/styles/styles.dart';
 import '../../../../core/function/function.dart';
 import '../../../../data/model/response/category_item_model.dart';
-import '../../../../domain/request_body/add_item_body.dart';
 import '../../../component/custom_add_cart_button.dart';
-import '../../../component/custom_check_button.dart';
+import '../../../component/images/custom_image.dart';
+import '../../layout/screens/cart/cart_cubit.dart';
 import '../../layout/screens/favorite/favorite_cubit.dart';
-import '../restaurant_cubit.dart';
 
 class CustomMealWidget extends StatefulWidget {
   const CustomMealWidget({super.key,  this.categoriesItemsModelData, required this.storeName});

@@ -1,4 +1,3 @@
-import 'package:cogina/data/model/base/api_response.dart';
 import '../../../data/model/base/base_model.dart';
 import '../../../data/model/base/response_model.dart';
 import '../../repository/cart_repo.dart';

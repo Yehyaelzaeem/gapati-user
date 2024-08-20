@@ -1,4 +1,3 @@
-import 'package:cogina/domain/logger.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../data/model/response/cart_model.dart';
@@ -95,7 +94,6 @@ class CartCubit extends Cubit<CartState> {
     products.clear();
   }
 void updateData(){
-    log('yehay', 'sssssssssssssssssssssssssssssssssssssss');
   emit(UpdateExtraCartDataState());
 }
 

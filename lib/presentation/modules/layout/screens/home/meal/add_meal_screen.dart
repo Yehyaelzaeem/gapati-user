@@ -1,10 +1,10 @@
-import 'package:cogina/core/global/styles/styles.dart';
-import 'package:cogina/core/helpers/spacing.dart';
-import 'package:cogina/presentation/component/component.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:cogina/core/global/styles/colors.dart';
 import '../../../../../../../core/resources/decoration.dart';
+import '../../../../../../core/global/styles/colors.dart';
+import '../../../../../../core/global/styles/styles.dart';
+import '../../../../../../core/helpers/spacing.dart';
+import '../../../../../component/custom_app_bar.dart';
 import '../../../../../component/custom_elevated_button.dart';
 import '../../../../../component/custom_text_field.dart';
 

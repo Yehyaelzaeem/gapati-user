@@ -1,5 +1,4 @@
-import 'package:cogina/domain/logger.dart';
-import 'package:cogina/presentation/modules/layout/screens/cart/cart_cubit.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../core/global/styles/colors.dart';
 import '../../core/helpers/toast_states/enums.dart';
 import '../../data/model/response/category_item_model.dart';
+import '../modules/layout/screens/cart/cart_cubit.dart';
 
 class CustomCheckButton extends StatelessWidget {
   const CustomCheckButton({super.key, this.categoriesItemsModelData, this.width, this.height});

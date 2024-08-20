@@ -1,7 +1,5 @@
 
-
-import 'package:cogina/core/global/styles/colors.dart';
-import 'package:cogina/core/resources/text_styles.dart';
+import 'package:delivego/core/resources/text_styles.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

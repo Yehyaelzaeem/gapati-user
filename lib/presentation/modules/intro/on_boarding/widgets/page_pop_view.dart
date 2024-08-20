@@ -1,10 +1,11 @@
-import 'package:cogina/core/global/styles/colors.dart';
-import 'package:cogina/core/global/styles/styles.dart';
-import 'package:cogina/core/resources/text_styles.dart';
+
+import 'package:delivego/core/resources/text_styles.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../core/global/styles/colors.dart';
+import '../../../../../core/global/styles/styles.dart';
 import '../../../../../core/resources/values_manager.dart';
 import '../../../../component/spaces.dart';
 

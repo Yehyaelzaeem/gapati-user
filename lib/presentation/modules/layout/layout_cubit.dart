@@ -1,6 +1,6 @@
-import 'package:cogina/presentation/modules/layout/screens/favorite/favorite_cubit.dart';
-import 'package:cogina/presentation/modules/layout/screens/home/home_cubit.dart';
-import 'package:cogina/presentation/modules/layout/screens/more/profile/profile_cubit.dart';
+import 'package:delivego/presentation/modules/layout/screens/favorite/favorite_cubit.dart';
+import 'package:delivego/presentation/modules/layout/screens/home/home_cubit.dart';
+import 'package:delivego/presentation/modules/layout/screens/more/profile/profile_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

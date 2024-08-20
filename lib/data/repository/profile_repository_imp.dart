@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:cogina/domain/request_body/profile_body.dart';
 import 'package:dio/dio.dart';
 import '../../domain/logger.dart';
 import '../../domain/repository/profile_repo.dart';
+import '../../domain/request_body/profile_body.dart';
 import '../app_urls/app_url.dart';
 import '../datasource/remote/dio/dio_client.dart';
 import '../datasource/remote/exception/api_error_handler.dart';

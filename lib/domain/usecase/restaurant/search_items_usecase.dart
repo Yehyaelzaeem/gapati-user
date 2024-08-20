@@ -1,4 +1,3 @@
-import 'package:cogina/domain/logger.dart';
 
 import '../../../data/model/base/base_model.dart';
 import '../../../data/model/base/response_model.dart';
@@ -21,7 +20,6 @@ class SearchItemsUseCase implements BaseUseCase<SearchItemModel>{
   @override
   ResponseModel<SearchItemModel> onConvert(BaseModel baseModel) {
     try{
-      log('yehya', baseModel.responseData.toString());
       SearchItemModel searchItemModel = SearchItemModel.fromJson(baseModel.responseData);
 
       return ResponseModel(baseModel.status??true, baseModel.message,data: searchItemModel);

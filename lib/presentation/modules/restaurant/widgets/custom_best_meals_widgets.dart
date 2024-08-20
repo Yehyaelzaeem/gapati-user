@@ -1,8 +1,6 @@
-import '../../../../../../../generated/locale_keys.g.dart';
-import '../../../../../../../generated/locale_keys.g.dart';
+import 'package:delivego/presentation/modules/restaurant/widgets/shimmer_categories_restaurant.dart';
 
-import 'package:cogina/domain/logger.dart';
-import 'package:cogina/presentation/modules/restaurant/widgets/shimmer_categories_restaurant.dart';
+import '../../../../../../../generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
