@@ -121,10 +121,12 @@ class OrderDetailsScreen extends StatelessWidget {
                                     },
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         CustomStepsOrderWidget(text: LocaleKeys.ordered.tr(),isDone: padding,),
-                                        CustomStepsOrderWidget(text: LocaleKeys.processing.tr(),isDone: preparing,),
-                                        CustomStepsOrderWidget(text: LocaleKeys.shipped.tr(),isDone:onWay ,),
+                                        CustomStepsOrderWidget(text: LocaleKeys.inPreparation.tr(),isDone: preparing,),
+                                        CustomStepsOrderWidget(text: LocaleKeys.deliveredCourier.tr(),isDone: preparing,),
+                                        CustomStepsOrderWidget(text: LocaleKeys.inDelivery.tr(),isDone:onWay ,),
                                         CustomStepsOrderWidget(text: LocaleKeys.delivered.tr(),isDone:isDone),
                                       ],
                                     ),
@@ -170,18 +172,32 @@ class OrderDetailsScreen extends StatelessWidget {
                                     ],
                                   ),
                                 ),
-                                Center(
-                                  child: CustomElevatedButton(
-                                      width:  MediaQuery.of(context).size.width*0.9,
-                                      backgroundColor: AppColors.whiteColor,
-                                      borderColor: AppColors.primaryColor,
-                                      fontColor: AppColors.primaryColor,
-                                      borderRadius: 8,
-                                      height: 40.h,
-                                      onTap: (){
-                                        context.pushNamed(RoutesRestaurants.rateScreen,arguments: {'orderId':orderId});
-                                      },
-                                      buttonText: LocaleKeys.rateNow.tr()),
+                                Row(
+                                  children: [
+                                    Expanded(child:
+                                    CustomElevatedButton(
+                                        backgroundColor: AppColors.whiteColor,
+                                        borderColor: AppColors.primaryColor,
+                                        fontColor: AppColors.primaryColor,
+                                        borderRadius: 8,
+                                        height: 40.h,
+                                        onTap: (){
+                                          context.pushNamed(RoutesRestaurants.rateScreen,arguments: {'orderId':orderId});
+                                        },
+                                        buttonText: LocaleKeys.rate_trip.tr()),),
+                                    horizontalSpace(10),
+                                    Expanded(child:
+                                    CustomElevatedButton(
+                                        backgroundColor: AppColors.whiteColor,
+                                        borderColor: AppColors.primaryColor,
+                                        fontColor: AppColors.primaryColor,
+                                        borderRadius: 8,
+                                        height: 40.h,
+                                        onTap: (){
+                                          context.pushNamed(RoutesRestaurants.rateScreen,arguments: {'orderId':orderId});
+                                        },
+                                        buttonText: LocaleKeys.rate_restaurant.tr()),),
+                                  ],
                                 )
 
                               ],

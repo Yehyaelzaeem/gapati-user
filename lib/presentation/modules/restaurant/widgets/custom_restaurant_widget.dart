@@ -7,21 +7,21 @@ import '../../../../core/function/function.dart';
 import '../../../../core/helpers/spacing.dart';
 import '../../../../core/routing/routes.dart';
 import '../../../../data/model/response/home_model.dart';
+import '../../../../data/model/response/restaurants_nearst_model.dart';
 import '../../../component/custom_rate.dart';
 import '../../layout/screens/favorite/favorite_cubit.dart';
 import '../../layout/screens/home/widgets/custom_logo_restuarant.dart';
 
 class CustomRestaurantWidget extends StatelessWidget {
-  const CustomRestaurantWidget({super.key, required this.restaurantData});
-  final DataHome restaurantData;
+  const CustomRestaurantWidget({super.key, required this.restaurant});
+  final RestaurantsNearestModelData restaurant;
   @override
   Widget build(BuildContext context) {
-   print('test ${restaurantData.toJson()}');
     return
       InkWell(
         onTap: (){
           NavigationService.push(RoutesRestaurants.restaurantScreen,arguments:
-          {'id':restaurantData.id,'storeName':restaurantData.name,'image':restaurantData.banner,'isFav':restaurantData.inFav});
+          {'id':restaurant.id,'storeName':restaurant.name,'image':restaurant.banner,'isFav':restaurant.inFav});
         },
         child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -39,7 +39,7 @@ class CustomRestaurantWidget extends StatelessWidget {
                   color: const Color(0xffDFDADA),
                   borderRadius: BorderRadius.circular(20),
                 ),
-                child:  CustomLogoRestaurant(image: restaurantData.image,height: 130.h,width: 130.h,),
+                child:  CustomLogoRestaurant(image: restaurant.image,height: 130.h,width: 130.h,),
               ),
               horizontalSpace(10),
               Expanded(
@@ -50,7 +50,7 @@ class CustomRestaurantWidget extends StatelessWidget {
                     verticalSpace(10),
                     Row(
                       children: [
-                        Text(restaurantData.name??'',
+                        Text(restaurant.name??'',
                           style: TextStyles.font16Black600Weight,
                         ),
                         const Spacer(),
@@ -61,17 +61,17 @@ class CustomRestaurantWidget extends StatelessWidget {
                                   FavoriteCubit cubit=FavoriteCubit.get(context);
                                    logInFirst(function: (){
                                               setState(() {
-                                                if(restaurantData.inFav==false){
-                                                  cubit.addFavoriteRestaurant(restaurantId: restaurantData.id!, context: context,);
-                                                  restaurantData.inFav=true;
+                                                if(restaurant.inFav==false){
+                                                  cubit.addFavoriteRestaurant(restaurantId: restaurant.id!, context: context,);
+                                                  restaurant.inFav=true;
                                                 }else{
-                                                  cubit.removeFavoriteRestaurant(restaurantId: restaurantData.id!, context: context);
-                                                  restaurantData.inFav=false;
+                                                  cubit.removeFavoriteRestaurant(restaurantId: restaurant.id!, context: context);
+                                                  restaurant.inFav=false;
                                                 }
                                               });
                                             }, context: context, screenName: 'favoriteDetails');
                                    },
-                                child:restaurantData.inFav==true?
+                                child:restaurant.inFav==true?
                                 Icon(Icons.favorite,color: Colors.red,):Icon(Icons.favorite_border_rounded,color: Colors.grey,));
                         }),
                         horizontalSpace(15)
@@ -97,14 +97,14 @@ class CustomRestaurantWidget extends StatelessWidget {
                             filledStar: Icons.star,
                             halfStar: Icons.star_half,
                             emptyStar: Icons.star_border,
-                            rating: restaurantData.rate!.toDouble(),
+                            rating: restaurant.rate!.toDouble(),
                             onChanged: (rating) {
 
                             },
                           ),
                           SizedBox(width: 10.w,),
                           Text(
-                            restaurantData.rate!.toDouble().toString(),
+                            restaurant.rate!.toDouble().toString(),
                             style: TextStyles.font16Black600Weight.copyWith(
                                 fontSize: 13
                             ),

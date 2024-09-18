@@ -35,6 +35,7 @@ class LoginCubit extends Cubit<LoginState> {
   final OTPUseCase _otpUseCase ;
   final SaveUserDataUseCase _saveUserDataUseCase ;
   TextEditingController phoneController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   static LoginCubit get(BuildContext context)=>BlocProvider.of(context);
   String type='auth';
@@ -44,7 +45,7 @@ class LoginCubit extends Cubit<LoginState> {
   }
 
   ///variables
-  final LoginBody _body = LoginBody(phone: '', otp: '');
+  final LoginBody _body = LoginBody(phone: '', password: '');
   final OTPBody _otpBody = OTPBody(phone: '');
 
   ///getters
@@ -54,11 +55,11 @@ class LoginCubit extends Cubit<LoginState> {
 
 //tr(LocaleKeys.error)
   ///calling APIs Functions
-  Future<ResponseModel> login(String phone, String otp,context) async {
+  Future<ResponseModel> login(String phone, String password,context) async {
     // // String? fcmToken= await getDeviceToken();
     // if(fcmToken==null){return ResponseModel(false, tr(LocaleKeys.error));}
     emit(LoginLoadingState()) ;
-    _assignLoginBody(phone, otp);
+    _assignLoginBody(phone, password);
     ResponseModel responseModel = await _signInUseCase.call(loginBody: body);
     if (responseModel.isSuccess) {
       UserModel userModel = responseModel.data;
@@ -73,6 +74,7 @@ class LoginCubit extends Cubit<LoginState> {
       registerCubit.phoneController.text='';
       registerCubit.lastNameController.text='';
       registerCubit.firstNameController.text='';
+      registerCubit.passwordController.text='';
       CacheConsumer cacheConsumer =CacheConsumer(secureStorage: getIt(), sharedPreferences: getIt(),);
       var key =cacheConsumer.get('visitor');
       LayoutCubit layoutCubit=LayoutCubit.get(context);
@@ -105,7 +107,7 @@ class LoginCubit extends Cubit<LoginState> {
   Future<ResponseModel?> otpCode(String phone,context) async {
     emit(OtpLoadingState()) ;
     try{
-      _assignOtpBody(phone);
+      // _assignOtpBody(phone);
       ResponseModel responseModel = await _otpUseCase.call(body: otpBody);
       if(responseModel.data!=null){
         AuthModel otpModel =responseModel.data;
@@ -126,11 +128,11 @@ class LoginCubit extends Cubit<LoginState> {
     return null;
   }
 
-  void _assignLoginBody(String phone,String otp) {
-    body.setData(phone: phone, otp: otp);
+  void _assignLoginBody(String phone,String password) {
+    body.setData(phone: phone, password: password);
   }
-  void _assignOtpBody(String phone) {
-    otpBody.setData(phone: phone);
+  void _assignOtpBody(String phone,) {
+    otpBody.setData(phone: phone,);
   }
 
   Future<void> visitorLocation({required String screenName}) async{

@@ -23,6 +23,7 @@ import 'package:delivego/domain/usecase/favorite/remove_favorite_restaurant_usec
 import 'package:delivego/domain/usecase/favorite/remove_favorite_usecase.dart';
 import 'package:delivego/domain/usecase/home/home_usecase.dart';
 import 'package:delivego/domain/usecase/home/offers_usecase.dart';
+import 'package:delivego/domain/usecase/home/resturants_usecase.dart';
 import 'package:delivego/domain/usecase/local/clear_user_data_usecase.dart';
 import 'package:delivego/domain/usecase/local/get_is_login_usecase.dart';
 import 'package:delivego/domain/usecase/local/get_user_token_usecase.dart';
@@ -64,6 +65,7 @@ Future<void> init() async {
    ///Home
    getIt.registerLazySingleton(() => HomeUseCase(repository: getIt()));
    getIt.registerLazySingleton(() => OffersUseCase(repository: getIt()));
+   getIt.registerLazySingleton(() => RestaurantsUseCase(repository: getIt()));
    ///Search
    getIt.registerLazySingleton(() => SearchUseCase(repository: getIt()));
    getIt.registerLazySingleton(() => SearchItemsUseCase(repository: getIt()));

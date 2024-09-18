@@ -72,11 +72,17 @@ class CustomAddressWidget extends StatelessWidget {
                       verticalSpace(20),
                       InkWell(
                         onTap: (){
-                          AddressCubit a =AddressCubit.get(context);
-                          a.lat!=null&&a.long!=null?
-                          context.pushNamed(RoutesRestaurants.customGoogleMapScreen,
-                          arguments: {'lat':a.lat!,'long':a.long}
-                          ):null;
+                          AddressCubit addressCubit =AddressCubit.get(context);
+                          if( addressCubit.lat!=null&&addressCubit.long!=null){
+                            context.pushNamed(RoutesRestaurants.customGoogleMapScreen,
+                                arguments: {'lat':addressCubit.lat!,'long':addressCubit.long});
+                          }else{
+                            addressCubit.getLocation(context).then((value) {
+                              context.pushNamed(RoutesRestaurants.customGoogleMapScreen,
+                                  arguments: {'lat':value.latitude,'long':value.longitude});
+                            });
+                          }
+
                         },
                         child: CustomTextField(
                           hintText: LocaleKeys.location.tr(),

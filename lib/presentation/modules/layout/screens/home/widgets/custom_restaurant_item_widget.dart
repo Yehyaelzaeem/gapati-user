@@ -4,11 +4,12 @@ import 'package:flutter/cupertino.dart';
 import '../../../../../../core/global/styles/styles.dart';
 import '../../../../../../core/helpers/spacing.dart';
 import '../../../../../../data/model/response/home_model.dart';
+import '../../../../../../data/model/response/restaurants_nearst_model.dart';
 import 'custom_logo_restuarant.dart';
 
 class CustomRestaurantItemWidget extends StatelessWidget {
-  const CustomRestaurantItemWidget({super.key, required this.dataHome});
-  final DataHome dataHome;
+  const CustomRestaurantItemWidget({super.key, required this.restaurant});
+  final RestaurantsNearestModelData restaurant;
   @override
   Widget build(BuildContext context) {
     return
@@ -18,9 +19,9 @@ class CustomRestaurantItemWidget extends StatelessWidget {
         width: 90.w,
         child: Column(
           children: [
-            CustomLogoRestaurant(image: dataHome.image,),
+            CustomLogoRestaurant(image: restaurant.image,),
             verticalSpace(5),
-            FittedBox(child: Text(dataHome.name!,style: TextStyles.font16Black500Weight.copyWith(
+            FittedBox(child: Text(restaurant.name!,style: TextStyles.font16Black500Weight.copyWith(
               height: 1,
             ))),
           ],

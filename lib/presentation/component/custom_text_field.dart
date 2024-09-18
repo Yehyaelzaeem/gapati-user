@@ -1,5 +1,8 @@
+import 'package:delivego/generated/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
+import '../../core/resources/color.dart';
 import '../../core/routing/navigation_services.dart';
 import 'input_decoration.dart';
 
@@ -58,38 +61,62 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      onFieldSubmitted: onFieldSubmitted,
-      controller: controller,
-      obscureText: isPassword ?? false,
-      maxLines: maxLines ?? 1,
-      decoration:
-      customInputDecoration(
-        fontSize: fontSize,
-        fontWeight: fontWeight,
-        hintStyle:hintStyle ,
-        hintText: hintText,
-        contentHorizontalPadding: contentHorizontalPadding,
-        contentVerticalPadding: contentVerticalPadding,
-        borderRadius: borderRadius,
-        borderColor: borderColor,
-        prefixIconColor: prefixIconColor,
-        prefixIcon: prefixIcon,
-        hintFontFamily: hintFontFamily,
-        suffixIcon: suffixIcon,
-        enabled: enabled,
-        hintColor: hintColor,
-        fillColor: fillColor,
-      ),
-      validator: validationFunc,
-      onSaved: (String? val) {
-        controller.text = val!;
-      },
-      cursorWidth: 1,
-      textInputAction: textInputAction ?? TextInputAction.next,
-      keyboardType: textInputType ?? TextInputType.text,
-      onChanged:onChanged ,
-    );
+    bool isVisibility = false;
+     if(isPassword==true){
+       isVisibility=true;
+     }
+    return
+      StatefulBuilder(builder: (context,setState){
+        return   TextFormField(
+          onFieldSubmitted: onFieldSubmitted,
+          controller: controller,
+          obscureText:  isVisibility,
+          maxLines: maxLines ?? 1,
+          decoration:
+          customInputDecoration(
+            fontSize: fontSize,
+            fontWeight: fontWeight,
+            hintStyle:hintStyle ,
+            hintText: hintText,
+            contentHorizontalPadding: contentHorizontalPadding,
+            contentVerticalPadding: contentVerticalPadding,
+            borderRadius: borderRadius,
+            borderColor: borderColor,
+            prefixIconColor: prefixIconColor,
+            prefixIcon: prefixIcon,
+            hintFontFamily: hintFontFamily,
+            suffixIcon: isPassword==true ?
+            IconButton(
+              icon: Icon(
+                isVisibility==true ? Icons.visibility_off_outlined : Icons.visibility_outlined,
+                color: isVisibility==true ?  hintColor:primaryColor,
+              ),
+              onPressed: () {
+                isVisibility = !isVisibility;
+                setState(() {});
+              },
+            ) :
+           null,
+            enabled: enabled,
+            hintColor: hintColor,
+            fillColor: fillColor,
+          ),
+          validator:validationFunc??(value) {
+            if (value == null || value.isEmpty) {
+              return LocaleKeys.this_field_required.tr();
+            }
+            return null;
+          } ,
+          onSaved: (String? val) {
+            controller.text = val!;
+          },
+
+          cursorWidth: 1,
+          textInputAction: textInputAction ?? TextInputAction.next,
+          keyboardType: textInputType ?? TextInputType.text,
+          onChanged:onChanged ,
+        );
+      });
   }
 }
 InputDecoration customInputDecration({

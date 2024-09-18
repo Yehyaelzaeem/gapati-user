@@ -11,4 +11,7 @@ class OffersLoadingState extends HomeState {}
 class OffersSuccessState extends HomeState {}
 class OffersErrorState extends HomeState {}
 class GetTokenState extends HomeState {}
+class GetRestaurantLoadingState extends HomeState {}
+class GetRestaurantSuccessState extends HomeState {}
+class GetRestaurantErrorState extends HomeState {}
 

@@ -15,8 +15,14 @@
   "deleteAccount": "Delete Account",
   "logout": "Log Out",
   "home": "Home",
+  "password": "Password",
+  "this_field_required": "This Field is Required",
+
   "favorite": "Favorite",
   "orders": "Orders",
+  "inPreparation": "In preparation",
+  "inDelivery": "In delivery",
+  "deliveredCourier": "Delivered to the courier",
   "cart": "Cart",
   "more": "More",
   "signUp": "Sign Up",
@@ -147,6 +153,9 @@
   "doRate": "Rate Now",
   "selectRate": "Select a rating to improve the service",
   "typing": "Type a comment",
-  "rateNow": "Rate Now"
+  "rateNow": "Rate Now",
+
+  "rate_trip": "Rate the trip",
+  "rate_restaurant": "Rate the restaurant"
 
 }

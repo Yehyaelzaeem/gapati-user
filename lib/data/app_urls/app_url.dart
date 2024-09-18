@@ -1,3 +1,5 @@
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+
 import '../../main.dart';
 
 class AppURL {
@@ -7,7 +9,7 @@ class AppURL {
   static const String kApiGoogleMap = "AIzaSyCcLzjD-Xxomlnw7ALIFCNzp4pQzoAp64Y";
 
   ///Auth
-  static const String kLoginURI = "auth/otp";
+  static const String kLoginURI = "auth/login";
   static const String kOtpURI = "auth/login";
   static const String kRegisterURI = "auth/register";
   static const String kLogoutURI = "auth/logout";
@@ -21,6 +23,7 @@ class AppURL {
   ///home
   static const String kHomeURI = "home";
   static const String kOffersURI = "stores/offers";
+  static  String kRestaurantsNearest (LatLng latLng)=> "stores/nearestStores?lat=${latLng.latitude}&lng=${latLng.longitude}";
   static  String kCategoriesURI (int id)=> "stores/all-categories?store_id=$id";
   static  String kItemExtraURI (int id)=> "stores/items/single?item_id=$id";
   static  String kSearchItemURI ({required String searchText,required int storeId})=> "stores/items/search?store_id=$storeId&search=$searchText";

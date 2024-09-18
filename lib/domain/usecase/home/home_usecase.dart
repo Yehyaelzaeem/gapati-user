@@ -2,9 +2,7 @@
 import '../../../data/model/base/base_model.dart';
 import '../../../data/model/base/response_model.dart';
 import '../../../data/model/response/home_model.dart';
-import '../../../data/model/response/profile_model.dart';
 import '../../repository/home_repo.dart';
-import '../../repository/profile_repo.dart';
 import '../base_usecase/base_use_case_call.dart';
 import '../base_usecase/base_usecase.dart';
 

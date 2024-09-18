@@ -4,6 +4,7 @@ import '../../../../../core/helpers/toast_states/enums.dart';
 import '../../../../../data/model/base/response_model.dart';
 import '../../../../../data/model/response/favorite_model.dart';
 import '../../../../../data/model/response/home_model.dart';
+import '../../../../../data/model/response/restaurants_nearst_model.dart';
 import '../../../../../domain/usecase/favorite/add_favorite_restaurant_usecase.dart';
 import '../../../../../domain/usecase/favorite/add_favorite_usecase.dart';
 import '../../../../../domain/usecase/favorite/get_favorite_resataurant_usecase.dart';
@@ -37,7 +38,7 @@ class FavoriteCubit extends Cubit<FavoriteState> {
 
   static FavoriteCubit get(BuildContext context)=>BlocProvider.of(context);
   FavoriteModel? favoriteModel;
-  HomeModelData? favoriteRestaurantModel;
+  List<RestaurantsNearestModelData>? favoriteRestaurantModel;
   Future<ResponseModel?> getFavorite(context) async {
       emit(GetFavoriteLoadingState()) ;
       ResponseModel responseModel = await _getFavoriteUseCase.call();

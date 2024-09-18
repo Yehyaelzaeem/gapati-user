@@ -113,7 +113,7 @@ class HomeScreen extends StatelessWidget {
                                 padding: EdgeInsets.symmetric(horizontal: 10.w,vertical: 25.h),
                                 child: Column(
                                   children: [
-                                    if(cubit.listData==null)
+                                    if(cubit.restaurantList==null)
                                       const RestaurantShimmerWidget()
                                     else
                                      const CustomRestaurantsListWidget(),

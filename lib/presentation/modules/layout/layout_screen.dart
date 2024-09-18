@@ -1,6 +1,7 @@
 
 import 'package:delivego/core/helpers/extensions.dart';
 import 'package:delivego/presentation/modules/layout/screens/home/home_cubit.dart';
+import 'package:delivego/presentation/modules/layout/screens/more/address/address_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
@@ -25,6 +26,11 @@ class _LayoutScreenState extends State<LayoutScreen> {
   void initState() {
     getPermission();
     HomeCubit cubit =HomeCubit.get(context);
+    AddressCubit addressCubit =AddressCubit.get(context);
+    addressCubit.getLocation(context).then((value){
+      cubit.getRestaurantNearest(value);
+    });
+    // cubit.getHome();
     cubit.getHome();
     cubit.getOffers();
     BlocProvider.of<LayoutCubit>(context, listen: false).init(widget._currentPage);

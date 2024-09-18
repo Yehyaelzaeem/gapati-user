@@ -23,6 +23,8 @@ abstract class  LocaleKeys {
   static const more = 'more';
   static const signUp = 'signUp';
   static const logInFirst = 'logInFirst';
+  static const password = 'password';
+  static const this_field_required = 'this_field_required';
   static const appName = 'appName';
   static const goodMorning = 'goodMorning';
   static const offerMeals = 'offerMeals';
@@ -38,6 +40,9 @@ abstract class  LocaleKeys {
   static const phoneNumber = 'phoneNumber';
   static const ordered = 'ordered';
   static const processing = 'processing';
+  static const inPreparation = 'inPreparation';
+  static const inDelivery = 'inDelivery';
+  static const deliveredCourier = 'deliveredCourier';
   static const shipped = 'shipped';
   static const paymentMethod = 'paymentMethod';
   static const orderSummary = 'orderSummary';
@@ -147,5 +152,7 @@ abstract class  LocaleKeys {
   static const selectRate = 'selectRate';
   static const typing = 'typing';
   static const rateNow = 'rateNow';
+  static const rate_trip = 'rate_trip';
+  static const rate_restaurant = 'rate_restaurant';
 
 }

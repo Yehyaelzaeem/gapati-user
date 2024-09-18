@@ -21,6 +21,8 @@
   "more": "المزيد",
   "signUp": "التسجيل",
   "logInFirst": "تسجيل الدخول أولاً",
+  "password": "الرقم السري",
+  "this_field_required": "هذا الحقل مطلوب",
   "appName": "دلفيجو للتوصيل",
   "goodMorning": "صباح الخير",
   "offerMeals": "عروض الوجبات",
@@ -36,6 +38,9 @@
   "phoneNumber": "رقم الهاتف",
   "ordered": "تم الطلب",
   "processing": "قيد المعالجة",
+  "inPreparation": "قيد التحضير",
+  "inDelivery": "قيد التوصيل",
+  "deliveredCourier": "تم التسليم للمندوب",
   "shipped": "تم الشحن",
   "paymentMethod": "طريقة الدفع",
   "orderSummary": "ملخص الطلب",
@@ -146,6 +151,8 @@
   "doRate": "قم بالتقييم الان",
   "selectRate": "حدد التقييم لتحسين الخدمة",
   "typing": "اكتب تعليقا",
-  "rateNow": "قم بالتقييم الآن"
+  "rateNow": "قم بالتقييم الآن",
+  "rate_trip": "قم بتقييم الرحلة",
+  "rate_restaurant": "قم بتقييم المطعم"
 
 }

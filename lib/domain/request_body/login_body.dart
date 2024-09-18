@@ -1,31 +1,31 @@
 class LoginBody{
   String _phone;
-  String _otp;
+  String _password;
 
 
   LoginBody({
     required String phone,
-    required String otp ,
+    required String password ,
   })  : _phone = phone,
-        _otp = otp;
+        _password = password;
 
 
 
-  String get otp => _otp;
+  String get password => _password;
   String get phone => _phone;
 
   Map<String, dynamic> toJson() {
     return {
       "mobile_number": _phone,
-      "otp": _otp,
+      "password": _password,
     };
   }
   setData({
     required String phone,
-    required String otp,
+    required String password,
   }){
     _phone = phone;
-    _otp = otp;
+    _password = password;
   }
 
 

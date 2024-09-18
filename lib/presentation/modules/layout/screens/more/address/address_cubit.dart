@@ -2,6 +2,8 @@ import 'package:delivego/core/helpers/extensions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../../../../../../core/helpers/toast_states/enums.dart';
 import '../../../../../../data/model/base/response_model.dart';
 import '../../../../../../data/model/response/address_model.dart';
@@ -119,12 +121,15 @@ class AddressCubit extends Cubit<AddressState> {
   dynamic long;
   Position? p ;
   AddressLocationModel? addressLocationModel;
-  Future<void> getLocation(context)async{
-    p =await Geolocator.getCurrentPosition().then((Position value) {
+  Future<LatLng> getLocation(context)async{
+  final position=await Geolocator.getCurrentPosition().then((Position value)async {
       lat=value.latitude;
       long=value.longitude;
       emit(GetPositionState());
-      return null;
+      return value;
     });
+  p=position;
+
+   return  await LatLng(position.latitude, position.longitude);
   }
 }

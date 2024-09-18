@@ -62,10 +62,29 @@ class LoginWidget extends StatelessWidget {
                   borderColor: AppColors.whiteColor.withOpacity(0.1),
                   hintText: LocaleKeys.phone.tr(),
                   controller: cubit.phoneController,
-                  textInputAction: TextInputAction.done,
-                  onFieldSubmitted: (vsl){
-                    cubit.otpCode(cubit.phoneController.text,context);
-                  },
+                  textInputAction: TextInputAction.next,
+                  // onFieldSubmitted: (vsl){
+                  //   cubit.otpCode(cubit.phoneController.text,context);
+                  // },
+              ),
+              verticalSpace(10),
+              CustomTextField(
+                // textInputType: TextInputType.number,
+                prefixIcon: const Icon(
+                  Icons.lock_open,
+                  color: AppColors.primaryColor,
+                ),
+                fillColor: AppColors.backGroundGray,
+                borderRadius: 30,
+                borderColor: AppColors.whiteColor.withOpacity(0.1),
+                hintText: LocaleKeys.password.tr(),
+                controller: cubit.passwordController,
+                textInputAction: TextInputAction.done,
+                onFieldSubmitted: (vsl){
+                  // cubit.otpCode(cubit.phoneController.text,context);
+                  cubit.login(cubit.phoneController.text, cubit.passwordController.text,context);
+
+                },
               ),
               verticalSpace(20),
               Row(
@@ -96,9 +115,10 @@ class LoginWidget extends StatelessWidget {
                           listener: (context, state) {},
                           builder: (context, state) {
                             return CustomElevatedButton(
-                                        isLoading: state is OtpLoadingState,
+                                        isLoading: state is LoginLoadingState,
                                         onTap: (){
-                                          cubit.otpCode(cubit.phoneController.text,context);
+                                          cubit.login(cubit.phoneController.text, cubit.passwordController.text,context);
+                                          // cubit.otpCode(cubit.phoneController.text,context);
                                         },
                                         buttonText: LocaleKeys.signIn.tr(),
                                         width: MediaQuery.of(context).size.width,

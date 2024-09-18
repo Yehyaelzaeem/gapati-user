@@ -28,12 +28,12 @@ class FavoriteRestaurantsWidget extends StatelessWidget {
         listener: (context, state) {},
         builder: (context, state) {
           if(cubit.favoriteRestaurantModel!=null){
-            if(cubit.favoriteRestaurantModel!.data!.isNotEmpty){
+            if(cubit.favoriteRestaurantModel!.isNotEmpty){
               return  ListView.builder(
                   physics: const BouncingScrollPhysics(),
-                  itemCount: cubit.favoriteRestaurantModel!.data!.length,
+                  itemCount: cubit.favoriteRestaurantModel!.length,
                   itemBuilder: (context, index) {
-                    return  CustomRestaurantWidget(restaurantData: cubit.favoriteRestaurantModel!.data![index],);
+                    return  CustomRestaurantWidget(restaurant: cubit.favoriteRestaurantModel![index],);
                   });
             }else{
               return CustomNotFoundDataWidget(image: AppImages.fav,title: LocaleKeys.notFoundData.tr(), type: 'svg',);

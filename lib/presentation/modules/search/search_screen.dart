@@ -12,6 +12,7 @@ import '../../../core/assets_constant/images.dart';
 import '../../../core/global/styles/styles.dart';
 import '../../../core/helpers/spacing.dart';
 import '../../../data/model/response/home_model.dart';
+import '../../../data/model/response/restaurants_nearst_model.dart';
 import '../../component/custom_app_bar.dart';
 import '../../component/custom_loading_widget.dart';
 import '../../component/custom_text_field.dart';
@@ -83,8 +84,8 @@ class SearchScreen extends StatelessWidget {
                   if(cubit.isSearchStart==true)
                     if(cubit.searchModel!=null)
                       if( cubit.searchModel!.data!.isNotEmpty)
-                          ...cubit.searchModel!.data!.map((e) => CustomRestaurantWidget(restaurantData:
-                                DataHome(
+                          ...cubit.searchModel!.data!.map((e) => CustomRestaurantWidget(restaurant:
+                          RestaurantsNearestModelData(
                                   id: e.id,
                                   name: e.name,
                                   category: e.category,

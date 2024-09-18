@@ -71,6 +71,10 @@ class RegisterScreen extends StatelessWidget {
                                     // ),
                                     verticalSpace(30),
                                     CustomTextField(
+                                        prefixIcon: const Icon(
+                                          Icons.person,
+                                          color: AppColors.primaryColor,
+                                        ),
                                       contentHorizontalPadding: 20,
                                         fillColor: AppColors.backGroundGray,
                                         borderRadius: 40,
@@ -80,14 +84,20 @@ class RegisterScreen extends StatelessWidget {
                                           }
                                           return null;
                                         },
+                                        textInputAction: TextInputAction.next,
                                         borderColor: AppColors.whiteColor.withOpacity(0.1),
                                         hintText: LocaleKeys.firstName.tr(),
                                         controller: cubit.firstNameController),
                                     verticalSpace(20),
                                     CustomTextField(
+                                        prefixIcon: const Icon(
+                                          Icons.person,
+                                          color: AppColors.primaryColor,
+                                        ),
                                         contentHorizontalPadding: 20,
                                         fillColor: AppColors.backGroundGray,
                                         borderRadius: 40,
+                                        textInputAction: TextInputAction.next,
                                         validationFunc: (value) {
                                           if (value == null || value.isEmpty) {
                                             return LocaleKeys.lastNameEmpty.tr();
@@ -99,6 +109,10 @@ class RegisterScreen extends StatelessWidget {
                                         controller: cubit.lastNameController),
                                     verticalSpace(20),
                                     CustomTextField(
+                                        prefixIcon: const Icon(
+                                          Icons.phone,
+                                          color: AppColors.primaryColor,
+                                        ),
                                         validationFunc: (value) {
                                           if (value == null || value.isEmpty) {
                                             return LocaleKeys.mobilePhoneEmpty.tr();
@@ -109,10 +123,59 @@ class RegisterScreen extends StatelessWidget {
                                         textInputType: TextInputType.number,
                                         fillColor: AppColors.backGroundGray,
                                         borderRadius: 40,
+                                        textInputAction: TextInputAction.next,
                                         borderColor: AppColors.whiteColor.withOpacity(0.1),
                                         hintText: LocaleKeys.mobilePhone.tr(),
-
                                         controller: cubit.phoneController),
+                                    verticalSpace(20),
+
+                                    CustomTextField(
+                                      prefixIcon: const Icon(
+                                        Icons.email,
+                                        color: AppColors.primaryColor,
+                                      ),
+                                      textInputType: TextInputType.emailAddress,
+                                      contentHorizontalPadding: 20,
+                                      fillColor: AppColors.backGroundGray,
+                                      borderRadius: 30,
+                                      borderColor: AppColors.whiteColor.withOpacity(0.1),
+                                      hintText: 'email',
+                                      controller: cubit.emailController,
+                                      textInputAction: TextInputAction.next,
+                                    ),
+                                    verticalSpace(20),
+
+                                    CustomTextField(
+                                      prefixIcon: const Icon(
+                                        Icons.lock_open,
+                                        color: AppColors.primaryColor,
+                                      ),
+                                      fillColor: AppColors.backGroundGray,
+                                      borderRadius: 30,
+                                      borderColor: AppColors.whiteColor.withOpacity(0.1),
+                                      hintText: LocaleKeys.password.tr(),
+                                      controller: cubit.passwordController,
+                                      textInputAction: TextInputAction.done,
+                                      isPassword: true,
+
+                                    ),
+                                    verticalSpace(20),
+
+                                    CustomTextField(
+                                      prefixIcon: const Icon(
+                                        Icons.lock_open,
+                                        color: AppColors.primaryColor,
+                                      ),
+                                      contentHorizontalPadding: 20,
+                                      fillColor: AppColors.backGroundGray,
+                                      borderRadius: 30,
+                                      borderColor: AppColors.whiteColor.withOpacity(0.1),
+                                      hintText: LocaleKeys.confirm.tr(),
+                                      controller: cubit.confirmPasswordController,
+                                      textInputAction: TextInputAction.done,
+                                      isPassword: true,
+
+                                    ),
                                     verticalSpace(20),
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.start,
@@ -192,8 +255,7 @@ class RegisterScreen extends StatelessWidget {
                                       children: [
                                         Text(
                                           LocaleKeys.alreadyHaveAccount.tr(),
-                                          style: TextStyles.font18Black700Weight
-                                              .copyWith(fontWeight: FontWeight.w500,fontSize: 15),
+                                          style: TextStyles.font18Black700Weight.copyWith(fontWeight: FontWeight.w500,fontSize: 15),
                                         ),
                                         horizontalSpace(10),
                                         InkWell(

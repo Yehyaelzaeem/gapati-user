@@ -24,9 +24,9 @@ Future<void> init() async {
   getIt.registerLazySingleton(() => ChatCubit());
   getIt.registerLazySingleton(() => RateCubit(rateUseCase: getIt()));
   getIt.registerLazySingleton(() => ProfileCubit(profileUseCase: getIt(), updateProfileUseCase: getIt(),));
-  getIt.registerLazySingleton(() => HomeCubit(homeUseCase: getIt(), offersUseCase:  getIt()));
+  getIt.registerLazySingleton(() => HomeCubit(homeUseCase: getIt(), offersUseCase:  getIt(), restaurantsUseCase: getIt()));
   getIt.registerLazySingleton(() => LoginCubit(saveUserDataUseCase: getIt(), signInUseCase: getIt(), otpUseCase: getIt()));
-  getIt.registerLazySingleton(() => RegisterCubit(registerUseCase: getIt(),));
+  getIt.registerLazySingleton(() => RegisterCubit(registerUseCase: getIt(), saveUserDataUseCase: getIt(),));
   getIt.registerLazySingleton(() => LocalAuthCubit( getProfileUseCase:  getIt(), isUserLoginUseCase: getIt(), clearUserDataUseCase: getIt()));
   getIt.registerLazySingleton(() => CartCubit(cartUseCase: getIt(), addQTUseCase: getIt(), subQTUseCase: getIt(),
     addItemUseCase: getIt(), deleteItemUseCase: getIt(), updateItemUseCase: getIt(),));

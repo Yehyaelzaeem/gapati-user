@@ -11,20 +11,24 @@ class CustomStepsOrderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: MediaQuery.of(context).size.width*0.23,
+      width: MediaQuery.of(context).size.width*0.18,
       child:
       Column(
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
            Divider(
             color:isDone==true? AppColors.primaryColor:AppColors.customGray.withOpacity(0.2),
-            thickness: 10,
+            thickness: 7,
             indent: 2,
             endIndent: 2,
           ),
           Text(text,style: TextStyles.font20Black700Weight.copyWith(
               fontWeight: FontWeight.bold,
-              fontSize: 13.sp
-          ),),
+              fontSize: 10.sp,
+
+          ),
+          textAlign: TextAlign.center,
+          ),
         ],
       ),
     );

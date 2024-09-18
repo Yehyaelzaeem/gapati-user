@@ -1,24 +1,40 @@
+import 'package:delivego/core/helpers/extensions.dart';
+import 'package:delivego/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../../../../core/helpers/toast_states/enums.dart';
+import '../../../../core/routing/navigation_services.dart';
+import '../../../../core/routing/routes.dart';
+import '../../../../core/utils/globals.dart';
 import '../../../../data/model/base/response_model.dart';
 import '../../../../data/model/response/register_model.dart';
+import '../../../../data/model/response/user_model.dart';
+import '../../../../domain/provider/local_auth_provider_cubit.dart';
 import '../../../../domain/request_body/register_body.dart';
 import '../../../../domain/usecase/auth/register_usecase.dart';
+import '../../../../domain/usecase/local/save_data_usecase.dart';
 import '../login/login_cubit.dart';
 part 'register_state.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
-  RegisterCubit({required RegisterUseCase registerUseCase}) :_registerUseCase=registerUseCase, super(RegisterInitial());
+  RegisterCubit({required RegisterUseCase registerUseCase,required SaveUserDataUseCase saveUserDataUseCase}) :
+        _registerUseCase=registerUseCase,
+        _saveUserDataUseCase=saveUserDataUseCase,
+        super(RegisterInitial());
   final RegisterUseCase _registerUseCase;
+  final SaveUserDataUseCase _saveUserDataUseCase ;
+
   static RegisterCubit get(BuildContext context)=>BlocProvider.of(context);
   final formKey = GlobalKey<FormState>();
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   ///variables
-  final RegisterBody _body = RegisterBody(firstName: '', lastName: '', mobile: '');
+  final RegisterBody _body = RegisterBody(firstName: '', lastName: '', mobile: '',password: '',confirmPassword: '',email: '');
 
   ///getters
   RegisterBody get body => _body;
@@ -30,14 +46,31 @@ class RegisterCubit extends Cubit<RegisterState> {
     cubit.phoneController.text=phoneController.text;
     emit(RegisterLoadingState()) ;
     try{
-      _assignRegisterBody(firstName: firstNameController.text, lastName:  lastNameController.text, phone: phoneController.text);
+      _assignRegisterBody(firstName: firstNameController.text, lastName:  lastNameController.text,
+          phone: phoneController.text,password: passwordController.text,confirmPassword: confirmPasswordController.text,email: emailController.text);
       ResponseModel responseModel = await _registerUseCase.call(body: body);
       RegisterModel registerModel =responseModel.data;
       if(responseModel.data!=null){
         if (responseModel.isSuccess) {
-          showToast(text: registerModel.data!.otp.toString(), state: ToastStates.success,
-              context: context,gravity: ToastGravity.TOP,timeInSecForIosWeb: 250);
-          changeType('otp');
+          // showToast(text: registerModel.data!.otp.toString(), state: ToastStates.success, context: context,gravity: ToastGravity.TOP,timeInSecForIosWeb: 250);
+          // changeType('otp');
+          UserModel userModel = responseModel.data;
+          kUser = userModel;
+          String token = userModel.data!.token!;
+          if (token.isNotEmpty) {
+            await _saveUserDataUseCase.call(token: token);
+          }
+          await BlocProvider.of<LocalAuthCubit>(context,listen: false).userLoginSuccessfully();
+          phoneController.text='';
+          RegisterCubit registerCubit =RegisterCubit.get(context);
+          registerCubit.phoneController.text='';
+          registerCubit.lastNameController.text='';
+          registerCubit.firstNameController.text='';
+          registerCubit.emailController.text='';
+          registerCubit.passwordController.text='';
+          registerCubit.confirmPasswordController.text='';
+          NavigationService.pushNamedAndRemoveUntil(RoutesRestaurants.layout,arguments: {'currentPage':0});
+
           emit(RegisterSuccessState()) ;
         }else{
           emit(RegisterErrorState()) ;
@@ -55,8 +88,13 @@ class RegisterCubit extends Cubit<RegisterState> {
   void _assignRegisterBody({
     required String firstName,
     required String lastName,
-    required String phone}) {
-    body.setData(firstName: firstName, lastName: lastName, phone: phone);
+    required String phone,
+    required String password,
+    required String confirmPassword,
+    required String email,
+
+  }) {
+    body.setData(firstName: firstName, lastName: lastName, phone: phone,password: password,confirmPassword: confirmPassword,email: email);
   }
   void changeType(String _type){
     type=_type;

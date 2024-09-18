@@ -22,12 +22,12 @@ class RestaurantsScreen extends StatelessWidget {
               title: LocaleKeys.restaurants.tr(),
             ),
             body:
-            cubit.listData!=null?
+            cubit.restaurantList!=null?
             ListView.builder(
                 physics: const BouncingScrollPhysics(),
-                itemCount: cubit.listData!.length,
+                itemCount: cubit.restaurantList!.length,
                 itemBuilder: (context, index) {
-                  return  CustomRestaurantWidget(restaurantData: cubit.listData![index],);
+                  return  CustomRestaurantWidget(restaurant: cubit.restaurantList![index],);
                 }):
                 const SizedBox.shrink()
         );
