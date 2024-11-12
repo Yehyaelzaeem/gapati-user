@@ -6,7 +6,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:http/http.dart';
 import '../../../../core/notification/device_token.dart';
-import '../../../../core/notification/notification_access_token.dart';
 import '../../../../core/routing/navigation_services.dart';
 import '../../../../data/model/response/chat_user.dart';
 import '../../../../data/model/response/message_model.dart';
@@ -306,8 +305,8 @@ class ChatCubit extends Cubit<ChatState> with WidgetsBindingObserver {
       const projectID = 'delivego-47c93';
 
       // get firebase admin token
-      final bearerToken =
-      await NotificationAccessToken.getToken;
+      final bearerToken ='';
+      // await NotificationAccessToken.getToken;
 
       // handle null token
       if (bearerToken == null) return;
