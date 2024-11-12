@@ -19,6 +19,7 @@ import '../../../../../../domain/usecase/address/address_usecase.dart';
 import '../../../../../../domain/usecase/address/delete_address_usecase.dart';
 import '../../../../../../domain/usecase/address/update_address_usecase.dart';
 import '../../../../../component/google_map/address_location_model.dart';
+import '../../cart/cart_cubit.dart';
 part 'address_state.dart';
 
 class AddressCubit extends Cubit<AddressState> {
@@ -51,7 +52,7 @@ class AddressCubit extends Cubit<AddressState> {
       cubit.getStoreTypes(LatLng(double.parse(addressModel.lat??'0.0'), double.parse(addressModel.lng??'0.0')));
 
     }
-
+    BlocProvider.of<CartCubit>(context, listen: false).removeAll();
   }
 
   int typeAddress=0;

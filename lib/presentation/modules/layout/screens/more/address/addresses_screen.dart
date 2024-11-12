@@ -13,6 +13,7 @@ import '../../../../../../core/resources/color.dart';
 import '../../../../../../core/routing/routes.dart';
 import '../../../../../component/custom_app_bar.dart';
 import '../../../../../component/custom_loading_widget.dart';
+import '../../../../../dialog/change_defult_address.dart';
 import 'address_cubit.dart';
 import 'widgets/custom_expansiontile_widget.dart';
 
@@ -109,17 +110,23 @@ class _AddressesScreenState extends State<AddressesScreen> {
                                                   onChanged: (String? newValue) {
                                                     print('newValue $newValue');
                                                     if(newValue!=null){
-                                                      cubit.getLocation(context).then((value) {
-                                                        cubit.changeSelectedAddress(AddressModelData(
-                                                          id: 0,
-                                                          lat: value.latitude.toString()??'0.0',
-                                                          lng: value.longitude.toString()??'0.0',
-                                                          address: cubit.addressTitle??'',
-                                                          phone: '',
-                                                          addressToNote: '',
+                                                      showChangeDefaultAddressDialog(context,
+                                                              (){
+                                                                cubit.getLocation(context).then((value) {
+                                                                  cubit.changeSelectedAddress(AddressModelData(
+                                                                    id: 0,
+                                                                    lat: value.latitude.toString()??'0.0',
+                                                                    lng: value.longitude.toString()??'0.0',
+                                                                    address: cubit.addressTitle??'',
+                                                                    phone: '',
+                                                                    addressToNote: '',
 
-                                                        ),context);
-                                                      });
+                                                                  ),context);
+                                                                });
+                                                                ///api/home?lat=29.9734066&lng=31.282002&store_type_id=1
+                                                          }
+                                                      );
+
 
                                                     }
                                                   },

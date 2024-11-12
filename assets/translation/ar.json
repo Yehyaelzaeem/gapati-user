@@ -19,6 +19,8 @@
   "gallery":"المعرض",
   "camera":"الكاميرا",
   "cash":"نقد",
+  "defaultAddress":"العنوان الافتراضي",
+  "cartWillBeEmpty2":"عند تغير العنوان الافتراضي  سيتم حذف سلة التسوق , هل انت موافق على ذلك ؟",
   "nearest":"الاقرب اليك",
   "prescription ":"الروشتة",
   "currentLocation":"الموقع الحالي",

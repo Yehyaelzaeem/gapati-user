@@ -145,6 +145,7 @@ class CartCubit extends Cubit<CartState> {
   }
   void removeAll() {
     products.clear();
+    emit(GetCartDataState());
   }
 void updateData(){
   emit(UpdateExtraCartDataState());

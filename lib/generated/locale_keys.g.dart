@@ -11,6 +11,8 @@ abstract class  LocaleKeys {
   static const accept = 'accept';
   static const gallery = 'gallery';
   static const acceptedDone = 'acceptedDone';
+  static const defaultAddress = 'defaultAddress';
+  static const cartWillBeEmpty2 = 'cartWillBeEmpty2';
   static const camera = 'camera';
   static const deliveryFees = 'deliveryFees';
   static const notification = 'notification';

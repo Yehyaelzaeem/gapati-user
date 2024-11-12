@@ -13,6 +13,9 @@
   "bestDish2": "Best Dish",
   "waiting": "In Waiting",
   "send": "Send",
+  "defaultAddress":"Default Address",
+  "cartWillBeEmpty2":"When the default address is changed, the shopping cart will be cleared , are you sure you want to do this?",
+
   "size": "Size",
   "currentLocation":"Current Location",
   "notes":"Notes",

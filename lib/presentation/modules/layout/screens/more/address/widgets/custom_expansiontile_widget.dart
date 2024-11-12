@@ -12,6 +12,7 @@ import '../../../../../../../generated/locale_keys.g.dart';
 import '../../../../../../../data/model/response/address_model.dart';
 import '../../../../../../../domain/request_body/address_body.dart';
 import '../../../../../../component/custom_elevated_button.dart';
+import '../../../../../../dialog/change_defult_address.dart';
 import '../address_cubit.dart';
 
 class CustomExpansionTileWidget extends StatefulWidget {
@@ -73,7 +74,12 @@ class _CustomExpansionTileWidgetState extends State<CustomExpansionTileWidget> {
                      onChanged: (String? newValue) {
                        print('newValue $newValue');
                        if(newValue!=null){
-                         cubit.changeSelectedAddress(widget.addressModelData,context);
+                         showChangeDefaultAddressDialog(context,
+                             (){
+                               cubit.changeSelectedAddress(widget.addressModelData,context);
+                             }
+                         );
+
                        }
                      },
                    ),
