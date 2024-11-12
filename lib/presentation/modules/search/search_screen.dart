@@ -109,6 +109,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           image: e.image,
                           rate: e.rate,
                           banner: e.banner,
+                          branch: e.branches!=null && e.branches!.isNotEmpty?e.branches![0]:null,
                           distance: e.distance,
                           inFav: e.isFav,
                           opening: e.opening,)))

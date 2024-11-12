@@ -123,7 +123,6 @@ class _AddressesScreenState extends State<AddressesScreen> {
 
                                                                   ),context);
                                                                 });
-                                                                ///api/home?lat=29.9734066&lng=31.282002&store_type_id=1
                                                           }
                                                       );
 

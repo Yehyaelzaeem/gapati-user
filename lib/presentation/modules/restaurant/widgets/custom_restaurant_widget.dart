@@ -1,4 +1,7 @@
 
+import 'package:delivego/core/helpers/toast_states/enums.dart';
+import 'package:delivego/generated/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../core/global/styles/styles.dart';
@@ -20,10 +23,15 @@ class CustomRestaurantWidget extends StatelessWidget {
     return
       InkWell(
         onTap: (){
-          NavigationService.push(RoutesRestaurants.restaurantScreen,arguments:
-          {'id':restaurant.id,'storeName':restaurant.name,'image':restaurant.banner,'isFav':restaurant.inFav,
-            'branchId':restaurant.branch?.id??0,'categoryId':restaurant.category?.id??0
-          });
+          if(restaurant.branch!=null && restaurant.branch!.id !=0){
+            NavigationService.push(RoutesRestaurants.restaurantScreen,arguments:
+            {'id':restaurant.id,'storeName':restaurant.name,'image':restaurant.banner,'isFav':restaurant.inFav,
+              'branchId':restaurant.branch?.id??0,'categoryId':restaurant.category?.id??0
+            });
+          }else{
+            showToast(text: '${LocaleKeys.theRestaurantNotInRange.tr()}', state: ToastStates.error, context: context);
+          }
+
 
         },
         child: Padding(

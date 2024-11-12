@@ -15,6 +15,7 @@
   "send": "Send",
   "defaultAddress":"Default Address",
   "cartWillBeEmpty2":"When the default address is changed, the shopping cart will be cleared , are you sure you want to do this?",
+  "theRestaurantNotInRange": "This store is not within the default address range for you",
 
   "size": "Size",
   "currentLocation":"Current Location",

@@ -35,7 +35,7 @@ class CategoriesData {
 }
 class StoresModelData {
   int? id;
-  Branch? branch;
+  BranchModel? branch;
 
   String? name;
   CategoriesData? category;
@@ -71,7 +71,7 @@ class StoresModelData {
   StoresModelData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     branch =
-    json['branch'] != null ? new Branch.fromJson(json['branch']) : null;
+    json['branch'] != null ? new BranchModel.fromJson(json['branch']) : null;
     name = json['name'];
     category = CategoriesData.fromJson(json['store_type']);
     image = json['image'];
@@ -114,7 +114,7 @@ class StoresModelData {
   }
 }
 
-class Branch {
+class BranchModel {
   int? id;
   String? name;
   String? address;
@@ -125,7 +125,7 @@ class Branch {
   String? distance;
   // Region? region;
 
-  Branch(
+  BranchModel(
       {this.id,
         this.name,
         this.address,
@@ -137,7 +137,7 @@ class Branch {
         // this.region,
       });
 
-  Branch.fromJson(Map<String, dynamic> json) {
+  BranchModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     address = json['address'];

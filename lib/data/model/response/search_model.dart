@@ -1,3 +1,5 @@
+
+import 'package:delivego/data/model/response/restaurants_nearst_model.dart';
 import 'package:delivego/data/model/response/stores_model.dart';
 
 class SearchModel {
@@ -26,6 +28,8 @@ class SearchModel {
 class SearchModelData {
   int? id;
   String? name;
+  List<Branch>? branches;
+
   CategoriesData? category;
   String? image;
   String? banner;
@@ -40,6 +44,7 @@ class SearchModelData {
         this.name,
         this.category,
         this.image,
+        this.branches,
         this.banner,
         this.rate,
         this.discount,
@@ -52,6 +57,7 @@ class SearchModelData {
     name = json['name'];
     category = CategoriesData.fromJson(json['store_type']);
     image = json['image'];
+    branches=json['branch']!=null?new List<Branch>.from(json['branch'].map((x) => Branch.fromJson(x))):[];
     banner = json['banner'];
     rate = json['rate'];
     discount = json['discount'] != null

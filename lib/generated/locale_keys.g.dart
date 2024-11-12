@@ -9,6 +9,7 @@ abstract class  LocaleKeys {
   static const bestDish2 = 'bestDish2';
   static const aboutUs = 'aboutUs';
   static const accept = 'accept';
+  static const theRestaurantNotInRange = 'theRestaurantNotInRange';
   static const gallery = 'gallery';
   static const acceptedDone = 'acceptedDone';
   static const defaultAddress = 'defaultAddress';
