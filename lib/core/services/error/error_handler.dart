@@ -11,7 +11,7 @@ class ErrorHandler {
     } else {
       failure = ErrorType.unKnown.getFailure();
     }
-  }  
+  }
 
   Failure _handleDioError(DioError dioError) {
     switch (dioError.type) {
