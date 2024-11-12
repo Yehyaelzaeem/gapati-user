@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "219224693462",
+    "firebase_url": "https://yalla-hatly-default-rtdb.firebaseio.com",
+    "project_id": "yalla-hatly",
+    "storage_bucket": "yalla-hatly.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:219224693462:android:ce96fdadec26e7722b8777",
+        "android_client_info": {
+          "package_name": "com.yalla.store"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyfsg9K5t2kiNMjVy1D7i2w1Yu-B_yfWI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
