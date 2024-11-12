@@ -94,7 +94,7 @@ class ChatCubit extends Cubit<ChatState> with WidgetsBindingObserver {
       'push_token': fcmToken,
     });
   }
-
+  
   ///Update Users Profile
   Future<void> updateUserProfile({String? name, String? phone, String? image}) async {
     final ref =fireStore.collection('users').doc(cubit.profileModel!.id!.toString());
