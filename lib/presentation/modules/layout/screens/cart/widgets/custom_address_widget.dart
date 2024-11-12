@@ -38,22 +38,22 @@ class CustomAddressWidget extends StatelessWidget {
                   child: Column(
                     children: [
                       verticalSpace(10),
-                      CustomTextField(hintText: LocaleKeys.telephoneNumber.tr(),
-                        controller: cubit.phoneController,
-                        borderRadius: 50,
-                        textInputType: TextInputType.number,
-                        validationFunc: (value){
-                          if (value == null || value.isEmpty) {
-                            return LocaleKeys.telephoneNumberMes.tr();
-                          }
-                          return null;
-                        },
-                        contentHorizontalPadding: 20.w,
-                        fillColor:AppColors.backGroundGray,
-                        borderColor: AppColors.backGroundGray,
-                        hintColor:AppColors.customGray,
-                      ),
-                      verticalSpace(20),
+                      // CustomTextField(hintText: LocaleKeys.telephoneNumber.tr(),
+                      //   controller: cubit.phoneController,
+                      //   borderRadius: 50,
+                      //   textInputType: TextInputType.number,
+                      //   validationFunc: (value){
+                      //     if (value == null || value.isEmpty) {
+                      //       return LocaleKeys.telephoneNumberMes.tr();
+                      //     }
+                      //     return null;
+                      //   },
+                      //   contentHorizontalPadding: 20.w,
+                      //   fillColor:AppColors.backGroundGray,
+                      //   borderColor: AppColors.backGroundGray,
+                      //   hintColor:AppColors.customGray,
+                      // ),
+                      // verticalSpace(20),
                       CustomTextField(hintText: LocaleKeys.address.tr(),
                         controller: cubit.addressController,
                         borderRadius: 50,
@@ -129,7 +129,12 @@ class CustomAddressWidget extends StatelessWidget {
                           onTap: (){
                             if (formKey.currentState!.validate()) {
                               AddressBody addressBody=
-                              AddressBody(addressNote: cubit.noteController.text, address: cubit.addressController.text, latitude: cubit.lat.toString()??'00', longitude: cubit.long.toString()??'00', phone: cubit.phoneController.text);
+                              AddressBody(
+                                  addressNote: cubit.noteController.text,
+                                  address: cubit.addressController.text,
+                                  latitude: cubit.lat.toString()??'00',
+                                  longitude: cubit.long.toString()??'00',
+                                  phone: cubit.phoneController.text);
                               cubit.addAddress(addressBody: addressBody, context: context,pop: pop);
                             }
 

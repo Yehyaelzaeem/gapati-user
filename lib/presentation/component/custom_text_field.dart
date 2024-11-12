@@ -20,9 +20,11 @@ class CustomTextField extends StatelessWidget {
   final String? validationMessage;
   final Color? hintColor;
   final String?  hintFontFamily  ;
+  final void Function()? onTap  ;
   final Color? prefixIconColor;
   final double? contentHorizontalPadding;
   final double? contentVerticalPadding;
+  final FocusNode? focusNode;
   final Color? fillColor;
   final Color? borderColor;
   final TextInputAction? textInputAction;
@@ -42,6 +44,7 @@ class CustomTextField extends StatelessWidget {
     this.contentVerticalPadding,
     this.maxLines,
     this.hintFontFamily,
+    this.onTap,
     this.validationMessage,
     this.isPassword,
     this.borderColor,
@@ -56,7 +59,7 @@ class CustomTextField extends StatelessWidget {
     this.hintColor,
     this.suffixIcon,
     this.onFieldSubmitted,
-    this.onChanged,
+    this.onChanged, this.focusNode,
   }) : super(key: key);
 
   @override
@@ -68,6 +71,8 @@ class CustomTextField extends StatelessWidget {
     return
       StatefulBuilder(builder: (context,setState){
         return   TextFormField(
+          onTap: onTap,
+          focusNode: focusNode,
           onFieldSubmitted: onFieldSubmitted,
           controller: controller,
           obscureText:  isVisibility,

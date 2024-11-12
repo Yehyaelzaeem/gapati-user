@@ -32,12 +32,14 @@ class CheckOutModel {
 
 class ItemModel {
   String itemId;
+  String sizeId;
   String qty;
   String note;
   List<ExtraModel> extras;
 
   ItemModel({
     required this.itemId,
+    required this.sizeId,
     required this.qty,
     required this.note,
     required this.extras,
@@ -47,6 +49,7 @@ class ItemModel {
     if(extras.isNotEmpty){
       return {
         'item_id': itemId,
+        'size_id': sizeId,
         'qty': qty,
         'note': 'note',
         'extras': extras.map((extra) => extra.toJson()).toList(),
@@ -55,6 +58,7 @@ class ItemModel {
   else{
       return {
         'item_id': itemId,
+        'size_id': sizeId,
         'qty': qty,
         'note': 'note',
       };

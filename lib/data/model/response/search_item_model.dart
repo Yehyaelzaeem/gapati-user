@@ -38,6 +38,7 @@ class SearchItemModelData {
   int? storeId;
   String? image;
   bool? incart;
+  int? branchId;
   bool? inFav;
 
   SearchItemModelData(
@@ -50,6 +51,7 @@ class SearchItemModelData {
         this.priceDiscount,
         this.priceAfterDiscount,
         this.storeId,
+        this.branchId,
         this.image,
         this.incart,
         this.inFav});

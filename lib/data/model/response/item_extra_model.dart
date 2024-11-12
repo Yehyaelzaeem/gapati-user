@@ -23,8 +23,9 @@ class ItemExtraModelData {
   int? id;
   String? name;
   String? price;
+  bool? selected;
 
-  ItemExtraModelData({this.id, this.name, this.price,});
+  ItemExtraModelData({this.id, this.name, this.price,this.selected=false});
 
   ItemExtraModelData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -37,6 +38,8 @@ class ItemExtraModelData {
     data['id'] = id;
     data['name'] = name;
     data['price'] = price;
+    data['selected'] = selected;
+
     return data;
   }
 }

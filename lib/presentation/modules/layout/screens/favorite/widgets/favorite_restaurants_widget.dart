@@ -17,6 +17,7 @@ class FavoriteRestaurantsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     FavoriteCubit cubit =FavoriteCubit.get(context);
+    cubit.getFavoriteRestaurant(context);
     return RefreshIndicator(
       onRefresh: ()async{
         cubit.favoriteRestaurantModel=null;

@@ -1,101 +1,178 @@
-// import 'package:cogina_restaurants/presentation/component/custom_loading_widget.dart';
-// import 'package:cogina_restaurants/presentation/modules/layout/screens/home/home_cubit.dart';
-// import 'package:dropdown_button2/dropdown_button2.dart';
-// import 'package:easy_localization/easy_localization.dart';
-// import 'package:flutter/material.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:flutter_screenutil/flutter_screenutil.dart';
-// import '../../../../../../../core/resources/styles.dart';
-// import '../../../../core/resources/color.dart';
-// import '../../../../core/routing/navigation_services.dart';
-// import '../../../../core/translations/locale_keys.dart';
-// import '../auth_cubit.dart';
-//
-// class RestaurantCategoriesWidget extends StatefulWidget {
-//   final Function(String) onChanged;
-//   const RestaurantCategoriesWidget({super.key, required this.onChanged});
-//
-//   @override
-//   State<RestaurantCategoriesWidget> createState() => _RestaurantCategoriesWidgetState();
-// }
-//
-// class _RestaurantCategoriesWidgetState extends State<RestaurantCategoriesWidget> {
-//   AuthCubit cubit =AuthCubit.get(NavigationService.navigationKey.currentContext!);
-//
-//   @override
-//   void initState() {
-//     cubit.restaurantCategoriesModel=null;
-//     cubit.getRestaurantCategories();
-//     super.initState();
-//   }
-//
-//   String? selectedValue;
-//   @override
-//   Widget build(BuildContext context) {
-//     return BlocConsumer<AuthCubit, AuthState>(
-//       listener: (context, state) {},
-//       builder: (context, state) {
-//         if(cubit.restaurantCategoriesModel!=null)
-//         return Padding(
-//           padding: EdgeInsets.only(top: 5.h,bottom: 10.h),
-//           child: StatefulBuilder(builder: (BuildContext context,void Function(void Function()) setState){
-//             return Column(
-//               children: [
-//                 DropdownButton2<String>(
-//                   isExpanded: true,
-//                   underline: const SizedBox.shrink(),
-//                   hint: Text(selectedValue!=null?selectedValue??'':'${LocaleKeys.categories.tr()}', style:
-//                   selectedValue!=null?TextStyles.font16Black500Weight:TextStyles.font16Black500Weight.copyWith(color: Colors.grey),),
-//                   items:
-//                   cubit.restaurantTypesModel?.data==null?[]:
-//                   cubit.restaurantTypesModel?.data?.map(( e) => DropdownMenuItem<String>(
-//                     value: e.name,
-//                     child: Text(
-//                       e.name??'',
-//                       style: TextStyles.font15CustomGray400Weight.copyWith(
-//                           fontSize: 20
-//                       ),
-//                     ),
-//                   )).toList()??[],
-//                   onChanged: (String? value) {
-//                     widget.onChanged.call(value??'');
-//                     setState((){selectedValue=value??'';});
-//                   },
-//                   dropdownStyleData: DropdownStyleData(
-//                     maxHeight: 200.h, // Set the fixed height here
-//                     decoration: BoxDecoration(
-//                       color: Colors.white,
-//                       border: Border.all(color: Colors.grey),
-//                       borderRadius: BorderRadius.circular(10.r),
-//                     ),
-//                   ),
-//                   iconStyleData: IconStyleData(
-//                       icon: cubit.restaurantTypesModel == null?
-//                       const CustomLoadingWidget():
-//                       const Icon(Icons.keyboard_arrow_down)
-//                   ) ,
-//                   buttonStyleData: ButtonStyleData(
-//                       decoration: BoxDecoration(
-//                         color: backGroundGray,
-//                         border: Border.all(color: Colors.grey),
-//                         borderRadius: BorderRadius.circular(50.r),
-//                       ),
-//                       padding: EdgeInsets.symmetric(horizontal: 16.w) // Adjust the horizontal padding as needed
-//
-//                   ),
-//
-//                 ),
-//               ],
-//             );
-//           }),
-//         );
-//         else
-//         return const SizedBox();
-//
-//       },
-//     );
-//   }
-// }
-//
-//
-//
+import 'dart:async';
+import 'package:delivego/core/global/fonts/app_fonts.dart';
+import 'package:delivego/generated/locale_keys.g.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+class DropdownMultiSelectWidget extends StatefulWidget {
+  final void Function(List<DropDownItemData>)? selectedItems;
+  final String? hint;
+  final double? radius;
+  final List<DropDownItemData> items;
+  final List<DropDownItemData> itemsInitialSelection;
+
+  const DropdownMultiSelectWidget({
+    super.key,
+    required this.selectedItems,
+    this.radius,
+    this.hint,
+    required this.items,
+    required this.itemsInitialSelection,
+  });
+
+  @override
+  State<DropdownMultiSelectWidget> createState() => _DropdownMultiSelectWidgetState();
+}
+
+class _DropdownMultiSelectWidgetState extends State<DropdownMultiSelectWidget> {
+  List<DropDownItemData> listData = [];
+  TextEditingController controller = TextEditingController();
+  final StreamController<List<DropDownItemData>> _selectedItemsController = StreamController<List<DropDownItemData>>.broadcast();
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.itemsInitialSelection.isNotEmpty) {
+      listData = widget.itemsInitialSelection;
+      _selectedItemsController.sink.add(listData); // أضف الحالة الابتدائية إلى الـ Stream
+    }
+  }
+
+  @override
+  void dispose() {
+    _selectedItemsController.close();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Center(
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width * 0.9,
+            child: DropdownButtonHideUnderline(
+              child: DropdownButton2(
+                isExpanded: true,
+                hint: Text(widget.hint ?? 'Select items'),
+                items: widget.items.map((DropDownItemData item) {
+                  return DropdownMenuItem<DropDownItemData>(
+                    value: item,
+                    child:
+                   StatefulBuilder(builder: (context, setState) {
+                     return  InkWell(
+                       onTap: () {
+                         setState(() {
+                           if (listData.contains(item)) {
+                             listData.remove(item);
+                           } else {
+                             listData.add(item);
+                           }
+
+                         });
+                         _selectedItemsController.sink.add(listData); // إرسال التحديثات إلى الـ Stream
+                         widget.selectedItems!(listData); // تحديث العناصر المختارة
+                       },
+                       child: Row(
+                         children: [
+                           Checkbox(
+                             value: listData.contains(item),
+                             onChanged: (bool? isChecked) {
+                               setState(() {
+                                 if (isChecked ?? false) {
+                                   listData.add(item);
+                                 } else {
+                                   listData.remove(item);
+                                 }
+                                 _selectedItemsController.sink.add(listData); // إرسال التحديثات إلى الـ Stream
+                                 widget.selectedItems!(listData); // تحديث العناصر المختارة
+                               });
+                             },
+                           ),
+                           Text(item.title,
+                           style: TextStyle(
+                             fontFamily: AppFonts.lateefFont
+                           ),),
+                           Spacer(),
+                           Text('${item.value} ${LocaleKeys.lyd.tr()}',
+                             style: TextStyle(
+                                 fontFamily: AppFonts.lateefFont
+                             ),
+                           ),
+                         ],
+                       ),
+                     );
+                   })
+                  );
+                }).toList(),
+                onChanged: (_) {},
+                dropdownStyleData: DropdownStyleData(
+                  maxHeight: 200.h,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(color: Colors.grey.shade300),
+                    borderRadius: BorderRadius.circular(12.r),
+                  ),
+                ),
+                iconStyleData: IconStyleData(
+                  icon: const Icon(Icons.keyboard_arrow_down),
+                ),
+                buttonStyleData: ButtonStyleData(
+                  padding: EdgeInsets.symmetric(horizontal: 10.w),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(color: Colors.grey.shade300),
+                    borderRadius: BorderRadius.circular(widget.radius??12.r),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+        SizedBox(height: 5.h),
+        StreamBuilder<List<DropDownItemData>>(
+          stream: _selectedItemsController.stream,
+          initialData: listData,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return Wrap(
+                children: snapshot.data!.map((e) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Chip(
+                      label: Text(e.title,
+                      style: TextStyle(
+                        fontFamily: AppFonts.lateefFont,
+                        fontSize: 16.sp,
+                      ),
+                      ),
+                      onDeleted: () {
+                        setState(() {
+                          listData.remove(e);
+                          _selectedItemsController.sink.add(listData); // إرسال التحديثات إلى الـ Stream
+                          widget.selectedItems!(listData);
+                        });
+                      },
+                    ),
+                  );
+                }).toList(),
+              );
+            } else {
+              return Container(); // عرض فارغ في حالة عدم وجود بيانات
+            }
+          },
+        ),
+      ],
+    );
+  }
+}
+
+class DropDownItemData {
+  final String id;
+  final String title;
+  final String value;
+
+  DropDownItemData({required this.id, required this.title, required this.value});
+}

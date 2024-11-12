@@ -1,14 +1,19 @@
 
-import 'package:base_app/core/extensions/num_extensions.dart';
-import 'package:base_app/core/res/resources.dart';
-import 'package:base_app/presentation/component/component.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../core/helpers/spacing.dart';
+import '../../../core/resources/values_manager.dart';
+import 'custom_image.dart';
 
 class CustomImageSlider extends StatefulWidget {
   final List<String> _sliders;
   final double _height;
+  final double? _width;
+  final double? _imageWidth;
   final double _radius;
+  final EdgeInsetsGeometry? _margin;
 
   @override
   _CustomImageSliderState createState() => _CustomImageSliderState();
@@ -16,8 +21,14 @@ class CustomImageSlider extends StatefulWidget {
   const CustomImageSlider({
     required List<String> sliders,
      double height=199,
+     double imageWidth=199,
+     double width=199,
+    EdgeInsetsGeometry? margin,
      double radius=kFormRadius,
   })  : _sliders = sliders, _radius = radius,
+        _width = width,
+        _imageWidth = imageWidth,
+        _margin = margin,
         _height = height;
 }
 
@@ -26,8 +37,9 @@ class _CustomImageSliderState extends State<CustomImageSlider> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
+    return Container(
+      margin: widget._margin,
+      width: widget._width??double.infinity,
       child: GestureDetector(
         onTap: (){
 
@@ -35,13 +47,18 @@ class _CustomImageSliderState extends State<CustomImageSlider> {
 
         },
         child: (widget._sliders.isNotEmpty && widget._sliders.length < 2)
-            ? CustomImage(imageUrl: widget._sliders.first, width: deviceWidth,height:  widget._height, fit: BoxFit.cover,canOpenImage: true,radius: widget._radius,)
+            ? CustomImage(image: widget._sliders.first, width: widget._imageWidth??deviceWidth,height:  widget._height, fit: BoxFit.cover,radius: widget._radius,)
             : Column(
               children: <Widget>[
                 CarouselSlider(
-                  items: widget._sliders.map((singleSlider) {return CustomImage(imageUrl: singleSlider,width: deviceWidth,height:  widget._height,fit: BoxFit.cover,canOpenImage: true,radius: widget._radius,);}).toList(),
+                  items: widget._sliders.map((singleSlider) {return
+
+                    Padding(padding:EdgeInsets.symmetric(horizontal: 8.w) ,
+                    child: CustomImage(
+                      image: singleSlider,width: deviceWidth,height:  widget._height,fit: BoxFit.cover,radius: widget._radius,),
+                    );}).toList(),
                   options: CarouselOptions(
-                    viewportFraction: 1,
+                    viewportFraction: 0.8,
                     autoPlayInterval: const Duration(seconds: 3),
                     autoPlayAnimationDuration: const Duration(milliseconds: 800),
                     enlargeCenterPage: false,
@@ -52,6 +69,7 @@ class _CustomImageSliderState extends State<CustomImageSlider> {
                     enableInfiniteScroll: true,
                     reverse: false,
                     autoPlay: true,
+
                     height: widget._height,
                     onPageChanged: (pageNo, reason) {
                       setState(() {
@@ -60,7 +78,7 @@ class _CustomImageSliderState extends State<CustomImageSlider> {
                     },
                   ),
                 ),
-                VerticalSpace(kScreenPaddingNormal.h),
+                verticalSpace(kScreenPaddingNormal.h),
 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

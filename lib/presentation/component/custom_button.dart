@@ -9,6 +9,7 @@ class CustomButton extends StatelessWidget {
   final Widget? _child;
   final String? _title;
   final Color? _color;
+  final Color? _borderColor;
   final Color? _textColor;
   final double? _width;
   final double? _height;
@@ -27,6 +28,7 @@ class CustomButton extends StatelessWidget {
     Widget? child,
     String? title,
     Color? color,
+    Color? borderColor,
     Color? textColor,
     double? width,
     double? customRadius,
@@ -44,6 +46,7 @@ class CustomButton extends StatelessWidget {
         _expanded = expanded,
         _color = color,
         _textColor = textColor,
+        _borderColor = borderColor,
         _width = width,
         _radius = radius,
         _customRadius = customRadius,
@@ -70,8 +73,8 @@ class CustomButton extends StatelessWidget {
           padding: !_widerPadding ? EdgeInsets.symmetric(vertical: 4.h, horizontal: 8.w) : EdgeInsets.symmetric(vertical: 12.h, horizontal: 16.w),
           elevation: 0,
           shape: _isRounded
-              ? RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius), side: BorderSide(color: _color ?? Theme.of(context).primaryColor, width: 1.5.w))
-              : RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius), side: BorderSide(color: _color ?? Theme.of(context).primaryColor, width: 1.5.w)),
+              ? RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius), side: BorderSide(color: _borderColor ?? Theme.of(context).primaryColor, width: 1.5.w))
+              : RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius), side: BorderSide(color: _borderColor ?? Theme.of(context).primaryColor, width: 1.5.w)),
           child: _loading
               ? CustomLoadingSpinner(size: (_height ?? 20).h, color: Theme.of(context).cardColor)
               : _title != null

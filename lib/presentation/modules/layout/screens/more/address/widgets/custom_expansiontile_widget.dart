@@ -1,9 +1,11 @@
 
 import 'package:delivego/core/helpers/extensions.dart';
+import 'package:delivego/core/resources/color.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../../../../core/global/fonts/app_fonts.dart';
 import '../../../../../../../core/global/styles/colors.dart';
 import '../../../../../../../core/routing/routes.dart';
 import '../../../../../../../generated/locale_keys.g.dart';
@@ -22,12 +24,14 @@ class CustomExpansionTileWidget extends StatefulWidget {
 
 class _CustomExpansionTileWidgetState extends State<CustomExpansionTileWidget> {
   TextEditingController _addressController =TextEditingController();
-  TextEditingController _phoneController =TextEditingController();
+  TextEditingController _noteController =TextEditingController();
+  // TextEditingController _phoneController =TextEditingController();
   TextEditingController _locationController =TextEditingController();
   @override
   void initState() {
     _addressController=TextEditingController(text: widget.addressModelData.address??'' );
-    _phoneController=TextEditingController(text: widget.addressModelData.phone??'' );
+    _noteController=TextEditingController(text: widget.addressModelData.addressToNote??'' );
+    // _phoneController=TextEditingController(text: widget.addressModelData.phone??'' );
     _locationController=TextEditingController(text: '${widget.addressModelData.lat}/${widget.addressModelData.lng}'??'' );
     super.initState();
   }
@@ -35,11 +39,17 @@ class _CustomExpansionTileWidgetState extends State<CustomExpansionTileWidget> {
   @override
   Widget build(BuildContext context) {
     AddressCubit cubit =AddressCubit.get(context);
-    return  Padding(
+    return
+      Padding(
       padding:  EdgeInsets.symmetric(horizontal: 16.w,vertical: 8.h),
       child: Container(
         decoration: BoxDecoration(
             color: Colors.grey.shade50,
+            boxShadow: [
+              BoxShadow(color: Colors.black38,blurRadius: 1,
+              // offset: Offset(2, 2),
+              )
+            ],
             borderRadius: BorderRadius.circular(8.sp)
         ),
         child: Padding(
@@ -52,29 +62,49 @@ class _CustomExpansionTileWidgetState extends State<CustomExpansionTileWidget> {
               expandedCrossAxisAlignment: CrossAxisAlignment.start,
               textColor: Colors.black,
               collapsedTextColor: Colors.black,
-              title: Text('${widget.addressModelData.address}',
-                  style: TextStyle(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.bold)),
+              title:
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.start,
+                 children: [
+                   Radio<String>(
+                     value: widget.addressModelData.id.toString(),
+                     groupValue: cubit.selectedAddressValue,
+                     onChanged: (String? newValue) {
+                       print('newValue $newValue');
+                       if(newValue!=null){
+                         cubit.changeSelectedAddress(widget.addressModelData,context);
+                       }
+                     },
+                   ),
+                   Text('${widget.addressModelData.address}',
+                       style: TextStyle(
+                           fontFamily:   AppFonts.cairo,
+                           fontSize: 16.sp,
+                           fontWeight: FontWeight.bold)),
+
+                 ],
+              ),
               children: <Widget>[
-                Text(
-                  LocaleKeys.phone.tr(),
-                  style: TextStyle(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w500),
-                ),
-                TextField(
-                    controller:_phoneController,
-                    decoration: InputDecoration(
-                        hintStyle: TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 14.sp,
-                            color: Color(0xff4B4B4B)))),
-                SizedBox(height: 25.h),
+                // Text(
+                //   LocaleKeys.phone.tr(),
+                //   style: TextStyle(
+                //       fontSize: 14.sp,
+                //       fontWeight: FontWeight.w500),
+                // ),
+                // TextField(
+                //     controller:_phoneController,
+                //     decoration: InputDecoration(
+                //         hintStyle: TextStyle(
+                //             fontWeight: FontWeight.w400,
+                //             fontSize: 14.sp,
+                //             color: Color(0xff4B4B4B)))),
+                // SizedBox(height: 25.h),
                 Text(
                   LocaleKeys.address.tr(),
                   style: TextStyle(
-                      fontSize: 14.sp,
+                  fontFamily:   AppFonts.cairo,
+                  fontSize: 14.sp,
                       fontWeight: FontWeight.w500),
                 ),
                 TextField(
@@ -82,12 +112,15 @@ class _CustomExpansionTileWidgetState extends State<CustomExpansionTileWidget> {
                     decoration: InputDecoration(
                         hintStyle: TextStyle(
                             fontWeight: FontWeight.w400,
+                            fontFamily:   AppFonts.cairo,
+
                             fontSize: 14.sp,
                             color: Color(0xff4B4B4B)))),
                 SizedBox(height: 25.h),
                 Text(
                   LocaleKeys.location.tr(),
                   style: TextStyle(
+                      fontFamily:   AppFonts.cairo,
                       fontSize: 14.sp,
                       fontWeight: FontWeight.w500),
                 ),
@@ -103,10 +136,27 @@ class _CustomExpansionTileWidgetState extends State<CustomExpansionTileWidget> {
                       enabled: false,
                       decoration: InputDecoration(
                           hintStyle: TextStyle(
+                              fontFamily:   AppFonts.cairo,
                               fontWeight: FontWeight.w400,
                               fontSize: 14.sp,
                               color: Color(0xff4B4B4B)))),
                 ),
+                SizedBox(height: 25.h),
+                Text(
+                  LocaleKeys.notes.tr(),
+                  style: TextStyle(
+                     fontFamily:   AppFonts.cairo,
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w500),
+                ),
+                TextField(
+                    controller:_noteController ,
+                    decoration: InputDecoration(
+                        hintStyle: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontFamily:   AppFonts.cairo,
+                            fontSize: 14.sp,
+                            color: Color(0xff4B4B4B)))),
                 SizedBox(height: 25.h),
                 CustomElevatedButton(
                     isLoading: state is UpdateAddressLoadingState,
@@ -114,7 +164,8 @@ class _CustomExpansionTileWidgetState extends State<CustomExpansionTileWidget> {
                     height: 40.h,
                     onTap: (){
                       AddressBody addressBody=
-                      AddressBody(addressNote: 'note update', address: _addressController.text, latitude: cubit.lat.toString()??'00', longitude: cubit.long.toString()??'00', phone: _phoneController.text);
+                      AddressBody(addressNote: _noteController.text, address: _addressController.text, latitude: cubit.lat.toString()??'00', longitude: cubit.long.toString()??'00',
+                          phone: '');
                       cubit.updateAddress(addressId: widget.addressModelData.id!, addressBody: addressBody, context: context);
                     },
                     buttonText: LocaleKeys.update.tr()),

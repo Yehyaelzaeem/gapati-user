@@ -9,14 +9,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../../../../core/helpers/spacing.dart';
+import '../../../../../../core/routing/navigation_services.dart';
+import '../../../../../../core/routing/routes.dart';
 import '../../../../../../data/model/response/home_params.dart';
 import '../../../../../component/custom_rate.dart';
 import '../../../../../component/texts/black_texts.dart';
 import '../../more/address/address_cubit.dart';
 import '../home_cubit.dart';
 
-class HomeSubCategoriesWidget extends StatelessWidget {
-  const HomeSubCategoriesWidget({
+class HomeNearestWidget extends StatelessWidget {
+  const HomeNearestWidget({
     Key? key,
   }) : super(key: key);
 
@@ -26,24 +28,18 @@ class HomeSubCategoriesWidget extends StatelessWidget {
     return BlocConsumer<HomeCubit, HomeState>(
         listener: (context, state) {},
         builder: (context, state) {
-          if (cubit.storesModel == null) {
-            return Center(
-              child: CustomLoadingWidget(),
-            );
-          }else if(cubit.storesModel!.data!.isEmpty){
-           return  BlackMediumText(
-             label: LocaleKeys.notFoundData.tr(),
-             fontSize: 14.sp,
-           );
-          }else{
           return SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
             child: Row(
               children: [
-                ...cubit.storesModel?.data
-                        ?.map((e) => InkWell(
-                              onTap: () {},
+                ...cubit.homeModel?.data?.data
+                        ?.map((e) =>
+                    InkWell(
+                              onTap: () {
+                                NavigationService.push(RoutesRestaurants.restaurantScreen,arguments:
+                                {'branchId':e.branch!.isEmpty?0:e.branch?[0].id??0,'id':e.id,'storeName':e.name,'image':e.banner,'isFav':e.inFav,'categoryId':e.category?.id??0});
+                              },
                               child:
                               Container(
                                 margin: EdgeInsets.symmetric(horizontal: 5.w),
@@ -54,15 +50,15 @@ class HomeSubCategoriesWidget extends StatelessWidget {
                                 child: Stack(
                                   children: [
                                     CustomImage(
-                                      width: 250.w,
-                                      height: 135.h,
+                                      width: 312.w,
+                                      height: 186.h,
                                       image: e.image ?? '',
                                       fit: BoxFit.fill,
                                       radius: 12,
                                     ),
                                     Container(
-                                      width: 250.w,
-                                      height: 135.h,
+                                      width: 312.w,
+                                      height: 186.h,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(12),
                                         gradient: LinearGradient(
@@ -109,6 +105,6 @@ class HomeSubCategoriesWidget extends StatelessWidget {
               ],
             ),
           );
-        }});
+        });
   }
 }

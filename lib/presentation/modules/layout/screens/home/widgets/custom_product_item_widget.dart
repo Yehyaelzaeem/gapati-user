@@ -10,6 +10,7 @@ import '../../../../../../core/global/styles/colors.dart';
 import '../../../../../../core/global/styles/styles.dart';
 import '../../../../../../core/helpers/spacing.dart';
 import '../../../../../../data/model/response/category_item_model.dart';
+import '../../../../../../data/model/response/home_model.dart';
 import '../../../../../../data/model/response/offers_model.dart';
 import '../../../../../../domain/request_body/add_item_body.dart';
 import '../../../../../../generated/locale_keys.g.dart';
@@ -24,7 +25,7 @@ import '../home_cubit.dart';
 class CustomProductItemWidget extends StatelessWidget {
   const CustomProductItemWidget({super.key, this.inHome, required this.offersModelData});
   final bool? inHome;
-  final OffersModelData offersModelData;
+  final OfferModelData offersModelData;
   @override
   Widget build(BuildContext context) {
     CategoryItemsData categoryItemsData =CategoryItemsData(
@@ -36,17 +37,20 @@ class CustomProductItemWidget extends StatelessWidget {
       price: offersModelData.item!.price,
       priceDiscount: offersModelData.item!.priceDiscount,
       priceAfterDiscount: offersModelData.item!.priceAfterDiscount,
-      storeId: offersModelData.restaurant!.id,
+      storeId: offersModelData.resturant?.id??0,
       image: offersModelData.item!.image,
       count: 1,
-      inCart: offersModelData.item!.inCart,
+      inCart: offersModelData.item?.incart??false,
       inFav: offersModelData.item!.inFav,
+      branchId: (offersModelData.resturant?.branch?.isEmpty??false)?0:offersModelData.resturant?.branch?[0].id??0,
+
     );
     return InkWell(
       onTap: (){
         context.pushNamed(RoutesRestaurants.mealDetailsScreen,arguments: {
           'type':'details',
-          'storeId':offersModelData.restaurant!.id!.toString(),'storeName':offersModelData.restaurant!.name!,'categoriesItemsModelData':categoryItemsData});
+          'count':0,
+          'storeId':offersModelData.resturant!.id!.toString(),'storeName':offersModelData.resturant!.name!,'categoriesItemsModelData':categoryItemsData});
       },
       child: Container(
         width: MediaQuery.of(context).size.width*0.45,

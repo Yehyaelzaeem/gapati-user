@@ -2,15 +2,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../../core/global/fonts/app_fonts.dart';
-import '../../../../../core/global/styles/colors.dart';
-import '../../../../../core/global/styles/styles.dart';
-import '../../../../../core/helpers/spacing.dart';
+import '../../../../../../../core/global/styles/colors.dart';
+import '../../../../../../../core/global/styles/styles.dart';
+import '../../../../../../../core/helpers/spacing.dart';
+import '../../../../../../../data/model/response/category_item_model.dart';
 import '../../../../../../../generated/locale_keys.g.dart';
-import '../../../../../data/model/response/category_item_model.dart';
-import '../../../../component/custom_rate.dart';
-import '../../../../component/rate_widget.dart';
+import '../../../../../../component/rate_widget.dart';
 import 'custom_offer_widget.dart';
 
 class CustomNamePriceWidget extends StatelessWidget {
@@ -36,7 +33,7 @@ class CustomNamePriceWidget extends StatelessWidget {
               horizontalSpace(16),
               Expanded(
                 child: Text(
-                  name,
+                  name??'',
                   style: TextStyles.font18Black700Weight.copyWith(
                       fontWeight: FontWeight.w500,
                       fontSize: 20,
@@ -63,13 +60,13 @@ class CustomNamePriceWidget extends StatelessWidget {
           Row(
             children: [
               horizontalSpace(16),
-              priceDiscount !=
-                  null &&priceDiscount !='0'? Text(
-                '${double.parse(price.toString()).toStringAsFixed(1)} ${LocaleKeys.lyd.tr()}',
+              priceDiscount != null &&priceDiscount !='0'?
+              Text(
+                '${double.parse(price?.toString()??'0').toStringAsFixed(1)} ${LocaleKeys.lyd.tr()}',
                 style: TextStyles.font16Black600Weight.copyWith(fontSize: 14,
                     decorationColor: AppColors.customGray,
                     color: AppColors.customGray,
-                    decorationThickness: 25,
+                    decorationThickness: 2,
 
                     decoration: TextDecoration.lineThrough),
                 maxLines: 1,
@@ -79,14 +76,13 @@ class CustomNamePriceWidget extends StatelessWidget {
               Text(
                 '${double.parse(priceAfterDiscount.toString()).toStringAsFixed(1)} ${LocaleKeys.lyd.tr()}',
                 style: TextStyles.font16Black600Weight.copyWith(
-
                     color: AppColors.black.withOpacity(0.6), fontSize: 18),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
               Spacer(),
-              categoriesItemsModelData!.priceDiscount != null && categoriesItemsModelData!.priceDiscount !='0' ?
-              CustomOfferWidget(priceDiscount: categoriesItemsModelData?.priceDiscount??'0',):
+              categoriesItemsModelData.priceDiscount != null && categoriesItemsModelData!.priceDiscount !='0' ?
+              CustomOfferWidget(priceDiscount: '${categoriesItemsModelData.priceDiscount?.toString()??'0'}',):
               const SizedBox.shrink()
 
             ],

@@ -33,7 +33,7 @@ class CustomOrderDetailsItemWidget extends StatelessWidget {
                 Container(
                     width:120.w,
                     height: 100.h,
-                    child: CustomImage(image:'',radius: 5,)),
+                    child: CustomImage(image:orderDetailsModelData.items?.image??'',radius: 5,)),
                 horizontalSpace(10),
                 Expanded(
                   child: Column(
@@ -47,7 +47,7 @@ class CustomOrderDetailsItemWidget extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text('${orderDetailsModelData.items?.name??''}',style: TextStyles.font18Black700Weight.copyWith(
-                                    height: 1
+                                    height: 1.5
                                 ),),
                                 Text('${orderDetailsModelData.items?.description??''}',style: TextStyles.font18Black700Weight.copyWith(
                                     fontWeight: FontWeight.w500,
@@ -81,15 +81,39 @@ class CustomOrderDetailsItemWidget extends StatelessWidget {
                          Column(
                            children: [
                              verticalSpace(4),
-                             Text('${orderDetailsModelData.qty}',style: TextStyles.font18Black700Weight.copyWith(
-                                 fontWeight: FontWeight.w600,
-                                 fontSize: 12.sp,
-                                 color: AppColors.secondPrimaryColor
-                             ),),
-                             Text('${orderDetailsModelData.items?.price??''} ${LocaleKeys.lyd.tr()}',style: TextStyles.font18Black700Weight.copyWith(
-                                 fontWeight: FontWeight.w500,
-                                 fontSize: 12.sp
-                             ),),
+                             Row(
+                               children: [
+                                 Text('${LocaleKeys.qty.tr()} : ',style: TextStyles.font18Black700Weight.copyWith(
+                                     fontWeight: FontWeight.w600,
+                                     fontSize: 12.sp,
+                                     color: Colors.black38
+                                 ),),
+                                 Text(' ${orderDetailsModelData.qty}',style: TextStyles.font18Black700Weight.copyWith(
+                                     fontWeight: FontWeight.w600,
+                                     fontSize: 12.sp,
+                                     color: AppColors.secondPrimaryColor.withOpacity(0.8)
+                                 ),),
+                               ],
+                             ),
+                             if(orderDetailsModelData.size!=null)
+                             Row(
+                               children: [
+                                 Text('${LocaleKeys.size.tr()} : ',style: TextStyles.font18Black700Weight.copyWith(
+                                     fontWeight: FontWeight.w600,
+                                     fontSize: 12.sp,
+                                     color: Colors.black38
+                                 ),),
+                                 Text('${orderDetailsModelData.size?.name??''}',style: TextStyles.font18Black700Weight.copyWith(
+                                     fontWeight: FontWeight.w600,
+                                     fontSize: 12.sp,
+                                     color: AppColors.secondPrimaryColor.withOpacity(0.8)
+                                 ),),
+                               ],
+                             )
+                             // Text('${orderDetailsModelData.items?.price??''} ${LocaleKeys.lyd.tr()}',style: TextStyles.font18Black700Weight.copyWith(
+                             //     fontWeight: FontWeight.w500,
+                             //     fontSize: 12.sp
+                             // ),),
                            ],
                          ),
                          horizontalSpace(8),
@@ -144,7 +168,6 @@ class CustomOrderDetailsItemWidget extends StatelessWidget {
                           topRight: Radius.circular(context.locale.languageCode==Locale('en').toString()?10:0),
                           bottomLeft: Radius.circular(context.locale.languageCode==Locale('en').toString()?10:0),
                       )
-
                   ),
                   child: Padding(
                     padding:  EdgeInsets.symmetric(horizontal: 6.w,vertical: 1.w),

@@ -27,7 +27,7 @@ class LogAsScreen extends StatelessWidget {
        Column(
          children: [
            verticalSpace(50),
-           Image.asset(AppImages.logoW2),
+           Image.asset(AppImages.logo),
          ],
        ),
        Expanded(

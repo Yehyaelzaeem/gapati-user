@@ -13,7 +13,7 @@ class CustomIsUser extends StatelessWidget {
     return isUser==true?widget:
              hasLogo!=null?
 
-             Image.asset(AppImages.logoW2,
+             Image.asset(AppImages.logo,
                height: MediaQuery.of(context).size.height*0.2,
              )
                  :

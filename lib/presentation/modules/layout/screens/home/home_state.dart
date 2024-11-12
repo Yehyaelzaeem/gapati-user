@@ -14,4 +14,13 @@ class GetTokenState extends HomeState {}
 class GetRestaurantLoadingState extends HomeState {}
 class GetRestaurantSuccessState extends HomeState {}
 class GetRestaurantErrorState extends HomeState {}
+class GetBannerLoadingState extends HomeState {}
+class GetBannerSuccessState extends HomeState {}
+class GetBannerErrorState extends HomeState {}
+class GetStoreTypesLoadingState extends HomeState {}
+class GetStoreTypesSuccessState extends HomeState {}
+class GetStoreTypesErrorState extends HomeState {}
+class GetStoresLoadingState extends HomeState {}
+class GetStoresSuccessState extends HomeState {}
+class GetStoresErrorState extends HomeState {}
 

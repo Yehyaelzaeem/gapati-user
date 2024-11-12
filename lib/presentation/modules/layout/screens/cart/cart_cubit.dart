@@ -1,5 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../../core/helpers/toast_states/enums.dart';
+import '../../../../../core/routing/navigation_services.dart';
 import '../../../../../data/model/response/cart_model.dart';
 import '../../../../../data/model/response/category_item_model.dart';
 import '../../../../../data/model/response/item_extra_model.dart';
@@ -9,6 +12,7 @@ import '../../../../../domain/usecase/cart/cart_usecase.dart';
 import '../../../../../domain/usecase/cart/delete_item_usecase.dart';
 import '../../../../../domain/usecase/cart/sub_qt_usecase.dart';
 import '../../../../../domain/usecase/cart/update_item_usecase.dart';
+import '../../../../../generated/locale_keys.g.dart';
 part 'cart_state.dart';
 class CartCubit extends Cubit<CartState> {
 
@@ -34,14 +38,36 @@ class CartCubit extends Cubit<CartState> {
     storeName=x;
   }
   List<CategoryItemsData> products = <CategoryItemsData>[];
-
-  Future<dynamic> addProduct({required CategoryItemsData product ,required String storeName}) async {
-    if (products.where((CategoryItemsData element) => element.id == product.id && element.itemExtraModelDataSelected==product.itemExtraModelDataSelected).toList().length == 0){
+  Future<bool> addProduct({required CategoryItemsData product ,required String storeName}) async {
+    print('SADSDADSADSAD ${product.toJson()} ${storeName}');
+    if(products.isEmpty){
+      // if (products.where((CategoryItemsData element) => element.id == product.id && element.itemExtraModelDataSelected==product.itemExtraModelDataSelected).toList().length == 0){
+      //   products.add(product);
+      //   addStoreName(storeName);
+      // };
       products.add(product);
       addStoreName(storeName);
-    };
-    products.where((CategoryItemsData element) => element.id == product.id && element.itemExtraModelDataSelected==product.itemExtraModelDataSelected).first.count = 1;
-    emit(GetCartDataState());
+      // products.where((CategoryItemsData element) => element.id == product.id && element.itemExtraModelDataSelected==product.itemExtraModelDataSelected).first.count = 1;
+      emit(GetCartDataState());
+      return true;
+    }
+    if(products[0].storeId == product.storeId ){
+      // if (products.where((CategoryItemsData element) => element.id == product.id && element.itemExtraModelDataSelected==product.itemExtraModelDataSelected).toList().length == 0){
+      //   products.add(product);
+      //   addStoreName(storeName);
+      // };
+      products.add(product);
+      addStoreName(storeName);
+      // products.where((CategoryItemsData element) => element.id == product.id && element.itemExtraModelDataSelected==product.itemExtraModelDataSelected).first.count = 1;
+      emit(GetCartDataState());
+      showToast(text: LocaleKeys.additionDone.tr(), state: ToastStates.success, context: NavigationService.navigationKey.currentContext!);
+      return true;
+    }
+    else{
+      showToast(text: LocaleKeys.anotherCart.tr(), state: ToastStates.error, context: NavigationService.navigationKey.currentContext!);
+    return false;
+    }
+
   }
   Future<dynamic> addQty(CategoryItemsData product,String? storeName) async {
     if (products.where((CategoryItemsData element) => element.id == product.id && element.itemExtraModelDataSelected==product.itemExtraModelDataSelected).toList().length == 0){
@@ -59,16 +85,31 @@ class CartCubit extends Cubit<CartState> {
     product.itemExtraModelDataSelected=itemExtraModelData;
     products.firstWhere((CategoryItemsData element) => element.id == product.id && element.itemExtraModelDataSelected==product.itemExtraModelDataSelected).itemExtraModelDataSelected = itemExtraModelData;
   }
-  Future<dynamic> removeQty(CategoryItemsData product) async {
+  Future<dynamic> updateProductSize(CategoryItemsData product,ProductSizeData productSizeData) async {
+
+    int index =products.indexOf(product);
+    print('product.toJson() ${productSizeData.name}');
+    product.productSizeSelected=ProductSize(data:[productSizeData]);
+    products[index] = product;
+     print('object ### ${products[index].productSizeSelected!.data![0].name.toString()}');
+    emit(GetCartDataState());
+
+    // products.firstWhere((CategoryItemsData element) => element.id == product.id && element.itemExtraModelDataSelected==product.itemExtraModelDataSelected).itemExtraModelDataSelected = itemExtraModelData;
+  }
+  Future<dynamic> removeQty(CategoryItemsData product,int index) async {
     product.count = product.count! - 1;
     if (product.count == 0)
-      products.removeWhere((CategoryItemsData element) => element.id == product.id && element.itemExtraModelDataSelected==product.itemExtraModelDataSelected);
+        products.removeAt(index);
+      // products.removeWhere((CategoryItemsData element) => element.id == product.id && element.itemExtraModelDataSelected==product.itemExtraModelDataSelected);
     else
-      products.where((CategoryItemsData element) => element.id == product.id && element.itemExtraModelDataSelected==product.itemExtraModelDataSelected).first.count = product.count;
-    emit(GetCartDataState());  }
+      products[index].count = product.count;
+      // products.where((CategoryItemsData element) => element.id == product.id && element.itemExtraModelDataSelected==product.itemExtraModelDataSelected).first.count = product.count;
+    emit(GetCartDataState()); 
+  }
 
   Future<dynamic>  removeProduct(CategoryItemsData product) async {
-    products.removeWhere((CategoryItemsData element) => element.id == product.id && element.itemExtraModelDataSelected==product.itemExtraModelDataSelected);
+    products.remove(product);
+    // products.removeWhere((CategoryItemsData element) => element.id == product.id && element.itemExtraModelDataSelected==product.itemExtraModelDataSelected);
     emit(GetCartDataState());
   }
 
@@ -81,7 +122,19 @@ class CartCubit extends Cubit<CartState> {
     return total;
   }
   double getItemPrice(CategoryItemsData product) {
-    double totalItem = double.parse(product.priceAfterDiscount!.toString());
+    double totalItem=0.0;
+    if(product.productSizeSelected?.data!=null&&product.productSizeSelected?.data!.isNotEmpty==true && product.productSizeSelected?.data![0].id!=0){
+      totalItem = double.parse(product.productSizeSelected?.data?[0].priceAfterDiscount?.toString()??'0.0');
+    }
+    else{
+      if(product.productSize?.data?.isNotEmpty??false){
+        totalItem = double.parse(product.productSize?.data?[0].priceAfterDiscount?.toString()??'0.0');
+      }
+      else{
+        totalItem = double.parse(product.priceAfterDiscount?.toString()?? (product.price?.toString()??'0.0'));
+
+      }
+    }
     if(product.itemExtraModelDataSelected!=null&&product.itemExtraModelDataSelected!.length!=0){
       product.itemExtraModelDataSelected!.forEach((element) {
         totalItem += double.parse(element.price!) ;
@@ -99,140 +152,6 @@ void updateData(){
 
 
 
-
-
-
-
-
-
- // List<ItemExtraModelData> itemExtraModelDataList=[];
- // List<String> extraIdList=[];
-//   List<Items>? items;
-//   Store? storeDate;
-//   CartModel? cartModel;
-  //
-  // Future<ResponseModel?> getCart(context) async {
-  //   if(HomeCubit.get(context).token!=null&&HomeCubit.get(context).token!.isNotEmpty){
-  //     emit(CartLoadingState()) ;
-  //     ResponseModel responseModel = await _cartUseCase.call();
-  //     if (responseModel.isSuccess) {
-  //       cartModel =responseModel.data;
-  //       if(cartModel!.data!=null){
-  //         items=cartModel!.data!.items;
-  //         storeDate=cartModel!.data!.store;
-  //       }else{
-  //         items=null;
-  //         storeDate=null;
-  //       }
-  //       emit(CartSuccessState()) ;
-  //     }else{
-  //       emit(CartErrorState()) ;
-  //     }
-  //     return responseModel;
-  //   }else{
-  //     items=null;
-  //     storeDate=null;
-  //     emit(CartLoadingState()) ;
-  //   }
-  //   return null;
-  // }
-  //
-  // Future<ResponseModel> addQtCart({required String itemId,required BuildContext context}) async {
-  //   emit(AddQtLoadingState()) ;
-  //   ResponseModel responseModel = await _addQTUseCase.call(itemId: itemId);
-  //   if (responseModel.isSuccess) {
-  //     getCart(context);
-  //     emit(AddQtSuccessState()) ;
-  //   }else{
-  //     Future.delayed(const Duration(microseconds: 0)).then((value) {
-  //       showToast(text: responseModel.message!, state: ToastStates.error, context: context);
-  //     });
-  //     emit(AddQtErrorState()) ;
-  //   }
-  //   return responseModel;
-  // }
-  // Future<ResponseModel> subQtCart({required String itemId,required BuildContext context}) async {
-  //   emit(SubQtLoadingState()) ;
-  //   ResponseModel responseModel = await _subQTUseCase.call(itemId: itemId);
-  //   if (responseModel.isSuccess) {
-  //     getCart(context);
-  //     emit(SubQtSuccessState()) ;
-  //   }else{
-  //     Future.delayed(const Duration(microseconds: 0)).then((value) {
-  //       showToast(text: responseModel.message!, state: ToastStates.error, context: context);
-  //     });
-  //     emit(SubQtErrorState()) ;
-  //   }
-  //   return responseModel;
-  // }
-  // Future<bool> addItemCart({required AddItemBody addItemBody ,required BuildContext context}) async {
-  //   emit(AddItemLoadingState()) ;
-  //   try{
-  //     ResponseModel responseModel = await _addItemUseCase.call(addItemBody: addItemBody);
-  //     if (responseModel.isSuccess) {
-  //       getCart(context);
-  //       Future.delayed(const Duration(microseconds: 0)).then((value) {
-  //         showToast(text: '${responseModel.message}',
-  //             state: ToastStates.success, context: context);
-  //       });
-  //       emit(AddItemSuccessState()) ;
-  //       return true;
-  //     }else{
-  //       // Future.delayed(const Duration(microseconds: 0)).then((value) {
-  //       //   showToast(text: responseModel.message!, state: ToastStates.error, context: context);
-  //       // });
-  //       emit(AddItemErrorState()) ;
-  //       return false;
-  //     }
-  //   }catch(e){
-  //     return false;
-  //   }
-  //
-  // }
-  // Future<ResponseModel> deleteItemCart({required String itemId ,required BuildContext context}) async {
-  //   emit(AddItemLoadingState()) ;
-  //   ResponseModel responseModel = await _deleteItemUseCase.call(itemId: itemId);
-  //   if (responseModel.isSuccess) {
-  //     getCart(context);
-  //     Future.delayed(const Duration(microseconds: 0)).then((value) {
-  //       showToast(text: '${responseModel.message}',
-  //           state: ToastStates.success, context: context);
-  //     });
-  //     emit(AddItemSuccessState()) ;
-  //   }else{
-  //     Future.delayed(const Duration(microseconds: 0)).then((value) {
-  //       showToast(text: responseModel.message!, state: ToastStates.error, context: context);
-  //     });
-  //
-  //     emit(AddItemErrorState()) ;
-  //   }
-  //   return responseModel;
-  // }
-  //
-  // Future<bool> updateItemCart({required UpdateItemBody updateItemBody ,required BuildContext context}) async {
-  //   emit(UpdateItemLoadingState()) ;
-  //   try{
-  //     ResponseModel responseModel = await _updateItemUseCase.call(updateItemBody: updateItemBody);
-  //     if (responseModel.isSuccess) {
-  //       getCart(context);
-  //       Future.delayed(const Duration(microseconds: 0)).then((value) {
-  //         showToast(text: '${responseModel.message}',
-  //             state: ToastStates.success, context: context);
-  //       });
-  //       emit(UpdateItemSuccessState()) ;
-  //       return true;
-  //     }else{
-  //       // Future.delayed(const Duration(microseconds: 0)).then((value) {
-  //       //   showToast(text: responseModel.message!, state: ToastStates.error, context: context);
-  //       // });
-  //       emit(UpdateItemErrorState()) ;
-  //       return false;
-  //     }
-  //   }catch(e){
-  //     return false;
-  //   }
-  //
-  // }
 
 
 

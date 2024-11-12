@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:delivego/data/model/response/delivery_fees_params.dart';
 import 'package:dio/dio.dart';
 import '../../domain/repository/check_out_repo.dart';
 import '../../domain/request_body/check_out_body.dart';
@@ -28,6 +29,20 @@ class CheckOutRepositoryImp implements CheckOutRepository{
           data: checkOutBody.toJson()
       );
        */
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+
+  @override
+  Future<ApiResponse> getDeliveryFees({required DeliveryFeesParams params}) async{
+    try {
+      Response response = await _dioClient.post(
+          AppURL.kGetDeliveryFees,
+          queryParameters: params.toMap()
+      );
+
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));

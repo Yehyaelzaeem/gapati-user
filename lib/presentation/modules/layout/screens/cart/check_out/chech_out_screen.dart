@@ -5,10 +5,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../../../core/global/styles/colors.dart';
 import '../../../../../../core/function/function.dart';
 import '../../../../../../core/helpers/toast_states/enums.dart';
+import '../../../../../../data/model/response/delivery_fees_params.dart';
 import '../../../../../../generated/locale_keys.g.dart';
 import '../../../../../component/custom_app_bar.dart';
 import '../../home/home_cubit.dart';
 import '../../more/address/address_cubit.dart';
+import '../cart_cubit.dart';
 import '../widgets/custom_step1_body_widget.dart';
 import '../widgets/custom_step2_body_widget.dart';
 import '../widgets/custom_step3_body_widget.dart';
@@ -39,7 +41,14 @@ class CheckOutScreen extends StatelessWidget {
               margin: EdgeInsets.zero,
               onStepTapped: (int step) {
                 cubit.changeSteps(step);
+                print('state $step');
+                if(step==2 || step==1){
+                  CartCubit cartCubit =CartCubit.get(context);
+                  AddressCubit addressCubit =AddressCubit.get(context);
+                  CheckOutCubit  checkOutCubit=CheckOutCubit.get(context);
+                  checkOutCubit.getDeliveryFees(params: DeliveryFeesParams(addressId: addressCubit.orderAddress?.id?.toString()??'',branchId: cartCubit.products[0].branchId!=null?cartCubit.products[0].branchId!.toString():"0"));
 
+                }
                 // if(HomeCubit.get(context).token!=null&&HomeCubit.get(context).token!.isNotEmpty){
                 //    cubit.changeSteps(step);
                 //    // if(AddressCubit.get(context).lastAddressModel!=null){

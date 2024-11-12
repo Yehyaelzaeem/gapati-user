@@ -11,6 +11,7 @@ class GetAddressErrorState extends AddressState {}
 class GetLastAddressSuccessState extends AddressState {}
 class GetLastAddressLoadingState extends AddressState {}
 class GetLastAddressErrorState extends AddressState {}
+class ChangeSelectedAddressState extends AddressState {}
 
 
 class AddAddressLoadingState extends AddressState {}

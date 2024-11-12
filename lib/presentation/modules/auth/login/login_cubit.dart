@@ -63,7 +63,7 @@ class LoginCubit extends Cubit<LoginState> {
     ResponseModel responseModel = await _signInUseCase.call(loginBody: body);
     if (responseModel.isSuccess) {
       UserModel userModel = responseModel.data;
-      kUser = userModel;
+      kUser = userModel.data;
       String token = userModel.data!.token!;
       if (token.isNotEmpty) {
         await _saveUserDataUseCase.call(token: token);

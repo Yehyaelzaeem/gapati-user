@@ -1,11 +1,12 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../main.dart';
+import '../model/response/home_params.dart';
 
 class AppURL {
 
   static const String kAPIKey = "";
-  static  String kBaseURL = "https://delivego.loutsdelivery.com/api/";
+  static  String kBaseURL = "http://yalla-hatly.matrixclouds.net/api/";
   static const String kApiGoogleMap = "AIzaSyCcLzjD-Xxomlnw7ALIFCNzp4pQzoAp64Y";
 
   ///Auth
@@ -21,13 +22,21 @@ class AppURL {
   static const String kUpdateFCMTokenURI = "fcm_token";
 
   ///home
-  static const String kHomeURI = "home";
+  static  String kHomeURI (HomeParams params)=>  "home?lat=${params.latLng?.latitude}&lng=${params.latLng?.longitude}&store_type_id=${params.storeId}";
+  static  String kStoresURI (HomeParams params)=>  "stores/nearestStores?lat=${params.latLng?.latitude}&lng=${params.latLng?.longitude}&store_type_id=${params.storeId}";
   static const String kOffersURI = "stores/offers";
-  static  String kRestaurantsNearest (LatLng latLng)=> "stores/nearestStores?lat=${latLng.latitude}&lng=${latLng.longitude}";
+  static const String kStoreTypesURI = "home-store-type";
+  static const String kBannersURI = "home-banner";
+  static  String kRestaurantsNearest (HomeParams params)=> "home?lat=${params.latLng?.latitude}&lng=${params.latLng?.longitude}&store_type_id=${params.storeId}";
   static  String kCategoriesURI (int id)=> "stores/all-categories?store_id=$id";
   static  String kItemExtraURI (int id)=> "stores/items/single?item_id=$id";
+  static  String kBestDishURI (int id)=> "stores/best_dishes?store_id=$id";
   static  String kSearchItemURI ({required String searchText,required int storeId})=> "stores/items/search?store_id=$storeId&search=$searchText";
   static  String kCategoriesItemsURI ({required int categoryId,required int storeId})=> "stores/categories?category_id=$categoryId&store_id=$storeId";
+  static const String kSendPrescriptionURL = "stores/checkout/send-prescription";
+  static const String kGetPrescriptionUrl = "stores/checkout/prescription";
+  static  String kAcceptPrescriptionUrl(int id) => "stores/checkout/accept-prescription/$id";
+
   ///Cart
   static const String kGetCartURL = "shopping-cart";
   static const String kAddQtURL = "shopping-cart/add";
@@ -47,6 +56,7 @@ class AppURL {
 
   ///checkout
   static const String kCheckOutURL = "stores/checkout/store";
+  static const String kGetDeliveryFees = "stores/checkout/delivery_fees";
   ///Search
   static  String kSearchURL(String searchText) => "stores/search?search=$searchText";
   ///more

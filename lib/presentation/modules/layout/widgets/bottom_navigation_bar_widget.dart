@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/global/styles/colors.dart';
 import '../../../../../core/tabs/tab.dart';
+import '../../../../core/global/fonts/app_fonts.dart';
 import '../../../component/animation/tap_effect.dart';
 
 class BottomNavigationBarWidget extends StatelessWidget {
@@ -31,8 +32,14 @@ class BottomNavigationBarWidget extends StatelessWidget {
       backgroundColor: Theme.of(context).cardColor,
       showUnselectedLabels: true,
       showSelectedLabels: true,
-      selectedLabelStyle:const TextStyle().descriptionStyle().activeColor(),
-      unselectedLabelStyle:const TextStyle().descriptionStyle(),
+      selectedLabelStyle:const TextStyle().descriptionStyle().activeColor().copyWith(
+        fontFamily:   AppFonts.cairo,
+
+      ),
+      unselectedLabelStyle:const TextStyle().descriptionStyle().copyWith(
+        fontFamily:   AppFonts.cairo,
+
+      ),
       onTap: _onTap,
       currentIndex: _currentIndex,
       items: [..._generateTags(context)],

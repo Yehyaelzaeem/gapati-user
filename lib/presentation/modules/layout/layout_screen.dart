@@ -2,10 +2,13 @@
 import 'package:delivego/core/helpers/extensions.dart';
 import 'package:delivego/presentation/modules/layout/screens/home/home_cubit.dart';
 import 'package:delivego/presentation/modules/layout/screens/more/address/address_cubit.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
+import '../../../core/notification/device_token.dart';
 import '../../../core/tabs/tab.dart';
+import '../../../core/utils/globals.dart';
 import '../../../domain/provider/local_auth_provider_cubit.dart';
 import 'layout_cubit.dart';
 import 'navigation_tabs.dart';
@@ -25,14 +28,17 @@ class _LayoutScreenState extends State<LayoutScreen> {
   @override
   void initState() {
     getPermission();
+    context.read<LocalAuthCubit>().updateFCMToken();
     HomeCubit cubit =HomeCubit.get(context);
+    getDeviceToken();
     AddressCubit addressCubit =AddressCubit.get(context);
     addressCubit.getLocation(context).then((value){
-      cubit.getRestaurantNearest(value);
+      print('value $value');
+      cubit.getStoreTypes(value);
     });
     // cubit.getHome();
-    cubit.getHome();
-    cubit.getOffers();
+
+    cubit.getBanner();
     BlocProvider.of<LayoutCubit>(context, listen: false).init(widget._currentPage);
     BlocProvider.of<LayoutCubit>(context, listen: false).initLayOut();
     super.initState();
@@ -40,6 +46,8 @@ class _LayoutScreenState extends State<LayoutScreen> {
 
   @override
   Widget build(BuildContext context) {
+    kIsArabic =context.locale.languageCode==Locale('ar').toString();
+
     int currentIndex = context.watch<LayoutCubit>().currentIndex;
     final LayoutCubit viewModel = BlocProvider.of<LayoutCubit>(context);
     List<NavigationTab> kTabs =getDataTabs();

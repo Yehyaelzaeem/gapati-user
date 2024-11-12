@@ -49,18 +49,26 @@ class RegisterCubit extends Cubit<RegisterState> {
       _assignRegisterBody(firstName: firstNameController.text, lastName:  lastNameController.text,
           phone: phoneController.text,password: passwordController.text,confirmPassword: confirmPasswordController.text,email: emailController.text);
       ResponseModel responseModel = await _registerUseCase.call(body: body);
-      RegisterModel registerModel =responseModel.data;
+
+
       if(responseModel.data!=null){
+        RegisterModel registerModel =responseModel.data;
         if (responseModel.isSuccess) {
           // showToast(text: registerModel.data!.otp.toString(), state: ToastStates.success, context: context,gravity: ToastGravity.TOP,timeInSecForIosWeb: 250);
           // changeType('otp');
-          UserModel userModel = responseModel.data;
+          LoginModelData userModel = registerModel.data??LoginModelData();
+          print('sssssssssssssssssssssssssssssssssssssssssssssssssss');
+
+          print(userModel.name??'');
+          print('sssssssssssssssssssssssssssssssssssssssssssssssssss');
+
           kUser = userModel;
-          String token = userModel.data!.token!;
-          if (token.isNotEmpty) {
+          String token = userModel.token??'';
+          if (token.isNotEmpty && token.isNotEmpty) {
             await _saveUserDataUseCase.call(token: token);
           }
-          await BlocProvider.of<LocalAuthCubit>(context,listen: false).userLoginSuccessfully();
+          print('ssssssssssadssssssssssssssssssssssssssssssssssssssssss');
+          // await BlocProvider.of<LocalAuthCubit>(context,listen: false).userLoginSuccessfully();
           phoneController.text='';
           RegisterCubit registerCubit =RegisterCubit.get(context);
           registerCubit.phoneController.text='';
@@ -69,7 +77,9 @@ class RegisterCubit extends Cubit<RegisterState> {
           registerCubit.emailController.text='';
           registerCubit.passwordController.text='';
           registerCubit.confirmPasswordController.text='';
-          NavigationService.pushNamedAndRemoveUntil(RoutesRestaurants.layout,arguments: {'currentPage':0});
+          if( token.isNotEmpty){
+            NavigationService.pushNamedAndRemoveUntil(RoutesRestaurants.layout,arguments: {'currentPage':0});
+          }
 
           emit(RegisterSuccessState()) ;
         }else{

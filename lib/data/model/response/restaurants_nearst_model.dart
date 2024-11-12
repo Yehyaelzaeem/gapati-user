@@ -1,3 +1,5 @@
+import 'package:delivego/data/model/response/stores_model.dart';
+
 class RestaurantsNearestModel {
   List<RestaurantsNearestModelData>? data;
 
@@ -25,7 +27,7 @@ class RestaurantsNearestModelData {
   int? id;
   Branch? branch;
   String? name;
-  String? category;
+  CategoriesData? category;
   String? image;
   String? banner;
   int? rate;
@@ -52,7 +54,7 @@ class RestaurantsNearestModelData {
     branch =
     json['branch'] != null ? new Branch.fromJson(json['branch']) : null;
     name = json['name'];
-    category = json['category'];
+    category =json['store_type'] != null ? CategoriesData.fromJson(json['store_type']) : null;
     image = json['image'];
     banner = json['banner'];
     rate = json['rate'];
@@ -93,7 +95,7 @@ class Branch {
   String? email;
   String? lat;
   String? lng;
-  Region? region;
+  // Region? region;
 
   Branch(
       {this.id,
@@ -103,7 +105,8 @@ class Branch {
         this.email,
         this.lat,
         this.lng,
-        this.region});
+        // this.region
+      });
 
   Branch.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -113,8 +116,8 @@ class Branch {
     email = json['email'];
     lat = json['lat'];
     lng = json['lng'];
-    region =
-    json['region'] != null ? new Region.fromJson(json['region']) : null;
+    // region =
+    // json['region'] != null ? new Region.fromJson(json['region']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -126,31 +129,31 @@ class Branch {
     data['email'] = this.email;
     data['lat'] = this.lat;
     data['lng'] = this.lng;
-    if (this.region != null) {
-      data['region'] = this.region!.toJson();
-    }
+    // if (this.region != null) {
+    //   data['region'] = this.region!.toJson();
+    // }
     return data;
   }
 }
 
-class Region {
-  int? id;
-  String? name;
-
-  Region({this.id, this.name});
-
-  Region.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    return data;
-  }
-}
+// class Region {
+//   int? id;
+//   String? name;
+//
+//   Region({this.id, this.name});
+//
+//   Region.fromJson(Map<String, dynamic> json) {
+//     id = json['id'];
+//     name = json['name'];
+//   }
+//
+//   Map<String, dynamic> toJson() {
+//     final Map<String, dynamic> data = new Map<String, dynamic>();
+//     data['id'] = this.id;
+//     data['name'] = this.name;
+//     return data;
+//   }
+// }
 
 class Discount {
   String? name;

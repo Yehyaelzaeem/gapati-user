@@ -306,7 +306,8 @@ class ChatCubit extends Cubit<ChatState> with WidgetsBindingObserver {
       const projectID = 'delivego-47c93';
 
       // get firebase admin token
-      final bearerToken = await NotificationAccessToken.getToken;
+      final bearerToken ='';
+      // await NotificationAccessToken.getToken;
 
       // handle null token
       if (bearerToken == null) return;

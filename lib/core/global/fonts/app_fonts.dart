@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AppFonts {
-  static const String lateefFont = 'Lateef';
-  static const String Tajawal = 'Tajawal';
+  static const String lateefFont = 'Cairo';
+  static const String Tajawal = 'Cairo';
   static const String cairo = 'Cairo';
 }
 

@@ -8,6 +8,7 @@ import 'package:delivego/domain/usecase/address/update_address_usecase.dart';
 import 'package:delivego/domain/usecase/auth/check_otp_usecase.dart';
 import 'package:delivego/domain/usecase/auth/register_usecase.dart';
 import 'package:delivego/domain/usecase/auth/sign_in_usecase.dart';
+import 'package:delivego/domain/usecase/auth/update_fcm_token_usecase.dart';
 import 'package:delivego/domain/usecase/cart/add_item_usecase.dart';
 import 'package:delivego/domain/usecase/cart/add_qt_usecase.dart';
 import 'package:delivego/domain/usecase/cart/cart_usecase.dart';
@@ -15,15 +16,22 @@ import 'package:delivego/domain/usecase/cart/delete_item_usecase.dart';
 import 'package:delivego/domain/usecase/cart/sub_qt_usecase.dart';
 import 'package:delivego/domain/usecase/cart/update_item_usecase.dart';
 import 'package:delivego/domain/usecase/check_out/check_out_usecase.dart';
+import 'package:delivego/domain/usecase/check_out/get_delivery_fees_usecase.dart';
 import 'package:delivego/domain/usecase/favorite/add_favorite_restaurant_usecase.dart';
 import 'package:delivego/domain/usecase/favorite/add_favorite_usecase.dart';
 import 'package:delivego/domain/usecase/favorite/get_favorite_resataurant_usecase.dart';
 import 'package:delivego/domain/usecase/favorite/get_favorite_usecase.dart';
 import 'package:delivego/domain/usecase/favorite/remove_favorite_restaurant_usecase.dart';
 import 'package:delivego/domain/usecase/favorite/remove_favorite_usecase.dart';
+import 'package:delivego/domain/usecase/home/accept_prescription_usecase.dart';
+import 'package:delivego/domain/usecase/home/banner_usecase.dart';
+import 'package:delivego/domain/usecase/home/get_prescriptions_usecase.dart';
+import 'package:delivego/domain/usecase/home/get_stores_usecase.dart';
 import 'package:delivego/domain/usecase/home/home_usecase.dart';
 import 'package:delivego/domain/usecase/home/offers_usecase.dart';
+import 'package:delivego/domain/usecase/home/prescription_usecase.dart';
 import 'package:delivego/domain/usecase/home/resturants_usecase.dart';
+import 'package:delivego/domain/usecase/home/store_types_usecase.dart';
 import 'package:delivego/domain/usecase/local/clear_user_data_usecase.dart';
 import 'package:delivego/domain/usecase/local/get_is_login_usecase.dart';
 import 'package:delivego/domain/usecase/local/get_user_token_usecase.dart';
@@ -35,6 +43,7 @@ import 'package:delivego/domain/usecase/orders/orders_usecase.dart';
 import 'package:delivego/domain/usecase/orders/rate_usecase.dart';
 import 'package:delivego/domain/usecase/profile/get_profile_usecase.dart';
 import 'package:delivego/domain/usecase/profile/update_profile_usecase.dart';
+import 'package:delivego/domain/usecase/restaurant/best_dish_usecase.dart';
 import 'package:delivego/domain/usecase/restaurant/categories_usecase.dart';
 import 'package:delivego/domain/usecase/restaurant/category_items_usecase.dart';
 import 'package:delivego/domain/usecase/restaurant/item_extra_usecase.dart';
@@ -57,6 +66,7 @@ Future<void> init() async {
    getIt.registerLazySingleton(() => SignInUseCase(repository: getIt()));
    getIt.registerLazySingleton(() => OTPUseCase(repository: getIt()));
    getIt.registerLazySingleton(() => RegisterUseCase(repository: getIt()));
+   getIt.registerLazySingleton(() => UpdateFCMTokenUseCase(repository: getIt()));
 
    ///Profile
    getIt.registerLazySingleton(() => GetProfileUseCase(repository: getIt()));
@@ -66,6 +76,12 @@ Future<void> init() async {
    getIt.registerLazySingleton(() => HomeUseCase(repository: getIt()));
    getIt.registerLazySingleton(() => OffersUseCase(repository: getIt()));
    getIt.registerLazySingleton(() => RestaurantsUseCase(repository: getIt()));
+   getIt.registerLazySingleton(() => BannerUseCase(repository: getIt()));
+   getIt.registerLazySingleton(() => StoreTypesUseCase(repository: getIt()));
+   getIt.registerLazySingleton(() => GetStoresUseCase(repository: getIt()));
+   getIt.registerLazySingleton(() => PrescriptionUseCase(repository: getIt()));
+   getIt.registerLazySingleton(() => GetPrescriptionsUseCase(repository: getIt()));
+   getIt.registerLazySingleton(() => AcceptPrescriptionUseCase(repository: getIt()));
    ///Search
    getIt.registerLazySingleton(() => SearchUseCase(repository: getIt()));
    getIt.registerLazySingleton(() => SearchItemsUseCase(repository: getIt()));
@@ -75,6 +91,7 @@ Future<void> init() async {
    getIt.registerLazySingleton(() => CategoriesUseCase(repository: getIt()));
    getIt.registerLazySingleton(() => CategoryItemsUseCase(repository: getIt()));
    getIt.registerLazySingleton(() => ItemExtraUseCase(repository: getIt()));
+   getIt.registerLazySingleton(() => BestDishUseCase(repository: getIt()));
 
 
    ///Cart
@@ -95,6 +112,7 @@ Future<void> init() async {
 
    ///CheckOut
   getIt.registerLazySingleton(() => CheckOutUseCase(repository: getIt()));
+  getIt.registerLazySingleton(() => GetDeliveryFeesUseCase(repository: getIt()));
 
   ///orders
      getIt.registerLazySingleton(() => OrdersUseCase(repository: getIt()));

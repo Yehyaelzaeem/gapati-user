@@ -61,4 +61,16 @@ class RestaurantRepositoryImp implements RestaurantRepository{
     }
   }
 
+  @override
+  Future<ApiResponse> getBestDishes({required int id})async {
+    try {
+      Response response = await _dioClient.get(
+          AppURL.kBestDishURI(id)
+      );
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+
 }

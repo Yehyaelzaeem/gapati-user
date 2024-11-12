@@ -17,10 +17,27 @@ import '../../component/custom_app_bar.dart';
 import '../../component/custom_loading_widget.dart';
 import '../../component/custom_text_field.dart';
 import '../restaurant/widgets/custom_restaurant_widget.dart';
-
-class SearchScreen extends StatelessWidget {
+class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
 
+  @override
+  State<SearchScreen> createState() => _SearchScreenState();
+}
+
+class _SearchScreenState extends State<SearchScreen> {
+  final FocusNode _focusNode = FocusNode();
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _focusNode.requestFocus();
+    });
+  }
+  @override
+  void dispose() {
+    _focusNode.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     SearchCubit cubit = SearchCubit.get(context);
@@ -29,7 +46,6 @@ class SearchScreen extends StatelessWidget {
         title: LocaleKeys.theSearch.tr(),
       ),
       body: BlocConsumer<SearchCubit, SearchState>(
-        listener: (context, state) {},
         builder: (context, state) {
           return Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -40,6 +56,7 @@ class SearchScreen extends StatelessWidget {
                   Stack(
                     children: [
                       CustomTextField(
+                        focusNode: _focusNode,
                         contentVerticalPadding: 10,
                         hintStyle: const TextStyle(fontWeight: FontWeight.bold),
                         fillColor: AppColors.greyColor.withOpacity(0.3),
@@ -84,17 +101,17 @@ class SearchScreen extends StatelessWidget {
                   if(cubit.isSearchStart==true)
                     if(cubit.searchModel!=null)
                       if( cubit.searchModel!.data!.isNotEmpty)
-                          ...cubit.searchModel!.data!.map((e) => CustomRestaurantWidget(restaurant:
-                          RestaurantsNearestModelData(
-                                  id: e.id,
-                                  name: e.name,
-                                  category: e.category,
-                                  image: e.image,
-                                  rate: e.rate,
-                                  banner: e.banner,
-                                  distance: e.distance,
-                                  inFav: e.isFav,
-                                opening: e.opening,)))
+                        ...cubit.searchModel!.data!.map((e) => CustomRestaurantWidget(restaurant:
+                        RestaurantsNearestModelData(
+                          id: e.id,
+                          name: e.name,
+                          category: e.category,
+                          image: e.image,
+                          rate: e.rate,
+                          banner: e.banner,
+                          distance: e.distance,
+                          inFav: e.isFav,
+                          opening: e.opening,)))
                       else
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -127,7 +144,10 @@ class SearchScreen extends StatelessWidget {
             ),
           );
         },
+        listener: (context, state) {},
       ),
     );
   }
 }
+
+

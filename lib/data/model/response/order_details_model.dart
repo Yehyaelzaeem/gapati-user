@@ -1,3 +1,5 @@
+import 'category_item_model.dart';
+
 class OrderDetailsModel {
   OrderDetailsModelData? data;
 
@@ -98,7 +100,45 @@ class OrderDetailsModelData {
   }
 }
 
+class SizeModel{
+  int? id;
+  String? name;
+  String? nameEn;
+  String? nameAr;
+  dynamic price;
+  dynamic priceAfterDiscount;
 
+  SizeModel(
+      {this.id,
+      this.name,
+      this.nameEn,
+      this.nameAr,
+      this.price,
+      this.priceAfterDiscount});
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': this.id,
+      'name': this.name,
+      'name_en': this.nameEn,
+      'name_ar': this.nameAr,
+      'price': this.price,
+      'price_after_discount': this.priceAfterDiscount,
+    };
+  }
+
+  factory SizeModel.fromMap(Map<String, dynamic> map) {
+
+    return SizeModel(
+      id: map['id'] as int,
+      name: map['name'] as String,
+      nameEn: map['name_en'] as String,
+      nameAr: map['name_ar'] as String,
+      price: map['price'] as dynamic,
+      priceAfterDiscount: map['price_after_discount'] as dynamic,
+    );
+  }
+}
 
 class OrderDetails {
   int? id;
@@ -109,7 +149,7 @@ class OrderDetails {
   int? qty;
   Items? items;
   ItemsExtrat? extra;
-
+  SizeModel? size;
   OrderDetails(
       {this.id,
         this.tax,
@@ -118,6 +158,8 @@ class OrderDetails {
         this.date,
         this.qty,
         this.items,
+        this.size,
+
         this.extra});
 
   OrderDetails.fromJson(Map<String, dynamic> json) {
@@ -126,10 +168,16 @@ class OrderDetails {
     price = json['price'];
     subTotal = json['sub_total'];
     date = json['date'];
+    size = json['size'] != null
+        ? (json['size'] is Map<String, dynamic>
+        ? SizeModel.fromMap(json['size'])
+        : null)
+        : null;
     qty = json['qty'];
     items = json['items'] != null ? new Items.fromJson(json['items']) : null;
     extra =
     json['extra'] != null ? new ItemsExtrat.fromJson(json['extra']) : null;
+
   }
 
   Map<String, dynamic> toJson() {
@@ -156,14 +204,15 @@ class Items {
   String? description;
   int? categoryId;
   String? categoryName;
-  String? price;
-  String? priceDiscount;
-  int? priceAfterDiscount;
+  dynamic price;
+  dynamic priceDiscount;
+  dynamic priceAfterDiscount;
   int? storeId;
   String? image;
   bool? incart;
   bool? inFav;
-  ItemsExtrat? itemsExtrat;
+  List<ItemsExtratData>? itemsExtrat;
+  ProductSize? productSize;
 
   Items(
       {this.id,
@@ -177,6 +226,7 @@ class Items {
         this.storeId,
         this.image,
         this.incart,
+        this.productSize,
         this.inFav,
         this.itemsExtrat});
 
@@ -184,6 +234,9 @@ class Items {
     id = json['id'];
     name = json['name'];
     description = json['description'];
+    productSize = json['items_size'] != null
+        ?  ProductSize.fromJson(json['items_size'])
+        : null;
     categoryId = json['category_id'];
     categoryName = json['category_name'];
     price = json['price'];
@@ -193,9 +246,13 @@ class Items {
     image = json['image'];
     incart = json['incart'];
     inFav = json['inFav'];
-    itemsExtrat = json['items_extrat'] != null
-        ? new ItemsExtrat.fromJson(json['items_extrat'])
-        : null;
+    if (json['items_extrat'] != null) {
+      itemsExtrat = <ItemsExtratData>[];
+      json['items_extrat'].forEach((v) {
+        itemsExtrat!.add(new ItemsExtratData.fromJson(v));
+      });
+    }
+
   }
 
   Map<String, dynamic> toJson() {
@@ -213,7 +270,7 @@ class Items {
     data['incart'] = this.incart;
     data['inFav'] = this.inFav;
     if (this.itemsExtrat != null) {
-      data['items_extrat'] = this.itemsExtrat!.toJson();
+        data['items_extrat'] = this.itemsExtrat!.map((v) => v.toJson()).toList();
     }
     return data;
   }

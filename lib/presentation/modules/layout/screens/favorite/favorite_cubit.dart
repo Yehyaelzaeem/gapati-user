@@ -54,7 +54,8 @@ class FavoriteCubit extends Cubit<FavoriteState> {
       emit(GetFavoriteLoadingState()) ;
       ResponseModel responseModel = await _getFavoriteRestaurantUseCase.call();
       if (responseModel.isSuccess) {
-        favoriteRestaurantModel =responseModel.data;
+        RestaurantsNearestModel  res =responseModel.data;
+        favoriteRestaurantModel =res.data;
         emit(GetFavoriteSuccessState()) ;
       }else{
         emit(GetFavoriteErrorState()) ;
@@ -79,7 +80,6 @@ class FavoriteCubit extends Cubit<FavoriteState> {
       ResponseModel responseModel = await _addFavoriteRestaurantUseCase.call(restaurantId: restaurantId);
       if (responseModel.isSuccess) {
         getFavoriteRestaurant(context);
-        HomeCubit.get(context).getHome();
         showToast(text: responseModel.message!, state: ToastStates.success, context: context);
         emit(GetFavoriteSuccessState()) ;
       }else{
@@ -92,7 +92,6 @@ class FavoriteCubit extends Cubit<FavoriteState> {
       ResponseModel responseModel = await _removeFavoriteUseCase.call(itemId: itemId);
       if (responseModel.isSuccess) {
         getFavorite(context);
-        HomeCubit.get(context).getHome();
         showToast(text: responseModel.message!, state: ToastStates.success, context: context);
         emit(GetFavoriteSuccessState()) ;
       }else{

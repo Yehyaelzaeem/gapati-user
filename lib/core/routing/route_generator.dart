@@ -18,8 +18,11 @@ import '../../presentation/modules/layout/layout_screen.dart';
 import '../../presentation/modules/layout/screens/cart/cart_screen.dart';
 import '../../presentation/modules/layout/screens/cart/check_out/chech_out_screen.dart';
 import '../../presentation/modules/layout/screens/cart/order_success/order_success_screen.dart';
+import '../../presentation/modules/layout/screens/home/categories/categories_screen.dart';
 import '../../presentation/modules/layout/screens/home/home_screen.dart';
 import '../../presentation/modules/layout/screens/home/meal/add_meal_screen.dart';
+import '../../presentation/modules/layout/screens/home/product_details/meal_details_screen.dart';
+import '../../presentation/modules/layout/screens/home/store/restaurant_screen.dart';
 import '../../presentation/modules/layout/screens/more/about_us/about_us_screen.dart';
 import '../../presentation/modules/layout/screens/more/address/add_address/add_address_screen.dart';
 import '../../presentation/modules/layout/screens/more/address/addresses_screen.dart';
@@ -33,8 +36,8 @@ import '../../presentation/modules/layout/screens/orders/rate/rate_screen.dart';
 import '../../presentation/modules/map/map_order_screen.dart';
 import '../../presentation/modules/notification/notification_screen.dart';
 import '../../presentation/modules/offers/offers_screen.dart';
-import '../../presentation/modules/restaurant/meal_details/meal_details_screen.dart';
-import '../../presentation/modules/restaurant/restaurant/restaurant_screen.dart';
+import '../../presentation/modules/prescription/get_all_prescription.dart';
+import '../../presentation/modules/prescription/prescription.dart';
 import '../../presentation/modules/restaurant/restaurants_screen.dart';
 import '../../presentation/modules/search/search_screen.dart';
 import 'routes.dart';
@@ -45,6 +48,12 @@ class RouteRestaurantsGenerator {
     switch (settings.name) {
       case RoutesRestaurants.restaurantsHome:
         return platformPageRoute(const HomeScreen());
+        case RoutesRestaurants.categoriesScreen:
+        return platformPageRoute(const CategoriesScreen());
+        case RoutesRestaurants.getAllPrescription:
+        return platformPageRoute(const GetAllPrescription());
+        case RoutesRestaurants.prescriptionScreen:
+        return platformPageRoute( PrescriptionScreen(storeId: arguments?['storeId'], branchId:  arguments?['branchId'],));
 
       case RoutesRestaurants.orderMapScreen:
         return platformPageRoute( OrderMapScreen(orderId: arguments?['orderId'], orderTotal: arguments?['orderTotal'],));
@@ -67,8 +76,11 @@ class RouteRestaurantsGenerator {
         case RoutesRestaurants.chatRoomScreen:
         return platformPageRoute( ChatRoomScreen(user: arguments?['user'],));
       case RoutesRestaurants.mealDetailsScreen:
-        return platformPageRoute( MealDetailsScreen(storeId: arguments?['storeId'],
+        return platformPageRoute( MealDetailsScreen(
+
+          storeId: arguments?['storeId'],
           count: arguments?['count'],itemExtraList: arguments?['itemExtraList'],
+
           storeName:arguments?['storeName'],
           categoriesItemsModelData:  arguments?['categoriesItemsModelData'], type:  arguments?['type'], ));
       case RoutesRestaurants.orderDetailsScreen:
@@ -81,7 +93,8 @@ class RouteRestaurantsGenerator {
         case RoutesRestaurants.onBoardingScreen:
         return platformPageRoute(const OnBoardingScreen());
       case RoutesRestaurants.restaurantScreen:
-        return platformPageRoute( RestaurantScreen(id: arguments?['id'],image: arguments?['image'], storeName:arguments?['storeName'], inFav:  arguments?['isFav'],));
+        return platformPageRoute( RestaurantScreen(id: arguments?['id'],image: arguments?['image'], storeName:arguments?['storeName'], inFav:  arguments?['isFav'],
+            categoryId: arguments?['categoryId'],branchId: arguments?['branchId']));
       case RoutesRestaurants.cartScreen:
         return platformPageRoute(CartScreen(
           isLayOut: arguments?['isLayout'],

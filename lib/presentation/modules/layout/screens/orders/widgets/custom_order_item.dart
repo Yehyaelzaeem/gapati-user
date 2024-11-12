@@ -1,3 +1,5 @@
+import 'package:delivego/presentation/component/texts/black_texts.dart';
+
 import '../../../../../../../generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +9,7 @@ import '../../../../../../../core/routing/navigation_services.dart';
 import '../../../../../../../core/routing/routes.dart';
 import '../../../../../../core/global/styles/colors.dart';
 import '../../../../../../core/global/styles/styles.dart';
+import '../../../../../../core/resources/color.dart';
 import '../../../../../../data/model/response/order_model.dart';
 import '../../../../../component/images/custom_image.dart';
 
@@ -15,6 +18,7 @@ class CustomOrderItemWidget extends StatelessWidget {
   final OrderModelData orderModelData;
   @override
   Widget build(BuildContext context) {
+    bool hasImage = (orderModelData.orderDetails!=null && orderModelData.orderDetails!.isNotEmpty &&orderModelData.orderDetails![0].items!=null && orderModelData.orderDetails![0].items!.image !=null);
     return InkWell(
       onTap: (){
         NavigationService.push(RoutesRestaurants.orderDetailsScreen,arguments: {
@@ -37,7 +41,9 @@ class CustomOrderItemWidget extends StatelessWidget {
               children: [
                 Container(
                     width: 95.w,
-                    child: CustomImage(image: orderModelData.image!,radius: 10,)),
+                    child: CustomImage(image: hasImage==true? orderModelData.orderDetails![0].items?.image??'' :'' ,radius: 10,
+                      height: 95.h,
+                    )),
                 horizontalSpace(10),
                 Expanded(
                   child: Column(
@@ -60,20 +66,31 @@ class CustomOrderItemWidget extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  width: 70.w,
-                  child: FittedBox(
+                  // width: 80.w,
+                  child: Container(
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment:  CrossAxisAlignment.end,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text(' ${orderModelData.price} ${LocaleKeys.lyd.tr()}',style: TextStyles.font18Black700Weight.copyWith(
+                        Text(' ${(double.parse(orderModelData.price?.toString()??'0.0') +(double.parse(orderModelData.deliveryPrice?.toString()??'0.0')))} ${LocaleKeys.lyd.tr()}',style: TextStyles.font18Black700Weight.copyWith(
                             color: AppColors.secondPrimaryColor),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,),
-                        Text('${LocaleKeys.delivered.tr()}',style: TextStyles.font18Black700Weight.copyWith(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 11.sp,
-                            color: AppColors.primaryColor),),
+                        verticalSpace(30),
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 10.w,vertical: 5.h),
+                          decoration: BoxDecoration(
+                              color: primaryColor,
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(color: AppColors.customGray)
+                          ),
+                          child: BlackMediumText(
+                            label: '${orderModelData.statusLang}',
+                              fontSize: 12.sp,
+                            labelColor: AppColors.whiteColor,
+                          ),
+                        )
                       ],
                     ),
                   ),

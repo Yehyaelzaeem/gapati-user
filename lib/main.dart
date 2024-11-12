@@ -47,8 +47,8 @@ void main() async{
 
 }
 final supportedLocales = <Locale>[
-  const Locale('en'),
   const Locale('ar'),
+  const Locale('en'),
 ];
 BuildContext appContext=NavigationService.navigationKey.currentContext!;
 class MyApp extends StatelessWidget {
@@ -61,7 +61,7 @@ class MyApp extends StatelessWidget {
       useInheritedMediaQuery: true,
       builder: (BuildContext context, Widget? child) {
         return MaterialApp(
-            title: 'Delive Go',
+            title: 'Yalla Hatly',
             debugShowCheckedModeBanner: false,
           localizationsDelegates: [CountryLocalizations.delegate, ...context.localizationDelegates,],
           supportedLocales: context.supportedLocales,

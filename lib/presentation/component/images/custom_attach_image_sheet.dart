@@ -1,5 +1,8 @@
+import 'package:delivego/core/resources/text_styles.dart';
+import 'package:delivego/presentation/component/texts/black_texts.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../core/routing/navigation_services.dart';
@@ -24,19 +27,28 @@ class __CustomAttachImageSheetState extends State<_CustomAttachImageSheet> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 120,
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      // height: 180.h,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           ListTile(
             leading: const Icon(Icons.photo_library),
-            title: Text(tr(LocaleKeys.gallery)),
+            title:
+            BlackBoldText(
+              label: tr(LocaleKeys.gallery),
+              fontSize: 14,
+            ),
             onTap: _fromGallery,
           ),
           ListTile(
             leading: const Icon(Icons.photo_camera),
-            title: Text(tr(LocaleKeys.camera)),
+            title:
+            BlackBoldText(
+              label: tr(LocaleKeys.camera),
+              fontSize: 14,
+            ),
             onTap: _takesPhoto,
           ),
         ],

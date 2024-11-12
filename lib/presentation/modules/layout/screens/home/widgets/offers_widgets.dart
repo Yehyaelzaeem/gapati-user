@@ -24,8 +24,8 @@ class OffersWidget extends StatelessWidget {
               crossAxisSpacing: 0,
               mainAxisSpacing: 10,
               childAspectRatio: (1 / 1.3),
-              children: List.generate(cubit.offerList!.length, (index) {
-                return  FittedBox(child: CustomProductItemWidget(offersModelData: cubit.offerList![index],));
+              children: List.generate(cubit.homeModel?.offerData?.data?.length??0, (index) {
+                return  FittedBox(child: CustomProductItemWidget(offersModelData: cubit.homeModel!.offerData!.data![index],));
               })
           );
         },

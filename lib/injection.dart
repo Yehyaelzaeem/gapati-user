@@ -12,6 +12,7 @@ import 'package:delivego/presentation/modules/layout/screens/more/more_cubit.dar
 import 'package:delivego/presentation/modules/layout/screens/more/profile/profile_cubit.dart';
 import 'package:delivego/presentation/modules/layout/screens/orders/orders_cubit.dart';
 import 'package:delivego/presentation/modules/layout/screens/orders/rate/rate_cubit.dart';
+import 'package:delivego/presentation/modules/prescription/prescription_cubit.dart';
 import 'package:delivego/presentation/modules/restaurant/restaurant_cubit.dart';
 import 'package:delivego/presentation/modules/search/search_cubit.dart';
 
@@ -24,16 +25,16 @@ Future<void> init() async {
   getIt.registerLazySingleton(() => ChatCubit());
   getIt.registerLazySingleton(() => RateCubit(rateUseCase: getIt()));
   getIt.registerLazySingleton(() => ProfileCubit(profileUseCase: getIt(), updateProfileUseCase: getIt(),));
-  getIt.registerLazySingleton(() => HomeCubit(homeUseCase: getIt(), offersUseCase:  getIt(), restaurantsUseCase: getIt()));
+  getIt.registerLazySingleton(() => HomeCubit(homeUseCase: getIt(), offersUseCase:  getIt(), restaurantsUseCase: getIt(), storeTypesUseCase:  getIt(), bannerUseCase:  getIt(), getStoresUseCase: getIt()));
   getIt.registerLazySingleton(() => LoginCubit(saveUserDataUseCase: getIt(), signInUseCase: getIt(), otpUseCase: getIt()));
   getIt.registerLazySingleton(() => RegisterCubit(registerUseCase: getIt(), saveUserDataUseCase: getIt(),));
-  getIt.registerLazySingleton(() => LocalAuthCubit( getProfileUseCase:  getIt(), isUserLoginUseCase: getIt(), clearUserDataUseCase: getIt()));
-  getIt.registerLazySingleton(() => CartCubit(cartUseCase: getIt(), addQTUseCase: getIt(), subQTUseCase: getIt(),
-    addItemUseCase: getIt(), deleteItemUseCase: getIt(), updateItemUseCase: getIt(),));
-  getIt.registerLazySingleton(() => RestaurantCubit(categoriesUseCase: getIt(), categoryItemsUseCase: getIt(), itemExtraUseCase: getIt(), searchItemsUseCase: getIt()));
-  getIt.registerLazySingleton(() => CheckOutCubit( checkOutUseCase:  getIt(),));
+  getIt.registerLazySingleton(() => LocalAuthCubit( getProfileUseCase:  getIt(), isUserLoginUseCase: getIt(), clearUserDataUseCase: getIt(), updateFCMTokenUseCase: getIt()));
+  getIt.registerLazySingleton(() => CartCubit(cartUseCase: getIt(), addQTUseCase: getIt(), subQTUseCase: getIt(), addItemUseCase: getIt(), deleteItemUseCase: getIt(), updateItemUseCase: getIt(),));
+  getIt.registerLazySingleton(() => RestaurantCubit(categoriesUseCase: getIt(), categoryItemsUseCase: getIt(), itemExtraUseCase: getIt(), searchItemsUseCase: getIt(), bestDishUseCase: getIt()));
+  getIt.registerLazySingleton(() => CheckOutCubit( checkOutUseCase:  getIt(), getDeliveryFeesUseCase: getIt(),));
   getIt.registerLazySingleton(() => OrdersCubit(ordersUseCase: getIt()));
   getIt.registerLazySingleton(() => SearchCubit(searchUseCase: getIt()));
+  getIt.registerLazySingleton(() => PrescriptionCubit(prescriptionUseCase: getIt(), getPrescriptionsUseCase: getIt(), acceptPrescriptionUseCase: getIt()));
   getIt.registerLazySingleton(() => MoreCubit(aboutUsUseCase: getIt(), privacyUseCase: getIt(), termsUseCase: getIt()));
   getIt.registerLazySingleton(() => AddressCubit(addAddressUseCase: getIt(), addressUseCase: getIt(), deleteAddressUseCase: getIt(), updateAddressUseCase: getIt()));
   getIt.registerLazySingleton(() => FavoriteCubit(getFavoriteUseCase: getIt(), addFavoriteUseCase: getIt(), removeFavoriteUseCase: getIt(), getFavoriteRestaurantUseCase: getIt(), addFavoriteRestaurantUseCase: getIt(), removeFavoriteRestaurantUseCase: getIt()));

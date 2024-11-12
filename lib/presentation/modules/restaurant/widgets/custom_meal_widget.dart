@@ -109,7 +109,8 @@ class _CustomMealWidgetState extends State<CustomMealWidget> {
                      children: [
                        widget.categoriesItemsModelData!.priceDiscount!=null&& widget.categoriesItemsModelData!.priceDiscount! !="0"?
                        Text(
-                         '${double.parse(widget.categoriesItemsModelData!.price!.toString()).toStringAsFixed(1)} ${LocaleKeys.lyd.tr()}',
+
+                         '${double.parse(widget.categoriesItemsModelData!.price!=null?widget.categoriesItemsModelData!.price.toString():((widget.categoriesItemsModelData?.productSize?.data?.isNotEmpty??false)? (widget.categoriesItemsModelData?.productSize?.data?[0].price.toString()??'0'):'0' ),).toStringAsFixed(1)} ${LocaleKeys.lyd.tr()}',
                          style: TextStyles.font16Black600Weight.copyWith(
                              decorationColor: AppColors.blackColor,
                              decorationThickness: 2,
@@ -121,8 +122,8 @@ class _CustomMealWidgetState extends State<CustomMealWidget> {
                          overflow: TextOverflow.ellipsis,
                        ):const SizedBox.shrink(),
                        Text(
-                           '${double.parse(widget.categoriesItemsModelData!.priceAfterDiscount!.toString()).toStringAsFixed(1)} ${LocaleKeys.lyd.tr()}',
-                         style: TextStyles.font16Black600Weight.copyWith(
+                         '${double.parse((widget.categoriesItemsModelData!.priceAfterDiscount!=null && widget.categoriesItemsModelData!.priceAfterDiscount!.toString() !='0')?widget.categoriesItemsModelData!.priceAfterDiscount.toString():((widget.categoriesItemsModelData?.productSize?.data?.isNotEmpty??false)? (widget.categoriesItemsModelData?.productSize?.data?[0].priceAfterDiscount.toString()??'0'):'0' ),).toStringAsFixed(1)} ${LocaleKeys.lyd.tr()}',
+                          style: TextStyles.font16Black600Weight.copyWith(
                              color:AppColors.redColor
                          ),
                          maxLines: 2,

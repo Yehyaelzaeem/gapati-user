@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:photo_view/photo_view.dart';
 
 import '../../../core/assets_constant/images.dart';
+import '../../../core/resources/color.dart';
 
 
 class CustomImage extends StatelessWidget {
@@ -76,3 +78,43 @@ class CustomImageOnlyRadius extends StatelessWidget {
     );
   }
 }
+void openBottomSheet(BuildContext context, ImageProvider imageProvider) =>
+    showBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      shape: const ContinuousRectangleBorder(),
+      builder: (BuildContext context) {
+        return PhotoViewGestureDetectorScope(
+          axis: Axis.vertical,
+          child: Stack(
+            children: [
+              PhotoView(
+                backgroundDecoration: BoxDecoration(
+                  color: Colors.grey.withAlpha(240),
+                ),
+                imageProvider: imageProvider,
+                heroAttributes:
+                PhotoViewHeroAttributes(tag: imageProvider.toString()),
+              ),
+              Positioned(
+                top: 5,
+                right: 5,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.all(4),
+                    child: Icon(
+                      Icons.close,
+                      color: primaryColor,
+                      size: MediaQuery.of(context).size.width * 0.1,
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
+        );
+      },
+    );

@@ -2,6 +2,7 @@ import 'package:delivego/core/resources/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../core/resources/values_manager.dart';
+import '../../core/global/fonts/app_fonts.dart';
 
 
 
@@ -58,7 +59,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       child: AppBar(
         backgroundColor: Colors.white,//Theme.of(context).backgroundColor,
         title: titleWidget??(title != null
-            ? Text(title ?? '', style: const TextStyle().titleStyle(fontSize: 21).boldStyle().customColor(titleColor?? Colors.black87))
+            ? Text(title ?? '', style: const TextStyle().titleStyle(fontSize: 18).boldStyle().customColor(titleColor?? Colors.black87).copyWith(
+          fontFamily:   AppFonts.cairo,
+
+        ))
             : centerLogo ?? const SizedBox.shrink()),
         centerTitle: isCenterTitle,
         leading:leading ?? (

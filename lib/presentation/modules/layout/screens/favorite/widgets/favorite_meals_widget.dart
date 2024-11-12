@@ -20,6 +20,8 @@ class FavoriteMealsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     FavoriteCubit cubit =FavoriteCubit.get(context);
+    cubit.getFavorite(context);
+
     return RefreshIndicator(
         onRefresh: ()async{
           cubit.favoriteModel=null;
@@ -61,6 +63,7 @@ class FavoriteMealsWidget extends StatelessWidget {
                             inFav: favoriteItem.inFav,
                           );
                           context.pushNamed(RoutesRestaurants.mealDetailsScreen,arguments: {
+                            'count':0,
                             'storeId':favoriteItem.storeId.toString(),'storeName':'','categoriesItemsModelData':categoryItemsData});
                         },
                         child: CustomFavoriteItem(favoriteModelData: favoriteItem,));

@@ -91,7 +91,7 @@ class CustomFavoriteItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    favoriteModelData.name!,
+                    favoriteModelData.name??'',
                     style: TextStyles.font16Black600Weight.copyWith(
                       height: 1,
                       fontSize: 14.sp
@@ -99,8 +99,9 @@ class CustomFavoriteItem extends StatelessWidget {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
+                  verticalSpace(5),
                   Text(
-                      favoriteModelData.description!,
+                      favoriteModelData.description??'',
                     style: TextStyles.font16Black600Weight.copyWith(
                         fontSize: 12.sp,
                         height: 1,
@@ -110,10 +111,13 @@ class CustomFavoriteItem extends StatelessWidget {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
+                  verticalSpace(5),
+                  if(favoriteModelData.price!=null&&favoriteModelData.price!.toString()!='0')
                   Row(
                     children: [
+                      if(favoriteModelData.priceDiscount!=null&&favoriteModelData.priceDiscount!.toString()!='0')
                       Text(
-                        '${double.parse(favoriteModelData.priceAfterDiscount.toString()).toStringAsFixed(1)} ${LocaleKeys.lyd.tr()}',
+                        '${double.parse(favoriteModelData.priceAfterDiscount?.toString()??'0.0').toStringAsFixed(1)} ${LocaleKeys.lyd.tr()}',
                         style: TextStyles.font16Black600Weight.copyWith(
                             height: 1,
                             fontSize: 12.sp,
@@ -124,7 +128,7 @@ class CustomFavoriteItem extends StatelessWidget {
                       ),
                       horizontalSpace(10),
                       Text(
-                        '${double.parse(favoriteModelData.price.toString()).toStringAsFixed(1)} ${LocaleKeys.lyd.tr()}',
+                        '${double.parse(favoriteModelData.price?.toString()??'0.0').toStringAsFixed(1)} ${LocaleKeys.lyd.tr()}',
                         style: TextStyles.font16Black600Weight.copyWith(
                             decoration: TextDecoration.lineThrough,
                             decorationThickness: 2,
@@ -137,7 +141,37 @@ class CustomFavoriteItem extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                     ],
-                  ),
+                  )
+                  else
+                    Row(
+                      children: [
+                        if(favoriteModelData.priceDiscount!=null&&favoriteModelData.priceDiscount!.toString()!='0')
+                          Text(
+                            '${double.parse(favoriteModelData.productSize?.data?[0].price.toString()??'0.0').toStringAsFixed(1)} ${LocaleKeys.lyd.tr()}',
+                            style: TextStyles.font16Black600Weight.copyWith(
+                                height: 1,
+                                fontSize: 12.sp,
+                                color:AppColors.textPink
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        horizontalSpace(10),
+                        Text(
+                          '${double.parse(favoriteModelData.productSize?.data?[0].priceAfterDiscount.toString()??'0.0').toStringAsFixed(1)} ${LocaleKeys.lyd.tr()}',
+                          style: TextStyles.font16Black600Weight.copyWith(
+                              decoration: TextDecoration.lineThrough,
+                              decorationThickness: 2,
+                              height: 1,
+                              fontSize: 12.sp,
+                              decorationColor: Colors.grey.shade400,
+                              color: Colors.grey.shade400
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
                   verticalSpace(5),
 
                 ],

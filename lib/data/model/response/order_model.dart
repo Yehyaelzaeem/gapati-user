@@ -1,3 +1,6 @@
+import 'cart_model.dart';
+import 'order_details_model.dart';
+
 class OrderModel {
   List<OrderModelData>? data;
 
@@ -24,7 +27,10 @@ class OrderModel {
 class OrderModelData {
   int? id;
   String? name;
-  String? price;
+  String? status;
+  String? statusLang;
+  dynamic price;
+  dynamic deliveryPrice;
   String? note;
   String? date;
   String? paymentMethod;
@@ -33,26 +39,40 @@ class OrderModelData {
   String? toAddress;
   String? lat;
   String? lng;
+  List<OrderDetails>? orderDetails;
 
   OrderModelData(
       {this.id,
         this.name,
         this.price,
+        this.status,
+        this.deliveryPrice,
         this.note,
         this.date,
+        this.statusLang,
         this.paymentMethod,
         this.image,
         this.phone,
         this.toAddress,
         this.lat,
+        this.orderDetails,
         this.lng,
       });
 
   OrderModelData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
+    if (json['order_details'] != null) {
+      orderDetails = <OrderDetails>[];
+      json['order_details'].forEach((v) {
+        orderDetails!.add(new OrderDetails.fromJson(v));
+      });
+    }
     price = json['price'];
+    deliveryPrice = json['delivery_price'];
+    statusLang = json['status_lang'];
     note = json['note'];
+    status = json['status'];
     date = json['date'];
     paymentMethod = json['payment_method'];
     image = json['image'];

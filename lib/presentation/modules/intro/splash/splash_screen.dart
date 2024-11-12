@@ -70,10 +70,12 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Color(0xff303171),
-      body: Image.asset(AppImages.logo3,
-        height: height,
-        width: width,
+      backgroundColor:  Color(0xff26624E),
+      body: Center(
+        child: Image.asset(AppImages.logo3,
+          height: height,
+          width: width,
+        ),
       )
     );
   }

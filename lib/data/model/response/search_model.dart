@@ -1,3 +1,5 @@
+import 'package:delivego/data/model/response/stores_model.dart';
+
 class SearchModel {
   List<SearchModelData>? data;
 
@@ -24,7 +26,7 @@ class SearchModel {
 class SearchModelData {
   int? id;
   String? name;
-  String? category;
+  CategoriesData? category;
   String? image;
   String? banner;
   int? rate;
@@ -48,7 +50,7 @@ class SearchModelData {
   SearchModelData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
-    category = json['category'];
+    category = CategoriesData.fromJson(json['store_type']);
     image = json['image'];
     banner = json['banner'];
     rate = json['rate'];

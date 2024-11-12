@@ -1,4 +1,5 @@
 
+
 import 'package:delivego/presentation/modules/auth/login/login_cubit.dart';
 import 'package:delivego/presentation/modules/auth/register/register_cubit.dart';
 import 'package:delivego/presentation/modules/chats/cubit/chat_cubit.dart';
@@ -12,6 +13,7 @@ import 'package:delivego/presentation/modules/layout/screens/more/more_cubit.dar
 import 'package:delivego/presentation/modules/layout/screens/more/profile/profile_cubit.dart';
 import 'package:delivego/presentation/modules/layout/screens/orders/orders_cubit.dart';
 import 'package:delivego/presentation/modules/layout/screens/orders/rate/rate_cubit.dart';
+import 'package:delivego/presentation/modules/prescription/prescription_cubit.dart';
 import 'package:delivego/presentation/modules/restaurant/restaurant_cubit.dart';
 import 'package:delivego/presentation/modules/search/search_cubit.dart';
 import 'package:flutter/cupertino.dart';
@@ -27,7 +29,8 @@ class GenerateMultiBloc extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ///TODO add bloc
-    return MultiBlocProvider(
+    return
+      MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => getIt<LocalAuthCubit>()),
         BlocProvider(create: (_) => getIt<RateCubit>()),
@@ -35,6 +38,7 @@ class GenerateMultiBloc extends StatelessWidget {
         BlocProvider(create: (_) => getIt<LayoutCubit>()),
         BlocProvider(create: (_) => getIt<HomeCubit>()),
         BlocProvider(create: (_) => getIt<LoginCubit>()),
+        BlocProvider(create: (_) => getIt<PrescriptionCubit>()),
         BlocProvider(create: (_) => getIt<RegisterCubit>()),
         BlocProvider(create: (_) => getIt<ProfileCubit>()),
         BlocProvider(create: (_) => getIt<RestaurantCubit>()),

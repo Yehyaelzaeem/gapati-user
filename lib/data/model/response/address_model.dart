@@ -30,7 +30,20 @@ class AddressModelData {
       lng: json["lng"],
       address: json["address"],
       phone: json["phone"],
-      addressToNote: json["addressToNote"],
+      addressToNote: json["address_note"],
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': this.id,
+      'lat': this.lat,
+      'lng': this.lng,
+      'address': this.address,
+      'phone': this.phone,
+      'addressToNote': this.addressToNote,
+    };
+  }
+
+
 }

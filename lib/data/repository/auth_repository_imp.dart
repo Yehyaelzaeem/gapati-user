@@ -83,7 +83,7 @@ class AuthRepositoryImp implements AuthRepository{
   @override
   Future<ApiResponse> updateFCMToken({required String fcmToken,required String deviceType}) async {
     try {
-      Response response = await _dioClient.post(AppURL.kUpdateFCMTokenURI,queryParameters: {'phone_token':fcmToken,'type':deviceType});
+      Response response = await _dioClient.post(AppURL.kUpdateFCMTokenURI,queryParameters: {'fcm_token':fcmToken,});
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));

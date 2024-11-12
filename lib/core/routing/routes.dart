@@ -6,6 +6,9 @@ class RoutesRestaurants {
   static const String chatsScreen = "/chatsScreen";
   static const String chatRoomScreen = "/chatRoomScreen";
   static const String restaurantsHome = "/restaurantsHome";
+  static const String categoriesScreen = "/categoriesScreen";
+  static const String getAllPrescription = "/getAllPrescription";
+  static const String prescriptionScreen = "/prescriptionScreen";
   static const String restaurant = "/restaurant";
   static const String orderMapScreen = "/orderMapScreen";
   static const String layout = "/layout";

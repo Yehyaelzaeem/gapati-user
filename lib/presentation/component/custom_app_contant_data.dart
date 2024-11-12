@@ -27,7 +27,7 @@ class CustomAppContData extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(100),
                   child:
-                  Image.asset(AppImages.logoW2)
+                  Image.asset(AppImages.logo)
                 )),
           ),
           SizedBox(height: 35.h,),

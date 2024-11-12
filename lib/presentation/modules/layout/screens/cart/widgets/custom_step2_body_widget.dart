@@ -1,12 +1,16 @@
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../../core/helpers/spacing.dart';
 import '../../../../../../core/global/styles/colors.dart';
 import '../../../../../../core/global/styles/styles.dart';
+import '../../../../../../data/model/response/delivery_fees_params.dart';
 import '../../../../../../generated/locale_keys.g.dart';
 import '../../../../../component/custom_elevated_button.dart';
+import '../../more/address/address_cubit.dart';
+import '../cart_cubit.dart';
 import '../check_out/check_out_cubit.dart';
 
 
@@ -20,58 +24,68 @@ class CustomStepBody2Widget extends StatelessWidget {
     return
       Column(
       children: [
-              Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            color: AppColors.whiteColor
-          ),
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w,vertical: 20.h),
-            child: Row(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('${LocaleKeys.free.tr()} _ 0.00${LocaleKeys.lyd.tr()}',
-                    style: TextStyles.font16Black600Weight.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.redColor.withOpacity(0.5)
-                    ),) ,
-                    // Text('3-5 ${LocaleKeys.dayDelivery.tr()}',
-                    // style: TextStyles.font16Black600Weight.copyWith(
-                    //   color: AppColors.customGray,
-                    //   fontWeight: FontWeight.w700
-                    // ),
-                    // ),
-                  ],
-                ),
-                const Spacer(),
-                const CircleAvatar(
-                  radius: 15,
-                  backgroundColor: AppColors.primaryColor,
-                  child: Icon(Icons.check,color: AppColors.whiteColor,),
-                )
-              ],
-            ),
-          ),
-        ),
-              SizedBox(height: MediaQuery.of(context).size.height*0.45,),
-              Text(LocaleKeys.mesDelivery.tr(),
-                  style: TextStyles.font16Black600Weight.copyWith(
-                  color: AppColors.customGray,
-                  fontWeight: FontWeight.w700
+            BlocConsumer<CheckOutCubit, CheckOutState>(
+              listener: (context, state) {},
+              builder: (context, state) {
+                return   Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: AppColors.whiteColor
                   ),
-              textAlign: TextAlign.center,
-              ),
-        verticalSpace(20),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.w,vertical: 20.h),
+                    child: Row(
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('${LocaleKeys.shipping.tr()} ${cubit.deliveryFees} ${LocaleKeys.lyd.tr()}',
+                              style: TextStyles.font16Black600Weight.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.redColor.withOpacity(0.5)
+                              ),) ,
+                            // Text('3-5 ${LocaleKeys.dayDelivery.tr()}',
+                            // style: TextStyles.font16Black600Weight.copyWith(
+                            //   color: AppColors.customGray,
+                            //   fontWeight: FontWeight.w700
+                            // ),
+                            // ),
+                          ],
+                        ),
+                        const Spacer(),
+                        const CircleAvatar(
+                          radius: 15,
+                          backgroundColor: AppColors.primaryColor,
+                          child: Icon(Icons.check,color: AppColors.whiteColor,),
+                        )
+                      ],
+                    ),
+                  ),
+                );
+              }
+            ),
+              SizedBox(height: MediaQuery.of(context).size.height*0.45,),
+              // Text(LocaleKeys.mesDelivery.tr(),
+              //     style: TextStyles.font16Black600Weight.copyWith(
+              //     color: AppColors.customGray,
+              //     fontWeight: FontWeight.w700
+              //     ),
+              // textAlign: TextAlign.center,
+              // ),
+        verticalSpace(45),
         Center(
           child: CustomElevatedButton(
               height: 45,
-              borderRadius: 50,
+              borderRadius: 16,
               width: MediaQuery.of(context).size.width*0.77,
               fontSize: 17,
               fontColor: AppColors.whiteColor,
               onTap: (){
+                CartCubit cartCubit =CartCubit.get(context);
+                AddressCubit addressCubit =AddressCubit.get(context);
+                CheckOutCubit  checkOutCubit=CheckOutCubit.get(context);
+                checkOutCubit.getDeliveryFees(params: DeliveryFeesParams(addressId: addressCubit.orderAddress?.id?.toString()??'',branchId: cartCubit.products[0].branchId!=null?cartCubit.products[0].branchId!.toString():"0"));
+
                 cubit.changeSteps(2);
 
               }, buttonText:LocaleKeys.continue2.tr()),

@@ -1,3 +1,5 @@
+import 'category_item_model.dart';
+
 class FavoriteModel {
   List<FavoriteModelData>? data;
 
@@ -34,12 +36,14 @@ class FavoriteModelData {
   String? image;
   bool? incart;
   bool? inFav;
+  ProductSize? productSize;
 
   FavoriteModelData(
       {this.id,
         this.name,
         this.description,
         this.categoryId,
+        this.productSize,
         this.categoryName,
         this.price,
         this.priceDiscount,
@@ -62,6 +66,9 @@ class FavoriteModelData {
     image = json['image'];
     incart = json['incart'];
     inFav = json['inFav'];
+    productSize = json['items_size'] != null
+        ?  ProductSize.fromJson(json['items_size'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {

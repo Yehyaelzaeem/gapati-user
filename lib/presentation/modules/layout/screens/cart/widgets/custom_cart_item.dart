@@ -7,6 +7,7 @@ import '../../../../../../../core/global/styles/colors.dart';
 import '../../../../../../../core/global/styles/styles.dart';
 import '../../../../../../core/function/function.dart';
 import '../../../../../../core/helpers/spacing.dart';
+import '../../../../../../core/resources/color.dart';
 import '../../../../../../core/routing/routes.dart';
 import '../../../../../../data/model/response/category_item_model.dart';
 import '../../../../../../generated/locale_keys.g.dart';
@@ -69,11 +70,18 @@ class CustomCartItem extends StatelessWidget {
                       children: [
                         SizedBox(width: 10.w,),
                         Expanded(
-                          child: Text(product!.name!.toString(),
+                          child: Text(product?.name?.toString()??'',
                             style: TextStyles.font16Black600Weight,
                             maxLines: 2
                           ),
                         ),
+                        Text(product?.productSizeSelected?.data?.isNotEmpty??false?(product?.productSizeSelected?.data?[0].name?.toString()??''):'',
+                            style: TextStyles.font16Black600Weight.copyWith(
+                              color: primaryColor,
+                              fontSize: 13,
+                            ),
+                        ),
+                        horizontalSpace(5),
                         StatefulBuilder(builder: (context,setState){
                           return  InkWell(
                               onTap: (){
@@ -150,7 +158,7 @@ class CustomCartItem extends StatelessWidget {
                                   child: Icon(Icons.remove,color: AppColors.backGroundPink3,weight: 5,size: 20,),
                                 ),
                                 onTap: (){
-                                  cubit.removeQty(product!);
+                                  cubit.removeQty(product!,cubit.products.indexOf(product!));
                                 },
                               ),
                               SizedBox(width: 10.w,),
@@ -172,7 +180,7 @@ class CustomCartItem extends StatelessWidget {
                                   child: Icon(Icons.add,color: AppColors.primaryColor,weight: 5,size: 20,),
                                 ),
                                 onTap: (){
-                                  cubit.addQty(product!,'test');
+                                  cubit.addQty(product!,cubit.storeName??'');
                                 },
                               ),
                             ],

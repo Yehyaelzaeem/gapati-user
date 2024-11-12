@@ -165,15 +165,25 @@ class MoreScreen extends StatelessWidget {
                         isUser: isUser,
                         widget: CustomProfileItemWidget(
                         backgroundColor: Colors.deepPurpleAccent,
-                        iconData: Icons.location_on_outlined,
+                        iconData: Icons.location_on_rounded,
                         text: LocaleKeys.addresses.tr(),
                         onTap: () {
-                          AddressCubit.get(context).getLocation(context);
-                          AddressCubit.get(context).getAllAddress();
+
                           NavigationService.push(RoutesRestaurants.addresses);
                         },
                       ),),
                       verticalSpace(20),
+                      // CustomIsUser(
+                      //   isUser: isUser,
+                      //   widget: CustomProfileItemWidget(
+                      //     backgroundColor: Colors.deepPurpleAccent,
+                      //     iconData: Icons.event_note_outlined,
+                      //     text: LocaleKeys.prescription.tr(),
+                      //     onTap: () {
+                      //       NavigationService.push(RoutesRestaurants.getAllPrescription);
+                      //     },
+                      //   ),),
+                      // verticalSpace(20),
                       CustomIsUser(
                         isUser: isUser,
                         widget: CustomProfileItemWidget(

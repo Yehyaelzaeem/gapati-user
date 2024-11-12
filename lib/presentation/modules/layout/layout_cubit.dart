@@ -22,7 +22,7 @@ class LayoutCubit extends Cubit<LayoutState> {
        ProfileCubit.get(context).getProfile();
        FavoriteCubit.get(context).getFavorite(context);
        FavoriteCubit.get(context).getFavoriteRestaurant(context);
-       HomeCubit.get(context).getOffers(isDoNull: true);
+       // HomeCubit.get(context).getOffers(isDoNull: true);
        emit(LayoutInitial());
      }
     });

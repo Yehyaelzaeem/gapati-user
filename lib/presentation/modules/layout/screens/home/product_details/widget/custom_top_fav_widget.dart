@@ -3,10 +3,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../core/function/function.dart';
-import '../../../../../core/global/styles/colors.dart';
-import '../../../../../data/model/response/category_item_model.dart';
-import '../../../layout/screens/favorite/favorite_cubit.dart';
+import '../../../../../../../core/function/function.dart';
+import '../../../../../../../data/model/response/category_item_model.dart';
+import '../../../favorite/favorite_cubit.dart';
 
 class CustomTopFavWidget extends StatelessWidget {
    CustomTopFavWidget({super.key, required this.categoryItemsData});

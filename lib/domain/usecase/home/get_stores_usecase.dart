@@ -3,23 +3,28 @@ import '../../../data/model/base/base_model.dart';
 import '../../../data/model/base/response_model.dart';
 import '../../../data/model/response/banner_model.dart';
 import '../../../data/model/response/home_model.dart';
+import '../../../data/model/response/home_params.dart';
+import '../../../data/model/response/stores_model.dart';
 import '../../repository/home_repo.dart';
 import '../base_usecase/base_use_case_call.dart';
 import '../base_usecase/base_usecase.dart';
 
 
-class BannerUseCase implements BaseUseCase<BannersModel>{
+class GetStoresUseCase implements BaseUseCase<StoresModel>{
   final HomeRepository repository;
-  BannerUseCase({required this.repository});
-  Future<ResponseModel> call() async {
-    return BaseUseCaseCall.onGetData<BannersModel>( await repository.getBanner(), onConvert,tag: 'BannerUseCase');
+  GetStoresUseCase({required this.repository});
+  Future<ResponseModel> call({required HomeParams params}) async {
+    return BaseUseCaseCall.onGetData<StoresModel>( await repository.getStores(params: params), onConvert,tag: 'GetStoresUseCase');
   }
 
   @override
-  ResponseModel<BannersModel> onConvert(BaseModel baseModel) {
+  ResponseModel<StoresModel> onConvert(BaseModel baseModel) {
+    print('sadadadsadasd ${baseModel.responseData}');
+
+    StoresModel? storesModel = StoresModel.fromJson(baseModel.responseData);
+     print('sadadadsadasd ${storesModel.toJson()}');
     try{
-      BannersModel? bannersModel = BannersModel.fromJson(baseModel.responseData);
-      return ResponseModel(baseModel.status??true, baseModel.message,data: bannersModel);
+      return ResponseModel(baseModel.status??true, baseModel.message,data: storesModel);
     }catch(e){
       return ResponseModel(baseModel.status??false, baseModel.message,data: baseModel.responseData);
     }

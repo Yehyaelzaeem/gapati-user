@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../core/global/fonts/app_fonts.dart';
 import '../../core/global/styles/colors.dart';
 import 'custom_loading_widget.dart';
 
@@ -11,6 +12,7 @@ class CustomElevatedButton extends StatelessWidget {
   final Color? fontColor;
   final double? fontSize;
   final double? height;
+  final double? loadingSize;
   final double? width;
   final Color? backgroundColor;
   final Color? borderColor;
@@ -24,6 +26,7 @@ class CustomElevatedButton extends StatelessWidget {
     this.borderRadius,
     this.fontColor,
     this.fontSize,
+    this.loadingSize,
     this.borderColor,
     this.backgroundColor,this.height, this.width, this.isLoading, this.loadingColor,
   });
@@ -32,6 +35,9 @@ class CustomElevatedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
+        if(isLoading==true){
+          return;
+        }
         onTap();
       },
       style: ElevatedButton.styleFrom(
@@ -45,13 +51,14 @@ class CustomElevatedButton extends StatelessWidget {
       ),
       child:
       isLoading==true?
-       Center(child: CustomLoadingWidget(color: loadingColor??AppColors.whiteColor),):
+       Center(child: CustomLoadingWidget(color: loadingColor??AppColors.whiteColor,size: loadingSize),):
       Text(
         buttonText,
         style: TextStyle(
           color: fontColor ?? AppColors.whiteColor,
           fontSize: fontSize ?? 13.sp,
           decoration: TextDecoration.none,
+          fontFamily:   AppFonts.cairo,
           fontWeight: FontWeight.w700,
         ),
       ),

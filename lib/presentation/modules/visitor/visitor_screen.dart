@@ -25,7 +25,7 @@ class CustomVisitorScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
 
-            Image.asset(AppImages.logoW2,
+            Image.asset(AppImages.logo,
             height: MediaQuery.of(context).size.height*0.2,
             ),
             verticalSpace(5),

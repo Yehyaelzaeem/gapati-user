@@ -5,6 +5,7 @@ import '../../../data/model/base/base_model.dart';
 import '../../../data/model/base/response_model.dart';
 import '../../../data/model/response/home_model.dart';
 import '../../../data/model/response/home_params.dart';
+import '../../../data/model/response/prescription_params.dart';
 import '../../../data/model/response/profile_model.dart';
 import '../../../data/model/response/restaurants_nearst_model.dart';
 import '../../repository/home_repo.dart';
@@ -12,19 +13,21 @@ import '../base_usecase/base_use_case_call.dart';
 import '../base_usecase/base_usecase.dart';
 
 
-class RestaurantsUseCase implements BaseUseCase<RestaurantsNearestModel>{
+class PrescriptionUseCase implements BaseUseCase<dynamic>{
   final HomeRepository repository;
-  RestaurantsUseCase({required this.repository});
-  Future<ResponseModel> call(HomeParams params) async {
-    return BaseUseCaseCall.onGetData<RestaurantsNearestModel>( await repository.getRestaurantsNearest(params), onConvert,tag: 'RestaurantsUseCase');
+  PrescriptionUseCase({required this.repository});
+  Future<ResponseModel> call({required PrescriptionParams params}) async {
+    return BaseUseCaseCall.onGetData<dynamic>( await repository.sendPrescription(params: params), onConvert,tag: 'RestaurantsUseCase');
   }
 
   @override
-  ResponseModel<RestaurantsNearestModel> onConvert(BaseModel baseModel) {
+  ResponseModel<dynamic> onConvert(BaseModel baseModel) {
     try{
-      RestaurantsNearestModel? homeModel = RestaurantsNearestModel.fromJson(baseModel.responseData);
-      return ResponseModel(baseModel.status??true, baseModel.message,data: homeModel);
-    }catch(e){
+      if(baseModel.code =='200' ||baseModel.code =='201'){
+        return ResponseModel(baseModel.status??true, baseModel.message,data: baseModel.responseData);
+      }else{
+        return ResponseModel(baseModel.status??false, baseModel.message,data: baseModel.responseData);
+      }    }catch(e){
       return ResponseModel(baseModel.status??false, baseModel.message,data: baseModel.responseData);
     }
   }

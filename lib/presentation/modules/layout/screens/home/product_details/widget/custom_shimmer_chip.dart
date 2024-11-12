@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shimmer/shimmer.dart';
 
-import '../../../../../core/global/styles/colors.dart';
+import '../../../../../../../core/global/styles/colors.dart';
 
 class CustomShimmerChip extends StatelessWidget {
   const CustomShimmerChip({super.key});

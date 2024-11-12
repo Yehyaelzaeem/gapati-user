@@ -1,8 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../../core/global/styles/colors.dart';
-import '../../../layout/screens/cart/cart_cubit.dart';
+
+import '../../../../../../../core/global/styles/colors.dart';
+import '../../../cart/cart_cubit.dart';
+
 
 class CustomTopBackWidget extends StatelessWidget {
   const CustomTopBackWidget({super.key, required this.type});

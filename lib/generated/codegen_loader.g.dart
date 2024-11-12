@@ -244,7 +244,7 @@ static const Map<String,dynamic> en = {
   "creditCard": "Credit/Debit/ATM Card",
   "addMethod": "Add Payment Method",
   "payNow": "Pay Now",
-  "mesDelivery": "Free Shipping over \\$19 +free return \\n and exchange",
+  "mesDelivery": "Free Shipping over +free return     and exchange",
   "myHome": "MyHome",
   "work": "Work",
   "other": "Other",

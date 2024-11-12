@@ -42,14 +42,14 @@ class TabBarWidget  extends StatelessWidget{
             unselectedLabelStyle:TextStyles.font15CustomGray400Weight.copyWith(
               fontWeight: FontWeight.bold,
               fontFamily: AppFonts.lateefFont,
-              fontSize: 20,
+              fontSize: 16,
               color: AppColors.customGray
             ),
             labelStyle: TextStyles.font16Black500Weight.copyWith(
               fontWeight: FontWeight.bold,
                 fontFamily: AppFonts.lateefFont,
 
-                fontSize: 25,
+                fontSize: 18,
               color: AppColors.whiteColor
             ),
 

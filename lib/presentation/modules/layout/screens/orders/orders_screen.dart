@@ -9,6 +9,8 @@ import '../../../../../core/global/styles/colors.dart';
 import '../../../../component/custom_app_bar.dart';
 import '../../../../component/custom_loading_widget.dart';
 import '../../../../component/custom_not_found_data.dart';
+import '../../../../component/tabview/tabbar_widget.dart';
+import '../../../prescription/get_all_prescription.dart';
 import '../../../visitor/visitor_screen.dart';
 import '../home/home_cubit.dart';
 import 'orders_cubit.dart';
@@ -26,30 +28,46 @@ class OrdersScreen extends StatelessWidget {
       HomeCubit.get(context).token!=null&&HomeCubit.get(context).token!.isNotEmpty?
       Scaffold(
       backgroundColor: AppColors.customWhite,
-      appBar:    CustomAppBar(
+      appBar: CustomAppBar(
         title: LocaleKeys.orders.tr(),
         isBackButtonExist: false,
       ),
-      body:  BlocConsumer<OrdersCubit,OrdersState>(
-        builder: (context,state){
-          if(cubit.orderModel!=null){
-            if(cubit.orderModel!.data!.isEmpty){
-              return CustomNotFoundDataWidget(image: AppImages.cart,title: LocaleKeys.notFoundData.tr(), type: 'svg',);
-            }else{
-              return ListView.builder(
-                  itemCount: cubit.orderModel!.data!.length,
-                  itemBuilder: (context,index){
-                return CustomOrderItemWidget(orderModelData: cubit.orderModel!.data![index],);
-              });
-            }
-          }
-          else{
-            return CustomLoadingWidget();
-          }
+      body:
 
-        },
-        listener: (context,state){},
-      )
+
+     Container(
+       child:  TabBarWidget(tabs: [
+         TabItemModel(
+             label: LocaleKeys.orders.tr(),
+             page: BlocConsumer<OrdersCubit,OrdersState>(
+               builder: (context,state){
+                 if(cubit.orderModel!=null){
+                   if(cubit.orderModel!.data!.isEmpty){
+                     return CustomNotFoundDataWidget(image: AppImages.cart,title: LocaleKeys.notFoundData.tr(), type: 'svg',);
+                   }else{
+                     return
+                     Column(
+                       children: [
+                         ...cubit.orderModel!.data!.map((e) => CustomOrderItemWidget(orderModelData: e,))
+                       ],
+                     );
+                   }
+                 }
+                 else{
+                   return CustomLoadingWidget();
+                 }
+
+               },
+               listener: (context,state){},
+             )),
+         TabItemModel(
+             label: LocaleKeys.prescription.tr(),
+             page:  GetAllPrescription()
+         ),
+       ]),
+     )
+
+
     ):
        CustomVisitorScreen(screenName: 'orders',);
   }
