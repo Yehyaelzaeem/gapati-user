@@ -111,7 +111,7 @@ class _AddressesScreenState extends State<AddressesScreen> {
                                                     print('newValue $newValue');
                                                     if(newValue!=null){
                                                       showChangeDefaultAddressDialog(context,
-                                                              (){
+                                                              (){ 
                                                                 cubit.getLocation(context).then((value) {
                                                                   cubit.changeSelectedAddress(AddressModelData(
                                                                     id: 0,
