@@ -1,9 +1,11 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:delivego/core/helpers/extensions.dart';
+import 'package:delivego/core/resources/color.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/assets_constant/images.dart';
+import '../../../../core/global/fonts/app_fonts.dart';
 import '../../../../core/global/styles/colors.dart';
 import '../../../../core/global/styles/styles.dart';
 import '../../../../core/helpers/spacing.dart';
@@ -20,7 +22,7 @@ class LogAsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.whiteColor,
+      backgroundColor: primaryColor,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
      children: [
@@ -35,7 +37,8 @@ class LogAsScreen extends StatelessWidget {
            width: MediaQuery.of(context).size.width*0.8,
            child: DefaultTextStyle(
              style: const TextStyle(
-               fontSize: 30.0,
+               fontFamily: AppFonts.cairo,
+               fontSize: 16.0,
              ),
              child: AnimatedTextKit(
                animatedTexts: [
@@ -43,14 +46,14 @@ class LogAsScreen extends StatelessWidget {
                      LocaleKeys.welcomeMes.tr(),
                      textStyle: TextStyles.font20Black700Weight.copyWith(
                        height: 2,
-                       color:AppColors.customBlack,
+                       color:AppColors.whiteColor,
                        fontSize: 17.sp,
                      ),textAlign: TextAlign.center),
                  TyperAnimatedText(
                      LocaleKeys.welcomeMes.tr(),
                      textStyle: TextStyles.font20Black700Weight.copyWith(
                        height: 2,
-                       color:AppColors.customBlack,
+                       color:AppColors.whiteColor,
                        fontSize: 17.sp,
                      ),textAlign: TextAlign.center),
                ],
@@ -64,6 +67,7 @@ class LogAsScreen extends StatelessWidget {
        CustomElevatedButton(
          borderRadius: 50,
          height: 45.h,
+         borderColor: Colors.white,
          width: MediaQuery.of(context).size.width*0.8,
          onTap:(){
            context.pushNamed(RoutesRestaurants.loginScreen);
@@ -73,7 +77,8 @@ class LogAsScreen extends StatelessWidget {
        ),
        verticalSpace(15),
        CustomElevatedButton(
-         borderRadius: 50,
+         borderColor: Colors.white,
+         borderRadius: 30,
          height: 45.h,
          width: MediaQuery.of(context).size.width*0.8,
          onTap:(){

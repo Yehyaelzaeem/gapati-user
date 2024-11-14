@@ -1,4 +1,5 @@
 import 'package:delivego/core/utils/globals.dart';
+import 'package:delivego/data/model/response/categories_model.dart';
 import 'package:delivego/presentation/component/component.dart';
 import 'package:delivego/presentation/component/images/custom_image.dart';
 import 'package:delivego/presentation/modules/layout/screens/home/home_cubit.dart';
@@ -7,14 +8,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import '../../../../../../core/assets_constant/images.dart';
 import '../../../../../../core/global/styles/colors.dart';
 import '../../../../../../core/helpers/spacing.dart';
 import '../../../../../../core/resources/color.dart';
-import '../../../../../../data/model/response/store_types_model.dart';
 import '../../../../../../generated/locale_keys.g.dart';
 import '../../../../../component/custom_text_field.dart';
 import '../../../../../component/texts/black_texts.dart';
 import '../../more/address/address_cubit.dart';
+import '../meal/best_dish_meal/best_dish_meal_screen.dart';
+import '../meal/meals_screen.dart';
 import '../stores/stores_screen.dart';
 import '../widgets/home_location_widget.dart';
 class CategoriesScreen extends StatefulWidget {
@@ -27,18 +30,14 @@ class CategoriesScreen extends StatefulWidget {
 class _CategoriesScreenState extends State<CategoriesScreen> {
   @override
   void initState() {
-    AddressCubit addressCubit =AddressCubit.get(context);
     HomeCubit homeCubit = HomeCubit.get(context);
-    homeCubit.getStoreTypes(
-        addressCubit.selectedAddress?.lat!=null&&addressCubit.selectedAddress?.lng!=null?
-        LatLng(double.parse(addressCubit.selectedAddress?.lat??'0.0'), double.parse(addressCubit.selectedAddress?.lng??'0.0')):
-        AddressCubit.get(context).latLng??LatLng(0, 0),
-        );
+    homeCubit.getCategories();
     super.initState();
   }
   @override
   Widget build(BuildContext context) {
     HomeCubit cubit = HomeCubit.get(context);
+    bool hasBestDish =cubit.bestDishModel!=null && cubit.bestDishModel!.data!=null && cubit.bestDishModel!.data!.isNotEmpty;
     return Scaffold(
       backgroundColor: AppColors.whiteColor,
       appBar:  CustomAppBar(
@@ -90,8 +89,9 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                            alignment: Alignment.centerRight,
                            width: 100.w,
                            height:
-                           cubit.storeTypesModel?.data?.data !=null?
-                           ((cubit.storeTypesModel!.data!.data!.length) * 118).h:
+                           cubit.categoriesModel?.data !=null?
+                           ((hasBestDish==true?cubit.categoriesModel!.data!.length+1:
+                               cubit.categoriesModel!.data!.length) * 118).h:
                            MediaQuery.sizeOf(context).height*0.7,
                            decoration: BoxDecoration(
                              color: primaryColor,
@@ -105,13 +105,18 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                          ),
                          BlocConsumer<HomeCubit, HomeState>(
                            builder: (context,state){
-                             if(cubit.storeTypesModel!=null){
-                               if(cubit.storeTypesModel?.data?.data?.isNotEmpty??false){
+                             if(cubit.categoriesModel!=null){
+                               if(cubit.categoriesModel?.data?.isNotEmpty??false){
                                  return Column(
                                    children:[
                                      verticalSpace(50),
-                                     ...cubit.storeTypesModel?.data?.data?.map((e) {
-                                       return StoreItemWidget(storeTypesData: e,context: context);
+                                     if(cubit.bestDishModel!=null && cubit.bestDishModel!.data!=null && cubit.bestDishModel!.data!.isNotEmpty)
+                                         StoreItemWidget(categoriesModelData: CategoriesModelData(
+                                           id: 0,
+                                           name: LocaleKeys.bestDish2.tr(),
+                                           icon: AppImages.logo,),context: context),
+                                       ...cubit.categoriesModel?.data?.map((e) {
+                                       return StoreItemWidget(categoriesModelData: e,context: context);
                                      }).toList()??[],
                                      verticalSpace(30),
 
@@ -140,12 +145,19 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   }
 }
 
-Widget StoreItemWidget({required StoreTypesData storeTypesData,required BuildContext context}){
+Widget StoreItemWidget({required CategoriesModelData categoriesModelData,required BuildContext context}){
   return
     InkWell(
       onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>
-            StoresScreen(categoryId: storeTypesData.id??0, categoryName: storeTypesData.name??'',)));
+        if(categoriesModelData.id==0){
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>
+              BestDishMealsScreen()));
+        }else{
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>
+              MealsScreen(categoryId: categoriesModelData.id??0, categoryName: categoriesModelData.name??'',)));
+        }
+
+
       },
       child:
       Center(
@@ -181,7 +193,7 @@ Widget StoreItemWidget({required StoreTypesData storeTypesData,required BuildCon
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         BlackRegularText(
-                          label: storeTypesData.name ?? '',
+                          label: categoriesModelData.name ?? '',
                           fontSize: 14.sp,
                         ),
                         verticalSpace(3),
@@ -217,7 +229,12 @@ Widget StoreItemWidget({required StoreTypesData storeTypesData,required BuildCon
                   top: 10.h,
                   right: kIsArabic==true?0.w:null,
                   left: kIsArabic==true?null:0.w,
-                  child: CustomImage(image:storeTypesData.icon ?? '',height: 70.w,width: 70.w,radius: 50,)),
+                  child:
+                  categoriesModelData.id==0?
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(500),
+                    child: Image.asset(AppImages.logo, width: 70.w, height: 70.w,),):
+                  CustomImage(image:categoriesModelData.icon ?? '',height: 70.w,width: 70.w,radius: 50,)),
             ],
           ) ,
         ),

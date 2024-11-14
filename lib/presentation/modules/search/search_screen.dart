@@ -11,11 +11,13 @@ import '../../../../core/global/styles/colors.dart';
 import '../../../core/assets_constant/images.dart';
 import '../../../core/global/styles/styles.dart';
 import '../../../core/helpers/spacing.dart';
+import '../../../data/model/response/category_item_model.dart';
 import '../../../data/model/response/home_model.dart';
 import '../../../data/model/response/restaurants_nearst_model.dart';
 import '../../component/custom_app_bar.dart';
 import '../../component/custom_loading_widget.dart';
 import '../../component/custom_text_field.dart';
+import '../restaurant/widgets/custom_meal_widget.dart';
 import '../restaurant/widgets/custom_restaurant_widget.dart';
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -66,12 +68,16 @@ class _SearchScreenState extends State<SearchScreen> {
                         hintText: LocaleKeys.search.tr(),
                         hintColor: AppColors.black,
                         onFieldSubmitted: (String v) {
-                          cubit.getSearch(searchText: v);
+                          // cubit.getSearch(searchText: v);
+                          cubit.searchItems(searchText: v, );
+
                         },
                         onChanged: (value) {
                           if(value.isNotEmpty){
                             cubit.changeSearchStart(true);
-                            cubit.getSearch(searchText: value);
+                            // cubit.getSearch(searchText: value);
+                            cubit.searchItems(searchText: value, );
+
                           }else{
                             cubit.changeSearchStart(false);
                           }
@@ -99,20 +105,40 @@ class _SearchScreenState extends State<SearchScreen> {
                     ],
                   ),
                   if(cubit.isSearchStart==true)
-                    if(cubit.searchModel!=null)
-                      if( cubit.searchModel!.data!.isNotEmpty)
-                        ...cubit.searchModel!.data!.map((e) => CustomRestaurantWidget(restaurant:
-                        RestaurantsNearestModelData(
-                          id: e.id,
-                          name: e.name,
-                          category: e.category,
-                          image: e.image,
-                          rate: e.rate,
-                          banner: e.banner,
-                          branch: e.branches!=null && e.branches!.isNotEmpty?e.branches![0]:null,
-                          distance: e.distance,
-                          inFav: e.isFav,
-                          opening: e.opening,)))
+                    if(cubit.searchItemModel!=null)
+                      if( cubit.searchItemModel!.data!.isNotEmpty)
+                        ...cubit.searchItemModel!.data!.map((e) =>
+                           CustomMealWidget(
+                          categoriesItemsModelData:
+                              CategoryItemsData(
+                            id: e.id,
+                            name: e.name,
+                            description: e.description,
+                            categoryId: e.categoryId,
+                            categoryName: e.categoryName,
+                            price: e.price,
+                            priceDiscount: e.priceDiscount,
+                            priceAfterDiscount: e.priceAfterDiscount,
+                            storeId: e.storeId,
+                            image: e.image,
+                            inCart: e.incart,
+                            inFav: e.inFav,
+                            count: 0,
+                          ),
+                          storeName: 'Gapati',
+                          ))
+                        //     CustomRestaurantWidget(restaurant:
+                        // RestaurantsNearestModelData(
+                        //   id: e.id,
+                        //   name: e.name,
+                        //   category: e.category,
+                        //   image: e.image,
+                        //   rate: e.rate,
+                        //   banner: e.banner,
+                        //   branch: e.branches!=null && e.branches!.isNotEmpty?e.branches![0]:null,
+                        //   distance: e.distance,
+                        //   inFav: e.isFav,
+                        //   opening: e.opening,)))
                       else
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,

@@ -98,7 +98,7 @@ class CategoryItemsData {
         this.price,
         this.priceDiscount,
         this.priceAfterDiscount,
-        this.storeId,
+        this.storeId=1,
         this.image,
         this.inCart,
         this.inFav,

@@ -10,6 +10,7 @@ import '../../../core/notification/device_token.dart';
 import '../../../core/tabs/tab.dart';
 import '../../../core/utils/globals.dart';
 import '../../../domain/provider/local_auth_provider_cubit.dart';
+import '../restaurant/restaurant_cubit.dart';
 import 'layout_cubit.dart';
 import 'navigation_tabs.dart';
 import 'widgets/bottom_navigation_bar_widget.dart';
@@ -34,11 +35,15 @@ class _LayoutScreenState extends State<LayoutScreen> {
     AddressCubit addressCubit =AddressCubit.get(context);
     addressCubit.getLocation(context).then((value){
       print('value $value');
-      cubit.getStoreTypes(value);
+      // cubit.getStoreTypes(value);
     });
     // cubit.getHome();
 
     cubit.getBanner();
+    cubit.getCategories();
+    cubit.getsOffers();
+    cubit.getBestDishes();
+
     BlocProvider.of<LayoutCubit>(context, listen: false).init(widget._currentPage);
     BlocProvider.of<LayoutCubit>(context, listen: false).initLayOut();
     super.initState();

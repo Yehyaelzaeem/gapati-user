@@ -23,4 +23,7 @@ class GetStoreTypesErrorState extends HomeState {}
 class GetStoresLoadingState extends HomeState {}
 class GetStoresSuccessState extends HomeState {}
 class GetStoresErrorState extends HomeState {}
+class GetBestDishLoadingState extends HomeState {}
+class GetBestDishSuccessState extends HomeState {}
+class GetBestDishErrorState extends HomeState {}
 

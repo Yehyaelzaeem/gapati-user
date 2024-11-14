@@ -18,7 +18,10 @@ class CategoryItemsUseCase implements BaseUseCase<CategoryItemModel>{
 
   @override
   ResponseModel<CategoryItemModel> onConvert(BaseModel baseModel) {
+    print('asdasdasdasd ${baseModel.responseData}');
     CategoryItemModel? categoriesModel = CategoryItemModel.fromJson(baseModel.responseData);
+    print('asdasdasdasd ${categoriesModel.data}');
+
     try{
       return ResponseModel(baseModel.status??true, baseModel.message,data: categoriesModel);
     }catch(e){

@@ -11,6 +11,7 @@ import '../../../../../core/global/styles/styles.dart';
 import '../../../../../core/helpers/spacing.dart';
 import '../../../../../core/routing/navigation_services.dart';
 import '../../../../../core/routing/routes.dart';
+import '../../../../../data/model/response/order_model.dart';
 import '../../../../../generated/locale_keys.g.dart';
 import '../../../../component/custom_app_bar.dart';
 import '../../../../component/custom_elevated_button.dart';
@@ -21,13 +22,14 @@ import '../cart/widgets/custom_visa_widget.dart';
 import 'orders_cubit.dart';
 
 class OrderDetailsScreen extends StatelessWidget {
-   OrderDetailsScreen({super.key, required this.orderId, required this.total, required this.phone, required this.address});
+   OrderDetailsScreen({super.key, required this.orderId, required this.orderModelData, required this.phone, required this.address});
   final int orderId;
-  final String total;
+  final OrderModelData? orderModelData;
   final String phone;
   final String address;
    bool preparing=false;
    bool padding=false;
+
    bool onWay=false;
    bool isDone=false;
 
@@ -117,7 +119,7 @@ class OrderDetailsScreen extends StatelessWidget {
                                   verticalSpace(40),
                                   InkWell(
                                     onTap: (){
-                                      NavigationService.push(RoutesRestaurants.orderMapScreen,arguments: {'orderId':orderId,'orderTotal':total});
+                                      NavigationService.push(RoutesRestaurants.orderMapScreen,arguments: {'orderId':orderId,'orderTotal':orderModelData?.price??'0.0'});
                                     },
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -164,41 +166,41 @@ class OrderDetailsScreen extends StatelessWidget {
                                   child:
                                   Column(
                                     children: [
-                                      CustomTextRowCartWidget(title: LocaleKeys.subtotal.tr(), text: '$total ${LocaleKeys.lyd.tr()}',vertical: 7.h,),
-                                      CustomTextRowCartWidget(title: LocaleKeys.discount.tr(), text: '0.0 ${LocaleKeys.lyd.tr()}',vertical: 7.h,),
-                                      CustomTextRowCartWidget(title: LocaleKeys.shipping.tr(), text: '0.0 ${LocaleKeys.lyd.tr()}',vertical: 7.h,),
-                                      CustomTextRowCartWidget(title: LocaleKeys.total.tr(), text: '$total ${LocaleKeys.lyd.tr()}',vertical: 7.h,),
+                                      CustomTextRowCartWidget(title: LocaleKeys.subtotal.tr(), text: '${orderModelData?.price??'0.0'} ${LocaleKeys.lyd.tr()}',vertical: 7.h,),
+                                      // CustomTextRowCartWidget(title: LocaleKeys.discount.tr(), text: '${orderModelData?.discount??'0.0'} ${LocaleKeys.lyd.tr()}',vertical: 7.h,),
+                                      CustomTextRowCartWidget(title: LocaleKeys.shipping.tr(), text: '${orderModelData?.tripModel?.data?.price?.toString()??'0.0'} ${LocaleKeys.lyd.tr()}',vertical: 7.h,),
+                                      CustomTextRowCartWidget(title: LocaleKeys.total.tr(), text: '${(double.parse(orderModelData?.price?.toString()??'0.0') +(double.parse(orderModelData?.tripModel?.data?.price?.toString()??'0.0')))} ${LocaleKeys.lyd.tr()}',vertical: 7.h,),
                                       verticalSpace(50),
                                     ],
                                   ),
                                 ),
-                                Row(
-                                  children: [
-                                    Expanded(child:
-                                    CustomElevatedButton(
-                                        backgroundColor: AppColors.whiteColor,
-                                        borderColor: AppColors.primaryColor,
-                                        fontColor: AppColors.primaryColor,
-                                        borderRadius: 8,
-                                        height: 40.h,
-                                        onTap: (){
-                                          context.pushNamed(RoutesRestaurants.rateScreen,arguments: {'orderId':orderId});
-                                        },
-                                        buttonText: LocaleKeys.rate_trip.tr()),),
-                                    horizontalSpace(10),
-                                    Expanded(child:
-                                    CustomElevatedButton(
-                                        backgroundColor: AppColors.whiteColor,
-                                        borderColor: AppColors.primaryColor,
-                                        fontColor: AppColors.primaryColor,
-                                        borderRadius: 8,
-                                        height: 40.h,
-                                        onTap: (){
-                                          context.pushNamed(RoutesRestaurants.rateScreen,arguments: {'orderId':orderId});
-                                        },
-                                        buttonText: LocaleKeys.rate_restaurant.tr()),),
-                                  ],
-                                )
+                                // Row(
+                                //   children: [
+                                //     Expanded(child:
+                                //     CustomElevatedButton(
+                                //         backgroundColor: AppColors.whiteColor,
+                                //         borderColor: AppColors.primaryColor,
+                                //         fontColor: AppColors.primaryColor,
+                                //         borderRadius: 8,
+                                //         height: 40.h,
+                                //         onTap: (){
+                                //           context.pushNamed(RoutesRestaurants.rateScreen,arguments: {'orderId':orderId});
+                                //         },
+                                //         buttonText: LocaleKeys.rate_trip.tr()),),
+                                //     horizontalSpace(10),
+                                //     Expanded(child:
+                                //     CustomElevatedButton(
+                                //         backgroundColor: AppColors.whiteColor,
+                                //         borderColor: AppColors.primaryColor,
+                                //         fontColor: AppColors.primaryColor,
+                                //         borderRadius: 8,
+                                //         height: 40.h,
+                                //         onTap: (){
+                                //           context.pushNamed(RoutesRestaurants.rateScreen,arguments: {'orderId':orderId});
+                                //         },
+                                //         buttonText: LocaleKeys.rate_restaurant.tr()),),
+                                //   ],
+                                // )
 
                               ],
                             ),

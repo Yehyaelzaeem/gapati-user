@@ -3,29 +3,30 @@ import 'package:badges/badges.dart' as badges;
 
 import 'package:delivego/core/helpers/extensions.dart';
 import 'package:delivego/core/routing/routes.dart';
-import 'package:delivego/presentation/modules/layout/screens/home/product_details/widget/custom_name_price_widget.dart';
-import 'package:delivego/presentation/modules/layout/screens/home/product_details/widget/custom_shimmer_chip.dart';
-import 'package:delivego/presentation/modules/layout/screens/home/product_details/widget/custom_top_back_widget.dart';
-import 'package:delivego/presentation/modules/layout/screens/home/product_details/widget/custom_top_fav_widget.dart';
-import '../../../../../../../generated/locale_keys.g.dart';
+
+import '../../../../../../../../generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../../../core/global/styles/colors.dart';
-import '../../../../../../core/global/styles/styles.dart';
-import '../../../../../../core/helpers/spacing.dart';
-import '../../../../../../core/routing/navigation_services.dart';
-import '../../../../../../data/model/response/category_item_model.dart';
-import '../../../../../../data/model/response/item_extra_model.dart';
-import '../../../../../component/choose_from_list_widget.dart';
-import '../../../../../component/drop_dowen_multi_select_widget.dart';
+import '../../../../../../../core/global/styles/colors.dart';
+import '../../../../../../../core/global/styles/styles.dart';
+import '../../../../../../../core/helpers/spacing.dart';
+import '../../../../../../../core/routing/navigation_services.dart';
+import '../../../../../../../data/model/response/category_item_model.dart';
+import '../../../../../../../data/model/response/item_extra_model.dart';
+import '../../../../../../component/choose_from_list_widget.dart';
+import '../../../../../../component/drop_dowen_multi_select_widget.dart';
 
-import '../../../../../component/images/custom_image.dart';
-import '../../../../../component/texts/black_texts.dart';
-import '../../../../restaurant/restaurant_cubit.dart';
+import '../../../../../../component/images/custom_image.dart';
+import '../../../../../../component/texts/black_texts.dart';
+import '../../../../../restaurant/restaurant_cubit.dart';
 
-import '../../cart/cart_cubit.dart';
+import '../../../cart/cart_cubit.dart';
+import '../widget/custom_name_price_widget.dart';
+import '../widget/custom_shimmer_chip.dart';
+import '../widget/custom_top_back_widget.dart';
+import '../widget/custom_top_fav_widget.dart';
 
 class MealDetailsScreen extends StatefulWidget {
   final CategoryItemsData? categoriesItemsModelData;

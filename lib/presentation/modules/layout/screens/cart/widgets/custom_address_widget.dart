@@ -38,22 +38,22 @@ class CustomAddressWidget extends StatelessWidget {
                   child: Column(
                     children: [
                       verticalSpace(10),
-                      // CustomTextField(hintText: LocaleKeys.telephoneNumber.tr(),
-                      //   controller: cubit.phoneController,
-                      //   borderRadius: 50,
-                      //   textInputType: TextInputType.number,
-                      //   validationFunc: (value){
-                      //     if (value == null || value.isEmpty) {
-                      //       return LocaleKeys.telephoneNumberMes.tr();
-                      //     }
-                      //     return null;
-                      //   },
-                      //   contentHorizontalPadding: 20.w,
-                      //   fillColor:AppColors.backGroundGray,
-                      //   borderColor: AppColors.backGroundGray,
-                      //   hintColor:AppColors.customGray,
-                      // ),
-                      // verticalSpace(20),
+                      CustomTextField(hintText: LocaleKeys.telephoneNumber.tr(),
+                        controller: cubit.phoneController,
+                        borderRadius: 50,
+                        textInputType: TextInputType.number,
+                        validationFunc: (value){
+                          if (value == null || value.isEmpty) {
+                            return LocaleKeys.telephoneNumberMes.tr();
+                          }
+                          return null;
+                        },
+                        contentHorizontalPadding: 20.w,
+                        fillColor:AppColors.backGroundGray,
+                        borderColor: AppColors.backGroundGray,
+                        hintColor:AppColors.customGray,
+                      ),
+                      verticalSpace(20),
                       CustomTextField(hintText: LocaleKeys.address.tr(),
                         controller: cubit.addressController,
                         borderRadius: 50,

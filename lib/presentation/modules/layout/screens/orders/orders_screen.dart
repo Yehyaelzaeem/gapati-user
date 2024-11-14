@@ -1,5 +1,4 @@
 import 'package:delivego/presentation/modules/layout/screens/orders/widgets/custom_order_item.dart';
-
 import '../../../../../../../generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +18,6 @@ import 'orders_cubit.dart';
 
 class OrdersScreen extends StatelessWidget {
   const OrdersScreen({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     OrdersCubit cubit =OrdersCubit.get(context);
@@ -28,44 +26,65 @@ class OrdersScreen extends StatelessWidget {
       HomeCubit.get(context).token!=null&&HomeCubit.get(context).token!.isNotEmpty?
       Scaffold(
       backgroundColor: AppColors.customWhite,
-      appBar: CustomAppBar(
+          appBar: CustomAppBar(
         title: LocaleKeys.orders.tr(),
         isBackButtonExist: false,
       ),
       body:
+      BlocConsumer<OrdersCubit,OrdersState>(
+        builder: (context,state){
+          if(cubit.orderModel!=null){
+            if(cubit.orderModel!.data!.isEmpty){
+              return CustomNotFoundDataWidget(image: AppImages.cart,title: LocaleKeys.notFoundData.tr(), type: 'svg',);
+            }else{
+              return
+                Column(
+                  children: [
+                    ...cubit.orderModel!.data!.map((e) => CustomOrderItemWidget(orderModelData: e,))
+                  ],
+                );
+            }
+          }
+          else{
+            return CustomLoadingWidget();
+          }
 
+        },
+        listener: (context,state){},
+      )
 
-     Container(
-       child:  TabBarWidget(tabs: [
-         TabItemModel(
-             label: LocaleKeys.orders.tr(),
-             page: BlocConsumer<OrdersCubit,OrdersState>(
-               builder: (context,state){
-                 if(cubit.orderModel!=null){
-                   if(cubit.orderModel!.data!.isEmpty){
-                     return CustomNotFoundDataWidget(image: AppImages.cart,title: LocaleKeys.notFoundData.tr(), type: 'svg',);
-                   }else{
-                     return
-                     Column(
-                       children: [
-                         ...cubit.orderModel!.data!.map((e) => CustomOrderItemWidget(orderModelData: e,))
-                       ],
-                     );
-                   }
-                 }
-                 else{
-                   return CustomLoadingWidget();
-                 }
-
-               },
-               listener: (context,state){},
-             )),
-         TabItemModel(
-             label: LocaleKeys.prescription.tr(),
-             page:  GetAllPrescription()
-         ),
-       ]),
-     )
+     // Container(
+     //   child:  TabBarWidget(tabs: [
+     //     TabItemModel(
+     //         label: LocaleKeys.orders.tr(),
+     //         page:
+     //         BlocConsumer<OrdersCubit,OrdersState>(
+     //           builder: (context,state){
+     //             if(cubit.orderModel!=null){
+     //               if(cubit.orderModel!.data!.isEmpty){
+     //                 return CustomNotFoundDataWidget(image: AppImages.cart,title: LocaleKeys.notFoundData.tr(), type: 'svg',);
+     //               }else{
+     //                 return
+     //                 Column(
+     //                   children: [
+     //                     ...cubit.orderModel!.data!.map((e) => CustomOrderItemWidget(orderModelData: e,))
+     //                   ],
+     //                 );
+     //               }
+     //             }
+     //             else{
+     //               return CustomLoadingWidget();
+     //             }
+     //
+     //           },
+     //           listener: (context,state){},
+     //         )),
+     //     TabItemModel(
+     //         label: LocaleKeys.prescription.tr(),
+     //         page:  GetAllPrescription()
+     //     ),
+     //   ]),
+     // )
 
 
     ):

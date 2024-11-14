@@ -10,13 +10,15 @@ import '../base_usecase/base_usecase.dart';
 class BestDishUseCase implements BaseUseCase<BestDishModel>{
   final RestaurantRepository repository;
   BestDishUseCase({required this.repository});
-  Future<ResponseModel> call({required int id}) async {
-    return BaseUseCaseCall.onGetData<BestDishModel>( await repository.getBestDishes(id: id), onConvert,tag: 'BestDishUseCase');
+  Future<ResponseModel> call() async {
+    return BaseUseCaseCall.onGetData<BestDishModel>( await repository.getBestDishes(), onConvert,tag: 'BestDishUseCase');
   }
 
   @override
   ResponseModel<BestDishModel> onConvert(BaseModel baseModel) {
+    print('dsdddd ${baseModel.responseData}');
     BestDishModel? bestDishModel = BestDishModel.fromJson(baseModel.responseData);
+    print('dsdddd ${bestDishModel?.data?.length}');
 
     try{
       return ResponseModel(baseModel.status??true, baseModel.message,data: bestDishModel);

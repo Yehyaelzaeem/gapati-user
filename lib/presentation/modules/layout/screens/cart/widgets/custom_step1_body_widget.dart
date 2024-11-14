@@ -1,4 +1,3 @@
-
 import 'dart:developer';
 
 import 'package:delivego/core/global/fonts/app_fonts.dart';
@@ -8,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../../../../../../../core/global/styles/colors.dart';
 import '../../../../../../../core/global/styles/styles.dart';
 import '../../../../../../../core/helpers/spacing.dart';
@@ -27,235 +27,278 @@ import '../check_out/check_out_cubit.dart';
 import 'custom_address_widget.dart';
 
 class CustomStepBody1Widget extends StatelessWidget {
-   CustomStepBody1Widget({super.key});
+  CustomStepBody1Widget({super.key});
+
   @override
   Widget build(BuildContext context) {
-    AddressCubit cubit =AddressCubit.get(context);
-    CheckOutCubit checkOutCubit =CheckOutCubit.get(context);
+    AddressCubit cubit = AddressCubit.get(context);
+    CheckOutCubit checkOutCubit = CheckOutCubit.get(context);
     return Padding(
-      padding:  EdgeInsets.symmetric(horizontal: 16.w),
-      child:
-      BlocConsumer<AddressCubit,AddressState>(
-        builder: (BuildContext context ,AddressState state){
-          return
-            cubit.addressModel !=null?
-            cubit.addressModel!.data!.length==0?
-            Padding(
-              padding:  EdgeInsets.only(top: MediaQuery.of(context).size.height*0.35),
-              child: Column(
-                children: [
-                  Center(child: Text(LocaleKeys.notFoundAddress.tr()),),
-                  verticalSpace(10),
-                  CustomElevatedButton(
-                      backgroundColor: AppColors.whiteColor,
-                      borderColor: AppColors.customGray,
-                      fontColor: AppColors.primaryColor,
-                      borderRadius: 8,
-                      onTap: (){
-                        context.pushNamed(RoutesRestaurants.addAddressScreen);
-                      },
-                      buttonText: LocaleKeys.addAddress.tr())
-                ],
-              ),
-            ):
-              Container(
-                // height: MediaQuery.of(context).size.height*0.65,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    BlackBoldText(
-                      label: LocaleKeys.notes.tr(),
-                      fontSize: 12.sp,
-                    ),
-                    verticalSpace(10),
-                    CustomTextField(
-                      contentVerticalPadding: 16,
-                      contentHorizontalPadding: 16,
-                      hintStyle: const TextStyle(fontWeight: FontWeight.bold),
-                      fillColor: AppColors.greyColor.withOpacity(0.3),
-                      borderColor: AppColors.whiteColor.withOpacity(0.0),
-                      borderRadius: 12,
-                      maxLines: 4,
-                      hintText: '',
-                      hintColor: AppColors.black,
-                      controller: checkOutCubit.notesController,),
-                     verticalSpace(16),
-                    BlackBoldText(
-                      label: LocaleKeys.location.tr(),
-                      fontSize: 12.sp,
-                    ),
-                    verticalSpace(10),
-                     Container(
-                      decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                              color: AppColors.customGray.withOpacity(0.5),
-                              spreadRadius: 1,
-                              blurRadius: 1,
-                              offset: Offset(0, 0.5),
+        padding: EdgeInsets.symmetric(horizontal: 16.w),
+        child: BlocConsumer<AddressCubit, AddressState>(
+          builder: (BuildContext context, AddressState state) {
+            return cubit.addressModel != null
+                ? cubit.addressModel!.data!.length == 0
+                    ? Padding(
+                        padding: EdgeInsets.only(
+                            top: MediaQuery.of(context).size.height * 0.35),
+                        child: Column(
+                          children: [
+                            Center(
+                              child: Text(LocaleKeys.notFoundAddress.tr()),
                             ),
+                            verticalSpace(10),
+                            CustomElevatedButton(
+                                backgroundColor: AppColors.whiteColor,
+                                borderColor: AppColors.customGray,
+                                fontColor: AppColors.primaryColor,
+                                borderRadius: 8,
+                                onTap: () {
+                                  context.pushNamed(
+                                      RoutesRestaurants.addAddressScreen);
+                                },
+                                buttonText: LocaleKeys.addAddress.tr())
                           ],
-                          color: cubit.selectedAddressValue=='0'?
-                          AppColors.whiteColor:AppColors.whiteColor.withOpacity(0.5),
-                          borderRadius: BorderRadius.circular(8.sp)
-                      ),
-                      child:  Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Radio<String>(
-                            value: '0',
-                            groupValue: cubit.selectedAddressValue,
-                            onChanged: (String? newValue) {
-                              // print('newValue $newValue');
-                              // if(newValue!=null){
-                              //   cubit.getLocation(context).then((value) {
-                              //     cubit.changeSelectedAddress(AddressModelData(
-                              //       id: 0,
-                              //       lat: value.latitude.toString()??'0.0',
-                              //       lng: value.longitude.toString()??'0.0',
-                              //       address: cubit.addressTitle??'',
-                              //       phone: '',
-                              //       addressToNote: '',
-                              //
-                              //     ),context);
-                              //   });
+                        ),
+                      )
+                    : Container(
+                        // height: MediaQuery.of(context).size.height*0.65,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            BlackBoldText(
+                              label: LocaleKeys.notes.tr(),
+                              fontSize: 12.sp,
+                            ),
+                            verticalSpace(10),
+                            CustomTextField(
+                              contentVerticalPadding: 16,
+                              contentHorizontalPadding: 16,
+                              hintStyle:
+                                  const TextStyle(fontWeight: FontWeight.bold),
+                              fillColor: AppColors.greyColor.withOpacity(0.3),
+                              borderColor:
+                                  AppColors.whiteColor.withOpacity(0.0),
+                              borderRadius: 12,
+                              maxLines: 4,
+                              hintText: '',
+                              hintColor: AppColors.black,
+                              controller: checkOutCubit.notesController,
+                            ),
+                            verticalSpace(16),
+                            BlackBoldText(
+                              label: LocaleKeys.location.tr(),
+                              fontSize: 12.sp,
+                            ),
+                            verticalSpace(10),
+                            // Container(
+                            //   decoration: BoxDecoration(
+                            //       boxShadow: [
+                            //         BoxShadow(
+                            //           color:
+                            //               AppColors.customGray.withOpacity(0.5),
+                            //           spreadRadius: 1,
+                            //           blurRadius: 1,
+                            //           offset: Offset(0, 0.5),
+                            //         ),
+                            //       ],
+                            //       color: cubit.selectedAddressValue == '0'
+                            //           ? AppColors.whiteColor
+                            //           : AppColors.whiteColor.withOpacity(0.5),
+                            //       borderRadius: BorderRadius.circular(8.sp)),
+                            //   child: Row(
+                            //     mainAxisSize: MainAxisSize.max,
+                            //     mainAxisAlignment: MainAxisAlignment.start,
+                            //     children: [
+                            //       Radio<String>(
+                            //         value: '0',
+                            //         groupValue: cubit.selectedAddressValue,
+                            //         onChanged: (String? newValue) {
+                            //           // print('newValue $newValue');
+                            //           // if(newValue!=null){
+                            //           //   cubit.getLocation(context).then((value) {
+                            //           //     cubit.changeSelectedAddress(AddressModelData(
+                            //           //       id: 0,
+                            //           //       lat: value.latitude.toString()??'0.0',
+                            //           //       lng: value.longitude.toString()??'0.0',
+                            //           //       address: cubit.addressTitle??'',
+                            //           //       phone: '',
+                            //           //       addressToNote: '',
+                            //           //
+                            //           //     ),context);
+                            //           //   });
+                            //
+                            //           // }
+                            //         },
+                            //       ),
+                            //       Text('${LocaleKeys.currentLocation.tr()}',
+                            //           style: TextStyle(
+                            //               fontSize: 12.sp,
+                            //               fontFamily: AppFonts.lateefFont,
+                            //               fontWeight: FontWeight.bold)),
+                            //     ],
+                            //   ),
+                            // ),
+                            // verticalSpace(10),
+                            ...cubit.addressModel!.data!.map((data) =>
+                                Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 10.h),
+                                  child: Container(
+                                      padding: EdgeInsets.symmetric(horizontal: 16.w,vertical: 5.h),
+                                      decoration: BoxDecoration(
 
-                              // }
-                            },
-                          ),
-                          Text('${LocaleKeys.currentLocation.tr()}',
-                              style: TextStyle(
-                                  fontSize: 12.sp,
-                                  fontFamily: AppFonts.lateefFont,
-                                  fontWeight: FontWeight.bold)),
+                                          boxShadow: [
+                                            data.id!.toString() ==
+                                                cubit.selectedAddressValue
+                                                ?
+                                            BoxShadow(
+                                              color: AppColors.customGray.withOpacity(0.5),
+                                              spreadRadius: 1,
+                                              blurRadius: 1,
+                                              offset: Offset(3, 3),
+                                            ):BoxShadow()
+                                          ],
+                                          color: data.id!.toString() ==
+                                              cubit.selectedAddressValue
+                                              ? AppColors.whiteColor
+                                              : Colors.grey.shade200,
+                                          borderRadius: BorderRadius.circular(16.r)),
+                                      child:
+                                      InkWell(
+                                        onTap: (){
+                                          cubit.changeSelectedAddress(data,context);
 
-                        ],
-                      ),
-                    ),
-                     verticalSpace(10),
-                     ...cubit.addressModel!.data!.map((data) =>  Padding(
-                       padding:  EdgeInsets.symmetric(vertical: 10.h),
-                       child: Container(
-                         decoration: BoxDecoration(
-                             boxShadow: [
-                               BoxShadow(
-                                 color: AppColors.customGray.withOpacity(0.5),
-                                 spreadRadius: 1,
-                                 blurRadius: 1,
-                                 offset: Offset(0, 0.5),
-                               ),
-                             ],
-                             color:
-                             data.id!.toString()==cubit.selectedAddressValue?
-                             AppColors.whiteColor:AppColors.whiteColor.withOpacity(0.5),
-                             borderRadius: BorderRadius.circular(8.sp)
-                         ),
-                         child:
-                         Row(
-                           children: [
-                             Radio(
-                               activeColor:AppColors.primaryColor,
-                               value: data.id!.toString(),
-                               groupValue:  cubit.selectedAddressValue,
-                               onChanged: (value) {
-                                 // setState(() {
-                                 //   cubit.orderAddress=data;
-                                 //   currentMethod = value!;
-                                 // });
-                               },
-                             ),
-                             Text(data.address!,
-                                 style: TextStyle(
-                                     fontSize: 12.sp,
-                                     fontFamily: AppFonts.lateefFont,
-                                     fontWeight: FontWeight.bold )
-                             ),
-                           ],
-                         ),
-                       ),
-                     )),
-                    verticalSpace(16),
+                                        },
+                                        child:   Row(
+                                          children: [
+                                            Radio(
+                                              activeColor: AppColors.primaryColor,
+                                              value: data.id!.toString(),
+                                              groupValue:
+                                              cubit.selectedAddressValue,
+                                              onChanged: (value) {
+                                                cubit.changeSelectedAddress(data,context);
+                                                // setState(() {
+                                                //   cubit.orderAddress=data;
+                                                //   currentMethod = value!;
+                                                // });
+                                              },
+                                            ),
+                                            Text(data.address!,
+                                                style: TextStyle(
+                                                    fontSize: 12.sp,
+                                                    fontFamily: AppFonts.lateefFont,
+                                                    fontWeight: FontWeight.bold)),
+                                          ],
+                                        ),
+                                      )
+                                  ),
+                                ),),
+                            //m/api/stores/nearestStores?lat=30.094171807596204&lng=31.121567934751507
+                            verticalSpace(16),
 
-                    // Expanded(
-                    //   child:
-                    //   StatefulBuilder(builder: (context,setState){
-                    //     // ...cubit.addressModel!.data!.map((e) =>);
-                    //     return  ListView.builder(
-                    //       itemCount: cubit.addressModel!.data!.length,
-                    //       itemBuilder: (context,index){
-                    //         var data =cubit.addressModel!.data![index];
-                    //         return
-                    //     Padding(
-                    //         padding:  EdgeInsets.symmetric(vertical: 10.h),
-                    //         child: Container(
-                    //           decoration: BoxDecoration(
-                    //             boxShadow: [
-                    //               BoxShadow(
-                    //                 color: AppColors.customGray.withOpacity(0.5),
-                    //                 spreadRadius: 1,
-                    //                 blurRadius: 1,
-                    //                 offset: Offset(0, 0.5),
-                    //               ),
-                    //             ],
-                    //               color:
-                    //               data.id!.toString()==cubit.selectedAddressValue?
-                    //               AppColors.whiteColor:AppColors.whiteColor.withOpacity(0.5),
-                    //               borderRadius: BorderRadius.circular(8.sp)
-                    //           ),
-                    //           child:
-                    //           Row(
-                    //             children: [
-                    //               Radio(
-                    //                 activeColor:AppColors.primaryColor,
-                    //                 value: data.id!.toString(),
-                    //                 groupValue:  cubit.selectedAddressValue,
-                    //                 onChanged: (value) {
-                    //                   // setState(() {
-                    //                   //   cubit.orderAddress=data;
-                    //                   //   currentMethod = value!;
-                    //                   // });
-                    //                 },
-                    //               ),
-                    //               Text(data.address!,
-                    //               style: TextStyle(
-                    //                   fontSize: 12.sp,
-                    //                   fontFamily: AppFonts.lateefFont,
-                    //                   fontWeight: FontWeight.bold )
-                    //               ),
-                    //             ],
-                    //           ),
-                    //         ),
-                    //       );
-                    //     },
-                    //     );
-                    //   }),
-                    // ),
-                    CustomElevatedButton(
-                        height: 45,
-                        borderRadius: 12,
-                        fontSize: 17,
-                        fontColor: AppColors.whiteColor,
-                        width: MediaQuery.of(context).size.width*0.9,
-                        onTap: (){
-                          CartCubit cartCubit =CartCubit.get(context);
-                          AddressCubit addressCubit =AddressCubit.get(context);
-                          CheckOutCubit  checkOutCubit=CheckOutCubit.get(context);
-                          checkOutCubit.getDeliveryFees(params: DeliveryFeesParams(addressId: addressCubit.orderAddress?.id?.toString()??'',branchId: cartCubit.products[0].branchId!=null?cartCubit.products[0].branchId!.toString():"0"));
-                          CheckOutCubit.get(context).changeSteps(1);
-                        },
-                        buttonText: LocaleKeys.continue2.tr())
-                  ],
-                ),
-              ) :
-            Padding(
-              padding:  EdgeInsets.only(top: MediaQuery.of(context).size.height*0.35),
-              child: CustomLoadingWidget(),
-            );
-        },
-        listener: (BuildContext context ,AddressState state){},
-      )
-
-    );
+                            // Expanded(
+                            //   child:
+                            //   StatefulBuilder(builder: (context,setState){
+                            //     // ...cubit.addressModel!.data!.map((e) =>);
+                            //     return  ListView.builder(
+                            //       itemCount: cubit.addressModel!.data!.length,
+                            //       itemBuilder: (context,index){
+                            //         var data =cubit.addressModel!.data![index];
+                            //         return
+                            //     Padding(
+                            //         padding:  EdgeInsets.symmetric(vertical: 10.h),
+                            //         child: Container(
+                            //           decoration: BoxDecoration(
+                            //             boxShadow: [
+                            //               BoxShadow(
+                            //                 color: AppColors.customGray.withOpacity(0.5),
+                            //                 spreadRadius: 1,
+                            //                 blurRadius: 1,
+                            //                 offset: Offset(0, 0.5),
+                            //               ),
+                            //             ],
+                            //               color:
+                            //               data.id!.toString()==cubit.selectedAddressValue?
+                            //               AppColors.whiteColor:AppColors.whiteColor.withOpacity(0.5),
+                            //               borderRadius: BorderRadius.circular(8.sp)
+                            //           ),
+                            //           child:
+                            //           Row(
+                            //             children: [
+                            //               Radio(
+                            //                 activeColor:AppColors.primaryColor,
+                            //                 value: data.id!.toString(),
+                            //                 groupValue:  cubit.selectedAddressValue,
+                            //                 onChanged: (value) {
+                            //                   // setState(() {
+                            //                   //   cubit.orderAddress=data;
+                            //                   //   currentMethod = value!;
+                            //                   // });
+                            //                 },
+                            //               ),
+                            //               Text(data.address!,
+                            //               style: TextStyle(
+                            //                   fontSize: 12.sp,
+                            //                   fontFamily: AppFonts.lateefFont,
+                            //                   fontWeight: FontWeight.bold )
+                            //               ),
+                            //             ],
+                            //           ),
+                            //         ),
+                            //       );
+                            //     },
+                            //     );
+                            //   }),
+                            // ),
+                            BlocConsumer<CheckOutCubit, CheckOutState>(
+                                builder: (context, state) {
+                                  return CustomElevatedButton(
+                                      height: 45,
+                                      borderRadius: 12,
+                                      isLoading:
+                                      state is GetNearestBranchLoading,
+                                      fontSize: 17,
+                                      fontColor: AppColors.whiteColor,
+                                      width: MediaQuery.of(context).size.width *
+                                          0.9,
+                                      onTap: () async {
+                                        CartCubit cartCubit =
+                                            CartCubit.get(context);
+                                        AddressCubit addressCubit =
+                                            AddressCubit.get(context);
+                                        CheckOutCubit checkOutCubit =
+                                            CheckOutCubit.get(context);
+                                        await checkOutCubit.getNearestBranch(latLng: LatLng(double.parse(addressCubit.selectedAddress?.lat ?? '0'), double.parse(addressCubit.orderAddress?.lng ?? '0'))).then((value) async {
+                                          if (value == true) {
+                                            await checkOutCubit.getDeliveryFees(params: DeliveryFeesParams(
+                                                        addressId: addressCubit.selectedAddress?.id?.toString() ?? '',
+                                                        branchId:(checkOutCubit.nearestBranchModel?.data?.isNotEmpty??false)?(checkOutCubit.nearestBranchModel?.data?[0].id.toString()):'',
+                                                        branchLat: checkOutCubit.nearestBranchModel?.data?.isNotEmpty??false?(checkOutCubit.nearestBranchModel?.data?[0].lat.toString()):'',
+                                                        branchLong: checkOutCubit.nearestBranchModel?.data?.isNotEmpty??false?(checkOutCubit.nearestBranchModel?.data?[0].lng.toString()):'',
+                                                    ))
+                                                .then((value) {
+                                              if (value != '') {
+                                                CheckOutCubit.get(context)
+                                                    .changeSteps(1);
+                                              }
+                                            });
+                                          }
+                                        });
+                                      },
+                                      buttonText: LocaleKeys.continue2.tr());
+                                },
+                                listener: (context, state) {}),
+                          ],
+                        ),
+                      )
+                : Padding(
+                    padding: EdgeInsets.only(
+                        top: MediaQuery.of(context).size.height * 0.35),
+                    child: CustomLoadingWidget(),
+                  );
+          },
+          listener: (BuildContext context, AddressState state) {},
+        ));
   }
 }

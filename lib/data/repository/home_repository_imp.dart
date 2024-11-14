@@ -67,10 +67,10 @@ class HomeRepositoryImp implements HomeRepository{
   }
 
   @override
-  Future<ApiResponse> getStoreTypes()async {
+  Future<ApiResponse> getCategories()async {
     try {
       Response response = await _dioClient.get(
-        AppURL.kStoreTypesURI,
+        AppURL.kCategoriesHomeURI,
       );
       return ApiResponse.withSuccess(response);
     } catch (e) {

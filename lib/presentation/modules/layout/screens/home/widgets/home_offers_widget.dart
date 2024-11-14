@@ -8,6 +8,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../../../../core/assets_constant/images.dart';
 import '../../../../../../core/function/function.dart';
+import '../../../../../../core/global/fonts/app_fonts.dart';
 import '../../../../../../core/global/styles/colors.dart';
 import '../../../../../../core/helpers/spacing.dart';
 import '../../../../../../core/resources/color.dart';
@@ -19,7 +20,7 @@ import '../../../../../component/texts/hint_texts.dart';
 import '../../favorite/favorite_cubit.dart';
 import '../../more/address/address_cubit.dart';
 import '../home_cubit.dart';
-import '../product_details/meal_details_screen.dart';
+import '../meal/meal_details/meal_details_screen.dart';
 
 class HomeOffersWidget extends StatelessWidget {
   const HomeOffersWidget({Key? key,}) : super(key: key);
@@ -36,7 +37,7 @@ class HomeOffersWidget extends StatelessWidget {
               child: Row(
                  mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  ...cubit.homeModel?.offerData?.data
+                  ...cubit.offerList
                       ?.map((e) => InkWell(
                     onTap: (){
                       Navigator.push(context, MaterialPageRoute(builder: (context)=>
@@ -44,8 +45,8 @@ class HomeOffersWidget extends StatelessWidget {
                           CategoryItemsData(id: e.id, name: e.item?.name, image: e.item?.image??'',
                             priceAfterDiscount: e.item?.priceAfterDiscount,
                             priceDiscount: e.item?.priceAfterDiscount,
-                            price: e.item?.price, storeId: e.resturant?.id,  count: 0,),
-                            storeId: e.resturant?.id.toString()??'0', storeName: e.resturant?.name??'', type: 'details', count: 0,)));
+                            price: e.item?.price, storeId: 1,  count: 0,),
+                            storeId: '1', storeName: 'Gapati', type: 'details', count: 0,)));
                     },
                     child:
                     Container(
@@ -145,7 +146,25 @@ class HomeOffersWidget extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(50),
                                     ),
                                     child:
-                                    Icon(Icons.favorite, color: Colors.red,size: 20,),
+                                    InkWell(
+                                      onTap: (){
+                                        logInFirst(function: (){
+                                          FavoriteCubit favoriteCubit =FavoriteCubit.get(context);
+                                          setState(() {
+                                            if(e.item?.inFav==false){
+                                              favoriteCubit.addFavorite(itemId: e.item?.id??0, context: context,);
+                                              e.item?.inFav=true;
+                                            }else{
+                                              favoriteCubit.removeFavorite(itemId: e.item?.id??0, context: context);
+                                              e.item?.inFav=false;
+                                            }
+                                          });
+                                        },
+                                            context: context, screenName: 'favoriteDetails');
+                                      },
+                                      child:
+                                          e.item?.inFav==true?Icon(Icons.favorite, color: Colors.red,size: 20,):Icon(Icons.favorite_border, color: Colors.grey,size: 20,),
+                                    ),
                                   ),
                                 );
                               },)
@@ -156,82 +175,106 @@ class HomeOffersWidget extends StatelessWidget {
                          child: Column(
                            crossAxisAlignment: CrossAxisAlignment.start,
                            children: [
+                             verticalSpace(8),
                              Row(
                                children: [
-                                 CustomImage(image: e.resturant?.image ?? '', width: 50.w, height: 50.w,radius: 50,),
+                                 ClipRRect(
+                                   borderRadius: BorderRadius.circular(50),
+                                   child: Image.asset(AppImages.logo, width: 30.w, height: 30.w,),
+                                 ),
                                  horizontalSpace(10),
-                                 BlackBoldText(
-                                   label: e.resturant?.name ?? '',
-                                   fontSize: 20.sp,
-                                 ),
-                               ],
-                             ),
-                             Row(
-                               children: [
-                                 BlackBoldText(
-                                   label: '  ${e.item?.price ?? ''} ${LocaleKeys.lyd.tr()}',
-                                   fontSize: 16.sp,
-                                 ),
-                                 horizontalSpace(12),
-                                 HintSemiBoldText(
-                                   label: '${e.item?.priceAfterDiscount ?? ''} ${LocaleKeys.lyd.tr()}',
-                                   fontSize: 12.sp,
-                                   style: TextStyle(color: Colors.grey.shade400,fontWeight: FontWeight.w700, fontSize: 12.sp,decorationColor: Colors.grey.shade400,decoration: TextDecoration.lineThrough),
-                                 ),
-                                 Spacer(),
-                                 Container(
-                                   padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 0.h)+ EdgeInsets.only(top: 5.h),
-                                   decoration: BoxDecoration(
-                                     color: primaryColor.withOpacity(0.2),
-                                     borderRadius: BorderRadius.circular(30),
-                                   ),
-                                   child:   BlackMediumText(
-                                     labelColor: primaryColor.withOpacity(0.7),
-                                     label: '%${e.item?.priceDiscount ?? ''} ${'OFF'}',
-                                     fontSize: 12.sp,
-                                   ),
-                                 )
-                               ],
-                             ),
-                             verticalSpace(2),
-                             Row(
-                               children: [
-                                 Icon(Icons.star, color: Colors.yellow,size: 20,),
-                                 HintSemiBoldText(
-                                   label: '(85) 4.5',
-                                   fontSize: 12.sp,
-                                 ),
-                                 horizontalSpace(15),
-                                 HintSemiBoldText(
-                                   label: '${e.item?.categoryName??''}',
-                                   fontSize: 12.sp,
-                                 ),
-
-                                 Spacer(),
-                                 Container(
-                                     padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 0.h)+ EdgeInsets.only(top: 5.h),
-                                     decoration: BoxDecoration(
-                                       color: Colors.blue.withOpacity(0.2),
-                                       borderRadius: BorderRadius.circular(30),
-                                     ),
-                                     child:   Row(
-                                       crossAxisAlignment: CrossAxisAlignment.start,
+                                 Expanded(child:
+                                 Column(
+                                   crossAxisAlignment: CrossAxisAlignment.start,
+                                   children: [
+                                     Row(
                                        children: [
-                                         Icon(Icons.timelapse, color: Colors.black.withOpacity(0.7),size: 15,),
-                                         horizontalSpace(5),
-                                         BlackMediumText(
-
-                                           labelColor: Colors.black.withOpacity(0.7),
-                                           label: '30 دقيقة',
+                                         BlackBoldText(
+                                           label: e.item?.name ?? '',
                                            fontSize: 12.sp,
                                          ),
-                                       ],
-                                     )
-                                 )
+                                         horizontalSpace(10),
+                                         Row(
+                                           children: [
+                                             Icon(Icons.star, color: Colors.yellow,size: 20,),
+                                             HintSemiBoldText(
+                                               label: '(85) 4.5',
+                                               fontSize: 12.sp,
+                                             ),
 
+                                           ],
+                                         ),
+                                       ],
+                                     ),
+                                     Row(
+                                       children: [
+                                         BlackBoldText(
+                                           label: '  ${e.item?.priceAfterDiscount ?? ''} ${LocaleKeys.lyd.tr()}',
+                                           fontSize: 12.sp,
+
+                                         ),
+                                         horizontalSpace(5),
+                                         HintSemiBoldText(
+                                           label: '${e.item?.price ?? ''} ${LocaleKeys.lyd.tr()}',
+                                           fontSize: 12.sp,
+                                           style: TextStyle(color: Colors.grey.shade400,fontWeight: FontWeight.w700,
+                                               fontFamily: AppFonts.cairo,
+                                               fontSize: 12.sp,decorationColor: Colors.grey.shade400,
+                                               decoration: TextDecoration.lineThrough),
+                                         ),
+                                         Spacer(),
+                                         Container(
+                                           padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 0.h)+ EdgeInsets.only(top: 0.h),
+                                           decoration: BoxDecoration(
+                                             color: primaryColor.withOpacity(0.2),
+                                             borderRadius: BorderRadius.circular(30),
+                                           ),
+                                           child:   BlackMediumText(
+                                             labelColor: primaryColor.withOpacity(0.7),
+                                             label: '%${e.item?.priceDiscount ?? ''} ${'OFF'}',
+                                             fontSize: 12.sp,
+                                           ),
+                                         )
+                                       ],
+                                     ),
+                                     Row(
+                                       children: [
+                                         HintSemiBoldText(
+                                           label: '${e.item?.categoryName??''}',
+                                           fontSize: 12.sp,
+                                         ),
+
+                                         Spacer(),
+                                         Container(
+                                             margin: EdgeInsets.only(top: 2.h),
+                                             padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h)+ EdgeInsets.only(top: 0.h),
+                                             decoration: BoxDecoration(
+                                               color: Colors.blue.withOpacity(0.2),
+                                               borderRadius: BorderRadius.circular(30),
+                                             ),
+                                             child:   Row(
+                                               crossAxisAlignment: CrossAxisAlignment.end,
+                                               mainAxisAlignment: MainAxisAlignment.end,
+                                               children: [
+                                                 Icon(Icons.timelapse, color: Colors.black.withOpacity(0.7),size: 15,),
+                                                 horizontalSpace(5),
+                                                 BlackMediumText(
+
+                                                   labelColor: Colors.black.withOpacity(0.7),
+                                                   label: '30 دقيقة',
+                                                   fontSize: 12.sp,
+                                                 ),
+                                               ],
+                                             )
+                                         )
+                                       ],
+                                     ),
+                                   ],
+                                 )
+                                 )
                                ],
                              ),
-                           ],
+                           ]
                          ),
                          ),
                           verticalSpace(4),
@@ -242,14 +285,13 @@ class HomeOffersWidget extends StatelessWidget {
                               height: 30.h,
                               categoriesItemsModelData:CategoryItemsData(
                                 id: e.id, name: e.item?.name,
-                                branchId: (e.resturant?.branch?.isEmpty??false)?0:e.resturant?.branch?[0].id??0,
+                                branchId: 1,
                                 image: e.item?.image??'',
                                 priceAfterDiscount: e.item?.priceAfterDiscount,
                                 priceDiscount: e.item?.priceAfterDiscount,
-                                price: e.item?.price, storeId: e.resturant?.id,  count: 0,), storeName: 'offers',),
+                                price: e.item?.price, storeId: 1,  count: 0,), storeName: 'offers',),
                           ),
-                          verticalSpace(8),
-
+                          verticalSpace(5),
                         ],
                       )
                     ),

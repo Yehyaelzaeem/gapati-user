@@ -1,22 +1,117 @@
 {
   "project_info": {
-    "project_number": "219224693462",
-    "firebase_url": "https://yalla-hatly-default-rtdb.firebaseio.com",
-    "project_id": "yalla-hatly",
-    "storage_bucket": "yalla-hatly.appspot.com"
+    "project_number": "380787605879",
+    "firebase_url": "https://one-chapati-default-rtdb.firebaseio.com",
+    "project_id": "one-chapati",
+    "storage_bucket": "one-chapati.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:219224693462:android:ce96fdadec26e7722b8777",
+        "mobilesdk_app_id": "1:380787605879:android:cd2292330c4e6e8d476172",
         "android_client_info": {
-          "package_name": "com.yalla.store"
+          "package_name": "com.chapati.delivery"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDyfsg9K5t2kiNMjVy1D7i2w1Yu-B_yfWI"
+          "current_key": "AIzaSyDt3pKPm1IA96l0ZXZD2HTno6fCXxDECSE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:380787605879:android:9e250ad725ad8f7c476172",
+        "android_client_info": {
+          "package_name": "com.chapati.store"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDt3pKPm1IA96l0ZXZD2HTno6fCXxDECSE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:380787605879:android:dd7adb51cee8bb73476172",
+        "android_client_info": {
+          "package_name": "com.gapati.Partners"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDt3pKPm1IA96l0ZXZD2HTno6fCXxDECSE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:380787605879:android:55ad21dd092b0785476172",
+        "android_client_info": {
+          "package_name": "com.gapati.store"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDt3pKPm1IA96l0ZXZD2HTno6fCXxDECSE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:380787605879:android:8a40689c25904b9c476172",
+        "android_client_info": {
+          "package_name": "com.one_chapati.delivery"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDt3pKPm1IA96l0ZXZD2HTno6fCXxDECSE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:380787605879:android:6cbdf87906fb5211476172",
+        "android_client_info": {
+          "package_name": "com.onechapati.delivery"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDt3pKPm1IA96l0ZXZD2HTno6fCXxDECSE"
         }
       ],
       "services": {

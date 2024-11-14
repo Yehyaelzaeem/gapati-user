@@ -81,10 +81,6 @@ class CustomStepBody2Widget extends StatelessWidget {
               fontSize: 17,
               fontColor: AppColors.whiteColor,
               onTap: (){
-                CartCubit cartCubit =CartCubit.get(context);
-                AddressCubit addressCubit =AddressCubit.get(context);
-                CheckOutCubit  checkOutCubit=CheckOutCubit.get(context);
-                checkOutCubit.getDeliveryFees(params: DeliveryFeesParams(addressId: addressCubit.orderAddress?.id?.toString()??'',branchId: cartCubit.products[0].branchId!=null?cartCubit.products[0].branchId!.toString():"0"));
 
                 cubit.changeSteps(2);
 

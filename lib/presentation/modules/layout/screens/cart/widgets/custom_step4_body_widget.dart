@@ -59,34 +59,36 @@ class CustomStepBody4Widget extends StatelessWidget {
              ),
            ),
            verticalSpace(15),
-           Container(
-             decoration: BoxDecoration(
-                 borderRadius: BorderRadius.circular(50),
-                 color: AppColors.whiteColor
-             ),
-             child: Row(
-               children: [
-                 Radio(
-                   value: '1',
-                   groupValue: selectedRadioValue,
-                   onChanged: (value) {
-                     setState(() {
-                       selectedRadioValue = value.toString();
-                     });
-                   },
-                 ),
-                 Text(LocaleKeys.creditCard.tr(),
-                   style: TextStyles.font16Black600Weight.copyWith(
-                     color: AppColors.customGray,
-                     fontWeight: FontWeight.w700,
-                   ),
-                 ),
-                 // const Spacer(),
-                 // const Icon(Icons.arrow_forward_ios_outlined),
-                 // horizontalSpace(10)
-               ],
-             ),
-           ),
+           // Container(
+           //   decoration: BoxDecoration(
+           //       borderRadius: BorderRadius.circular(50),
+           //       color: AppColors.whiteColor
+           //   ),
+           //   child: Row(
+           //     children: [
+           //       Radio(
+           //         value: '1',
+           //         groupValue: selectedRadioValue,
+           //         onChanged: (value) {
+           //           setState(() {
+           //             selectedRadioValue = value.toString();
+           //           });
+           //         },
+           //       ),
+           //       Text(LocaleKeys.creditCard.tr(),
+           //         style: TextStyles.font16Black600Weight.copyWith(
+           //           color: AppColors.customGray,
+           //           fontWeight: FontWeight.w700,
+           //         ),
+           //       ),
+           //       // const Spacer(),
+           //       // const Icon(Icons.arrow_forward_ios_outlined),
+           //       // horizontalSpace(10)
+           //     ],
+           //   ),
+           // ),
+
+
            // Container(
            //   decoration: BoxDecoration(
            //       borderRadius: BorderRadius.circular(50),

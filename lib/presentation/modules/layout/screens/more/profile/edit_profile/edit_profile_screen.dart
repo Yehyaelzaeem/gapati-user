@@ -1,10 +1,12 @@
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../../../core/helpers/spacing.dart';
 import '../../../../../../../../core/routing/navigation_services.dart';
 import '../../../../../../../core/global/styles/colors.dart';
+import '../../../../../../../generated/locale_keys.g.dart';
 import '../../../../../../component/custom_app_bar.dart';
 import '../../../../../../component/custom_elevated_button.dart';
 import '../../../../../../component/custom_text_field.dart';
@@ -21,8 +23,8 @@ class EditProfileScreen extends StatelessWidget {
     cubit.pushProfileData();
     return Scaffold(
       backgroundColor: AppColors.backGroundGray,
-      appBar: const CustomAppBar(
-        title: 'Edit Profile',
+      appBar:  CustomAppBar(
+        title: '${LocaleKeys.updateProfile.tr()}',
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -81,16 +83,16 @@ class EditProfileScreen extends StatelessWidget {
                                   )]
                               ),
                               child: CustomTextField(
-                                  // validationFunc: (value) {
-                                  //   if (value == null || value.isEmpty) {
-                                  //     return 'The email is empty';
-                                  //   }
-                                  //   return null;
-                                  // },
+                                  validationFunc: (value) {
+                                    // if (value == null || value.isEmpty) {
+                                    //   return 'The email is empty';
+                                    // }
+                                    return null;
+                                  },
                                   borderRadius: 30,
                                   prefixIcon: const Icon(Icons.email),
                                   borderColor: AppColors.whiteColor.withOpacity(0.1),
-                                  hintText: 'email', controller: cubit.emailController),
+                                  hintText:'${LocaleKeys.email.tr()}', controller: cubit.emailController),
                             ),
                             verticalSpace(30),
                             Container(
@@ -133,7 +135,7 @@ class EditProfileScreen extends StatelessWidget {
                                     }
                                   },
                                   isLoading: state is UpdateProfileLoadingState,
-                                  buttonText: 'Save'),
+                                  buttonText:'${LocaleKeys.save.tr()}'),
                             ),
                             verticalSpace(20),
                             // Container(

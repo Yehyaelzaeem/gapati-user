@@ -184,17 +184,17 @@ class MoreScreen extends StatelessWidget {
                       //     },
                       //   ),),
                       // verticalSpace(20),
-                      CustomIsUser(
-                        isUser: isUser,
-                        widget: CustomProfileItemWidget(
-                        backgroundColor: Colors.blue,
-                        iconData: Icons.message_outlined,
-                        text:LocaleKeys.messages.tr(),
-                        onTap: () {
-                          context.pushNamed(RoutesRestaurants.chatsScreen);
-                        },
-                      ),),
-                      verticalSpace(20),
+                      // CustomIsUser(
+                      //   isUser: isUser,
+                      //   widget: CustomProfileItemWidget(
+                      //   backgroundColor: Colors.blue,
+                      //   iconData: Icons.message_outlined,
+                      //   text:LocaleKeys.messages.tr(),
+                      //   onTap: () {
+                      //     context.pushNamed(RoutesRestaurants.chatsScreen);
+                      //   },
+                      // ),),
+                      // verticalSpace(20),
                       CustomProfileItemWidget(
                         backgroundColor: Colors.cyanAccent.shade700,
                         iconData: Icons.info_outline,

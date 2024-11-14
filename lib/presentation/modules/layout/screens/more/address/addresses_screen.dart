@@ -110,22 +110,32 @@ class _AddressesScreenState extends State<AddressesScreen> {
                                                   onChanged: (String? newValue) {
                                                     print('newValue $newValue');
                                                     if(newValue!=null){
-                                                      showChangeDefaultAddressDialog(context,
-                                                              (){
-                                                                cubit.getLocation(context).then((value) {
-                                                                  cubit.changeSelectedAddress(AddressModelData(
-                                                                    id: 0,
-                                                                    lat: value.latitude.toString()??'0.0',
-                                                                    lng: value.longitude.toString()??'0.0',
-                                                                    address: cubit.addressTitle??'',
-                                                                    phone: '',
-                                                                    addressToNote: '',
+                                                      // showChangeDefaultAddressDialog(context,
+                                                      //         (){
+                                                      //           cubit.getLocation(context).then((value) {
+                                                      //             cubit.changeSelectedAddress(AddressModelData(
+                                                      //               id: 0,
+                                                      //               lat: value.latitude.toString()??'0.0',
+                                                      //               lng: value.longitude.toString()??'0.0',
+                                                      //               address: cubit.addressTitle??'',
+                                                      //               phone: '',
+                                                      //               addressToNote: '',
+                                                      //
+                                                      //             ),context);
+                                                      //           });
+                                                      //     }
+                                                      // );
+                                                      cubit.getLocation(context).then((value) {
+                                                        cubit.changeSelectedAddress(AddressModelData(
+                                                          id: 0,
+                                                          lat: value.latitude.toString()??'0.0',
+                                                          lng: value.longitude.toString()??'0.0',
+                                                          address: cubit.addressTitle??'',
+                                                          phone: '',
+                                                          addressToNote: '',
 
-                                                                  ),context);
-                                                                });
-                                                          }
-                                                      );
-
+                                                        ),context);
+                                                      });
 
                                                     }
                                                   },

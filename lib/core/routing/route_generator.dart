@@ -20,8 +20,7 @@ import '../../presentation/modules/layout/screens/cart/check_out/chech_out_scree
 import '../../presentation/modules/layout/screens/cart/order_success/order_success_screen.dart';
 import '../../presentation/modules/layout/screens/home/categories/categories_screen.dart';
 import '../../presentation/modules/layout/screens/home/home_screen.dart';
-import '../../presentation/modules/layout/screens/home/meal/add_meal_screen.dart';
-import '../../presentation/modules/layout/screens/home/product_details/meal_details_screen.dart';
+import '../../presentation/modules/layout/screens/home/meal/meal_details/meal_details_screen.dart';
 import '../../presentation/modules/layout/screens/home/store/restaurant_screen.dart';
 import '../../presentation/modules/layout/screens/more/about_us/about_us_screen.dart';
 import '../../presentation/modules/layout/screens/more/address/add_address/add_address_screen.dart';
@@ -69,8 +68,7 @@ class RouteRestaurantsGenerator {
         return platformPageRoute( RateScreen(orderId:  arguments?['orderId'],));
         case RoutesRestaurants.loginScreen:
         return platformPageRoute( const LoginScreen());
-        case RoutesRestaurants.addMealScreen:
-        return platformPageRoute(const AddMealScreen());
+
         case RoutesRestaurants.chatsScreen:
         return platformPageRoute(const ChatsScreen());
         case RoutesRestaurants.chatRoomScreen:
@@ -86,7 +84,7 @@ class RouteRestaurantsGenerator {
       case RoutesRestaurants.orderDetailsScreen:
         return platformPageRoute(OrderDetailsScreen(
           orderId: arguments?['orderId'],
-          total: arguments?['total'], phone: arguments?['phone'], address:arguments?['address'],
+          orderModelData: arguments?['orderModelData'], phone: arguments?['phone'], address:arguments?['address'],
         ));
       case RoutesRestaurants.splashScreen:
         return platformPageRoute(const SplashPage());
@@ -115,8 +113,8 @@ class RouteRestaurantsGenerator {
         return platformPageRoute(const AddressesScreen());
       case RoutesRestaurants.notification:
         return platformPageRoute(const NotificationScreen());
-      case RoutesRestaurants.restaurantsScreen:
-        return platformPageRoute(const RestaurantsScreen());
+      // case RoutesRestaurants.restaurantsScreen:
+      //   return platformPageRoute(const RestaurantsScreen());
      case RoutesRestaurants.latestSalesScreen:
         return platformPageRoute(const LatestSalesScreen());
      case RoutesRestaurants.offersScreen:

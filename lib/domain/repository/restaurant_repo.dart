@@ -8,9 +8,9 @@ import '../request_body/register_body.dart';
 
 mixin RestaurantRepository {
   Future<ApiResponse> getCategories({required int id}) ;
-  Future<ApiResponse> getBestDishes({required int id}) ;
+  Future<ApiResponse> getBestDishes() ;
   Future<ApiResponse> getCategoriesItems({required int categoryId,required int storeId}) ;
   Future<ApiResponse> getItemsExtra({required int itemId}) ;
-  Future<ApiResponse> searchItem({required String  searchText,required int storeId,}) ;
+  Future<ApiResponse> searchItem({required String  searchText}) ;
 
 }

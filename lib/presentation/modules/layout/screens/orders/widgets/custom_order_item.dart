@@ -22,7 +22,7 @@ class CustomOrderItemWidget extends StatelessWidget {
     return InkWell(
       onTap: (){
         NavigationService.push(RoutesRestaurants.orderDetailsScreen,arguments: {
-          'orderId':orderModelData.id!,'total':orderModelData.price,
+          'orderId':orderModelData.id!,'orderModelData':orderModelData,
           'phone':orderModelData.phone!=null?orderModelData.phone!:'','address':orderModelData.toAddress,
         });
       },
@@ -73,7 +73,7 @@ class CustomOrderItemWidget extends StatelessWidget {
                       crossAxisAlignment:  CrossAxisAlignment.end,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text(' ${(double.parse(orderModelData.price?.toString()??'0.0') +(double.parse(orderModelData.deliveryPrice?.toString()??'0.0')))} ${LocaleKeys.lyd.tr()}',style: TextStyles.font18Black700Weight.copyWith(
+                        Text(' ${(double.parse(orderModelData.price?.toString()??'0.0') +(double.parse(orderModelData.tripModel?.data?.price?.toString()??'0.0')))} ${LocaleKeys.lyd.tr()}',style: TextStyles.font18Black700Weight.copyWith(
                             color: AppColors.secondPrimaryColor),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,),

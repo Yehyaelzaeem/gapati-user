@@ -81,15 +81,15 @@ class BestDishModelData {
   String? descriptionAr;
   int? categoryId;
   String? categoryName;
-  String? price;
-  String? priceDiscount;
-  double? priceAfterDiscount;
+  dynamic price;
+  dynamic priceDiscount;
+  dynamic priceAfterDiscount;
   int? storeId;
   String? image;
   bool? incart;
   int? bestDishes;
   bool? inFav;
-  List<ExtraData>? itemsExtrat;
+  ExtraModel? itemsExtrat;
   ProductSize? size;
   bool? published;
 
@@ -123,13 +123,10 @@ class BestDishModelData {
         ? ProductSize.fromJson(json['items_size'])
         : null)
         : null;
-
-    if (json['items_extrat'] != null) {
-      itemsExtrat = <ExtraData>[];
-      json['items_extrat'].forEach((v) {
-        itemsExtrat!.add(new ExtraData.fromJson(v));
-      });
-    }
+    itemsExtrat = json['items_extrat'] != null
+        ? (json['items_extrat'] is Map<String, dynamic>
+        ? ExtraModel.fromJson(json['items_extrat'])
+        : null):null;
     published = json['published'];
   }
 

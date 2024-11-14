@@ -50,10 +50,10 @@ class RestaurantRepositoryImp implements RestaurantRepository{
   }
 
   @override
-  Future<ApiResponse> searchItem({required String searchText, required int storeId}) async{
+  Future<ApiResponse> searchItem({required String searchText,}) async{
     try {
       Response response = await _dioClient.get(
-          AppURL.kSearchItemURI(searchText: searchText, storeId: storeId)
+          AppURL.kSearchItemURI(searchText: searchText,)
       );
       return ApiResponse.withSuccess(response);
     } catch (e) {
@@ -62,10 +62,10 @@ class RestaurantRepositoryImp implements RestaurantRepository{
   }
 
   @override
-  Future<ApiResponse> getBestDishes({required int id})async {
+  Future<ApiResponse> getBestDishes()async {
     try {
       Response response = await _dioClient.get(
-          AppURL.kBestDishURI(id)
+          AppURL.kBestDishURI
       );
       return ApiResponse.withSuccess(response);
     } catch (e) {

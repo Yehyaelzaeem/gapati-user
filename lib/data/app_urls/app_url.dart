@@ -6,7 +6,7 @@ import '../model/response/home_params.dart';
 class AppURL {
 
   static const String kAPIKey = "";
-  static  String kBaseURL = "http://yalla-hatly.matrixclouds.net/api/";
+  static  String kBaseURL = "https://one-chapati.com/api/";
   static const String kApiGoogleMap = "AIzaSyCcLzjD-Xxomlnw7ALIFCNzp4pQzoAp64Y";
 
   ///Auth
@@ -25,13 +25,13 @@ class AppURL {
   static  String kHomeURI (HomeParams params)=>  "home?lat=${params.latLng?.latitude}&lng=${params.latLng?.longitude}&store_type_id=${params.storeId}";
   static  String kStoresURI (HomeParams params)=>  "stores/nearestStores?lat=${params.latLng?.latitude}&lng=${params.latLng?.longitude}&store_type_id=${params.storeId}";
   static const String kOffersURI = "stores/offers";
-  static const String kStoreTypesURI = "home-store-type";
-  static const String kBannersURI = "home-banner";
+  static const String kCategoriesHomeURI = "stores/all-categories";
+  static const String kBannersURI = "banner";
   static  String kRestaurantsNearest (HomeParams params)=> "home?lat=${params.latLng?.latitude}&lng=${params.latLng?.longitude}&store_type_id=${params.storeId}";
   static  String kCategoriesURI (int id)=> "stores/all-categories?store_id=$id";
   static  String kItemExtraURI (int id)=> "stores/items/single?item_id=$id";
-  static  String kBestDishURI (int id)=> "stores/best_dishes?store_id=$id";
-  static  String kSearchItemURI ({required String searchText,required int storeId})=> "stores/items/search?store_id=$storeId&search=$searchText";
+  static  String kBestDishURI = "stores/items/best_dishes";
+  static  String kSearchItemURI ({required String searchText})=> "stores/items/search?search=$searchText";
   static  String kCategoriesItemsURI ({required int categoryId,required int storeId})=> "stores/categories?category_id=$categoryId&store_id=$storeId";
   static const String kSendPrescriptionURL = "stores/checkout/send-prescription";
   static const String kGetPrescriptionUrl = "stores/checkout/prescription";
@@ -57,6 +57,7 @@ class AppURL {
   ///checkout
   static const String kCheckOutURL = "stores/checkout/store";
   static const String kGetDeliveryFees = "stores/checkout/delivery_fees";
+  static  String kGetNearestBranchURL(LatLng latLng) => "stores/nearestStores?lat=${latLng.latitude}&lng=${latLng.longitude}";
   ///Search
   static  String kSearchURL(String searchText) => "stores/search?search=$searchText";
   ///more

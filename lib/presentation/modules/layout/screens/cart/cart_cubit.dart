@@ -70,16 +70,17 @@ class CartCubit extends Cubit<CartState> {
 
   }
   Future<dynamic> addQty(CategoryItemsData product,String? storeName) async {
-    if (products.where((CategoryItemsData element) => element.id == product.id && element.itemExtraModelDataSelected==product.itemExtraModelDataSelected).toList().length == 0){
+    if (products.where((CategoryItemsData element) => element.id == product.id).toList().length == 0){
       addProduct(product: product, storeName: storeName!);
       emit(GetCartDataState());
     }else{
       product.count = product.count! + 1;
-      products.where((CategoryItemsData element) => element.id == product.id && element.itemExtraModelDataSelected==product.itemExtraModelDataSelected).first.count = product.count;
+      products[products.indexOf(product)].count=product.count;
+      // products.where((CategoryItemsData element) => element.id == product.id && element.itemExtraModelDataSelected==product.itemExtraModelDataSelected).first.count = product.count;
       emit(GetCartDataState());
 
     }
-      emit(GetCartDataState());
+    emit(GetCartDataState());
   }
   Future<dynamic> updateExtra(CategoryItemsData product,List<ItemExtraModelData> itemExtraModelData) async {
     product.itemExtraModelDataSelected=itemExtraModelData;

@@ -50,12 +50,11 @@ class RestaurantCubit extends Cubit<RestaurantState> {
     return responseModel;
   }
   BestDishModel? bestDishModel;
-  Future<dynamic> getBestDishes({required int id}) async {
+  Future<dynamic> getBestDishes() async {
    try{
-     print('dsdd');
      bestDishModel=null;
      emit(GetBestDishLoadingState()) ;
-     ResponseModel responseModel = await _bestDishUseCase.call(id: id);
+     ResponseModel responseModel = await _bestDishUseCase.call();
      if (responseModel.isSuccess) {
        bestDishModel=responseModel.data;
        print('dsdd ${bestDishModel?.data?.length??'sss'}');
@@ -70,7 +69,7 @@ class RestaurantCubit extends Cubit<RestaurantState> {
   SearchItemModel? searchItemModel;
   Future<ResponseModel> searchItems({required int storeId,required String searchText}) async {
     emit(SearchLoadingState()) ;
-    ResponseModel responseModel = await _searchItemsUseCase.call(searchText: searchText, storeId: storeId);
+    ResponseModel responseModel = await _searchItemsUseCase.call(searchText: searchText,);
     if (responseModel.isSuccess) {
        searchItemModel =responseModel.data;
       emit(SearchSuccessState()) ;
@@ -101,7 +100,8 @@ class RestaurantCubit extends Cubit<RestaurantState> {
     if (responseModel.isSuccess) {
       CategoryItemModel categoriesItemsModel =responseModel.data;
       categoryItemsModelList=categoriesItemsModel.data!.categoryItems!.data!;
-      categoryItemsModelList?.map((e) => e.branchId=branchId).toList();
+      categoryItemsModelList?.map((e) => e.branchId=1).toList();
+      print('55551as5d1asd ${categoryItemsModelList}');
       emit(GetCategoriesSuccessState()) ;
     }else{
       emit(GetCategoriesErrorState()) ;

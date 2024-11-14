@@ -19,6 +19,8 @@ class BannerUseCase implements BaseUseCase<BannersModel>{
   ResponseModel<BannersModel> onConvert(BaseModel baseModel) {
     try{
       BannersModel? bannersModel = BannersModel.fromJson(baseModel.responseData);
+
+
       return ResponseModel(baseModel.status??true, baseModel.message,data: bannersModel);
     }catch(e){
       return ResponseModel(baseModel.status??false, baseModel.message,data: baseModel.responseData);

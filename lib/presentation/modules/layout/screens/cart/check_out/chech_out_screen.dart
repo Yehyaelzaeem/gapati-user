@@ -2,6 +2,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../../../../../../../core/global/styles/colors.dart';
 import '../../../../../../core/function/function.dart';
 import '../../../../../../core/helpers/toast_states/enums.dart';
@@ -24,11 +25,12 @@ class CheckOutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CheckOutCubit cubit =CheckOutCubit.get(context);
+    AddressCubit addressCubit =AddressCubit.get(context);
     return BlocConsumer<CheckOutCubit, CheckOutState>(
       listener: (context, state) {},
       builder: (context, state) {
         return Scaffold(
-            backgroundColor: AppColors.backGroundGray,
+            backgroundColor: Colors.white,
             appBar:
              CustomAppBar(title: cubit.currentStep==0?LocaleKeys.address.tr():
              cubit.currentStep==1?LocaleKeys.delivery.tr():
@@ -40,15 +42,16 @@ class CheckOutScreen extends StatelessWidget {
               elevation: 0,
               margin: EdgeInsets.zero,
               onStepTapped: (int step) {
-                cubit.changeSteps(step);
+                // cubit.changeSteps(step);
                 print('state $step');
-                if(step==2 || step==1){
-                  CartCubit cartCubit =CartCubit.get(context);
-                  AddressCubit addressCubit =AddressCubit.get(context);
-                  CheckOutCubit  checkOutCubit=CheckOutCubit.get(context);
-                  checkOutCubit.getDeliveryFees(params: DeliveryFeesParams(addressId: addressCubit.orderAddress?.id?.toString()??'',branchId: cartCubit.products[0].branchId!=null?cartCubit.products[0].branchId!.toString():"0"));
-
-                }
+                // if( step==1){
+                //   cubit.getNearestBranch(latLng: LatLng(double.parse(addressCubit.orderAddress?.lat??'0'),double.parse(addressCubit.orderAddress?.lng??'0')));
+                // }
+                // if( step==2){
+                //   CartCubit cartCubit =CartCubit.get(context);
+                //   cubit.getDeliveryFees(params: DeliveryFeesParams(addressId: addressCubit.orderAddress?.id?.toString()??'',branchId: cartCubit.products[0].branchId!=null?cartCubit.products[0].branchId!.toString():"0"));
+                //
+                // }
                 // if(HomeCubit.get(context).token!=null&&HomeCubit.get(context).token!.isNotEmpty){
                 //    cubit.changeSteps(step);
                 //    // if(AddressCubit.get(context).lastAddressModel!=null){
@@ -93,8 +96,7 @@ class CheckOutScreen extends StatelessWidget {
               ],
               controlsBuilder: (BuildContext context,
                   ControlsDetails controlsDetails) {
-                return const SizedBox
-                    .shrink(); // Return an empty container to hide the buttons
+                return const SizedBox.shrink(); // Return an empty container to hide the buttons
               },
 
             ));

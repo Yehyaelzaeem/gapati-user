@@ -59,7 +59,7 @@ class CartScreen extends StatelessWidget {
                              iconBackGround: AppColors.primaryColor),
                         SizedBox(height: 10.h,),
                             if(cubit.products.isNotEmpty)
-                               ...cubit.products.map((e) =>  CustomCartItem(product: e,hasShadow: true, storeId:e.storeId!.toString(),))
+                               ...cubit.products.map((e) =>  CustomCartItem(product: e,hasShadow: true, storeId:'1',))
                             else
                              const SizedBox.shrink(),
 

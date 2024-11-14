@@ -26,13 +26,13 @@ class CustomExpansionTileWidget extends StatefulWidget {
 class _CustomExpansionTileWidgetState extends State<CustomExpansionTileWidget> {
   TextEditingController _addressController =TextEditingController();
   TextEditingController _noteController =TextEditingController();
-  // TextEditingController _phoneController =TextEditingController();
+  TextEditingController _phoneController =TextEditingController();
   TextEditingController _locationController =TextEditingController();
   @override
   void initState() {
     _addressController=TextEditingController(text: widget.addressModelData.address??'' );
     _noteController=TextEditingController(text: widget.addressModelData.addressToNote??'' );
-    // _phoneController=TextEditingController(text: widget.addressModelData.phone??'' );
+    _phoneController=TextEditingController(text: widget.addressModelData.phone??'' );
     _locationController=TextEditingController(text: '${widget.addressModelData.lat}/${widget.addressModelData.lng}'??'' );
     super.initState();
   }
@@ -74,12 +74,12 @@ class _CustomExpansionTileWidgetState extends State<CustomExpansionTileWidget> {
                      onChanged: (String? newValue) {
                        print('newValue $newValue');
                        if(newValue!=null){
-                         showChangeDefaultAddressDialog(context,
-                             (){
-                               cubit.changeSelectedAddress(widget.addressModelData,context);
-                             }
-                         );
-
+                         // showChangeDefaultAddressDialog(context,
+                         //     (){
+                         //       cubit.changeSelectedAddress(widget.addressModelData,context);
+                         //     }
+                         // );
+                         cubit.changeSelectedAddress(widget.addressModelData,context);
                        }
                      },
                    ),
@@ -92,20 +92,20 @@ class _CustomExpansionTileWidgetState extends State<CustomExpansionTileWidget> {
                  ],
               ),
               children: <Widget>[
-                // Text(
-                //   LocaleKeys.phone.tr(),
-                //   style: TextStyle(
-                //       fontSize: 14.sp,
-                //       fontWeight: FontWeight.w500),
-                // ),
-                // TextField(
-                //     controller:_phoneController,
-                //     decoration: InputDecoration(
-                //         hintStyle: TextStyle(
-                //             fontWeight: FontWeight.w400,
-                //             fontSize: 14.sp,
-                //             color: Color(0xff4B4B4B)))),
-                // SizedBox(height: 25.h),
+                Text(
+                  LocaleKeys.phone.tr(),
+                  style: TextStyle(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w500),
+                ),
+                TextField(
+                    controller:_phoneController,
+                    decoration: InputDecoration(
+                        hintStyle: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 14.sp,
+                            color: Color(0xff4B4B4B)))),
+                SizedBox(height: 25.h),
                 Text(
                   LocaleKeys.address.tr(),
                   style: TextStyle(
@@ -171,7 +171,7 @@ class _CustomExpansionTileWidgetState extends State<CustomExpansionTileWidget> {
                     onTap: (){
                       AddressBody addressBody=
                       AddressBody(addressNote: _noteController.text, address: _addressController.text, latitude: cubit.lat.toString()??'00', longitude: cubit.long.toString()??'00',
-                          phone: '');
+                          phone: _phoneController.text);
                       cubit.updateAddress(addressId: widget.addressModelData.id!, addressBody: addressBody, context: context);
                     },
                     buttonText: LocaleKeys.update.tr()),

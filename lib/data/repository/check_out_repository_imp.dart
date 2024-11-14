@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:delivego/data/model/response/delivery_fees_params.dart';
 import 'package:dio/dio.dart';
+import 'package:google_maps_flutter_platform_interface/src/types/location.dart';
 import '../../domain/repository/check_out_repo.dart';
 import '../../domain/request_body/check_out_body.dart';
 import '../app_urls/app_url.dart';
@@ -43,6 +44,18 @@ class CheckOutRepositoryImp implements CheckOutRepository{
           queryParameters: params.toMap()
       );
 
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+
+  @override
+  Future<ApiResponse> getNearestBranch({required LatLng latLng}) async{
+    try {
+      Response response = await _dioClient.get(
+          AppURL.kGetNearestBranchURL(latLng),
+      );
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));

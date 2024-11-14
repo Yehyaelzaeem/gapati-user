@@ -50,21 +50,21 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDyfsg9K5t2kiNMjVy1D7i2w1Yu-B_yfWI',
-    appId: '1:219224693462:android:ce96fdadec26e7722b8777',
-    messagingSenderId: '219224693462',
-    projectId: 'yalla-hatly',
-    databaseURL: 'https://yalla-hatly-default-rtdb.firebaseio.com',
-    storageBucket: 'yalla-hatly.appspot.com',
+    apiKey: 'AIzaSyDt3pKPm1IA96l0ZXZD2HTno6fCXxDECSE',
+    appId: '1:380787605879:android:9e250ad725ad8f7c476172',
+    messagingSenderId: '380787605879',
+    projectId: 'one-chapati',
+    databaseURL: 'https://one-chapati-default-rtdb.firebaseio.com',
+    storageBucket: 'one-chapati.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBU1KhFu7ooGCoAyie45rNY7TYz-4VYPho',
-    appId: '1:219224693462:ios:a229b700e92eacc72b8777',
-    messagingSenderId: '219224693462',
-    projectId: 'yalla-hatly',
-    databaseURL: 'https://yalla-hatly-default-rtdb.firebaseio.com',
-    storageBucket: 'yalla-hatly.appspot.com',
-    iosBundleId: 'com.yalla.store',
+    apiKey: 'AIzaSyDwdVMtvwG5DgZJQpTlSHee4MuCa7UjOFk',
+    appId: '1:380787605879:ios:dc0cd2ef5c058e10476172',
+    messagingSenderId: '380787605879',
+    projectId: 'one-chapati',
+    databaseURL: 'https://one-chapati-default-rtdb.firebaseio.com',
+    storageBucket: 'one-chapati.firebasestorage.app',
+    iosBundleId: 'com.chapati.store',
   );
 }

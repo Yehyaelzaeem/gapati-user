@@ -31,6 +31,7 @@ class OrderModelData {
   String? statusLang;
   dynamic price;
   dynamic deliveryPrice;
+  dynamic discount;
   String? note;
   String? date;
   String? paymentMethod;
@@ -40,13 +41,14 @@ class OrderModelData {
   String? lat;
   String? lng;
   List<OrderDetails>? orderDetails;
-
+  TripModel? tripModel;
   OrderModelData(
       {this.id,
         this.name,
         this.price,
         this.status,
         this.deliveryPrice,
+        this.discount,
         this.note,
         this.date,
         this.statusLang,
@@ -56,18 +58,21 @@ class OrderModelData {
         this.toAddress,
         this.lat,
         this.orderDetails,
+        this.tripModel,
         this.lng,
       });
 
   OrderModelData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
+    discount = json['discount'];
     if (json['order_details'] != null) {
       orderDetails = <OrderDetails>[];
       json['order_details'].forEach((v) {
         orderDetails!.add(new OrderDetails.fromJson(v));
       });
     }
+    tripModel = json['trip_data'] != null ? new TripModel.fromJson(json['trip_data']) : null;
     price = json['price'];
     deliveryPrice = json['delivery_price'];
     statusLang = json['status_lang'];
@@ -96,5 +101,30 @@ class OrderModelData {
     data['to_lat'] = this.lat;
     data['to_lng'] = this.lng;
     return data;
+  }
+}
+
+class TripModel {
+  TripModelData? data;
+
+  TripModel({this.data});
+
+  TripModel.fromJson(Map<String, dynamic> json) {
+    if (json['data'] != null) {
+      data = new TripModelData.fromJson(json['data']);
+    }
+  }
+
+
+}
+class TripModelData {
+   int? id;
+   dynamic price;
+
+   TripModelData({this.id,this.price});
+
+  TripModelData.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    price = json['price'];
   }
 }

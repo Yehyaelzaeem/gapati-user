@@ -6,6 +6,8 @@ abstract class  LocaleKeys {
   static const changeLanguage = 'changeLanguage';
   static const save = 'save';
   static const profile = 'profile';
+  static const updateProfile = 'updateProfile';
+  static const email = 'email';
   static const bestDish2 = 'bestDish2';
   static const aboutUs = 'aboutUs';
   static const accept = 'accept';
@@ -21,6 +23,7 @@ abstract class  LocaleKeys {
   static const waiting = 'waiting';
   static const myOrders = 'myOrders';
   static const nearest = 'nearest';
+  static const customerOpinions = 'customerOpinions';
   static const currentLocation = 'currentLocation';
   static const cash = 'cash';
   static const addresses = 'addresses';

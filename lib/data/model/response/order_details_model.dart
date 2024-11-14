@@ -246,7 +246,7 @@ class Items {
     image = json['image'];
     incart = json['incart'];
     inFav = json['inFav'];
-    if (json['items_extrat'] != null) {
+    if (json['items_extrat'] != null && json['items_extrat'] is List && json['items_extrat'].isNotEmpty) {
       itemsExtrat = <ItemsExtratData>[];
       json['items_extrat'].forEach((v) {
         itemsExtrat!.add(new ItemsExtratData.fromJson(v));

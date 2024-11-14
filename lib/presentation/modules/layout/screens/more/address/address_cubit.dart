@@ -46,13 +46,13 @@ class AddressCubit extends Cubit<AddressState> {
     getAddressPosition(LatLng(double.parse(addressModel.lat??'0.0'), double.parse(addressModel.lat??'0.0')));
     HomeCubit cubit =HomeCubit.get(context);
     if(selectedAddressValue=='0'){
-      cubit.getStoreTypes(latLng);
+      // cubit.getStoreTypes(latLng);
 
     }else{
-      cubit.getStoreTypes(LatLng(double.parse(addressModel.lat??'0.0'), double.parse(addressModel.lng??'0.0')));
+      // cubit.getStoreTypes(LatLng(double.parse(addressModel.lat??'0.0'), double.parse(addressModel.lng??'0.0')));
 
     }
-    BlocProvider.of<CartCubit>(context, listen: false).removeAll();
+    // BlocProvider.of<CartCubit>(context, listen: false).removeAll();
   }
 
   int typeAddress=0;

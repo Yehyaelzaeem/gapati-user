@@ -25,7 +25,7 @@ import '../../../../restaurant/widgets/custom_meal_widget.dart';
 import '../../../../restaurant/widgets/shimmer_categories_restaurant.dart';
 import '../../cart/cart_cubit.dart';
 import '../../favorite/favorite_cubit.dart';
-import '../product_details/meal_details_screen.dart';
+import '../meal/meal_details/meal_details_screen.dart';
 
 class RestaurantScreen extends StatelessWidget {
 
@@ -49,7 +49,7 @@ class RestaurantScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     RestaurantCubit cubit = RestaurantCubit.get(context);
     CartCubit cartCubit = CartCubit.get(context);
-    cubit.getBestDishes(id: id);
+    // cubit.getBestDishes(id: id);
     // cartCubit.getCart(context);
 
     cubit.getCategories(id: id);
@@ -332,7 +332,8 @@ class RestaurantScreen extends StatelessWidget {
                                                       count: 0,
                                                     )));
                                       },
-                                      child: CustomMealWidget(
+                                      child:
+                                      CustomMealWidget(
                                         categoriesItemsModelData:
                                             categoryItemsData,
                                         storeName: storeName,

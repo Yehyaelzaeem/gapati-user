@@ -1,6 +1,7 @@
 
 import 'package:delivego/presentation/component/custom_text_field.dart';
 import 'package:delivego/presentation/modules/layout/screens/home/widgets/custom_row_title_widget.dart';
+import 'package:delivego/presentation/modules/layout/screens/home/widgets/customer_opinions.dart';
 import 'package:delivego/presentation/modules/layout/screens/home/widgets/home_categories_widget.dart';
 import 'package:delivego/presentation/modules/layout/screens/home/widgets/home_location_widget.dart';
 import 'package:delivego/presentation/modules/layout/screens/home/widgets/home_nearest_widget.dart';
@@ -30,8 +31,8 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     HomeCubit cubit =HomeCubit.get(context);
-    cubit.getOffers();
     return   Container(
+      height: double.infinity,
       width: double.infinity,
       color: AppColors.whiteColor,
       child: BlocConsumer<HomeCubit, HomeState>(
@@ -42,9 +43,9 @@ class HomeScreen extends StatelessWidget {
                       onRefresh: ()async{
                       await  Future.delayed(const Duration(seconds: 1), () {
                         AddressCubit addressCubit =AddressCubit.get(context);
-                          cubit.getStoreTypes( addressCubit.selectedAddress?.lat!=null&&addressCubit.selectedAddress?.lng!=null?
-                          LatLng(double.parse(addressCubit.selectedAddress?.lat??'0.0'), double.parse(addressCubit.selectedAddress?.lng??'0.0')):
-                          AddressCubit.get(context).latLng??LatLng(0, 0));
+                        //   // cubit.getStoreTypes( addressCubit.selectedAddress?.lat!=null&&addressCubit.selectedAddress?.lng!=null?
+                        //   LatLng(double.parse(addressCubit.selectedAddress?.lat??'0.0'), double.parse(addressCubit.selectedAddress?.lng??'0.0')):
+                        //   AddressCubit.get(context).latLng??LatLng(0, 0));
                         });
                         },
                     child:  SingleChildScrollView(
@@ -97,94 +98,36 @@ class HomeScreen extends StatelessWidget {
                           onTap: (){
                             NavigationService.push(RoutesRestaurants.categoriesScreen);
                           },
-                          length: cubit.storeTypesModel?.data?.data?.length??0,
+                          length: 5,
                         ),
                         verticalSpace(16),
                         HomeCategoriesWidget(),
                         verticalSpace(30),
-                        HomeSubCategoriesWidget(),
-                        verticalSpace(30),
+                        // HomeSubCategoriesWidget(),
+                        // verticalSpace(30),
                         CustomRowTitleWidget(
                           title: LocaleKeys.beastOffers.tr(),
                           image: AppImages.star,
                           onTap: (){
                             NavigationService.push(RoutesRestaurants.offersScreen);
                           },
-                          length: cubit.homeModel?.offerData?.data?.length??0,
+                          length: cubit.offerList?.length??0,
                         ),
                         verticalSpace(16),
                         HomeOffersWidget(),
                         verticalSpace(16),
-                        CustomRowTitleWidget(
-                          title: LocaleKeys.nearest.tr(),
-                          image: AppImages.star,
-                          onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>NearestScreen(list: cubit.homeModel?.data?.data??[],)));
-                           },
-                          length: cubit.homeModel?.data?.data?.length??0,
-                        ),
-                        verticalSpace(16),
-                        HomeNearestWidget(),
-                        verticalSpace(100),
-
-                        // Container(
-                        //     decoration: BoxDecoration(
-                        //         color: AppColors.customWhite,
-                        //         borderRadius: BorderRadius.circular(20)
-                        //     ),
-                        //     // height: 100,
-                        //     child:Padding(
-                        //       padding: EdgeInsets.symmetric(horizontal: 10.w,vertical: 25.h),
-                        //       child: Column(
-                        //         children: [
-                        //           if(cubit.restaurantList==null)
-                        //             const RestaurantShimmerWidget()
-                        //           else
-                        //            const CustomRestaurantsListWidget(),
-                        //           verticalSpace(8),
-                        //           Row(
-                        //             children: [
-                        //               Text(LocaleKeys.offerMeals.tr(), style: TextStyles.font18Black700Weight,),
-                        //               const Spacer(),
-                        //               cubit.offerList!=null && cubit.offerList!.isNotEmpty?
-                        //               cubit.offerList!.length>2?
-                        //               InkWell(
-                        //                   onTap: (){
-                        //                     if(cubit.offerList!=null && cubit.offerList!.isNotEmpty){
-                        //                       NavigationService.push(RoutesRestaurants.offersScreen);
-                        //                     }else{
-                        //                       showToast(text: LocaleKeys.notFoundData.tr(), state: ToastStates.error, context: context);
-                        //                     }                                            },
-                        //                   child: Text(LocaleKeys.seeAll.tr(), style: TextStyles.font15CustomGray400Weight,)):SizedBox.shrink():SizedBox.shrink(),
-                        //             ],
-                        //           ),
-                        //           if(cubit.offerList!=null && cubit.offerList!.isNotEmpty)
-                        //             const OffersWidget()
-                        //           else
-                        //             const OffersShimmerWidget(),
-                        //           verticalSpace(10),
-                        //           InkWell(
-                        //             onTap: (){
-                        //               if(cubit.offerList!=null && cubit.offerList!.isNotEmpty){
-                        //                 NavigationService.push(RoutesRestaurants.offersScreen);
-                        //               }else{
-                        //                 showToast(text: LocaleKeys.notFoundData.tr(), state: ToastStates.error, context: context);
-                        //               }
-                        //             },
-                        //             child: Padding(
-                        //               padding: const EdgeInsets.all(10.0),
-                        //               child: Image.asset(AppImages.banner,
-                        //                 width: double.infinity,
-                        //                 fit: BoxFit.fill,
-                        //               ),
-                        //             ),
-                        //           ),
-                        //           verticalSpace(30 ),
-                        //         ],
-                        //       ),
-                        //     )
+                        // CustomRowTitleWidget(
+                        //   title: LocaleKeys.customerOpinions.tr(),
+                        //   image: AppImages.star,
+                        //   onTap: (){
+                        //     // Navigator.push(context, MaterialPageRoute(builder: (context)=>NearestScreen(list: cubit.homeModel?.data?.data??[],)));
+                        //    },
+                        //   length:5,
                         // ),
-                      ],
+                        // verticalSpace(16),
+                        // CustomerOpinionsHomeWidget(),
+                        verticalSpace(100),
+    ],
                     ),
                   ), );
               },

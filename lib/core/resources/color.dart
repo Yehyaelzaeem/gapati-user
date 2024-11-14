@@ -75,8 +75,8 @@ const errorColorDark = Colors.redAccent;
 // primary color
 const primaryColor =  Color(0xff26624E);
 // Color(0xff71C0A3);
-const primaryColorDark =Color(0xffFEC641);
-const primaryColorLight =Color(0xffFE8270);
+const primaryColorDark =primaryColor;
+const primaryColorLight =primaryColor;
 // const primaryColorLight =Color(0xffEADCFA);
 
 const homeCardColor =Color(0xffF5F5F5);

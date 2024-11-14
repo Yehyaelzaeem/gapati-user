@@ -16,18 +16,19 @@ class OffersWidget extends StatelessWidget {
         listener: (context, state) {},
         builder: (context, state) {
           return
-            GridView.count(
-              shrinkWrap: true,
-              padding: EdgeInsets.symmetric(vertical: 15.h),
-              physics: const NeverScrollableScrollPhysics(),
-              crossAxisCount: 2,
-              crossAxisSpacing: 0,
-              mainAxisSpacing: 10,
-              childAspectRatio: (1 / 1.3),
-              children: List.generate(cubit.homeModel?.offerData?.data?.length??0, (index) {
-                return  FittedBox(child: CustomProductItemWidget(offersModelData: cubit.homeModel!.offerData!.data![index],));
-              })
-          );
+          //   GridView.count(
+          //     shrinkWrap: true,
+          //     padding: EdgeInsets.symmetric(vertical: 15.h),
+          //     physics: const NeverScrollableScrollPhysics(),
+          //     crossAxisCount: 2,
+          //     crossAxisSpacing: 0,
+          //     mainAxisSpacing: 10,
+          //     childAspectRatio: (1 / 1.3),
+          //     children: List.generate(cubit.homeModel?.offerData?.data?.length??0, (index) {
+          //       return  FittedBox(child: CustomProductItemWidget(offersModelData: cubit.homeModel!.offerData!.data![index],));
+          //     })
+          // );
+          Text('sda');
         },
       );
   }

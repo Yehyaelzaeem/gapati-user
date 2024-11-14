@@ -17,6 +17,7 @@ import 'package:delivego/domain/usecase/cart/sub_qt_usecase.dart';
 import 'package:delivego/domain/usecase/cart/update_item_usecase.dart';
 import 'package:delivego/domain/usecase/check_out/check_out_usecase.dart';
 import 'package:delivego/domain/usecase/check_out/get_delivery_fees_usecase.dart';
+import 'package:delivego/domain/usecase/check_out/get_nearest_branch_usecase.dart';
 import 'package:delivego/domain/usecase/favorite/add_favorite_restaurant_usecase.dart';
 import 'package:delivego/domain/usecase/favorite/add_favorite_usecase.dart';
 import 'package:delivego/domain/usecase/favorite/get_favorite_resataurant_usecase.dart';
@@ -31,7 +32,7 @@ import 'package:delivego/domain/usecase/home/home_usecase.dart';
 import 'package:delivego/domain/usecase/home/offers_usecase.dart';
 import 'package:delivego/domain/usecase/home/prescription_usecase.dart';
 import 'package:delivego/domain/usecase/home/resturants_usecase.dart';
-import 'package:delivego/domain/usecase/home/store_types_usecase.dart';
+import 'package:delivego/domain/usecase/home/home_categories.dart';
 import 'package:delivego/domain/usecase/local/clear_user_data_usecase.dart';
 import 'package:delivego/domain/usecase/local/get_is_login_usecase.dart';
 import 'package:delivego/domain/usecase/local/get_user_token_usecase.dart';
@@ -77,7 +78,7 @@ Future<void> init() async {
    getIt.registerLazySingleton(() => OffersUseCase(repository: getIt()));
    getIt.registerLazySingleton(() => RestaurantsUseCase(repository: getIt()));
    getIt.registerLazySingleton(() => BannerUseCase(repository: getIt()));
-   getIt.registerLazySingleton(() => StoreTypesUseCase(repository: getIt()));
+   getIt.registerLazySingleton(() => HomeCategoriesUseCase(repository: getIt()));
    getIt.registerLazySingleton(() => GetStoresUseCase(repository: getIt()));
    getIt.registerLazySingleton(() => PrescriptionUseCase(repository: getIt()));
    getIt.registerLazySingleton(() => GetPrescriptionsUseCase(repository: getIt()));
@@ -113,6 +114,7 @@ Future<void> init() async {
    ///CheckOut
   getIt.registerLazySingleton(() => CheckOutUseCase(repository: getIt()));
   getIt.registerLazySingleton(() => GetDeliveryFeesUseCase(repository: getIt()));
+  getIt.registerLazySingleton(() => GetNearestBranchUseCase(repository: getIt()));
 
   ///orders
      getIt.registerLazySingleton(() => OrdersUseCase(repository: getIt()));

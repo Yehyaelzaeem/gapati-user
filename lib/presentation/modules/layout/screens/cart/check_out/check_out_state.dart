@@ -17,3 +17,7 @@ class ChangeTypeState extends CheckOutState {}
 class CheckOutLoadingState extends CheckOutState {}
 class CheckOutSuccessState extends CheckOutState {}
 class CheckOutErrorState extends CheckOutState {}
+
+class GetNearestBranchLoading extends CheckOutState {}
+class GetNearestBranchSuccess extends CheckOutState {}
+class GetNearestBranchError extends CheckOutState {}

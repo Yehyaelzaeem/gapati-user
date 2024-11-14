@@ -8,7 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/global/styles/colors.dart';
 import '../../../../core/global/styles/styles.dart';
 import '../../../../data/model/response/category_item_model.dart';
-import '../../layout/screens/home/product_details/meal_details_screen.dart';
+import '../../layout/screens/home/meal/meal_details/meal_details_screen.dart';
 import '../restaurant_cubit.dart';
 import 'custom_meal_widget.dart';
 

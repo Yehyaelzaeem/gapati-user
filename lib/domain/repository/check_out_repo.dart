@@ -1,4 +1,6 @@
 
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+
 import '../../data/model/base/api_response.dart';
 import '../../data/model/response/delivery_fees_params.dart';
 import '../request_body/add_item_body.dart';
@@ -14,5 +16,6 @@ mixin CheckOutRepository {
 
   Future<ApiResponse> checkOut({required CheckOutModel checkOutBody}) ;
   Future<ApiResponse> getDeliveryFees({required DeliveryFeesParams params});
+  Future<ApiResponse> getNearestBranch({ required LatLng latLng});
 
 }

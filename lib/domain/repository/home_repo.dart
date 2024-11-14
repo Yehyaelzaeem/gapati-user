@@ -15,7 +15,7 @@ mixin HomeRepository {
   Future<ApiResponse> getHome({required HomeParams  params}) ;
   Future<ApiResponse> getStores({required HomeParams  params}) ;
   Future<ApiResponse> getBanner() ;
-  Future<ApiResponse> getStoreTypes() ;
+  Future<ApiResponse> getCategories() ;
   Future<ApiResponse> getOffers() ;
   Future<ApiResponse> getRestaurantsNearest(HomeParams params) ;
   Future<ApiResponse> sendPrescription({required PrescriptionParams  params}) ;

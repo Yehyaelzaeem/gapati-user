@@ -1,7 +1,9 @@
 import 'package:delivego/data/model/response/stores_model.dart';
 
+import 'categories_model.dart';
+
 class HomeModel {
-  CategoryModel? category;
+  CategoriesModel? category;
   DataModel? data;
   OfferModel? offerData;
 
@@ -9,7 +11,7 @@ class HomeModel {
 
   HomeModel.fromJson(Map<String, dynamic> json) {
     category = json['category'] != null
-        ? new CategoryModel.fromJson(json['category'])
+        ? new CategoriesModel.fromJson(json['category'])
         : null;
     data = json['data'] != null ? new DataModel.fromJson(json['data']) : null;
     offerData = json['offer_data'] != null
@@ -32,50 +34,7 @@ class HomeModel {
   }
 }
 
-class CategoryModel{
-  List<CategoryModelData>? data;
 
-  CategoryModel({this.data});
-
-  CategoryModel.fromJson(Map<String, dynamic> json) {
-    if (json['data'] != null) {
-      data = <CategoryModelData>[];
-      json['data'].forEach((v) {
-        data!.add(new CategoryModelData.fromJson(v));
-      });
-    }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.data != null) {
-      data['data'] = this.data!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
-}
-
-class CategoryModelData {
-  int? id;
-  String? name;
-  String? icon;
-
-  CategoryModelData({this.id, this.name, this.icon});
-
-  CategoryModelData.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    icon = json['icon'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['icon'] = this.icon;
-    return data;
-  }
-}
 
 class DataModel{
   List<DataModelData>? data;

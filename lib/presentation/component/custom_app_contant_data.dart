@@ -30,12 +30,12 @@ class CustomAppContData extends StatelessWidget {
                   Image.asset(AppImages.logo)
                 )),
           ),
-          SizedBox(height: 35.h,),
-          Text(
-           LocaleKeys.appName.tr(),
-            style: TextStyles.font18Black700Weight.copyWith(
-                color: AppColors.black
-            ),),
+          // SizedBox(height: 35.h,),
+          // Text(
+          //  LocaleKeys.appName.tr(),
+          //   style: TextStyles.font18Black700Weight.copyWith(
+          //       color: AppColors.black
+          //   ),),
           verticalSpace(16),
           Text(
             des,
