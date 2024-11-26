@@ -42,7 +42,7 @@ class HomeOffersWidget extends StatelessWidget {
                     onTap: (){
                       Navigator.push(context, MaterialPageRoute(builder: (context)=>
                           MealDetailsScreen(categoriesItemsModelData:
-                          CategoryItemsData(id: e.id, name: e.item?.name, image: e.item?.image??'',
+                          CategoryItemsData(id: e.item?.id??0, name: e.item?.name, image: e.item?.image??'',
                             priceAfterDiscount: e.item?.priceAfterDiscount,
                             priceDiscount: e.item?.priceAfterDiscount,
                             price: e.item?.price, storeId: 1,  count: 0,),
@@ -284,7 +284,7 @@ class HomeOffersWidget extends StatelessWidget {
                               width: 200.w,
                               height: 30.h,
                               categoriesItemsModelData:CategoryItemsData(
-                                id: e.id, name: e.item?.name,
+                                id: e.item?.id??0, name: e.item?.name,
                                 branchId: 1,
                                 image: e.item?.image??'',
                                 priceAfterDiscount: e.item?.priceAfterDiscount,

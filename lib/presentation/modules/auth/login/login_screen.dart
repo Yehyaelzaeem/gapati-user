@@ -1,7 +1,7 @@
 
 import 'package:delivego/core/helpers/extensions.dart';
 import 'package:delivego/presentation/modules/auth/login/widget/login_widget.dart';
-import 'package:delivego/presentation/modules/auth/login/widget/otp_widget.dart';
+import 'package:delivego/presentation/modules/auth/forget_password/widget/otp_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -55,8 +55,10 @@ class LoginScreen extends StatelessWidget {
                           style: TextStyles.font18Black700Weight.copyWith(fontWeight: FontWeight.w500),
                         ),
                         verticalSpace(cubit.type=='auth'||cubit.type=='otp'?30:20),
-                        cubit.type=='auth'? LoginWidget():
-                        const OtpWidget(),
+                        LoginWidget(),
+                        // cubit.type=='auth'? LoginWidget():
+                        // const OtpWidget(),
+
                         verticalSpace(100),
                         //SignInUseCase
                         Row(

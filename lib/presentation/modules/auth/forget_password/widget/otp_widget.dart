@@ -1,4 +1,4 @@
-import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_localization/easy_localization.dart' as tr;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,12 +8,11 @@ import '../../../../../core/global/styles/styles.dart';
 import '../../../../../core/helpers/spacing.dart';
 import '../../../../../generated/locale_keys.g.dart';
 import '../../../../component/custom_elevated_button.dart';
-import '../login_cubit.dart';
-import 'package:flutter/material.dart';
+import '../forget_password_cubit.dart';
 
 
 class OtpWidget extends StatefulWidget {
-  const OtpWidget({super.key});
+  const OtpWidget({super.key,});
 
   @override
   State<OtpWidget> createState() => _OtpWidgetState();
@@ -21,10 +20,10 @@ class OtpWidget extends StatefulWidget {
 
 class _OtpWidgetState extends State<OtpWidget> {
   bool _onEditing=true;
-  String _code ='1234';
+  String _code ='';
   @override
   Widget build(BuildContext context) {
-    LoginCubit cubit =LoginCubit.get(context);
+    ForgetPasswordCubit cubit =context.read<ForgetPasswordCubit>();
     return  Center(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -57,7 +56,8 @@ class _OtpWidgetState extends State<OtpWidget> {
                 ),
               ),
 
-              VerificationCode(
+              Directionality(textDirection: TextDirection.ltr,
+                child:  VerificationCode(
                 textStyle: TextStyle(fontSize: 20.0, color: Colors.blue.shade900,fontWeight: FontWeight.bold),
                 keyboardType: TextInputType.number,
                 underlineColor: AppColors.backBlue2,
@@ -66,8 +66,7 @@ class _OtpWidgetState extends State<OtpWidget> {
                 cursorColor:  AppColors.backBlue2,
                 clearAll: const SizedBox.shrink(),
                 onCompleted: (String value) {
-                  LoginCubit.get(context).phoneController;
-                  cubit.login(cubit.phoneController.text, value,context);
+                  cubit.checkOtp(otp: value, context: context);
                   setState(() {
                     _code = value;
                   });
@@ -78,17 +77,18 @@ class _OtpWidgetState extends State<OtpWidget> {
                   });
                   if (!_onEditing) FocusScope.of(context).unfocus();
                 },
-              ),
+              ),),
               verticalSpace(30),
-              BlocConsumer<LoginCubit, LoginState>(
+              BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
                   listener: (context, state) {},
                   builder: (context, state) {
                     return Padding(
                                 padding:  EdgeInsets.symmetric(horizontal: 50.w),
                                 child: CustomElevatedButton(
-                                  isLoading: state is LoginLoadingState,
+                                  isLoading:state is CheckOtpLoadingState,
+                                  loadingSize: 30,
                                   onTap: (){
-                                    cubit.login(cubit.phoneController.text, _code,context);
+                                    cubit.checkOtp(otp: _code,context: context);
                                   },
                                   buttonText:LocaleKeys.done.tr(),
                                   width: MediaQuery.of(context).size.width,

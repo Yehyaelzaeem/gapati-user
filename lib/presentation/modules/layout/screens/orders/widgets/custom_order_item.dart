@@ -59,7 +59,7 @@ class CustomOrderItemWidget extends StatelessWidget {
                        Text('${orderModelData.date}' ,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,),
-                       Text('${orderModelData.paymentMethod}',
+                       Text('${orderModelData.paymentMethodLang??''}',
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,),
                     ],

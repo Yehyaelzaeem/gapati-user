@@ -42,7 +42,7 @@ class AuthRepositoryImp implements AuthRepository{
     try {
       Response response = await _dioClient.post(
         AppURL.kForgetPasswordURI,
-        queryParameters: {'mobile':phone},
+        queryParameters: {'mobile_number':phone},
       );
       return ApiResponse.withSuccess(response);
     } catch (e) {
@@ -64,7 +64,7 @@ class AuthRepositoryImp implements AuthRepository{
   @override
   Future<ApiResponse> resetPassword({required String phone,required String password})   async {
     try {
-      Response response = await _dioClient.post(AppURL.kResetPasswordURI, queryParameters: {'phone':phone,'password':password},);
+      Response response = await _dioClient.post(AppURL.kResetPasswordURI, queryParameters: {'mobile_number':phone,'password':password},);
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));

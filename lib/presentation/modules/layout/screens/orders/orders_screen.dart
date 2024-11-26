@@ -38,11 +38,13 @@ class OrdersScreen extends StatelessWidget {
               return CustomNotFoundDataWidget(image: AppImages.cart,title: LocaleKeys.notFoundData.tr(), type: 'svg',);
             }else{
               return
-                Column(
-                  children: [
-                    ...cubit.orderModel!.data!.map((e) => CustomOrderItemWidget(orderModelData: e,))
-                  ],
-                );
+               SingleChildScrollView(
+                 child:   Column(
+                   children: [
+                     ...cubit.orderModel!.data!.map((e) => CustomOrderItemWidget(orderModelData: e,))
+                   ],
+                 ),
+               );
             }
           }
           else{

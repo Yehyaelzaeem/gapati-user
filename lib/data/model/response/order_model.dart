@@ -34,7 +34,9 @@ class OrderModelData {
   dynamic discount;
   String? note;
   String? date;
+  String? paymentStatus;
   String? paymentMethod;
+  String? paymentMethodLang;
   String? image;
   String? phone;
   String? toAddress;
@@ -48,11 +50,13 @@ class OrderModelData {
         this.price,
         this.status,
         this.deliveryPrice,
+        this.paymentStatus,
         this.discount,
         this.note,
         this.date,
         this.statusLang,
         this.paymentMethod,
+        this.paymentMethodLang,
         this.image,
         this.phone,
         this.toAddress,
@@ -80,6 +84,8 @@ class OrderModelData {
     status = json['status'];
     date = json['date'];
     paymentMethod = json['payment_method'];
+    paymentStatus = json['payment_status'];
+    paymentMethodLang = json['payment_method_lang'];
     image = json['image'];
     phone = json['phone'];
     toAddress = json['to_address'];

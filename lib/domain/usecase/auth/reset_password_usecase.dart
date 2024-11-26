@@ -10,7 +10,7 @@ import '../base_usecase/base_use_case_call.dart';
 import '../base_usecase/base_usecase.dart';
 
 
-class ResetPasswordUseCase implements BaseUseCase<UserModel>{
+class ResetPasswordUseCase implements BaseUseCase<dynamic>{
 
 
   final AuthRepository repository;
@@ -18,19 +18,21 @@ class ResetPasswordUseCase implements BaseUseCase<UserModel>{
   ResetPasswordUseCase({required this.repository});
 
   Future<ResponseModel> call({ required String phone, required String password}) async {
-    return BaseUseCaseCall.onGetData<UserModel>( await repository.resetPassword(phone: phone,password:password ), onConvert);
+    return BaseUseCaseCall.onGetData<dynamic>( await repository.resetPassword(phone: phone,password:password ), onConvert);
   }
 
 
 
   @override
-  ResponseModel<UserModel> onConvert(BaseModel baseModel) {
-    String? token = baseModel.responseData['auth']['token'];
-    if (token != null) {
-      UserModel? user = UserModel.fromJson(baseModel.responseData);
-      return ResponseModel(true, baseModel.message, data: user);
-    } else {
-      return ApiChecker.checkApi(message: baseModel.message);
+  ResponseModel<dynamic> onConvert(BaseModel baseModel) {
+    try{
+      if(baseModel.code =='200' ||baseModel.code =='201'){
+        return ResponseModel(baseModel.status??true, baseModel.message,data: baseModel.responseData);
+      }else{
+        return ResponseModel(baseModel.status??false, baseModel.message,data: baseModel.responseData);
+      }
+    }catch(e){
+      return ResponseModel(baseModel.status??false, baseModel.message,data: baseModel.responseData);
     }
   }
 

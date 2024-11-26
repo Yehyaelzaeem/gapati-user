@@ -13,7 +13,7 @@ import '../../../component/custom_app_bar.dart';
 import '../../../component/custom_elevated_button.dart';
 import '../../../component/custom_text_field.dart';
 import '../../../dialog/base/dailog.dart';
-import '../login/widget/otp_widget.dart';
+import '../forget_password/widget/otp_widget.dart';
 
 
 class RegisterScreen extends StatelessWidget {
@@ -139,7 +139,7 @@ class RegisterScreen extends StatelessWidget {
                                       fillColor: AppColors.backGroundGray,
                                       borderRadius: 30,
                                       borderColor: AppColors.whiteColor.withOpacity(0.1),
-                                      hintText: 'email',
+                                      hintText: '${LocaleKeys.email.tr()}',
                                       controller: cubit.emailController,
                                       textInputAction: TextInputAction.next,
                                     ),
@@ -276,7 +276,8 @@ class RegisterScreen extends StatelessWidget {
                               }),
                             ),
                           ):
-                          const OtpWidget(),
+                              SizedBox(),
+                          // const OtpWidget(),
                         ],
                       ),
                     ),

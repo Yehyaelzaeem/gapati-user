@@ -6,7 +6,9 @@ import 'package:delivego/domain/usecase/address/last_address_usecase.dart';
 import 'package:delivego/domain/usecase/address/main_address_usecase.dart';
 import 'package:delivego/domain/usecase/address/update_address_usecase.dart';
 import 'package:delivego/domain/usecase/auth/check_otp_usecase.dart';
+import 'package:delivego/domain/usecase/auth/forget_password_usecase.dart';
 import 'package:delivego/domain/usecase/auth/register_usecase.dart';
+import 'package:delivego/domain/usecase/auth/reset_password_usecase.dart';
 import 'package:delivego/domain/usecase/auth/sign_in_usecase.dart';
 import 'package:delivego/domain/usecase/auth/update_fcm_token_usecase.dart';
 import 'package:delivego/domain/usecase/cart/add_item_usecase.dart';
@@ -68,6 +70,8 @@ Future<void> init() async {
    getIt.registerLazySingleton(() => OTPUseCase(repository: getIt()));
    getIt.registerLazySingleton(() => RegisterUseCase(repository: getIt()));
    getIt.registerLazySingleton(() => UpdateFCMTokenUseCase(repository: getIt()));
+   getIt.registerLazySingleton(() => ForgetPasswordUseCase(repository: getIt()));
+   getIt.registerLazySingleton(() => ResetPasswordUseCase(repository: getIt()));
 
    ///Profile
    getIt.registerLazySingleton(() => GetProfileUseCase(repository: getIt()));

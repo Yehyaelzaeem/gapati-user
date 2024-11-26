@@ -1,5 +1,6 @@
 
 
+import 'package:delivego/presentation/modules/auth/forget_password/forget_password_cubit.dart';
 import 'package:delivego/presentation/modules/auth/login/login_cubit.dart';
 import 'package:delivego/presentation/modules/auth/register/register_cubit.dart';
 import 'package:delivego/presentation/modules/chats/cubit/chat_cubit.dart';
@@ -45,6 +46,7 @@ class GenerateMultiBloc extends StatelessWidget {
         BlocProvider(create: (_) => getIt<CartCubit>()),
         BlocProvider(create: (_) => getIt<CheckOutCubit>()),
         BlocProvider(create: (_) => getIt<OrdersCubit>()),
+        BlocProvider(create: (_) => getIt<ForgetPasswordCubit>()),
         BlocProvider(create: (_) => getIt<AddressCubit>()),
         BlocProvider(create: (_) => getIt<MoreCubit>()),
         BlocProvider(create: (_) => getIt<FavoriteCubit>()),

@@ -1,4 +1,5 @@
 
+import 'package:delivego/presentation/modules/auth/forget_password/forget_password_cubit.dart';
 import 'package:delivego/presentation/modules/auth/login/login_cubit.dart';
 import 'package:delivego/presentation/modules/auth/register/register_cubit.dart';
 import 'package:delivego/presentation/modules/chats/cubit/chat_cubit.dart';
@@ -23,6 +24,7 @@ Future<void> init() async {
   // Bloc
   getIt.registerLazySingleton(() => LayoutCubit(getUserTokenUseCase: getIt(),));
   getIt.registerLazySingleton(() => ChatCubit());
+  getIt.registerLazySingleton(() => ForgetPasswordCubit(forgetPasswordUseCase: getIt(), resetPasswordUseCase: getIt()));
   getIt.registerLazySingleton(() => RateCubit(rateUseCase: getIt()));
   getIt.registerLazySingleton(() => ProfileCubit(profileUseCase: getIt(), updateProfileUseCase: getIt(),));
   getIt.registerLazySingleton(() => HomeCubit(homeUseCase: getIt(), offersUseCase:  getIt(), restaurantsUseCase: getIt(),bannerUseCase:  getIt(), getStoresUseCase: getIt(), categoriesUseCase: getIt(), bestDishUseCase: getIt()));

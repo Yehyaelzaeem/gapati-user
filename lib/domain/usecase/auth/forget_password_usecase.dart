@@ -9,7 +9,7 @@ import '../base_usecase/base_use_case_call.dart';
 import '../base_usecase/base_usecase.dart';
 
 
-class ForgetPasswordUseCase implements BaseUseCase<UserModel>{
+class ForgetPasswordUseCase implements BaseUseCase<dynamic>{
 
 
   final AuthRepository repository;
@@ -17,18 +17,24 @@ class ForgetPasswordUseCase implements BaseUseCase<UserModel>{
   ForgetPasswordUseCase({required this.repository});
 
   Future<ResponseModel> call({ required String phone}) async {
-    return BaseUseCaseCall.onGetData<UserModel>( await repository.forgetPassword(phone: phone), onConvert);
+    return BaseUseCaseCall.onGetData<dynamic>( await repository.forgetPassword(phone: phone), onConvert);
   }
 
 
 
   @override
-  ResponseModel<UserModel> onConvert(BaseModel baseModel) {
-    return ResponseModel(true, baseModel.message);
+  ResponseModel<dynamic> onConvert(BaseModel baseModel) {
+    try{
+      if(baseModel.code =='200' ||baseModel.code =='201'){
+        return ResponseModel(baseModel.status??true, baseModel.message,data: baseModel.responseData);
+      }else{
+        return ResponseModel(baseModel.status??false, baseModel.message,data: baseModel.responseData);
+      }
+    }catch(e){
+      return ResponseModel(baseModel.status??false, baseModel.message,data: baseModel.responseData);
+    }
   }
 
 
-  Future<ResponseModel> callTest({ required String phone}) async {
-    return ResponseModel(true, '');
-  }
+
 }

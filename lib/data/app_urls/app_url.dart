@@ -15,9 +15,9 @@ class AppURL {
   static const String kRegisterURI = "auth/register";
   static const String kLogoutURI = "auth/logout";
 
-  static const String kForgetPasswordURI = "auth/otp";
+  static const String kForgetPasswordURI = "auth/password-otp";
   static const String kCheckOTPURI = "auth/check-otp";
-  static const String kResetPasswordURI = "";
+  static const String kResetPasswordURI = "auth/change-password";
   static const String kDeleteAccountURI = "";
   static const String kUpdateFCMTokenURI = "fcm_token";
 
@@ -36,6 +36,9 @@ class AppURL {
   static const String kSendPrescriptionURL = "stores/checkout/send-prescription";
   static const String kGetPrescriptionUrl = "stores/checkout/prescription";
   static  String kAcceptPrescriptionUrl(int id) => "stores/checkout/accept-prescription/$id";
+
+  ///Payment
+  static String  paymentUrl (int orderId)=> 'https://one-chapati.com/online-payment/$orderId';
 
   ///Cart
   static const String kGetCartURL = "shopping-cart";

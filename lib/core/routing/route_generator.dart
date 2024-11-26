@@ -4,6 +4,8 @@ import 'package:delivego/core/routing/undefined_route_screen.dart';
 import 'package:flutter/cupertino.dart';
 import '../../presentation/component/google_map/const_location_map.dart';
 import '../../presentation/component/google_map/custom_google_map.dart';
+import '../../presentation/modules/auth/forget_password/change_password/change_password.dart';
+import '../../presentation/modules/auth/forget_password/forget_password_screen.dart';
 import '../../presentation/modules/auth/log_as/log_as_screen.dart';
 import '../../presentation/modules/auth/login/login_screen.dart';
 import '../../presentation/modules/auth/register/register_screen.dart';
@@ -88,6 +90,10 @@ class RouteRestaurantsGenerator {
         ));
       case RoutesRestaurants.splashScreen:
         return platformPageRoute(const SplashPage());
+        case RoutesRestaurants.changePasswordScreen:
+        return platformPageRoute( ChangePasswordScreen(phone: arguments?['phone'],));
+        case RoutesRestaurants.forgetPasswordScreen:
+        return platformPageRoute(const ForgetPasswordScreen());
         case RoutesRestaurants.onBoardingScreen:
         return platformPageRoute(const OnBoardingScreen());
       case RoutesRestaurants.restaurantScreen:
@@ -121,8 +127,7 @@ class RouteRestaurantsGenerator {
         return platformPageRoute(const OffersScreen());
      case RoutesRestaurants.searchScreen:
         return platformPageRoute(const SearchScreen());
-        case RoutesRestaurants.changePasswordScreen:
-        return platformPageRoute( ChangePasswordScreen());
+
         case RoutesRestaurants.aboutUsScreen:
         return platformPageRoute( const AboutUsScreen());
         case RoutesRestaurants.termsConditionScreen:

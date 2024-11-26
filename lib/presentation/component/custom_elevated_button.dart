@@ -51,7 +51,7 @@ class CustomElevatedButton extends StatelessWidget {
       ),
       child:
       isLoading==true?
-       Center(child: CustomLoadingWidget(color: loadingColor??AppColors.whiteColor,size: loadingSize),):
+       Center(child: CustomLoadingWidget(color: loadingColor??AppColors.whiteColor,size: loadingSize??35 ),):
       Text(
         buttonText,
         style: TextStyle(

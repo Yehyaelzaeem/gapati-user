@@ -1,5 +1,8 @@
 
 import 'package:delivego/core/helpers/extensions.dart';
+import 'package:delivego/core/helpers/toast_states/enums.dart';
+import 'package:delivego/presentation/component/texts/primary_texts.dart';
+import 'package:delivego/presentation/modules/layout/screens/orders/payment/payment_screen.dart';
 import 'package:delivego/presentation/modules/layout/screens/orders/widgets/custom_order_details_item.dart';
 import 'package:delivego/presentation/modules/layout/screens/orders/widgets/custom_steps_order_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -11,6 +14,7 @@ import '../../../../../core/global/styles/styles.dart';
 import '../../../../../core/helpers/spacing.dart';
 import '../../../../../core/routing/navigation_services.dart';
 import '../../../../../core/routing/routes.dart';
+import '../../../../../data/app_urls/app_url.dart';
 import '../../../../../data/model/response/order_model.dart';
 import '../../../../../generated/locale_keys.g.dart';
 import '../../../../component/custom_app_bar.dart';
@@ -38,6 +42,7 @@ class OrderDetailsScreen extends StatelessWidget {
     OrdersCubit cubit =OrdersCubit.get(context);
     cubit.getOrdersDetails(orderId: orderId);
     return Scaffold(
+      backgroundColor: AppColors.whiteColor,
       appBar: const CustomAppBar(),
       body: BlocConsumer<OrdersCubit, OrdersState>(
           listener: (context, state) {},
@@ -174,6 +179,46 @@ class OrderDetailsScreen extends StatelessWidget {
                                     ],
                                   ),
                                 ),
+                                if(orderModelData?.paymentMethod=='online' && orderModelData?.paymentStatus!='success')
+                                 Padding(padding: EdgeInsets.symmetric(horizontal: 30.w),
+                                 child: CustomElevatedButton(
+                                     width: double.infinity,
+                                     height: 50,
+                                     fontSize: 20,
+                                     onTap: (){
+                                       Navigator.push(
+                                         context,
+                                         MaterialPageRoute(
+                                           builder: (context) => PaymentPage(paymentUrl: AppURL.paymentUrl(orderModelData?.id??0)),
+                                         ),
+                                       ).then((result) {
+                                         if (result == true) {
+                                           showToast(text: '${LocaleKeys.paymentSuccess.tr()}', state: ToastStates.success, context: context);
+                                           Navigator.pop(context);
+                                           print("تم الدفع بنجاح");
+                                         } else {
+                                           showToast(text: '${LocaleKeys.paymentFailed.tr()}', state: ToastStates.error, context: context);
+                                           print("فشلت عملية الدفع");
+                                         }
+                                       });
+                                     },
+                                     buttonText: '${LocaleKeys.payNow.tr()}'),
+                                 ),
+                                if(orderModelData?.paymentMethod=='online' && orderModelData?.paymentStatus=='success')
+                                 Center(
+                                   child:  Container(
+                                     padding: EdgeInsets.symmetric(vertical: 10.h,horizontal: 20.w),
+                                     decoration: BoxDecoration(
+                                         borderRadius: BorderRadius.circular(12),
+                                         color: AppColors.whiteColor,
+                                         border: Border.all(color: AppColors.primaryColor, width: 1)
+                                     ),
+                                     child: PrimaryBoldText(
+                                       label: '${LocaleKeys.paid.tr()}',
+                                     ),
+                                   ),
+                                 )
+
                                 // Row(
                                 //   children: [
                                 //     Expanded(child:

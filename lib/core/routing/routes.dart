@@ -2,6 +2,8 @@
 
 class RoutesRestaurants {
   static const String splashScreen = "/splashScreen";
+  static const String changePasswordScreen = "/changePasswordScreen";
+  static const String forgetPasswordScreen = "/forgetPasswordScreen";
   static const String onBoardingScreen = "/onBoardingScreen";
   static const String chatsScreen = "/chatsScreen";
   static const String chatRoomScreen = "/chatRoomScreen";
@@ -32,7 +34,6 @@ class RoutesRestaurants {
   static const String searchScreen = "/searchScreen";
   static const String cartScreen = "/cartScreen";
   static const String logAsScreen = "/logAsScreen";
-  static const String changePasswordScreen = "/changePasswordScreen";
   static const String aboutUsScreen = "/aboutUsScreen";
   static const String termsConditionScreen = "/termsConditionScreen";
   static const String privacyPolicyScreen = "/privacyPolicyScreen";

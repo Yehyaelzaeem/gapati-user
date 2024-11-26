@@ -9,6 +9,7 @@ import '../../../../../core/global/styles/colors.dart';
 import '../../../../../core/global/styles/styles.dart';
 import '../../../../../core/helpers/spacing.dart';
 import '../../../../../core/helpers/toast_states/enums.dart';
+import '../../../../../core/routing/routes.dart';
 import '../../../../../generated/locale_keys.g.dart';
 import '../../../../component/custom_elevated_button.dart';
 import '../../../../component/custom_text_field.dart';
@@ -104,11 +105,16 @@ class LoginWidget extends StatelessWidget {
                         .copyWith(fontWeight: FontWeight.w500,fontSize: 15),
                   ),
                   const Spacer(),
-                  Text(
-                    LocaleKeys.forgetPassword.tr(),
-                    style: TextStyles.font18Black700Weight
-                        .copyWith(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.secondPrimaryColor),
-                  ),
+                  InkWell(
+                    onTap: (){
+                      Navigator.pushNamed(context, RoutesRestaurants.forgetPasswordScreen);
+                    },
+                    child: Text(
+                      LocaleKeys.forgetPassword.tr(),
+                      style: TextStyles.font18Black700Weight
+                          .copyWith(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.secondPrimaryColor),
+                    ),
+                  )
                 ],
               ),
               BlocConsumer<LoginCubit, LoginState>(
@@ -116,6 +122,7 @@ class LoginWidget extends StatelessWidget {
                           builder: (context, state) {
                             return CustomElevatedButton(
                                         isLoading: state is LoginLoadingState,
+
                                         onTap: (){
                                           cubit.login(cubit.phoneController.text, cubit.passwordController.text,context);
                                           // cubit.otpCode(cubit.phoneController.text,context);
