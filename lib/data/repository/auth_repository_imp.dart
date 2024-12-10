@@ -37,6 +37,17 @@ class AuthRepositoryImp implements AuthRepository{
     }
   }
 
+
+  @override
+  Future<ApiResponse> otpCode({required OTPBody otpBody})  async {
+    try {
+      Response response = await _dioClient.post(AppURL.kOtpURI, queryParameters: otpBody.toJson(),);
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+
   @override
   Future<ApiResponse> forgetPassword({String? phone})  async {
     try {
@@ -49,17 +60,6 @@ class AuthRepositoryImp implements AuthRepository{
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
     }
   }
-  @override
-  Future<ApiResponse> otpCode({required OTPBody otpBody})  async {
-    try {
-      Response response = await _dioClient.post(AppURL.kOtpURI, queryParameters: otpBody.toJson(),);
-      return ApiResponse.withSuccess(response);
-    } catch (e) {
-      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
-    }
-  }
-
-
 
   @override
   Future<ApiResponse> resetPassword({required String phone,required String password})   async {
