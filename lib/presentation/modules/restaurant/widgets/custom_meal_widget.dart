@@ -61,6 +61,7 @@ class _CustomMealWidgetState extends State<CustomMealWidget> {
                      Flexible(
                        child: Column(
                          crossAxisAlignment: CrossAxisAlignment.start,
+                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                          children: [
                            SizedBox(height: 10.h,),
                            Text(widget.categoriesItemsModelData!.name!,
@@ -79,73 +80,107 @@ class _CustomMealWidgetState extends State<CustomMealWidget> {
                                overflow: TextOverflow.ellipsis,
                              ),
                            ),
-                         ],
-                       ),
-                     ),
-                     FittedBox(
-                       child: CustomAddCartButton(
-                         height: 30.h,
-                         categoriesItemsModelData:  widget.categoriesItemsModelData!, storeName: widget.storeName,),
-                     )
-                   ],
-                 ),
-               ),
-               SizedBox(width: 5.w,),
-               Column(
-                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                 children: [
-                   SizedBox(height: 10.h,),
-                   IconButton(
-                       onPressed: (){
-                         logInFirst(function: (){
-                           setState(() {
-                             if(widget.categoriesItemsModelData!.inFav==false){
-                               favoriteCubit.addFavorite(itemId: widget.categoriesItemsModelData!.id!, context: context);
-                               widget.categoriesItemsModelData!.inFav=true;
-                             }else{
-                               favoriteCubit.removeFavorite(itemId: widget.categoriesItemsModelData!.id!, context: context);
-                               widget.categoriesItemsModelData!.inFav=false;
-                             }
-                           });
-                         }, context: context, screenName: 'favoriteDetails');
-                       },
-                       icon:widget.categoriesItemsModelData!.inFav==true? Icon(Icons.favorite,color: Colors.red,):Icon(Icons.favorite_border_rounded,color: Colors.grey,)),
-                   SizedBox(height: 5.h,),
-                   SizedBox(
-                     width: 50.w,
-                     child: FittedBox(
-                       child: Column(
-                         children: [
-                           widget.categoriesItemsModelData!.priceDiscount!=null&& widget.categoriesItemsModelData!.priceDiscount! !="0"?
-                           Text(
+                           SizedBox(
+                             width: 50.w,
+                             child: FittedBox(
+                               child: Column(
+                                 children: [
+                                   widget.categoriesItemsModelData!.priceDiscount!=null&& widget.categoriesItemsModelData!.priceDiscount! !="0"?
+                                   Text(
 
-                             '${double.parse(widget.categoriesItemsModelData!.price!=null?widget.categoriesItemsModelData!.price.toString():((widget.categoriesItemsModelData?.productSize?.data?.isNotEmpty??false)? (widget.categoriesItemsModelData?.productSize?.data?[0].price.toString()??'0'):'0' ),).toStringAsFixed(1)} ${LocaleKeys.lyd.tr()}',
-                             style: TextStyles.font16Black600Weight.copyWith(
-                                 decorationColor: AppColors.blackColor,
-                                 decorationThickness: 2,
-                                 decoration: TextDecoration.lineThrough,
-                                 fontSize: 14,
-                                 fontWeight: FontWeight.w400
+                                     '${double.parse(widget.categoriesItemsModelData!.price!=null?widget.categoriesItemsModelData!.price.toString():((widget.categoriesItemsModelData?.productSize?.data?.isNotEmpty??false)? (widget.categoriesItemsModelData?.productSize?.data?[0].price.toString()??'0'):'0' ),).toStringAsFixed(1)} ${LocaleKeys.lyd.tr()}',
+                                     style: TextStyles.font16Black600Weight.copyWith(
+                                         decorationColor: AppColors.blackColor,
+                                         decorationThickness: 2,
+                                         decoration: TextDecoration.lineThrough,
+                                         fontSize: 14,
+                                         fontWeight: FontWeight.w400
+                                     ),
+                                     maxLines: 2,
+                                     overflow: TextOverflow.ellipsis,
+                                   ):const SizedBox.shrink(),
+                                   Text(
+                                     '${double.parse((widget.categoriesItemsModelData!.priceAfterDiscount!=null && widget.categoriesItemsModelData!.priceAfterDiscount!.toString() !='0')?widget.categoriesItemsModelData!.priceAfterDiscount.toString():((widget.categoriesItemsModelData?.productSize?.data?.isNotEmpty??false)? (widget.categoriesItemsModelData?.productSize?.data?[0].priceAfterDiscount.toString()??'0'):'0' ),).toStringAsFixed(1)} ${LocaleKeys.lyd.tr()}',
+                                     style: TextStyles.font16Black600Weight.copyWith(
+                                         color:AppColors.redColor
+                                     ),
+                                     maxLines: 2,
+                                     overflow: TextOverflow.ellipsis,
+                                   ),
+                                 ],
+                               ),
                              ),
-                             maxLines: 2,
-                             overflow: TextOverflow.ellipsis,
-                           ):const SizedBox.shrink(),
-                           Text(
-                             '${double.parse((widget.categoriesItemsModelData!.priceAfterDiscount!=null && widget.categoriesItemsModelData!.priceAfterDiscount!.toString() !='0')?widget.categoriesItemsModelData!.priceAfterDiscount.toString():((widget.categoriesItemsModelData?.productSize?.data?.isNotEmpty??false)? (widget.categoriesItemsModelData?.productSize?.data?[0].priceAfterDiscount.toString()??'0'):'0' ),).toStringAsFixed(1)} ${LocaleKeys.lyd.tr()}',
-                             style: TextStyles.font16Black600Weight.copyWith(
-                                 color:AppColors.redColor
-                             ),
-                             maxLines: 2,
-                             overflow: TextOverflow.ellipsis,
                            ),
                          ],
                        ),
                      ),
-                   ),
-                   SizedBox(height: 10.h,),
-                 ],
+
+                     // FittedBox(
+                     //   child:
+                     //
+                     //   // CustomAddCartButton(
+                     //   //   height: 30.h,
+                     //   //   categoriesItemsModelData:  widget.categoriesItemsModelData!, storeName: widget.storeName,),
+                     // )
+                   ],
+                 ),
                ),
-               SizedBox(width: 10.w,),
+               SizedBox(width: 5.w,),
+               // Column(
+               //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+               //   children: [
+               //     SizedBox(height: 10.h,),
+               //     IconButton(
+               //         onPressed: (){
+               //           logInFirst(function: (){
+               //             setState(() {
+               //               if(widget.categoriesItemsModelData!.inFav==false){
+               //                 favoriteCubit.addFavorite(itemId: widget.categoriesItemsModelData!.id!, context: context);
+               //                 widget.categoriesItemsModelData!.inFav=true;
+               //               }else{
+               //                 favoriteCubit.removeFavorite(itemId: widget.categoriesItemsModelData!.id!, context: context);
+               //                 widget.categoriesItemsModelData!.inFav=false;
+               //               }
+               //             });
+               //           }, context: context, screenName: 'favoriteDetails');
+               //         },
+               //         icon:widget.categoriesItemsModelData!.inFav==true? Icon(Icons.favorite,color: Colors.red,):Icon(Icons.favorite_border_rounded,color: Colors.grey,)),
+               //     SizedBox(height: 5.h,),
+               //     SizedBox(
+               //       width: 50.w,
+               //       child: FittedBox(
+               //         child: Column(
+               //           children: [
+               //             widget.categoriesItemsModelData!.priceDiscount!=null&& widget.categoriesItemsModelData!.priceDiscount! !="0"?
+               //             Text(
+               //
+               //               '${double.parse(widget.categoriesItemsModelData!.price!=null?widget.categoriesItemsModelData!.price.toString():((widget.categoriesItemsModelData?.productSize?.data?.isNotEmpty??false)? (widget.categoriesItemsModelData?.productSize?.data?[0].price.toString()??'0'):'0' ),).toStringAsFixed(1)} ${LocaleKeys.lyd.tr()}',
+               //               style: TextStyles.font16Black600Weight.copyWith(
+               //                   decorationColor: AppColors.blackColor,
+               //                   decorationThickness: 2,
+               //                   decoration: TextDecoration.lineThrough,
+               //                   fontSize: 14,
+               //                   fontWeight: FontWeight.w400
+               //               ),
+               //               maxLines: 2,
+               //               overflow: TextOverflow.ellipsis,
+               //             ):const SizedBox.shrink(),
+               //             Text(
+               //               '${double.parse((widget.categoriesItemsModelData!.priceAfterDiscount!=null && widget.categoriesItemsModelData!.priceAfterDiscount!.toString() !='0')?widget.categoriesItemsModelData!.priceAfterDiscount.toString():((widget.categoriesItemsModelData?.productSize?.data?.isNotEmpty??false)? (widget.categoriesItemsModelData?.productSize?.data?[0].priceAfterDiscount.toString()??'0'):'0' ),).toStringAsFixed(1)} ${LocaleKeys.lyd.tr()}',
+               //               style: TextStyles.font16Black600Weight.copyWith(
+               //                   color:AppColors.redColor
+               //               ),
+               //               maxLines: 2,
+               //               overflow: TextOverflow.ellipsis,
+               //             ),
+               //           ],
+               //         ),
+               //       ),
+               //     ),
+               //     SizedBox(height: 10.h,),
+               //   ],
+               // ),
+               // SizedBox(width: 10.w,),
              ],
            ),
          ),

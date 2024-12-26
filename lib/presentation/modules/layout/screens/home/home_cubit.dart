@@ -63,7 +63,7 @@ class HomeCubit extends Cubit<HomeState> {
       // print('sdadsadads ${bannersModel}');
       ResponseModel responseModel = await _bannerUseCase.call();
       if (responseModel.isSuccess) {
-         bannersModel =responseModel.data;
+        bannersModel =responseModel.data;
 
         emit(GetBannerSuccessState()) ;
       }else{
@@ -116,7 +116,7 @@ class HomeCubit extends Cubit<HomeState> {
 
 
 
-///Best Dish
+  ///Best Dish
   BestDishModel? bestDishModel;
   Future<dynamic> getBestDishes() async {
     try{

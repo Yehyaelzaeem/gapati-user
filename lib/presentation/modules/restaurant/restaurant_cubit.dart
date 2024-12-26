@@ -19,8 +19,8 @@ class RestaurantCubit extends Cubit<RestaurantState> {
     required SearchItemsUseCase searchItemsUseCase,
     required BestDishUseCase bestDishUseCase,
     required ItemExtraUseCase itemExtraUseCase,required CategoriesUseCase categoriesUseCase,required CategoryItemsUseCase categoryItemsUseCase}) :
-       _searchItemsUseCase=searchItemsUseCase,
-       _bestDishUseCase=bestDishUseCase,
+        _searchItemsUseCase=searchItemsUseCase,
+        _bestDishUseCase=bestDishUseCase,
         _categoriesUseCase = categoriesUseCase,_categoryItemsUseCase=categoryItemsUseCase ,_itemExtraUseCase=itemExtraUseCase ,super(RestaurantInitial());
 
   final SearchItemsUseCase _searchItemsUseCase;
@@ -36,7 +36,7 @@ class RestaurantCubit extends Cubit<RestaurantState> {
   List<ItemExtraModelData>? itemExtraModelDataList2;
 
   Future<ResponseModel> getCategories({required int id}) async {
-     categoriesModelList=null;
+    categoriesModelList=null;
     emit(GetCategoriesLoadingState()) ;
     ResponseModel responseModel = await _categoriesUseCase.call(id: id);
     if (responseModel.isSuccess) {
@@ -51,27 +51,27 @@ class RestaurantCubit extends Cubit<RestaurantState> {
   }
   BestDishModel? bestDishModel;
   Future<dynamic> getBestDishes() async {
-   try{
-     bestDishModel=null;
-     emit(GetBestDishLoadingState()) ;
-     ResponseModel responseModel = await _bestDishUseCase.call();
-     if (responseModel.isSuccess) {
-       bestDishModel=responseModel.data;
-       print('dsdd ${bestDishModel?.data?.length??'sss'}');
-       emit(GetBestDishSuccessState()) ;
-     }else{
-       emit(GetBestDishErrorState()) ;
-     }
-   }catch(e){
-     emit(GetBestDishErrorState()) ;
-   }
+    try{
+      bestDishModel=null;
+      emit(GetBestDishLoadingState()) ;
+      ResponseModel responseModel = await _bestDishUseCase.call();
+      if (responseModel.isSuccess) {
+        bestDishModel=responseModel.data;
+        print('dsdd ${bestDishModel?.data?.length??'sss'}');
+        emit(GetBestDishSuccessState()) ;
+      }else{
+        emit(GetBestDishErrorState()) ;
+      }
+    }catch(e){
+      emit(GetBestDishErrorState()) ;
+    }
   }
   SearchItemModel? searchItemModel;
   Future<ResponseModel> searchItems({required int storeId,required String searchText}) async {
     emit(SearchLoadingState()) ;
     ResponseModel responseModel = await _searchItemsUseCase.call(searchText: searchText,);
     if (responseModel.isSuccess) {
-       searchItemModel =responseModel.data;
+      searchItemModel =responseModel.data;
       emit(SearchSuccessState()) ;
     }else{
       emit(SearchErrorState()) ;

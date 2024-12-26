@@ -77,7 +77,6 @@ class MyApp extends StatelessWidget {
             ),
             home:
               const SplashPage(),
-            //  const LayoutScreen(currentPage: 0),
 
           );
       },
