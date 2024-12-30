@@ -1,0 +1,23 @@
+
+
+default_platform(:android)
+
+platform :android do
+    desc "App Distribution with Firebase"
+    lane :firebase_distribution do
+        sh "flutter clean"
+        sh "flutter build apk --release"
+        firebase_app_distribution(
+          app: "1:380787605879:android:9e250ad725ad8f7c476172",
+          firebase_cli_token: "1//031Jl1IBLbwe2CgYIARAAGAMSNwF-L9IrinjMzI8_K6JoK2eEslZYv-VrzPWqzTnDUpJZpu1w6Gy-kHbfHTLKnvpYoWHBFY-UT9s",
+          android_artifact_type: "APK",
+          android_artifact_path: "../build//app/outputs/flutter-apk/app-release.apk",
+          testers: "eyehya576@gmail.com,pmmatrixclouds@gmail.com,habiba.ali.allam243@gmail.com",
+          release_notes: "
+            1- Redesign Order item and display order Id
+            2- Push to GitHub
+            3- add handel ios
+            "
+        )
+    end
+end
