@@ -31,7 +31,7 @@ class OrdersScreen extends StatelessWidget {
         isBackButtonExist: false,
       ),
       body:
-      BlocConsumer<OrdersCubit,OrdersState>( 
+      BlocConsumer<OrdersCubit,OrdersState>(
         builder: (context,state){
           if(cubit.orderModel!=null){
             if(cubit.orderModel!.data!.isEmpty){
