@@ -46,6 +46,7 @@ class CustomOrderItemWidget extends StatelessWidget {
                     )),
                 horizontalSpace(10),
                 Expanded(
+                  flex: 3,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -65,7 +66,9 @@ class CustomOrderItemWidget extends StatelessWidget {
                     ],
                   ),
                 ),
-                Container(
+                Expanded(
+                    flex: 2,
+                    child:  Container(
                   // width: 80.w,
                   child: Container(
                     child: Column(
@@ -73,10 +76,13 @@ class CustomOrderItemWidget extends StatelessWidget {
                       crossAxisAlignment:  CrossAxisAlignment.end,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text(' ${(double.parse(orderModelData.price?.toString()??'0.0') +(double.parse(orderModelData.tripModel?.data?.price?.toString()??'0.0')))} ${LocaleKeys.lyd.tr()}',style: TextStyles.font18Black700Weight.copyWith(
-                            color: AppColors.secondPrimaryColor),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,),
+                       FittedBox(
+                         fit: BoxFit.scaleDown,
+                         child:  Text(' ${(double.parse(orderModelData.price?.toString()??'0.0') +(double.parse(orderModelData.tripModel?.data?.price?.toString()??'0.0')))} ${LocaleKeys.lyd.tr()}',style: TextStyles.font18Black700Weight.copyWith(
+                             color: AppColors.secondPrimaryColor),
+                           maxLines: 1,
+                           overflow: TextOverflow.ellipsis,),
+                       ),
                         verticalSpace(30),
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 10.w,vertical: 5.h),
@@ -85,16 +91,18 @@ class CustomOrderItemWidget extends StatelessWidget {
                               borderRadius: BorderRadius.circular(8),
                               border: Border.all(color: AppColors.customGray)
                           ),
-                          child: BlackMediumText(
+                          child:
+                          BlackMediumText(
                             label: '${orderModelData.statusLang}',
-                              fontSize: 12.sp,
+                            fontSize: 12.sp,
                             labelColor: AppColors.whiteColor,
+                            maxLines: 3,
                           ),
                         )
                       ],
                     ),
                   ),
-                )
+                ))
               ],
             ),
           ),
