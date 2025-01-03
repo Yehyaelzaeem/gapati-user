@@ -145,12 +145,10 @@ class CustomStepBody3Widget extends StatelessWidget {
                               // CustomTextRowCartWidget(title: LocaleKeys.discount.tr(), text: '0.0 ${LocaleKeys.lyd.tr()}'),
                               CustomTextRowCartWidget(
                                   title: LocaleKeys.shipping.tr(),
-                                  text:
-                                      '${checkOutCubit.deliveryFees} ${LocaleKeys.lyd.tr()}'),
+                                  text: '${checkOutCubit.deliveryFees} ${LocaleKeys.lyd.tr()}'),
                               CustomTextRowCartWidget(
-                                  title: LocaleKeys.total.tr(),
-                                  text:
-                                      '${(cubit.totalPrice() + double.parse(checkOutCubit.deliveryFees)).toStringAsFixed(1)} ${LocaleKeys.lyd.tr()}'),
+                                  title: LocaleKeys.total.tr(), text:
+                              '${(cubit.totalPrice() + double.parse(checkOutCubit.deliveryFees)).toStringAsFixed(1)} ${LocaleKeys.lyd.tr()}'),
                             ],
                           );
                         },
