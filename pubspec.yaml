@@ -62,7 +62,7 @@ dependencies:
   stylish_bottom_bar: ^0.1.5
   smooth_page_indicator: ^1.0.0+2
   flutter_timer_countdown: ^1.0.5
-  carousel_slider: ^4.2.1
+  carousel_slider: ^5.0.0
   flutter_rating_bar: ^4.0.1
   url_launcher: ^6.1.6
   flutter_launcher_icons: ^0.13.1
