@@ -1,4 +1,4 @@
-name: Android Fastlane with Firebase App Distribution Workflow
+name: Android Build and Upload to Google Drive
 
 on:
   push:
@@ -6,10 +6,10 @@ on:
       - main
 
 jobs:
-  distribute_to_firebase:
+  build_and_upload:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout my repo code
+      - name: Checkout Repository
         uses: actions/checkout@v2
 
       - name: Set up JDK 11
@@ -22,22 +22,27 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: stable
+
       - name: Clear Gradle Cache
         run: rm -rf ~/.gradle/caches/
 
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: "3.2.3"
-          bundler-cache: true
-          working-directory: android
-
-      - name: Build APK with Verbose Logs
-        run: flutter build apk --release -v
-
-      - name: Build and Distribute APK
-        env:
-          FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_CLI_TOKEN }}
+      - name: Build APK
         working-directory: android
         run: |
-          bundle exec fastlane android firebase_distribution
+          ./gradlew clean assembleRelease
+
+      - name: Install gdrive CLI
+        run: |
+          sudo apt-get install -y unzip
+          curl -L -o gdrive.zip https://github.com/prasmussen/gdrive/releases/download/2.1.0/gdrive-linux-x64
+          unzip gdrive.zip -d /usr/local/bin
+          chmod +x /usr/local/bin/gdrive
+
+      - name: Upload APK to Google Drive
+        env:
+          GDRIVE_ACCESS_TOKEN: ${{ secrets.GDRIVE_ACCESS_TOKEN }}
+        working-directory: android
+        run: |
+          ./gradlew clean assembleRelease
+          APK_PATH=$(find app/build/outputs/apk/release -name "*.apk" | head -n 1)
+          gdrive upload --parent <FOLDER_ID> "$APK_PATH"
