@@ -1,4 +1,4 @@
-name: Android Firebase Distribution
+name: Android Fastlane with Firebase App Distribution Workflow
 
 on:
   push:
@@ -6,30 +6,23 @@ on:
       - main
 
 jobs:
-  build_and_distribute:
+  distribute_to_firebase:
     runs-on: ubuntu-latest
     steps:
-      # Step 1: Checkout Repository
-      - name: Checkout Repository
+      - name: Checkout my repo code
         uses: actions/checkout@v2
 
-      # Step 2: Debug File Structure
-      - name: Debug File Structure
-        run: ls -R
-
-      # Step 3: Set up JDK for Gradle
       - name: Set up JDK 11
         uses: actions/setup-java@v2
         with:
           java-version: '11'
+          distribution: 'temurin'
 
-      # Step 4: Install Flutter
       - name: Install Flutter
         uses: subosito/flutter-action@v2
         with:
           channel: stable
 
-      # Step 5: Setup Ruby and Bundler
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -37,10 +30,9 @@ jobs:
           bundler-cache: true
           working-directory: android
 
-      # Step 6: Build and Distribute APK
-      - name: Build and Distribute APK
+      - name: Build and Distribute App
         env:
           FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_CLI_TOKEN }}
-        working-directory: android
         run: |
-          bundle exec fastlane android firebase_distribution
+             fastlane firebase_distribution
+        working-directory: android
