@@ -85,7 +85,7 @@ dependencies:
   #  flutter_notification_channel: ^3.0.0
 
   # For storing images into gallery
-  gallery_saver_updated: ^3.0.0
+#  gallery_saver_updated: ^3.0.0
 
 
 
