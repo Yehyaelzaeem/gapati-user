@@ -40,7 +40,8 @@ class _MealsScreenState extends State<BestDishMealsScreen> {
         builder: (context, state) {
           if(cubit.bestDishModel!=null){
             if(cubit.bestDishModel!.data!=null && cubit.bestDishModel!.data!.isNotEmpty){
-              return ListView.builder(
+              return
+                ListView.builder(
                 physics: BouncingScrollPhysics(),
                 itemCount: cubit.bestDishModel!.data!.length,
                 itemBuilder: (context,index){

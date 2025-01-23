@@ -1,3 +1,4 @@
+import 'package:delivego/core/helpers/spacing.dart';
 import 'package:delivego/presentation/modules/layout/screens/orders/widgets/custom_order_item.dart';
 import '../../../../../../../generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -39,9 +40,11 @@ class OrdersScreen extends StatelessWidget {
             }else{
               return
                SingleChildScrollView(
+                 physics: BouncingScrollPhysics(),
                  child:   Column(
                    children: [
-                     ...cubit.orderModel!.data!.map((e) => CustomOrderItemWidget(orderModelData: e,))
+                     ...cubit.orderModel!.data!.map((e) => CustomOrderItemWidget(orderModelData: e,)),
+                     verticalSpace(80)
                    ],
                  ),
                );

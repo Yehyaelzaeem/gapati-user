@@ -3,7 +3,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gallery_saver_updated/gallery_saver.dart';
 import '../../../../../core/helpers/dialogs.dart';
 import '../../../../../core/helpers/my_date_util.dart';
 import '../../../../../core/routing/navigation_services.dart';
@@ -217,20 +216,20 @@ class _MessageCardState extends State<MessageCard> {
                             color: Colors.blue, size: 26),
                         name: 'Save Image',
                         onTap: () async {
-                          try {
-                            log('Image Url: ${widget.message.msg}','');
-                            await GallerySaver.saveImage(widget.message.msg,
-                                    albumName: 'Cogina Chat')
-                                .then((success) {
-                              //for hiding bottom sheet
-                              Navigator.pop(context);
-                              if (success != null && success) {
-                                Dialogs.showSnackbar(
-                                    context, 'Image Successfully Saved!');
-                              }
-                            });
-                          } catch (e) {
-                          }
+                          // try {
+                          //   log('Image Url: ${widget.message.msg}','');
+                          //   // await GallerySaver.saveImage(widget.message.msg,
+                          //   //         albumName: 'Cogina Chat')
+                          //   //     .then((success) {
+                          //   //   //for hiding bottom sheet
+                          //   //   Navigator.pop(context);
+                          //   //   if (success != null && success) {
+                          //   //     Dialogs.showSnackbar(
+                          //   //         context, 'Image Successfully Saved!');
+                          //   //   }
+                          //   // });
+                          // } catch (e) {
+                          // }
                         }),
 
                 //separator or divider

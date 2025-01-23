@@ -53,8 +53,8 @@ class CheckOutCubit extends Cubit<CheckOutState> {
         }
         else{
           CheckOutModel checkOutBody=CheckOutModel(
-              name: cartCubit.storeName!,
-              addressId:addressCubit.orderAddress!.id!.toString(),
+              name: cartCubit.storeName??'',
+              addressId:addressCubit.selectedAddress!.id!.toString(),
               paymentMethod: paymentMethod==0?'cash':'online',
               note: notesController.text,
               storeId: cartCubit.products[0].storeId?.toString()??'1',

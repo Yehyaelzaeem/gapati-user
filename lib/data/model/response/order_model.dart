@@ -29,6 +29,7 @@ class OrderModelData {
   String? name;
   String? status;
   String? statusLang;
+  String? statusTripLang;
   dynamic price;
   dynamic deliveryPrice;
   dynamic discount;
@@ -53,6 +54,7 @@ class OrderModelData {
         this.paymentStatus,
         this.discount,
         this.note,
+        this.statusTripLang,
         this.date,
         this.statusLang,
         this.paymentMethod,
@@ -79,6 +81,7 @@ class OrderModelData {
     tripModel = json['trip_data'] != null ? new TripModel.fromJson(json['trip_data']) : null;
     price = json['price'];
     deliveryPrice = json['delivery_price'];
+    statusTripLang =json['trip_data']!=null && json['trip_data']['data']!=null  && json['trip_data']['data']['trip_status']!=null? json['trip_data']['data']['trip_status']:null;
     statusLang = json['status_lang'];
     note = json['note'];
     status = json['status'];

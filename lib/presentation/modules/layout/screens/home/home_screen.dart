@@ -1,5 +1,6 @@
 
 import 'package:delivego/presentation/component/custom_text_field.dart';
+import 'package:delivego/presentation/modules/layout/screens/home/widgets/best_dish_widget.dart';
 import 'package:delivego/presentation/modules/layout/screens/home/widgets/custom_row_title_widget.dart';
 import 'package:delivego/presentation/modules/layout/screens/home/widgets/customer_opinions.dart';
 import 'package:delivego/presentation/modules/layout/screens/home/widgets/home_categories_widget.dart';
@@ -22,6 +23,7 @@ import '../../../../../generated/locale_keys.g.dart';
 import '../../../../component/images/custom_image_slider.dart';
 import '../../../search/search_cubit.dart';
 import '../more/address/address_cubit.dart';
+import 'meal/best_dish_meal/best_dish_meal_screen.dart';
 import 'nearest/nearest_screen.dart';
  import 'home_cubit.dart';
 
@@ -103,7 +105,21 @@ class HomeScreen extends StatelessWidget {
                         verticalSpace(16),
                         HomeCategoriesWidget(),
                         verticalSpace(30),
-                        // HomeSubCategoriesWidget(),
+                        CustomRowTitleWidget(
+
+                          title: LocaleKeys.bestDish2.tr(),
+                          image: AppImages.star,
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>
+                                BestDishMealsScreen()));
+                          },
+                          length: 5,
+                        ),
+                        verticalSpace(16),
+                       BestDishMealsWidget(),
+                      verticalSpace(30),
+
+                // HomeSubCategoriesWidget(),
                         // verticalSpace(30),
                         CustomRowTitleWidget(
                           title: LocaleKeys.beastOffers.tr(),

@@ -22,31 +22,44 @@ class CustomCartTopWidget extends StatelessWidget {
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
         ),
-        child: Row(
-          children: [
-            SizedBox(width: 5.w,),
-             CircleAvatar(
-               radius: size??20,
-              backgroundColor:iconBackGround,
-              child: Icon(iconData,
-              color: AppColors.whiteColor,
-              ),
+        child:
+       FittedBox(
+         fit: BoxFit.scaleDown,
+         child:  Row(
+           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+           children: [
+            Row(
+              children: [
+                SizedBox(width: 5.w,),
+                CircleAvatar(
+                  radius: size??20,
+                  backgroundColor:iconBackGround,
+                  child: Icon(iconData,
+                    color: AppColors.whiteColor,
+                  ),
+                ),
+                SizedBox(width: 15.w,),
+                Text(title,
+                  style: TextStyles.font16Black600Weight.copyWith(
+                      fontWeight: FontWeight.bold,
+                     fontSize: 14
+                  ),
+                ),
+              ],
             ),
-            SizedBox(width: 15.w,),
-            Text(title,
-              style: TextStyles.font16Black600Weight.copyWith(
-                  fontWeight: FontWeight.bold
-              ),
-            ),
-            const Spacer(),
-            Text(number,
-              style: TextStyles.font16Black600Weight.copyWith(
-                  color: AppColors.redColor.withOpacity(0.6)
-              ),
-            ),
-            SizedBox(width: 20.w,),
-          ],
-        ),
+           Row(
+             children: [
+               Text(number,
+                 style: TextStyles.font16Black600Weight.copyWith(
+                     color: AppColors.redColor.withOpacity(0.6)
+                 ),
+               ),
+               SizedBox(width: 20.w,),
+             ],
+           )
+           ],
+         ),
+       )
       ),
     );
   }

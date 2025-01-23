@@ -93,7 +93,7 @@ class CustomOrderItemWidget extends StatelessWidget {
                           ),
                           child:
                           BlackMediumText(
-                            label: '${orderModelData.statusLang}',
+                            label: '${orderModelData.statusTripLang??orderModelData.statusLang}',
                             fontSize: 12.sp,
                             labelColor: AppColors.whiteColor,
                             maxLines: 3,

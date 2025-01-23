@@ -39,7 +39,11 @@ class NotificationService {
       badge: true,
       sound: true,
     );
-
+    await _firebaseMessaging.setForegroundNotificationPresentationOptions(
+      alert: true,
+      badge: true,
+      sound: true,
+    );
     // Configure FCM
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       if(ChatCubit.get().chatRoom!=message.notification!.title){
@@ -57,11 +61,13 @@ class NotificationService {
         importance: Importance.max,
         priority: Priority.high,
         showWhen: false,
+        enableVibration: true,
+        playSound: true,
+        icon: 'logo'
       );
 
       const DarwinNotificationDetails iOSPlatformChannelSpecifics =
       DarwinNotificationDetails();
-
       const NotificationDetails platformChannelSpecifics = NotificationDetails(
         android: androidPlatformChannelSpecifics,
         iOS: iOSPlatformChannelSpecifics,
